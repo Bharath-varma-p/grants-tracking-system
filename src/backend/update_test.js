@@ -8,7 +8,19 @@ const sequelize = new Sequelize({
   username: 'root',
   password: 'Rafvue132',
   database: 'GDatabase',
+  dialectOptions: {
+    charset: 'utf8mb4',
+    requestTimeout: 60000, // 60 seconds
+    connectionTimeout: 60000 // Set a 30-second global timeout (adjust as needed)
+  },
+  pool: {
+    max: 20,
+    min: 0,
+    acquire: 60000,
+    idle: 10000,
+  },
 });
+
 
 const Grant = sequelize.define('grants', {
     id: {
