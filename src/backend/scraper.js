@@ -4,7 +4,7 @@ const { writeFile } = require('fs').promises;
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 
 // Load XML file 
-const xml = fs.readFileSync('/Users/bharath/Documents/GrantsPortal/GrantsProject/Downloaded_data/GrantsDBExtract20231006v2.xml', 'utf8');
+const xml = fs.readFileSync('/Users/admin/Desktop/GrantsDBExtract20231008v2.xml', 'utf8');
 
 // Parse XML using cheerioo
 const $ = cheerio.load(xml, {xmlMode: true}); 
@@ -18,8 +18,16 @@ $('OpportunitySynopsisDetail_1_0').each((i, elem) => {
   const title = $(elem).find('OpportunityTitle').text();
   const number = $(elem).find('OpportunityNumber').text();
   const category = $(elem).find('OpportunityCategory').text();
-  const FundingInstrumentType = $(elem).find('FundingInstrumentType').text();
-  const CategoryOfFundingActivity = $(elem).find('CategoryOfFundingActivity').text();
+  const FundingInstrumentType = [];
+  $(elem).find('FundingInstrumentType').each(function () {
+    FundingInstrumentType.push($(this).text());
+  });;
+  FundingInstrumentType.join(', ');
+  const CategoryOfFundingActivity = [];
+  $(elem).find('CategoryOfFundingActivity').each(function () {
+    CategoryOfFundingActivity.push($(this).text());
+  });
+  CategoryOfFundingActivity.join(', ');
   const CategoryExplanation = $(elem).find('CategoryExplanation').text();
   const CFDANumbers = $(elem).find('CFDANumbers').text();
   const EligibleApplicants = $(elem).find('EligibleApplicants').text();
