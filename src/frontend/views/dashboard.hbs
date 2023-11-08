@@ -6,6 +6,7 @@
     table {
       width: 100%;
       border-collapse: collapse;
+      background-color: #f3f5f9;
     }
 
     th, td {
@@ -22,23 +23,22 @@
       background-color: #f5f5f5;
     }
 
-    dashboard {
+    {{!-- dashboard {
       background-color: #fff;
       padding: 20px;
       border-radius: 5px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    }
+    } --}}
   </style>
 </head>
 <body>
   <h1>Dashboard</h1>
-  {{#unless data.length}}
    <form id="dashboard" action="/dashboard" method="post">
      <label for="keyword">Keyword:</label>
      <input type="text" id="keyword" name="keyword" required>
      <button type="submit">Search</button>
    </form>
-  {{/unless}}
+   <br>
 
   {{#if data.length}}
     <table>
@@ -61,6 +61,15 @@
           <th>Last Updated Date</th>
           <th>Award Ceiling</th>
           <th>Award Floor</th>
+          <th>Estimated Total Program Funding</th>
+          <th>Expected Number Of Awards</th>
+          <th>Description</th>
+          <th>Version</th>
+          <th>CostSharing Or MatchingRequirement</th>
+          <th>ArchiveDate</th>
+          <th>Grantor Contact Email</th>
+          <th>Grantor Contact Email Description</th>
+          <th>GrantorContactText</th>
         </tr>
       </thead>
       <tbody>
@@ -73,7 +82,7 @@
             <td>{{FundingInstrumentType}}</td>
             <td>{{CategoryOfFundingActivity}}</td>
             <td>{{CategoryExplanation}}</td>
-            <td>{{CFDANumbers}}</td>
+            <td>{{CFDAStringSlice CFDANumbers}}</td>
             <td>{{EligibleApplicants}}</td>
             <td>{{AdditionalInformationOnEligibility}}</td>
             <td>{{AgencyCode}}</td>
@@ -83,6 +92,15 @@
             <td>{{formatDate LastUpdatedDate}}</td>
             <td>{{AwardCeiling}}</td>
             <td>{{AwardFloor}}</td>
+            <td>{{EstimatedTotalProgramFunding}}</td>
+            <td>{{ExpectedNumberOfAwards}}</td>
+            <td>{{Description}}</td>
+            <td>{{Version}}</td>
+            <td>{{CostSharingOrMatchingRequirement}}</td>
+            <td>{{ArchiveDate}}</td>
+            <td>{{GrantorContactEmail}}</td>
+            <td>{{GrantorContactEmailDescription}}</td>
+            <td>{{GrantorContactText}}</td>
           </tr>
         {{/each}}
       </tbody>
