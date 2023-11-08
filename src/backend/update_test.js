@@ -34,6 +34,21 @@ const FundingInstrumentTypeMap = {
   'PC': 'Procurement Contract'
 };
 
+const CategoryOfFundingActivityMap = {
+  'BC'    : 'Business and Commerce',
+  'RA'    : 'Recovery Act',
+  'ST'    : 'Science and Technology and other Research and Development',
+ 'ELT'  :   'Employment, Labor and Training',
+ 'DPR'   : 'Disaster Prevention and Relief',
+ 'ACA'   :  'Affordable Care Act',
+  'T'    : 'Transportation',
+  'O'     : 'Other (see text field entitled "Explanation of Other Category of Funding Activity" for clarification)',
+ 'ISS'   : 'Income Security and Social Services',
+ 'IS'    :  'Information and Statistics',
+ 'ENV'  :  'Environment',
+ 'HO'   : 'Housing',
+ 'HL'   :  'Health'
+}
 const Grant = sequelize.define('grants_tracking', {
     id: {
       type: DataTypes.INTEGER,
@@ -250,6 +265,10 @@ function transformRow(row) {
   const abbreviatedFundingTypes = row.FundingInstrumentType.split(',');
   const fullFormFundingTypes = abbreviatedFundingTypes.map((v) => FundingInstrumentTypeMap[v.trim()] || v.trim());
   row.FundingInstrumentType = fullFormFundingTypes.join(', ');
+  
+  const abbreviatedCategoryFundingActivities = row.CategoryOfFundingActivity.split(', ');
+  const fullFormCategoryFundingActivities = abbreviatedCategoryFundingActivities.map((v) => CategoryOfFundingActivityMap[v.trim()] || v.trim());
+  row.CategoryOfFundingActivity = fullFormCategoryFundingActivities.join(', ');
 
   console.log("formatted date",format(convertDate(row.PostDate), 'MM/dd/yyyy'));
 

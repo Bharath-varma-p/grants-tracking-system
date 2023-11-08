@@ -28,18 +28,21 @@ handlebars.registerHelper('formatDate', function(date) {
   return moment(date).format('MM/DD/YYYY');
 })
 
+handlebars.registerHelper('CFDAStringSlice', function(CFDA) {
+  return CFDA.split(',')[0];
+})
+
 app.get('/dashboard', (req, res) => {
-  const data = [];
-  res.render('dashboard', { data }); // Render the dashboard with no results initially
+ // const data = [];
+  const sql = 'SELECT * from grants_trackings';
+  connection.query(sql, (err,results) => {
+    console.log("results in render",results.length);
+    res.render('dashboard', { data:results });
+  })
+  //res.render('dashboard', { data }); // Render the dashboard with no results initially
 });
 
 
-// // Define a route to retrieve all grants
-// app.get('/grants', async (req, res) => {
-//   const grants = await (await connection).query('SELECT id FROM grants');
-//   // console.log(grants)
-//   res.json(grants);
-// });
 
 app.post('/dashboard', (req,res) => {
     const keySearch = req.body.keyword;
