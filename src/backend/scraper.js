@@ -21,7 +21,7 @@ $('OpportunitySynopsisDetail_1_0').each((i, elem) => {
   const FundingInstrumentType = [];
   $(elem).find('FundingInstrumentType').each(function () {
     FundingInstrumentType.push($(this).text());
-  });;
+  });
   FundingInstrumentType.join(', ');
   const CategoryOfFundingActivity = [];
   $(elem).find('CategoryOfFundingActivity').each(function () {
@@ -29,8 +29,14 @@ $('OpportunitySynopsisDetail_1_0').each((i, elem) => {
   });
   CategoryOfFundingActivity.join(', ');
   const CategoryExplanation = $(elem).find('CategoryExplanation').text();
-  const CFDANumbers = $(elem).find('CFDANumbers').text();
-  const EligibleApplicants = $(elem).find('EligibleApplicants').text();
+  const CFDANumbers = [];
+   $(elem).find('CFDANumbers').each(function () {
+      CFDANumbers.push($(this).text());
+   });
+  const EligibleApplicants = [];
+  $(elem).find('EligibleApplicants').each(function () {
+    EligibleApplicants.push($(this).text());
+  });
   const AdditionalInformationOnEligibility = $(elem).find('AdditionalInformationOnEligibility').text();
   const AgencyCode = $(elem).find('AgencyCode').text();
   const AgencyName = $(elem).find('AgencyName').text();
@@ -48,8 +54,6 @@ $('OpportunitySynopsisDetail_1_0').each((i, elem) => {
   const GrantorContactEmail = $(elem).find('GrantorContactEmail').text();
   const GrantorContactEmailDescription = $(elem).find('GrantorContactEmailDescription').text();
   const GrantorContactText = $(elem).find('GrantorContactText').text();
-
-  
 
   const opportunity = {
     id,
