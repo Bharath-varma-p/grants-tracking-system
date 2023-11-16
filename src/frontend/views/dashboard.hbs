@@ -20,15 +20,15 @@
     }
 
     tr:hover {
-      background-color: #f5f5f5;
+      background-color: #b9aaf0;
     }
 
-    {{!-- dashboard {
-      background-color: #fff;
+    #dashboard {
+      background-color: #ffffff;
       padding: 20px;
       border-radius: 5px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    } --}}
+    }
   </style>
 </head>
 <body>
@@ -41,70 +41,46 @@
    <br>
 
   {{#if data.length}}
-    <table>
+    <table id="dashboardTable">
       <thead>
         <tr>
-          <th>ID</th>
           <th>Title</th>
           <th>Number</th>
-          <th>Category</th>
-          <th>Funding Instrument Type</th>
-          <th>Category Of Funding Activity</th>
-          <th>Category Explanation</th>
-          <th>CFDA Numbers</th>
-          <th>Eligible Applicants</th>
-          <th>Additional Information On Eligibility</th>
-          <th>Agency Code</th>
-          <th>Agency Name</th>
-          <th>Post Date</th>
           <th>Close Date</th>
-          <th>Last Updated Date</th>
           <th>Award Ceiling</th>
-          <th>Award Floor</th>
-          <th>Estimated Total Program Funding</th>
-          <th>Expected Number Of Awards</th>
-          <th>Description</th>
-          <th>Version</th>
-          <th>CostSharing Or MatchingRequirement</th>
-          <th>ArchiveDate</th>
-          <th>Grantor Contact Email</th>
-          <th>Grantor Contact Email Description</th>
-          <th>GrantorContactText</th>
+          <th>
+            Actions
+          </th>
         </tr>
       </thead>
       <tbody>
         {{#each data}}
           <tr>
-            <td>{{id}}</td>
             <td>{{title}}</td>
             <td>{{number}}</td>
-            <td>{{category}}</td>
-            <td>{{FundingInstrumentType}}</td>
-            <td>{{CategoryOfFundingActivity}}</td>
-            <td>{{CategoryExplanation}}</td>
-            <td>{{CFDAStringSlice CFDANumbers}}</td>
-            <td>{{EligibleApplicants}}</td>
-            <td>{{AdditionalInformationOnEligibility}}</td>
-            <td>{{AgencyCode}}</td>
-            <td>{{AgencyName}}</td>
-            <td>{{formatDate PostDate}}</td>
             <td>{{formatDate CloseDate}}</td>
-            <td>{{formatDate LastUpdatedDate}}</td>
             <td>{{AwardCeiling}}</td>
-            <td>{{AwardFloor}}</td>
-            <td>{{EstimatedTotalProgramFunding}}</td>
-            <td>{{ExpectedNumberOfAwards}}</td>
-            <td>{{Description}}</td>
-            <td>{{Version}}</td>
-            <td>{{CostSharingOrMatchingRequirement}}</td>
-            <td>{{ArchiveDate}}</td>
-            <td>{{GrantorContactEmail}}</td>
-            <td>{{GrantorContactEmailDescription}}</td>
-            <td>{{GrantorContactText}}</td>
+            <td><button class="viewButton" data-row-id="{{id}}" onclick="redirectToViewResults('{{id}}')">View</button></td>
           </tr>
         {{/each}}
       </tbody>
     </table>
+    {{!-- <div id="additionalFields" class="additional-fields"></div> --}}
   {{/if}}
+
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script>
+   $(document).ready(function() {
+      $('.viewButton').on('click', function() {
+         var rowId = $(this).data('row-id');
+         redirectToViewResults(rowId);
+      });
+
+      function redirectToViewResults(rowId) {
+         var url = '/dashboard-view-details?id=' + rowId;
+         window.location.href = url;
+      }
+   });
+  </script>
 </body>
 </html>

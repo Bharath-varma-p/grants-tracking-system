@@ -2,13 +2,17 @@ const express = require('express');
 const mysql = require('mysql2');
 const path = require('path')
 const moment = require('moment');
+require('dotenv').config();
+
+const password = process.env.dbPassword;
+
 
 const app = express();
 //Mysql connection details
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'Parvathi@12345',
+  password: password,
   database: 'loginsystem'
 });
 
@@ -44,9 +48,20 @@ app.get('/dashboard', (req, res) => {
 
 
 
+app.get('/dashboard-view-details', (req, res) => {
+    const id = req.query.id; 
+    const sql = 'SELECT * from grants_trackings WHERE id = ?';
+
+    connection.query(sql,[id],(err,results) => {
+      res.render('dashboard-view-details', { data: results });
+    })
+
+  });
+
+
 app.post('/dashboard', (req,res) => {
     const keySearch = req.body.keyword;
-   // select * from loginsystem.grants_tracks where title like '%Media%';
+
     const sql = 'SELECT * from grants_trackings where title like ?';
 
     connection.query(sql, [`%${keySearch}%`], (err,results) => {
@@ -54,7 +69,6 @@ app.post('/dashboard', (req,res) => {
           res.send("Error executing SQL query: ' + error.stack");
         }else{
           console.log("results",results.length);
-       //   res.json(results);
           res.render('dashboard',{ data: results });
         }
     });
@@ -79,9 +93,28 @@ app.post('/login', async (req,res) => {
   });
 })
 
+app.post('/register', async(req,res) => {
+  const {username,password} = req.body;
+  const sql = 'INSERT into users (username, password) values (?,?)';
+
+  connection.query(sql, [username, password], (err,results) => {
+    if(err){
+      console.log("Database error",err);
+    }else{
+      res.redirect('/login');
+    }
+  });
+
+})
+
 app.get('/login', (req, res) => {
   res.render('login'); // Render the login page
 });
+
+app.get('/register', (req, res) => {
+  res.render('signup'); // Render the signup page
+});
+
 
 // Start the server
 app.listen(3000, () => {

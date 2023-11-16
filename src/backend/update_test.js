@@ -3,11 +3,15 @@ const fs = require('fs');
 const csv = require('csv-parser');
 const { parse, isValid, format } = require('date-fns');
 
+require('dotenv').config();
+
+const password = process.env.dbPassword;
+
 const sequelize = new Sequelize({
   dialect: 'mysql',
   host: 'localhost',
   username: 'root',
-  password: 'Parvathi@12345',
+  password: password,
   database: 'loginsystem',
   dialectOptions: {
     charset: 'utf8mb4',
