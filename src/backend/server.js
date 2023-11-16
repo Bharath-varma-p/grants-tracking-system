@@ -112,7 +112,7 @@ app.get('/login', (req, res) => {
 });
 
 app.get('/register', (req, res) => {
-  res.render('signup'); // Render the login page
+  res.render('signup'); // Render the signup page
 });
 
 
