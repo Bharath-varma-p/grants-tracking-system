@@ -53,6 +53,30 @@ const CategoryOfFundingActivityMap = {
  'HO'   : 'Housing',
  'HL'   :  'Health'
 }
+
+const EligibleApplicantsMap = {
+  '25' : 'Others (see text field entitled "Additional Information on Eligibility" for clarification)',
+  '99' : 'Unrestricted (i.e., open to any type of entity above), subject to any clarification in text field entitled "Additional Information on Eligibility"',
+  '00' : 'State governments',
+  '06' : 'Public and State controlled institutions of higher education',
+  '11' : 'Native American tribal organizations (other than Federally recognized tribal governments)',
+  '12' : 'Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education',
+  '13' : 'Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education',
+  '20' : 'Private institutions of higher education',
+  '07' : 'Native American tribal governments (Federally recognized)',
+  '23' : 'Small businesses',
+  '01' : 'County governments',
+  '21' : 'Individuals',
+  '25' : 'Public and State controlled institutions of higher education',
+  '22' : 'For profit organizations other than small businesses',
+  '08' : 'Public housing authorities/Indian housing authorities',
+  '02' : 'City or township governments',
+  '05' : 'Independent school districts',
+  '04' : 'Special district governments'
+ 
+}
+
+
 const Grant = sequelize.define('grants_tracking', {
     id: {
       type: DataTypes.INTEGER,
@@ -273,6 +297,10 @@ function transformRow(row) {
   const abbreviatedCategoryFundingActivities = row.CategoryOfFundingActivity.split(', ');
   const fullFormCategoryFundingActivities = abbreviatedCategoryFundingActivities.map((v) => CategoryOfFundingActivityMap[v.trim()] || v.trim());
   row.CategoryOfFundingActivity = fullFormCategoryFundingActivities.join(', ');
+
+  const eligibleApplicantTypes = row.EligibleApplicants.split(',');
+  const eligibleApplicants = eligibleApplicantTypes.map((v) => EligibleApplicantsMap[v.trim()] || v.trim());
+  row.EligibleApplicants = eligibleApplicants.join(', ');
 
   console.log("formatted date",format(convertDate(row.PostDate), 'MM/dd/yyyy'));
 

@@ -37,6 +37,7 @@ $('OpportunitySynopsisDetail_1_0').each((i, elem) => {
   $(elem).find('EligibleApplicants').each(function () {
     EligibleApplicants.push($(this).text());
   });
+  EligibleApplicants.join(', ')
   const AdditionalInformationOnEligibility = $(elem).find('AdditionalInformationOnEligibility').text();
   const AgencyCode = $(elem).find('AgencyCode').text();
   const AgencyName = $(elem).find('AgencyName').text();
