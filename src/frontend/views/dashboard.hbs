@@ -3,10 +3,13 @@
 <head>
   <title>Dashboard</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500;600&display=swap');
+    body{
+      font-family: 'Poppins', sans-serif;
+    }
     table {
       width: 100%;
       border-collapse: collapse;
-      background-color: #f3f5f9;
     }
 
     th, td {
@@ -20,7 +23,8 @@
     }
 
     tr:hover {
-      background-color: #b9aaf0;
+      {{!-- background-color: #b9aaf0; --}}
+      background-color: #d8d0be;
     }
 
     #dashboard {
@@ -29,14 +33,36 @@
       border-radius: 5px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
+    .viewButton {
+      padding: 8px 12px;
+      border-radius: 6px;
+      background: #6366f1;
+      color: #fff;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    .submit-button {
+  width: max-content;
+  background: #dcfce7;
+  border-radius: 6px;
+  border: 1px solid #15803d;
+  color: #15803d;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 750;
+}
+  .keyword-label{
+    font-size: 20px;
+  }
   </style>
 </head>
 <body>
   <h1>Dashboard</h1>
    <form id="dashboard" action="/dashboard" method="post">
-     <label for="keyword">Keyword:</label>
+     <label class = "keyword-label"for="keyword">Keyword:</label>
      <input type="text" id="keyword" name="keyword" required>
-     <button type="submit">Search</button>
+     <button class = "submit-button" type="submit">Search</button>
    </form>
    <br>
 
@@ -65,7 +91,6 @@
         {{/each}}
       </tbody>
     </table>
-    {{!-- <div id="additionalFields" class="additional-fields"></div> --}}
   {{/if}}
 
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
