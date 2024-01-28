@@ -11,7 +11,7 @@ const sequelize = new Sequelize({
   dialect: 'mysql',
   host: 'localhost',
   username: 'root',
-  password: password,
+  password: 'Parvthi@12345',
   database: 'loginsystem',
   dialectOptions: {
     charset: 'utf8mb4',
