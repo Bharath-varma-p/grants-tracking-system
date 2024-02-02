@@ -2,15 +2,9 @@ const mysql = require('mysql2');
 require('dotenv').config();
 const speakeasy = require('speakeasy');
 const QRCode = require('qrcode');
-const session = require('express-session');
-const password = process.env.dbPassword;
 
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'Parvathi@12345',
-    database: 'loginsystem'
-  });
+const connection = require('../database');
+const qrcodepath = require('./constants');
 
 exports.viewDashboard = (req,res) => {
     if (!req.session.email) {
@@ -73,11 +67,14 @@ exports.enableTfa = (req,res) => {
           }
           else{
             const newSecretKey = speakeasy.generateSecret({name : email, length: 20});
-            console.log("secretKey",newSecretKey);
-              const qrCodeImagePath = '../public/qr-code.png';
-              QRCode.toFile(qrCodeImagePath, newSecretKey.otpauth_url);
+            // change this path in constants.js file
+            const qrCodeImagePath = qrcodepath.QRCODEPATH;
+            
+            QRCode.toFile(qrCodeImagePath, newSecretKey.otpauth_url);
+
+            const qrCodeUrl = "qr-code.png"
         
-              const sql = 'UPDATE users_2 SET is_tfa_enabled = 1, secret_key = ? WHERE email = ?';
+            const sql = 'UPDATE users_2 SET is_tfa_enabled = 1, secret_key = ? WHERE email = ?';
     
               connection.query(sql, [newSecretKey.base32, email], (err) => {
                 if (err) {
@@ -85,7 +82,7 @@ exports.enableTfa = (req,res) => {
                   res.status(500).send('Error enabling TFA');
                   return;
                 }
-                res.render('enable-tfa', {qrCodeURL: qrCodeImagePath});
+                res.render('enable-tfa', {qrCodeURL: qrCodeUrl});
     });
     }})
 }

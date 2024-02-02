@@ -1,14 +1,7 @@
 const mysql = require('mysql2');
 require('dotenv').config();
 
-const password = process.env.dbPassword;
-
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'Parvathi@12345',
-    database: 'loginsystem'
-  });
+const connection = require('../database');
 
 exports.renderLogin = (req,res) => {
     res.render('login');
