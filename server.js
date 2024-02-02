@@ -6,17 +6,10 @@ const session = require('express-session');
 const routes = require('./routes')
 require('dotenv').config();
 
-const password = process.env.dbPassword;
-
 
 const app = express();
 //Mysql connection details
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'Parvathi@12345',
-  database: 'loginsystem'
-});
+const connection = require('./database');
 
 const exphbs = require('express-handlebars');
 const handlebars = require('handlebars');

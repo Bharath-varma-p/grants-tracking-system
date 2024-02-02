@@ -5,14 +5,12 @@ const { parse, isValid, format } = require('date-fns');
 
 require('dotenv').config();
 
-const password = process.env.dbPassword;
-
 const sequelize = new Sequelize({
   dialect: 'mysql',
-  host: 'localhost',
-  username: 'root',
-  password: 'Parvthi@12345',
-  database: 'loginsystem',
+  host: process.env.HOST,
+  user: process.env.USER,
+  password: process.env.PASSWORD,
+  database: process.env.DATABASE,
   dialectOptions: {
     charset: 'utf8mb4',
     requestTimeout: 60000, // 60 seconds
@@ -245,21 +243,6 @@ async function insertData() {
         }
 
         try {
-          // const [existingRow] = await Grant.findOrCreate({
-          //   where: { id: row.OpportunityID },
-          //   defaults: transformRow(row),
-          // });
-    
-          // if (!existingRow[1]) {
-          //   await Grant.update(transformRow(row), {
-          //     where: { id: row.OpportunityID },
-          //   });
-          //   console.log(`Updated row with OpportunityID ${row.OpportunityID}`);
-          // } else {
-          //   console.log(`Inserted row with OpportunityID ${row.OpportunityID}`);
-          // }
-         
-
           if (row.OpportunityCategory !== null) {
           await Grant.upsert(transformRow(row));
           }
