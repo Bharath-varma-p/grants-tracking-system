@@ -52,12 +52,19 @@ exports.handleLogin = async (req,res) => {
 
 exports.handleRegister = (req,res) => {
     const {email,password} = req.body;
+console.log("password", req.body['confirm-password']);
 
     if (!isValidEmail(email)) {
       return res.status(400).send('Invalid email format');
+}
+  
+     // Check if passwords match
+     if (password !== req.body['confirm-password']) {
+      return res.status(400).send('Passwords do not match');
     }
   
     const sql = 'INSERT into users_2 (email, password) values (?,?)';
+
   
     connection.query(sql, [email, password], (err,results) => {
       if(err){
