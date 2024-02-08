@@ -1,4 +1,5 @@
-/node_modules
-/Downloaded_data
-.csv
-.env
+*.env
+*.csv
+*.xml
+node_modules/
+Downloaded_data/
