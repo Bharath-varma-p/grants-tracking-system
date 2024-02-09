@@ -28,15 +28,6 @@ $('OpportunitySynopsisDetail_1_0').each((i, elem) => {
     CategoryOfFundingActivity.push($(this).text());
   });
   CategoryOfFundingActivity.join(', ');
-  const FundingInstrumentType = [];
-  $(elem).find('FundingInstrumentType').each(function () {
-    FundingInstrumentType.push($(this).text());
-  });
-  FundingInstrumentType.join(', ');
-  const CategoryOfFundingActivity = [];
-  $(elem).find('CategoryOfFundingActivity').each(function () {
-    CategoryOfFundingActivity.push($(this).text());
-  });
   CategoryOfFundingActivity.join(', ');
   const CategoryExplanation = $(elem).find('CategoryExplanation').text();
   const CFDANumbers = [];
@@ -48,14 +39,6 @@ $('OpportunitySynopsisDetail_1_0').each((i, elem) => {
     EligibleApplicants.push($(this).text());
   });
   EligibleApplicants.join(', ')
-  const CFDANumbers = [];
-   $(elem).find('CFDANumbers').each(function () {
-      CFDANumbers.push($(this).text());
-   });
-  const EligibleApplicants = [];
-  $(elem).find('EligibleApplicants').each(function () {
-    EligibleApplicants.push($(this).text());
-  });
   EligibleApplicants.join(', ')
   const AdditionalInformationOnEligibility = $(elem).find('AdditionalInformationOnEligibility').text();
   const AgencyCode = $(elem).find('AgencyCode').text();
