@@ -11,12 +11,14 @@
     table {
       width: 100%;
       border-collapse: collapse;
+      border: 1px solid black;
     }
 
     th, td {
       padding: 8px;
       text-align: left;
       border-bottom: 1px solid #ddd;
+      border: 1px solid black;
     }
 
     th {
@@ -256,14 +258,25 @@
 
 
   </nav>
-  
+
 
    <form id="dashboard" action="/dashboard" method="post">
      <label class = "keyword-label"for="keyword">Keyword:</label>
      <input type="text" id="keyword" name="keyword" required>
      <button class = "submit-button" type="submit">Search</button>
+     <button class = "reset-button" onclick="reset" type="submit">Reset</button>
    </form>
    <br>
+
+  <div id="paginationOptions">
+    <label for="rowsPerPage">Rows per page:</label>
+    <select id="rowsPerPage">
+      <option value="10">10</option>
+      <option value="20">20</option>
+      <option value="30">30</option>
+    </select>
+  </div> 
+  <br>
 
   {{#if data.length}}
     <table id="dashboardTable">
@@ -290,20 +303,52 @@
         {{/each}}
       </tbody>
     </table>
+
+    {{!-- <!-- Pagination links -->
+    <div id="paginationLinks">
+    <!-- Page navigation links will be dynamically added here -->
+    </div> --}}
   {{/if}}
 
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-  <script>
+  <script type="text/javascript">
    $(document).ready(function() {
-      $('.viewButton').on('click', function() {
+      function handleViewButtonClick() {
          var rowId = $(this).data('row-id');
          redirectToViewResults(rowId);
-      });
+      }
+
+      $('.viewButton').on('click', handleViewButtonClick);
 
       function redirectToViewResults(rowId) {
          var url = '/dashboard-view-details?id=' + rowId;
          window.location.href = url;
       }
+
+      function paginateData(pageNumber,rowsPerPage){
+        console.log("rowsPerPage",rowsPerPage);
+        $.ajax({
+          url:'/dashboard',
+          type: 'GET',
+          data:{
+            page: pageNumber,
+            limit: rowsPerPage
+          },
+          success: function(response){
+            $('#dashboardTable tbody').empty().append($(response).find('tbody').html());
+            $('.viewButton').off('click').on('click', handleViewButtonClick);
+         //   updatePaginationLinks(pageNumber, rowsPerPage);
+          },
+          error: function(xhr,status,error){
+            console.error(error);
+          }
+        });
+      }
+
+     $('#rowsPerPage').on('change', function(){
+      var rowsperpage = $(this).val();
+      paginateData(1,rowsperpage);
+    })
    });
   </script>
 
