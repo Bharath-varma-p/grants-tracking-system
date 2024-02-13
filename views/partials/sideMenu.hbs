@@ -164,16 +164,18 @@
     
   }
 
-  .slide{
+  label .slide{
     height: 100%;
-    width: 180px;
+    width: 210px; /*180*/
     position: absolute; /*need to use absolute as per the resource*/
     background-color: #fff;
     transition: 0.5s ease;
-    transform: translateX(-180px);
+    transform: translateX(-210px); /*-180*/
+    z-index: 1;
+    left: 0;
   }
 
-  h1{
+  label .slide h1{
     color: black;
     font-weight: 700; /*800*/
     text-align: right;
@@ -182,29 +184,32 @@
     pointer-events: none;
   }
 
-  ul li{
+  label .slide ul li{
     list-style: none;
     
   }
 
-  ul li a{
+  label .slide ul li a{
     color: black;
     font-weight: 500;
-    padding: 5px 0;
-    display: inline-block;
+    padding: 10px; /*5px 0*/
+    border-radius: 5px; /*new*/
+    margin-bottom: 10px; /*new*/
+    display: block;
     text-transform: capitalize;
     text-decoration: none;
-    transition: 0.2s ease-out;
+    transition: background-color 0.2s ease-out, color 0.2s ease-out;
+    
 
   }
 
-  ul li:hover a{
+  label .slide ul li:hover a{
     color: #fff;
     background-color: #525252;
   }
 
 
-  ul li a i{
+  label .slide ul li a i{
     width: 40px;
     text-align: center;
   }
@@ -220,13 +225,14 @@
     position: absolute; /* absolute*/
     height: 30px;
     width: 30px;
-    top: 50px;
+    top: 50px; /*50px*/
     left: 25px;
-    z-index: 1;
+    z-index: 2;
     cursor: pointer;
     border-radius: 2px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
   }
 
   .toggle .common{
@@ -236,6 +242,7 @@
     background-color: #0d0c0cca;
     border-radius: 50px;
     transition: 0.3s ease;
+    
   }
 
   .toggle .top_line{
