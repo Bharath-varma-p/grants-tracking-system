@@ -38,7 +38,7 @@
       border-radius: 3px;
     }
 
-    input[type="submit"] {
+    button[type="submit"] {
       width: 100%;
       padding: 10px;
       margin: 10px 0;
@@ -47,20 +47,34 @@
       border: none;
       border-radius: 3px;
       cursor: pointer;
-    }
+    } 
   </style>
 </head>
 <body>
   <h1>Create Account</h1>
   <form id="signup-form" method="post" action="/register">
-    <label for="email">Email:</label>
-    <input type="text" id="email" name="email" required><br>
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required><br>
-<input type="checkbox" onclick="togglePasswordVisibility()">show Password<br>
-    <label for="confirm-password">Confirm Password:</label>
-    <input type="password" id="confirm-password" name="confirm-password" required><br>
-    <input type="submit" value="Signup">
+    <div class="form-group">
+      <label for="firstname">First Name:</label>
+      <input type="text" id="firstname" name="firstname" required><br>
+    </div>
+    <div class="form-group">
+      <label for="lastname">Last Name:</label>
+      <input type="text" id="lastname" name="lastname" required><br>
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="text" id="email" name="email" required><br>
+    </div>
+    <div class="form-group"></div>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required><br>
+      <input type="checkbox" onclick="togglePasswordVisibility()">Show Password<br>
+    </div> 
+    <div class="form-group">
+      <label for="confirm-password">Confirm Password:</label>
+      <input type="password" id="confirm-password" name="confirm-password" required><br>
+    </div>
+    <button type="submit">Signup</button>
   </form>
    <p>Already have an account? <a href="/login">Login</a></p>
 <script>
