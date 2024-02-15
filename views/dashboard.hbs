@@ -17,6 +17,7 @@
     table {
       width: 100%;
       border-collapse: collapse;
+      border: 1px solid black;
     }
 
     th,
@@ -24,6 +25,7 @@
       padding: 8px;
       text-align: left;
       border-bottom: 1px solid #ddd;
+      border: 1px solid black;
     }
 
     th {
@@ -90,7 +92,17 @@
     </form>
     <br>
 
-    {{#if data.length}}
+  <div id="paginationOptions">
+    <label for="rowsPerPage">Rows per page:</label>
+    <select id="rowsPerPage">
+      <option value="10">10</option>
+      <option value="20">20</option>
+      <option value="30">30</option>
+    </select>
+  </div> 
+  <br>
+
+  {{#if data.length}}
     <table id="dashboardTable">
       <thead>
         <tr>
@@ -116,21 +128,53 @@
         {{/each}}
       </tbody>
     </table>
-    {{/if}}
-  </div>
+
+    {{!-- <!-- Pagination links -->
+    <div id="paginationLinks">
+    <!-- Page navigation links will be dynamically added here -->
+    </div> --}}
+  {{/if}}
+
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-  <script>
-    $(document).ready(function () {
-      $('.viewButton').on('click', function () {
-        var rowId = $(this).data('row-id');
-        redirectToViewResults(rowId);
-      });
+  <script type="text/javascript">
+   $(document).ready(function() {
+      function handleViewButtonClick() {
+         var rowId = $(this).data('row-id');
+         redirectToViewResults(rowId);
+      }
+
+      $('.viewButton').on('click', handleViewButtonClick);
 
       function redirectToViewResults(rowId) {
         var url = '/dashboard-view-details?id=' + rowId;
         window.location.href = url;
       }
-    });
+
+      function paginateData(pageNumber,rowsPerPage){
+        console.log("rowsPerPage",rowsPerPage);
+        $.ajax({
+          url:'/dashboard',
+          type: 'GET',
+          data:{
+            page: pageNumber,
+            limit: rowsPerPage
+          },
+          success: function(response){
+            $('#dashboardTable tbody').empty().append($(response).find('tbody').html());
+            $('.viewButton').off('click').on('click', handleViewButtonClick);
+         //   updatePaginationLinks(pageNumber, rowsPerPage);
+          },
+          error: function(xhr,status,error){
+            console.error(error);
+          }
+        });
+      }
+
+     $('#rowsPerPage').on('change', function(){
+      var rowsperpage = $(this).val();
+      paginateData(1,rowsperpage);
+    })
+   });
   </script>
 
 </body>
