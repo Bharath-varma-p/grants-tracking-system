@@ -24,7 +24,7 @@ exports.logout = (req,res) => {
 }
 
 exports.handleLogin = async (req,res) => {
-    const {email,password} = req.body;
+    const {firstname,lastname,email,password} = req.body;
   
     if (!isValidEmail(email)) {
       return res.status(400).send('Invalid email format');
@@ -51,7 +51,7 @@ exports.handleLogin = async (req,res) => {
 }
 
 exports.handleRegister = (req,res) => {
-    const {email,password} = req.body;
+    const {firstname,lastname,email,password} = req.body;
 console.log("password", req.body['confirm-password']);
 
     if (!isValidEmail(email)) {
@@ -63,10 +63,10 @@ console.log("password", req.body['confirm-password']);
       return res.status(400).send('Passwords do not match');
     }
   
-    const sql = 'INSERT into users_2 (email, password) values (?,?)';
+    const sql = 'INSERT into users_2 (firstname, lastname, email, password) values (?,?,?,?)';
 
   
-    connection.query(sql, [email, password], (err,results) => {
+    connection.query(sql, [firstname,lastname,email, password], (err,results) => {
       if(err){
         console.log("Database error",err);
         res.send("Account already Exists");
