@@ -6,6 +6,9 @@ const session = require('express-session');
 const routes = require('./routes')
 require('dotenv').config();
 
+//registarting the templates
+const hbs = require('hbs');
+hbs.registerPartials(__dirname + '/views/partials');
 
 const app = express();
 //Mysql connection details
@@ -26,7 +29,12 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(express.static('public'))
 
-app.engine('.hbs', exphbs.engine({ extname: '.hbs' }));
+
+//by bhatayh
+app.engine('.hbs', exphbs.engine({ 
+  extname: '.hbs',
+  partialsDir: path.join(__dirname,'/views/partials')
+ }));
 // app.set('views', path.join(__dirname, '../frontend/views'));
 app.set('view engine', '.hbs');
 
