@@ -4,7 +4,7 @@ const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: 'Pa$$w0rd',
-  database: 'loginsystem'
+  database: 'grants_portal'
   });
 
 module.exports=connection;
