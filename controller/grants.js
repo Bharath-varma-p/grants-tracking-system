@@ -31,32 +31,70 @@ exports.viewDashboard = (req,res) => {
       
       // Access the email from the session
         const userEmail = req.session.email;
+        //const userAreaOfInterest = req.session.areaOfInterest //New_One
 
         const page = parseInt(req.query.page) || 1; 
         const limit = parseInt(req.query.limit) || 10;
         const offset =  (page - 1)*limit;
       
         const sql = 'SELECT * from grants_trackings LIMIT ? OFFSET ?';
+        
         console.log("SQL",sql);
+
+
         connection.query(sql, [limit, offset], (err,results) => {
-         // console.log("results",results);
-          console.log("results in render",results.length);
-          res.render('dashboard', { data:results,userEmail });
-        })
+          // console.log("results",results);
+           console.log("results in render",results.length);
+           res.render('dashboard', { data:results,userEmail });
+         })
 };
-exports.handleDashboard = (req,res) => {
-    const keySearch = req.body.keyword;
 
-    const sql = 'SELECT * from grants_trackings where title like ?';
+// exports.handleDashboard = (req,res) => {
+//     const keySearch = req.body.areaOfInterest;
 
-    connection.query(sql, [`%${keySearch}%`], (err,results) => {
-        if(err){
-          res.send("Error executing SQL query: ' + error.stack");
-        }else{
-          res.render('dashboard',{data: results});
-        }
-    });
-}
+//     //const sql = 'SELECT * from grants_trackings where title like ?';
+
+//     //const sql = "SELECT gt.* FROM grants_trackings gt JOIN (SELECT areaOfInterest FROM users_2 WHERE email = ? ) u ON gt.title LIKE CONCAT('%', u.areaOfInterest, '%');"
+
+//     //const sql = "SELECT gt.* FROM grants_trackings gt JOIN (SELECT areaOfInterest FROM users_2 WHERE email = ? ) u ON gt.title LIKE CONCAT('%', ? , '%');"
+
+//     const sql = "SELECT gt.* FROM grants_trackings gt JOIN users_2 u ON gt.title LIKE CONCAT('%', u.areaOfInterest, '%') WHERE u.email = ?";
+
+//     //give 'email' instead of mine.
+
+//     connection.query(sql, [`%${keySearch}%`], (err,results) => {
+//         console.log("res")
+//         if(err){
+//           res.send("Error executing SQL query: ' + error.stack");
+//         }else{
+//           res.render('dashboard',{data: results});
+//         }
+//     });
+// }
+
+exports.handleDashboard = (req, res) => {
+  const email = req.session.email;
+  const areaOfInterest = req.body.areaOfInterest; // Get areaOfInterest from request body
+
+  // Query to fetch data based on areaOfInterest
+  const sql = `
+    SELECT gt.*
+    FROM grants_trackings gt
+    JOIN users_2 u ON gt.title LIKE CONCAT('%', u.areaOfInterest, '%')
+    WHERE u.email = ? AND u.areaOfInterest = ?
+  `;
+
+  connection.query(sql, [email, areaOfInterest], (err, results) => {
+    if (err) {
+      console.error("Error executing SQL query:", err);
+      res.status(500).send("Error executing SQL query");
+    } else {
+      res.render("dashboard", { data: results });
+    }
+  });
+};
+
+
 
 exports.viewDashboardetails = (req,res) => {
     const id = req.query.id; 

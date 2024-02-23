@@ -70,7 +70,7 @@
       font-weight: 750;
     }
 
-    .keyword-label {
+    .areaOfInterest-label {
       font-size: 20px;
     }
 
@@ -85,11 +85,14 @@
     {{> sideMenu}}
   </div>
   <div>
-    <form id="dashboard" action="/dashboard" method="post">
+    {{!-- <form id="dashboard" action="/dashboard" method="post">
       <label class="keyword-label" for="keyword">Keyword:</label>
       <input type="text" id="keyword" name="keyword" required>
       <button class="submit-button" type="submit">Search</button>
-    </form>
+    </form> --}}
+     {{!-- <form id="dummyForm" action="/dashboard" method="post" style="display: none;">
+      <button type="submit" id="dummyButton">Dummy Button</button>
+    </form> --}}
     <br>
 
   <div id="paginationOptions">
@@ -135,7 +138,7 @@
     </div> --}}
   {{/if}}
 
-  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  {{!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> --}}
   <script type="text/javascript">
    $(document).ready(function() {
       function handleViewButtonClick() {
@@ -175,6 +178,15 @@
       paginateData(1,rowsperpage);
     })
    });
+
+
+
+       //window.onload = function() {
+      document.getElementById('dummyForm').submit();
+    };
+
+
+
   </script>
 
 </body>

@@ -24,7 +24,7 @@ exports.logout = (req,res) => {
 }
 
 exports.handleLogin = async (req,res) => {
-    const {firstname,lastname,email,password} = req.body;
+    const {firstname,lastname,email,password,areaOfInterest} = req.body;
   
     if (!isValidEmail(email)) {
       return res.status(400).send('Invalid email format');
@@ -34,15 +34,18 @@ exports.handleLogin = async (req,res) => {
   
     connection.query(sql, [email,password], (err,results) => {
         if(err){
+            
             console.log("Database error",err)
             res.send("Login failed")
         }else{
             if(results.length>=1){
-                // const user = results[0];
+                const user = results[0];
                 // const tfa_enabled = user.is_tfa_enabled;
                 // // console.log("tfa_enabled",tfa_enabled)
                 req.session.email = req.body.email;
-                res.redirect('/enable-tfa');
+                //req.session.areaOfInterest = req.body.areaOfInterest /* --NEW ONE --- directing to areaOfInterest */
+                res.redirect('/enable-tfa'); //changes this one temporarily
+                
             }else{
                 res.send("Email and Password combination is incorrect");
             }
@@ -51,7 +54,7 @@ exports.handleLogin = async (req,res) => {
 }
 
 exports.handleRegister = (req,res) => {
-    const {firstname,lastname,email,password} = req.body;
+    const {firstname,lastname,email,password, areaOfInterest} = req.body; //New_One --added areaOfInterest
 console.log("password", req.body['confirm-password']);
 
     if (!isValidEmail(email)) {
@@ -63,11 +66,12 @@ console.log("password", req.body['confirm-password']);
       return res.status(400).send('Passwords do not match');
     }
   
-    const sql = 'INSERT into users_2 (firstname, lastname, email, password) values (?,?,?,?)';
+    const sql = 'INSERT into users_2 (firstname, lastname, email, password, areaOfInterest) values (?,?,?,?,?)';//new_one
 
-  
-    connection.query(sql, [firstname,lastname,email, password], (err,results) => {
+    //area_of_interest added below
+    connection.query(sql, [firstname,lastname,email, password, areaOfInterest], (err,results) => {
       if(err){
+        
         console.log("Database error",err);
         res.send("Account already Exists");
       }else{
