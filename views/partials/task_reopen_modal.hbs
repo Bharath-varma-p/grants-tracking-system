@@ -1,0 +1,130 @@
+
+<div class="modal fade" id="task_reopen_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-header-caption">Reopen Task</span>
+                <button type="button" name="closeModal" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <form id="task_reopen_form">
+                    <div class="form-group">
+                        <label class="required" for="task_reopen_note">Reopen Reason</label>
+                        <textarea id="task_reopen_note" class="form-control" required rows="3"></textarea>
+                    </div>
+                    <div class="alert alert-info d-none" id="reopen_by_detail"  >
+                         
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="btn_task_reopen" type="button" class="btn btn-primary">Reopen Task</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    
+
+    if (typeof taskReopenModalController === 'undefined') {
+        function TaskReopenModalController() {
+
+            this.initModal = function () {
+
+                $(function () {
+
+                    if (! taskReopenModalController.modalHtml)
+                    {
+                        taskReopenModalController.modalHtml = $('#task_reopen_modal').html();
+                    }
+
+                    $(document).on('shown.bs.modal', "#task_reopen_modal", function () {
+
+                        var validator = $('#task_reopen_form').validate({
+                            ignore: ":hidden:not(.selectpicker)"
+                        });
+
+                        $('#task_reopen_modal .selectpicker').selectpicker('refresh');
+
+                        if (taskReopenModalController.selectedTaskReopenData)
+                        {
+                            $('#task_reopen_note').val(taskReopenModalController.selectedTaskReopenData.reopen_note);
+
+                        }
+                    });
+
+                    $(document).on('hidden.bs.modal', "#task_reopen_modal", function () {
+                        $(this).data('bs.modal', null);
+                        $("#task_reopen_modal").html(taskReopenModalController.modalHtml);
+                    });
+
+                    $(document).on('click', '#btn_task_reopen', function () {
+                        var validator = $('#task_reopen_form').validate();
+                        
+                        var isValid = true;
+                        
+                        if (!validator.form()) isValid = false;
+
+                        if (isValid) {
+                            var post_data_save_task_task_reopen =
+                            {
+                                task_id: taskReopenModalController.selectedCaseTaskId,
+                                reopen_note: $('#task_reopen_note').val()
+                            }
+
+                            $.post('/{{routeLink}}reopen_task', post_data_save_task_task_reopen)
+                                .done(result => {
+
+                                        if (taskReopenModalController.taskModalController)
+                                        {
+                                            if (result.historyAdded)
+                                            {
+                                                taskReopenModalController.taskModalController.taskData.historyCount++;
+
+                                                taskReopenModalController.taskModalController.historyFetched=false;
+                                            }
+
+                                            taskReopenModalController.taskModalController.updateCounts();
+                                        }
+
+                                        if (caseScope)
+                                        {
+                                            caseScope.drawTasksTable();
+                                            caseScope.drawHistoryList();
+                                        }
+
+                                        $("#task_reopen_modal").modal('hide');
+
+                                        $.alert('Succesfully reopened');
+                                    
+                                })
+                                .fail(err => {
+                                    console.error(err);
+                                    $.alert(err.responseText);
+                                });
+                        }
+                    });
+            });
+        };
+        }
+        taskReopenModalController = new TaskReopenModalController();
+
+        taskReopenModalController.initModal();
+    }
+    
+</script>
+<style>
+    #task_reopen_modal .modal-header {
+        background-color: #3f51b5;
+        color: white;
+    }
+
+    #task_reopen_modal .close {
+        color: white;
+        opacity: 1;
+    }
+</style>

@@ -1,0 +1,147 @@
+<script src="/js/sweetalert2/sweetalert2.min.js"></script>
+<link href="/js/sweetalert2/dark.css" rel="stylesheet">
+<script src="/js/handleError.js" defer></script>
+<script src="/js/helper.js" defer></script>
+<script>
+
+    var globalVariables = JSON.parse((new DOMParser().parseFromString("{{globalVariables}}", "text/html")).documentElement.textContent);
+
+    globalVariables.sourcePage = "{{sourcePage}}";
+
+    globalVariables.isViewMode = '{{view_option}}' == 'yes';
+
+    let formDirtyInput;
+
+    function setFormDirty(){
+        $("body").append(`<input type="hidden" id="formDirty" />`);
+        formDirtyInput = $("#formDirty").get(0);
+
+        if (typeof FIELDSETS_ACTIVE === "undefined" || ! FIELDSETS_ACTIVE.last().hasClass("active_fs")){
+            $("#save_progress").show();
+        }
+    }
+
+    //#region HANDLE USER DEFINED TABLES 
+    document.addEventListener("DOMContentLoaded", () => {
+
+        if (typeof $ === "undefined") return;
+
+        if ("{{PRIVILEGE_USER_DEFINED_TABLES.hasPermission}}" !== "true") {
+            $('.user-defined-table').prop("disabled", true).removeClass("bg-primary");
+        }
+
+        $(document).on("dp.change", "div.input-group", function (e) {
+            if (!formDirtyInput) {
+                setFormDirty();
+            }
+        });
+
+        $(document).on("input, change", ":input", function (e) {
+
+            if (typeof e.isTrigger !== "undefined") return; //If the event triggered in the code. Do not continue. Only user interactions will set the form as dirty
+
+            if (!formDirtyInput && !e.target.classList.contains("typeahead")) {
+                setFormDirty();
+            }
+        });
+
+        if ($.colorbox) {
+            const originalClose = $.colorbox.close;
+
+            $.fn.colorbox.close = function (force) {
+
+                let cancelButton, formDirty;
+
+                try {
+                    const pageUrl = $("iframe").get(0)?.src;
+
+                    if (pageUrl){
+                        localStorage.removeItem(pageUrl + "_narrative");
+                    }
+                    
+                    cancelButton = $("#cancel_button", $("iframe").contents()).get(0);
+                    formDirty = $("#formDirty", $("iframe").contents()).get(0);
+                }
+                catch {
+                    originalClose(arguments);
+                    return;
+                }
+
+                if (cancelButton && formDirty) {
+                    if (!force) {
+                        $(cancelButton).attr("is-form-dirty", "true").click();
+                        return;
+                    }
+                }
+
+                originalClose(arguments);
+            };
+        }
+    });
+
+    function handleUserDefinedTableButtons(nRow) {
+        if (typeof jQuery === "undefined") return;
+
+        const no_write = "{{PRIVILEGE_USER_DEFINED_TABLES.write}}" != "true";
+        const no_read = "{{PRIVILEGE_USER_DEFINED_TABLES.read}}" != "true";
+        const no_delete = "{{PRIVILEGE_USER_DEFINED_TABLES.delete}}" != "true";
+        const no_seal = "{{PRIVILEGE_USER_DEFINED_TABLES.seal}}" != "true";
+
+        if (no_write) {
+            $('.add-udf').remove();
+            $('.add-udf', nRow).remove();
+        }
+
+        if (no_delete) $(".delete-udf", nRow).remove();
+
+        if (no_write) $(".edit-udf", nRow).remove();
+
+    }
+
+    //#endregion HANDLE USER DEFINED TABLES END
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+        if (typeof $ === "undefined") return;
+
+        $(document).on('click', '.attachment-image', function () {
+            popupImage( $(this).attr("data-url") );
+        });
+
+        const masterSearchInput = $("#name_search #search_input");
+        let placeholder = masterSearchInput.attr("placeholder") || "";
+
+        if (!placeholder.includes(" ( Min. 3 characters )")) {
+            placeholder += " ( Min. 3 characters )";
+            masterSearchInput.attr("placeholder", placeholder);
+        }
+
+        $(document).on("click", ".master-name-detail-anchor", function (e) {
+
+            e.preventDefault();
+            e.stopPropagation();
+
+            const master_name_id = $(this).attr("data-master-name-id");
+
+            const detailUrl = generateLink("master_name", "detail", { master_name_id });
+            
+            myPopupWin(detailUrl);
+
+        });
+
+        $(document).on("click", ".master-vehicle-detail-anchor", function (e) {
+
+            e.preventDefault();
+            e.stopPropagation();
+
+            const vehicle_id = $(this).attr("data-vehicle-id");
+
+            const detailUrl = generateLink("master_vehicle", "detail", { vehicle_id });
+
+            myPopupWin(detailUrl);
+
+        });
+    });
+
+
+</script>

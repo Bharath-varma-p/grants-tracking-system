@@ -1,0 +1,489 @@
+<div class="panel-group col-md-12" id="advanced_search_fields" style="display:none">
+  <div class="panel panel-default">
+    <div id="search_criterias_header" class="panel-heading flex-container">
+      <h4 class="panel-title collapsed intro" data-toggle="collapse" data-target='#search_fields_accordion'
+        style='font-size: 18px; flex-grow : 1;'>Search Criteria</h4>
+      <div style="position: absolute; right:30px; display:flex">
+        <input id="filter_search_fields" placeholder="Filter Search Fields" />
+        <button class="btn btn-sm btn-primary" id="reset_search_filter">Reset</button>
+      </div>
+    </div>
+    <div class="panel-collapse collapse in" id="search_fields_accordion">
+      <div class="panel-body">
+        <div id="search_fields_container">
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="license_plate">License Plate#</label>
+            <input type="text" class="form-control search-input" id="license_plate" name="license_plate"
+              data-category="master_vehicle">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="vin">VIN#</label>
+            <input type="text" class="form-control search-input" id="vin" name="vin" data-category="master_vehicle">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="vehicle_make">Vehicle Make</label>
+            <input type="text" class="form-control search-input" id="vehicle_make" name="vehicle_make"
+              data-category="master_vehicle">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="vehicle_model">Vehicle Model</label>
+            <input type="text" class="form-control search-input" id="vehicle_model" name="vehicle_model"
+              data-category="master_vehicle">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label class="col-sm-12" style="margin-left:-10px">Vehicle Year</label>
+            <div class="flex-container">
+              <input type="number" class="form-control search-input" id="vehicle_year_min" name="vehicle_year_min"
+                placeholder="Min" data-category="master_vehicle" />
+              -
+              <input type="number" class="form-control search-input" id="vehicle_year_max" name="vehicle_year_max"
+                placeholder="Max" data-category="master_vehicle" />
+
+            </div>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label class="col-sm-12" style="margin-left:-10px">Registration Year</label>
+            <div class="flex-container">
+              <input type="number" class="form-control search-input" id="registration_year_min"
+                name="registration_year_min" placeholder="Min" data-category="master_vehicle" />
+              -
+              <input type="number" class="form-control search-input" id="registration_year_max"
+                name="registration_year_max" placeholder="Max" data-category="master_vehicle" />
+
+            </div>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="vehicle_color">Vehicle Color</label>
+            <select class="form-control selectpicker show-tick search-input" id="vehicle_color" name="vehicle_color"
+              data-category="master_vehicle" multiple data-max-options="1">
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="lp_state">License State</label>
+            <select class="form-control selectpicker show-tick search-input" id="lp_state" name="lp_state"
+              data-category="master_vehicle" multiple data-max-options="1">
+              <option value="AL">Alabama</option>
+              <option value="AK">Alaska</option>
+              <option value="AZ">Arizona</option>
+              <option value="AR">Arkansas</option>
+              <option value="CA">California</option>
+              <option value="CO">Colorado</option>
+              <option value="CT">Connecticut</option>
+              <option value="DE">Delaware</option>
+              <option value="DC">District Of Columbia</option>
+              <option value="FL">Florida</option>
+              <option value="GA">Georgia</option>
+              <option value="HI">Hawaii</option>
+              <option value="ID">Idaho</option>
+              <option value="IL">Illinois</option>
+              <option value="IN">Indiana</option>
+              <option value="IA">Iowa</option>
+              <option value="KS">Kansas</option>
+              <option value="KY">Kentucky</option>
+              <option value="LA">Louisiana</option>
+              <option value="ME">Maine</option>
+              <option value="MD">Maryland</option>
+              <option value="MA">Massachusetts</option>
+              <option value="MI">Michigan</option>
+              <option value="MN">Minnesota</option>
+              <option value="MS">Mississippi</option>
+              <option value="MO">Missouri</option>
+              <option value="MT">Montana</option>
+              <option value="NE">Nebraska</option>
+              <option value="NV">Nevada</option>
+              <option value="NH">New Hampshire</option>
+              <option value="NJ">New Jersey</option>
+              <option value="NM">New Mexico</option>
+              <option value="NY">New York</option>
+              <option value="NC">North Carolina</option>
+              <option value="ND">North Dakota</option>
+              <option value="OH">Ohio</option>
+              <option value="OK">Oklahoma</option>
+              <option value="OR">Oregon</option>
+              <option value="PA">Pennsylvania</option>
+              <option value="RI">Rhode Island</option>
+              <option value="SC">South Carolina</option>
+              <option value="SD">South Dakota</option>
+              <option value="TN">Tennessee</option>
+              <option value="TX">Texas</option>
+              <option value="UT">Utah</option>
+              <option value="VT">Vermont</option>
+              <option value="VA">Virginia</option>
+              <option value="WA">Washington</option>
+              <option value="WV">West Virginia</option>
+              <option value="WI">Wisconsin</option>
+              <option value="WY">Wyoming</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="lp_type">License Plate Type</label>
+            <select class="form-control selectpicker show-tick search-input" id="lp_type" name="lp_type"
+              data-category="master_vehicle" data-udt-source="plate" multiple data-max-options="1">
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="insurance_verified">Insurance Verified</label>
+            <select class="form-control selectpicker show-tick search-input" id="insurance_verified"
+              name="insurance_verified" data-category="master_vehicle">
+              <option value=""></option>
+              <option value="Y">Yes</option>
+              <option value="N">No</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="insurance_company">Insurance Company</label>
+            <input type="text" class="form-control search-input" id="insurance_company" name="insurance_company"
+              data-category="master_vehicle">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="insurance_policy_no">Insurance Policy No</label>
+            <input type="text" class="form-control search-input" id="insurance_policy_no" name="insurance_policy_no"
+              data-category="master_vehicle">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="type_use">Type Of Use</label>
+            <select class="form-control selectpicker search-input" id="type_use" name="type_use" data-max-options="1"
+              data-category="master_vehicle" multiple>
+              <option value=""></option>
+              <option value="C">Commercial</option>
+              <option value="G">Government</option>
+              <option value="I">In Emergency Response</option>
+              <option value="P">Personal</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="us_dot_no">US DOT#</label>
+            <input type="text" class="form-control search-input" id="us_dot_no" name="us_dot_no"
+              data-category="master_vehicle">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="vehicle_weight">Vehicle Weight GVWR/GCWR</label>
+            <select class="form-control selectpicker search-input" id="vehicle_weight" name="vehicle_weight"
+              data-max-options="1" data-category="master_vehicle" multiple>
+              <option value="1">Less than and Equal to 10K LBS.</option>
+              <option value="2">10,001 - 26K LBS.</option>
+              <option value="I">>26K LBS.</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="towed_by">Towed By</label>
+            <input type="text" class="form-control search-input" id="towed_by" name="towed_by"
+              data-category="master_vehicle">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="towed_address">Towed Address</label>
+            <input type="text" class="form-control search-input" id="towed_address" name="towed_address"
+              data-category="master_vehicle">
+          </div>
+
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="interlock_equipped_device">Interlock Device Equipped</label>
+            <select class="form-control selectpicker search-input" id="interlock_equipped_device"
+              name="interlock_equipped_device" data-max-options="1" data-category="master_vehicle" multiple>
+              <option value="N">No</option>
+              <option value="Y">Yes</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="hazardous_material">Hazardous Material</label>
+            <select class="form-control selectpicker search-input" id="hazardous_material" name="hazardous_material"
+              data-max-options="1" data-category="master_vehicle" multiple>
+              <option value="R">Material Released</option>
+              <option value="P">Placard</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="class_no">Class #</label>
+            <input type="text" class="form-control search-input" id="class_no" name="class_no"
+              data-category="master_vehicle">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="placard_id">Placard ID #</label>
+            <input type="text" class="form-control search-input" id="placard_id" name="placard_id"
+              data-category="master_vehicle">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="special_function_level">Special Function Level</label>
+            <select class="form-control selectpicker search-input" id="special_function_level"
+              name="special_function_level" data-max-options="1" data-category="master_vehicle" multiple>
+              <option value="1">None</option>
+              <option value="2">Taxi</option>
+              <option value="3">Electronic Ride Sharing</option>
+              <option value="4">School Transport</option>
+              <option value="5">Bus - Transit/Commuter</option>
+              <option value="6">Bus - Charter/Tour</option>
+              <option value="7">Bus - Intercity</option>
+              <option value="8">Bus - Shuttle</option>
+              <option value="9">Bus - Other</option>
+              <option value="10">Ambulance</option>
+              <option value="11">Fire</option>
+              <option value="12">Military</option>
+              <option value="13">Police</option>
+              <option value="14">Public Utility</option>
+              <option value="15">Construction Equipment</option>
+              <option value="16">Farm</option>
+              <option value="17">Mowing</option>
+              <option value="18">Snow Removal</option>
+              <option value="19">Towing</option>
+              <option value="20">Safety Service Patrol</option>
+              <option value="21">Mail Carrier</option>
+              <option value="99">Other/Unknown</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="cargo_body_type">Cargo Body Type</label>
+            <select class="form-control selectpicker search-input" id="cargo_body_type" name="cargo_body_type"
+              data-max-options="1" data-category="master_vehicle" multiple>
+              <option value="1">No Cargo Body Type / Not Applicable
+              </option>
+              <option value="2">Bus</option>
+              <option value="3">Vehicle Towing Another Notor Vehicle
+              </option>
+              <option value="4">Logging</option>
+              <option value="5">Intermodal Container</option>
+              <option value="6">Cargo Van/Enclosed Box</option>
+              <option value="7">Grain/Chips/Gravel</option>
+              <option value="8">Pole</option>
+              <option value="9">Cargo Tank</option>
+              <option value="10">Flat Bed</option>
+              <option value="11">Dump</option>
+              <option value="12">Concrete Mixer</option>
+              <option value="13">Auto Trasporter</option>
+              <option value="14">Garbage/Refuse</option>
+              <option value="99">Other/Unknown</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="vehicle_defects">Vehicle Defects</label>
+            <select class="form-control selectpicker search-input" id="vehicle_defects" name="vehicle_defects"
+              data-max-options="1" data-category="master_vehicle" multiple>
+              <option value="1">Turn Signals</option>
+              <option value="2">Head Lamps</option>
+              <option value="3">Tail Lamps</option>
+              <option value="4">Brakes</option>
+              <option value="5">Steering</option>
+              <option value="6">Tire Blowout</option>
+              <option value="7">Worn or Slick Tires</option>
+              <option value="8">Trailer Equipment Defective</option>
+              <option value="9">Motor Trouble</option>
+              <option value="10">Disabled From Prior Accident</option>
+              <option value="11">Shared Use Paths or Trails</option>
+              <option value="12">First Responder At Incident Scene
+              </option>
+              <option value="99">Other/Unknown</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="note">Note</label>
+            <input type="text" class="form-control search-input" id="note" name="note" data-category="master_vehicle">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="cautious">Caution</label>
+            <select class="form-control selectpicker show-tick search-input" id="cautious" name="cautious"
+              data-category="master_vehicle" multiple data-max-options="1">
+              <option value="Y">Yes</option>
+              <option value="N">No</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="cautious_note">Caution Note</label>
+            <input type="text" class="form-control search-input" id="cautious_note" name="cautious_note" placeholder=""
+              data-category="master_vehicle">
+          </div>
+          <div class="form-group col-md-12 search-section">Owner</div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="owner_first_name">Owner First Name</label>
+            <input type="text" class="form-control search-input" id="owner_first_name" name="owner_first_name"
+              data-category="master_vehicle">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="owner_middle_name">Owner Middle Name</label>
+            <input type="text" class="form-control search-input" id="owner_middle_name" name="owner_middle_name"
+              data-category="master_vehicle">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="owner_last_name">Owner Last Name</label>
+            <input type="text" class="form-control search-input" id="owner_last_name" name="owner_last_name"
+              data-category="master_vehicle">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="owner_suffix">Owner Suffix</label>
+            <input type="text" class="form-control search-input" id="owner_suffix" name="owner_suffix"
+              data-category="master_vehicle">
+          </div>
+          <div class="form-group col-md-4 col-sm-4 col-xs-12">
+            <label class="col-sm-12" style="margin-left:-10px">Owner Dob</label>
+            <div class="flex-container">
+              <div class="input-group date datetimepicker">
+                <input type="text" class="form-control search-input advanced-search-date-short"
+                  data-category="master_vehicle" id="owner_dob_date_start" name="owner_dob_date_start"
+                  placeholder="MM/DD/YYYY" style="font-size:16px;" />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+              &nbsp;&nbsp;-&nbsp;&nbsp;
+              <div class="input-group date datetimepicker">
+                <input type="text" class="form-control search-input advanced-search-date-short"
+                  data-category="master_vehicle" id="owner_dob_date_end" name="owner_dob_date_end"
+                  placeholder="MM/DD/YYYY" style="font-size:16px;" />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label class="col-sm-12" style="margin-left:-10px">Owner Age</label>
+            <div class="flex-container">
+              <input type="number" class="form-control search-input" id="age_min" name="age_min" placeholder="Min"
+                data-category="master_vehicle" />
+              -
+              <input type="number" class="form-control search-input" id="age_max" name="age_max" placeholder="Max"
+                data-category="master_vehicle" />
+
+            </div>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="sex">Owner Sex</label>
+            <select class="form-control selectpicker show-tick search-input" id="owner_sex" name="owner_sex"
+              data-category="master_vehicle" multiple data-max-options="1">
+              <option value="M">Male</option>
+              <option value="F">Female</option>
+              <option value="U">Unknown</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="race">Owner Race</label>
+            <select class="form-control selectpicker show-tick search-input" id="owner_race" name="owner_race"
+              data-category="master_vehicle" multiple data-max-options="1">
+              <option value="A">Asian</option>
+              <option value="B">Black or African American</option>
+              <option value="H">Hispanic or Latino</option>
+              <option value="I">American Indian or Alaskan Native</option>
+              <option value="P">Native Hawaiian or Other Pacific Islander</option>
+              <option value="W">White</option>
+              <option value="F">Pending Further Investigation</option>
+              <option value="U">Unknown/Not Reported</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="owner_ssn">SSN#</label>
+            <input type="text" class="form-control search-input" id="owner_ssn" name="owner_ssn" data-category="owner">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="driver_license_no">Driver License No#</label>
+            <input type="text" class="form-control search-input" id="driver_license_no" name="driver_license_no"
+              data-category="owner">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="owner_control_no">Control No #</label>
+            <input type="text" class="form-control search-input" id="owner_control_no" name="owner_control_no"
+              data-category="owner">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="cell_phone">Cell Phone</label>
+            <input type="text" class="form-control search-input" id="cell_phone" name="cell_phone" placeholder=""
+              data-category="owner">
+          </div>
+          <div class="form-group col-md-12 search-section">Owner Place</div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="owner_address">Owner Address</label>
+            <input type="text" class="form-control search-input" id="owner_address" name="owner_address" placeholder=""
+              data-category="master_vehicle">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="owner_neighborhood">Owner Neighborhood</label>
+            <input type="text" class="form-control search-input" id="owner_neighborhood" name="owner_neighborhood"
+              placeholder="" data-category="master_vehicle">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="owner_city">Owner City</label>
+            <input type="text" class="form-control search-input" id="owner_city" name="owner_city" placeholder=""
+              data-category="master_vehicle">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="owner_county">Owner County</label>
+            <input type="text" class="form-control search-input" id="owner_county" name="owner_county" placeholder=""
+              data-category="master_vehicle">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="owner_state">Owner State</label>
+            <select class="form-control selectpicker show-tick search-input" id="owner_state" name="owner_state"
+              data-category="master_vehicle" multiple data-max-options="1">
+              <option value="AL">Alabama</option>
+              <option value="AK">Alaska</option>
+              <option value="AZ">Arizona</option>
+              <option value="AR">Arkansas</option>
+              <option value="CA">California</option>
+              <option value="CO">Colorado</option>
+              <option value="CT">Connecticut</option>
+              <option value="DE">Delaware</option>
+              <option value="DC">District Of Columbia</option>
+              <option value="FL">Florida</option>
+              <option value="GA">Georgia</option>
+              <option value="HI">Hawaii</option>
+              <option value="ID">Idaho</option>
+              <option value="IL">Illinois</option>
+              <option value="IN">Indiana</option>
+              <option value="IA">Iowa</option>
+              <option value="KS">Kansas</option>
+              <option value="KY">Kentucky</option>
+              <option value="LA">Louisiana</option>
+              <option value="ME">Maine</option>
+              <option value="MD">Maryland</option>
+              <option value="MA">Massachusetts</option>
+              <option value="MI">Michigan</option>
+              <option value="MN">Minnesota</option>
+              <option value="MS">Mississippi</option>
+              <option value="MO">Missouri</option>
+              <option value="MT">Montana</option>
+              <option value="NE">Nebraska</option>
+              <option value="NV">Nevada</option>
+              <option value="NH">New Hampshire</option>
+              <option value="NJ">New Jersey</option>
+              <option value="NM">New Mexico</option>
+              <option value="NY">New York</option>
+              <option value="NC">North Carolina</option>
+              <option value="ND">North Dakota</option>
+              <option value="OH">Ohio</option>
+              <option value="OK">Oklahoma</option>
+              <option value="OR">Oregon</option>
+              <option value="PA">Pennsylvania</option>
+              <option value="RI">Rhode Island</option>
+              <option value="SC">South Carolina</option>
+              <option value="SD">South Dakota</option>
+              <option value="TN">Tennessee</option>
+              <option value="TX">Texas</option>
+              <option value="UT">Utah</option>
+              <option value="VT">Vermont</option>
+              <option value="VA">Virginia</option>
+              <option value="WA">Washington</option>
+              <option value="WV">West Virginia</option>
+              <option value="WI">Wisconsin</option>
+              <option value="WY">Wyoming</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="owner_zip_code">Owner Zip Code</label>
+            <input type="text" class="form-control search-input" id="owner_zip_code" name="owner_zip_code"
+              placeholder="" data-category="master_vehicle">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="owner_apt_no">Owner Apt No</label>
+            <input type="text" class="form-control search-input" id="owner_apt_no" name="owner_apt_no" placeholder=""
+              data-category="master_vehicle">
+          </div>
+          <div class="form-group col-xs-12 button-container" id="search_button_container">
+            <button type="button" class="btn btn-info pull-right" style="margin-top:30px; width:150px"
+              id="search_button">Search</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  var vehicleColors = [{ "value": "AME", "label": "Amethyst (Purple)" }, { "value": "BGE", "label": "Beige" }, { "value": "BLK", "label": "Black" }, { "value": "BLU", "label": "Blue" }, { "value": "BRO", "label": "Brown" }, { "value": "BRZ", "label": "Bronze" }, { "value": "CAM", "label": "Camouflage" }, { "value": "COM", "label": "Chrome" }, { "value": "CPR", "label": "Copper" }, { "value": "CRM", "label": "Cream" }, { "value": "DBL", "label": "Blue, Dark" }, { "value": "DGR", "label": "Green, Dark" }, { "value": "GLD", "label": "Gold" }, { "value": "GRN", "label": "Green" }, { "value": "GRY", "label": "Gray" }, { "value": "LAV", "label": "Lavender (Purple)" }, { "value": "LBL", "label": "Blue, Light" }, { "value": "LGR", "label": "Green, Light" }, { "value": "MAR", "label": "Burgundy (Purple)" }, { "value": "MUL", "label": "Multicolored" }, { "value": "MVE", "label": "Mauve (Purple)" }, { "value": "ONG", "label": "Orange" }, { "value": "PLE", "label": "Purple" }, { "value": "PNK", "label": "Pink" }, { "value": "RED", "label": "Red" }, { "value": "SIL", "label": "Silver" }, { "value": "TAN", "label": "Tan" }, { "value": "TEA", "label": "Teal (Green)" }, { "value": "TPE", "label": "Taupe (Brown)" }, { "value": "TRQ", "label": "Turquoise (Blue)" }, { "value": "UNK", "label": "Unknown" }, { "value": "WHI", "label": "White" }, { "value": "YEL", "label": "Yellow" }];
+
+  var vehicleColorSelect = $("#vehicle_color");
+  for (let i = 0; i < vehicleColors.length; i++) {
+    vehicleColorSelect.append('<option class="option25" value="' + vehicleColors[i].value + '">' + vehicleColors[i].label + '</option>');
+  }
+</script>

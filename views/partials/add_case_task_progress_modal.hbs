@@ -1,0 +1,143 @@
+
+<div class="modal fade" id="add_case_task_progress_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-header-caption">Add / Edit Task Progress</span>
+                <button type="button" name="closeModal" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <form id="add_case_task_progress_form">
+                    <div class="form-group">
+                        <label class="required" for="task_progress_note">Progress Note</label>
+                        <textarea id="task_progress_note" class="form-control" required rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="btn_save_task_progress" type="button" class="btn btn-primary">Add Progress</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    
+
+    if (typeof addCaseTaskProgressModalController === 'undefined') {
+        function AddCaseTaskProgressModalController() {
+
+            this.initModal = function () {
+
+                $(function () {
+
+                    if (! addCaseTaskProgressModalController.modalHtml)
+                    {
+                        addCaseTaskProgressModalController.modalHtml = $('#add_case_task_progress_modal').html();
+                    }
+
+                    $(document).on('shown.bs.modal', "#add_case_task_progress_modal", function () {
+
+                        var validator = $('#add_case_task_progress_form').validate({
+                            ignore: ":hidden:not(.selectpicker)"
+                        });
+
+                        $('#add_case_task_progress_modal .selectpicker').selectpicker('refresh');
+
+                        if (addCaseTaskProgressModalController.selectedCaseTaskProgressData)
+                        {
+                            $('#task_progress_note').val(addCaseTaskProgressModalController.selectedCaseTaskProgressData.progress_note);
+
+                        }
+                    });
+
+                    $(document).on('hidden.bs.modal', "#add_case_task_progress_modal", function () {
+                        $(this).data('bs.modal', null);
+                        $("#add_case_task_progress_modal").html(addCaseTaskProgressModalController.modalHtml);
+                    });
+
+                    $(document).on('click', '#btn_save_task_progress', function () {
+                        var validator = $('#add_case_task_progress_form').validate();
+                        var isValid = true;
+                        if (!validator.form()) isValid = false;
+
+                        if (isValid) {
+                            var post_data_save_task_progress =
+                            {
+                                id: addCaseTaskProgressModalController.selectedCaseTaskProgressData ? addCaseTaskProgressModalController.selectedCaseTaskProgressData.id : null ,
+                                task_id: addCaseTaskProgressModalController.selectedCaseTaskId,
+                                progress_note: $('#task_progress_note').val(),
+                                is_task_completed: addCaseTaskProgressModalController.isCompletingTask  
+                            }
+
+                            $('#loading_peel9').show();
+
+                            $.post('/{{routLink}}save_case_task_progress', post_data_save_task_progress)
+                                .done(result => {
+
+                                    $('#loading_peel9').hide();
+
+                                    if (result) {
+
+                                        if (addCaseTaskProgressModalController.taskModalController)
+                                        {
+                                            
+                                            addCaseTaskProgressModalController.taskModalController.taskData.progressNotes = result.task_progress;
+
+                                            if (result.historyAdded)
+                                            {
+                                                addCaseTaskProgressModalController.taskModalController.taskData.historyCount++;
+
+                                                addCaseTaskProgressModalController.taskModalController.historyFetched=false;
+                                            }
+
+                                            addCaseTaskProgressModalController.taskModalController.updateCounts();
+                                            addCaseTaskProgressModalController.taskModalController.createTaskProgressNoteTable();
+                                        }
+
+                                        if (addCaseTaskProgressModalController.isCompletingTask  )
+                                        {
+                                            if (typeof caseScope !== 'undefined')
+                                            {
+                                                caseScope.drawTasksTable();
+                                                caseScope.drawHistoryList();
+                                            }
+
+                                            $("#btn_complete_task").addClass("d-none");
+                                        }
+
+                                        $("#add_case_task_progress_modal").modal('hide');
+
+                                        $.alert('Succesfully saved');
+                                    }
+                                })
+                                .fail(err => {
+                                    $('#loading_peel9').hide();
+                                    console.error(err);
+                                    $.alert(err.responseText);
+                                });
+                        }
+                    });
+            });
+        };
+        }
+        addCaseTaskProgressModalController = new AddCaseTaskProgressModalController();
+
+        addCaseTaskProgressModalController.initModal();
+    }
+    
+</script>
+<style>
+    #add_case_task_progress_modal .modal-header {
+        background-color: #3f51b5;
+        color: white;
+    }
+
+    #add_case_task_progress_modal .close {
+        color: white;
+        opacity: 1;
+    }
+</style>

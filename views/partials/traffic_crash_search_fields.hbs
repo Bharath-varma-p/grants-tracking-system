@@ -1,0 +1,416 @@
+<div class="panel-group col-md-12" id="advanced_search_fields" style="display:none">
+  <div class="panel panel-default">
+    <div id="search_criterias_header" class="panel-heading flex-container">
+      <h4 class="panel-title collapsed intro" data-toggle="collapse" data-target='#search_fields_accordion'
+        style='font-size: 18px; flex-grow : 1;'>Search Criteria</h4>
+      <div style="position: absolute; right:30px; display:flex">
+        <input id="filter_search_fields" placeholder="Filter Search Fields" />
+        <button class="btn btn-sm btn-primary" id="reset_search_filter">Reset</button>
+      </div>
+    </div>
+    <div class="panel-collapse collapse in" id="search_fields_accordion">
+      <div class="panel-body">
+        <div class="col-md-12 col-sm-12 col-xs-12" id="search_fields_container">
+          <div class="form-group col-md-4 col-sm-4 col-xs-12">
+            <label class="col-sm-12" style="margin-left:-10px">Crash Date</label>
+            <div class="flex-container">
+              <div class="input-group date ">
+                <input type="text" class="form-control search-input" data-category="crash" id="crash_date_start"
+                  name="crash_date_start" placeholder="MM/DD/YYYY" style="font-size:16px;" />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+              &nbsp;&nbsp;-&nbsp;&nbsp;
+              <div class="input-group date ">
+                <input type="text" class="form-control search-input" data-category="crash" id="crash_date_end"
+                  name="crash_date_end" placeholder="MM/DD/YYYY" style="font-size:16px;" />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="supplement_report">Supplement Report</label>
+            <select class="form-control selectpicker show-tick search-input" id="supplement_report"
+              name="supplement_report" data-category="crash">
+              <option value=""></option>
+              <option value="N">No</option>
+              <option value="Y">Yes</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="report_items">Report Items</label>
+            <select class="form-control selectpicker show-tick search-input" id="report_items" name="report_items"
+              data-category="crash">
+              <option value=""></option>
+              <option value="PT">Photo Taken</option>
+              <option value="SC">Secondary Crash</option>
+              <option value="OH-2">OH-2</option>
+              <option value="OH-3">OH-3</option>
+              <option value="OH-1P">OH-1P</option>
+              <option value="OTHER">Other</option>
+              <option value="PP">Private Property</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="crash_severity">Crash Severity</label>
+            <select class="form-control selectpicker show-tick search-input" id="crash_severity" name="crash_severity"
+              data-category="crash">
+              <option value=""></option>
+              <option value="1">Fatal</option>
+              <option value="2">Serious Injury Suspected</option>
+              <option value="3">Minor Injury Suspected</option>
+              <option value="4">Injury Possible</option>
+              <option value="5">Property Damage Only</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label class="col-sm-12" style="margin-left:-10px">Number Of Units</label>
+            <div class="flex-container">
+              <input type="number" class="form-control search-input" id="number_of_units_min" name="number_of_units_min"
+                placeholder="Min" style="font-size:16px;" data-category="crash" />
+              -
+              <input type="number" class="form-control search-input" id="number_of_units_max" name="number_of_units_max"
+                placeholder="Max" style="font-size:16px;" data-category="crash" />
+
+            </div>
+          </div>
+          <div class="clearfix"></div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="crash_severity">Report Taken By</label>
+            <select class="form-control selectpicker show-tick search-input" id="report_taken_by" name="report_taken_by"
+              data-category="crash">
+              <option value=""></option>
+              <option value="1">Police Agency</option>
+              <option value="2">Motorist</option>>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="location_road_type">Location Road Type</label>
+            <select class="form-control selectpicker show-tick search-input" id="location_road_type"
+              name="location_road_type" data-category="crash">
+              <option value=""></option>
+              <option value="AL">AL-Alley</option>
+              <option value="AV">AV-Avenue</option>
+              <option value="BL">BL-Boulevard</option>
+              <option value="CR">CR-Circle</option>
+              <option value="CT">CT-Court</option>
+              <option value="DR">DR-Drive</option>
+              <option value="HE">HE-Heights</option>
+              <option value="HW">HW-Highway</option>
+              <option value="LA">LA-Lane</option>
+              <option value="MP">MP-Milepost</option>
+              <option value="OV">OV-Oval</option>
+              <option value="PK">PK-Parkway</option>
+              <option value="PI">PI-Pike</option>
+              <option value="PL">PL-Place</option>
+              <option value="RD">RD-Road</option>
+              <option value="SQ">SQ-Square</option>
+              <option value="ST">ST-Street</option>
+              <option value="TE">TE-Terrace</option>
+              <option value="TL">TL-Trail</option>
+              <option value="WA">WA-Way</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="roadway_divided">Roadway Divided</label>
+            <select class="form-control selectpicker show-tick search-input" id="roadway_divided" name="roadway_divided"
+              data-category="crash">
+              <option value=""></option>
+              <option value="1">1-Yes</option>
+              <option value="2">2-No</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="first_harmful_event_loc">First Harmful Event Loc</label>
+            <select class="form-control selectpicker show-tick search-input" id="first_harmful_event_loc"
+              name="first_harmful_event_loc" data-category="crash">
+              <option value=""></option>
+              <option value="1">1-On Roadway</option>
+              <option value="2">2-On Shoulder</option>
+              <option value="3">3-In Median</option>
+              <option value="4">4-On Roadside</option>
+              <option value="5">5-On Gore</option>
+              <option value="6">6-Outside Traffic Way</option>
+              <option value="7">7-On Ramp</option>
+              <option value="8">8-Off Ramp</option>
+              <option value="9">9-Crossover</option>
+              <option value="10">10-Driveway/Alley Access</option>
+              <option value="11">11-Railway Grade Crossing</option>
+              <option value="12">12-Shared Use Paths or Trails</option>
+              <option value="13">13-Bike Lane</option>
+              <option value="14">14-Toll Booth</option>
+              <option value="99">99-Other/Unknown</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="manner_of_crash">Manner of Crash</label>
+            <select class="form-control selectpicker show-tick search-input" id="manner_of_crash" name="manner_of_crash"
+              data-category="crash">
+              <option value=""></option>
+              <option value="1">1-Not Collision between two motor vehicles in transport
+              </option>
+              <option value="2">2-Rear-End</option>
+              <option value="3">3-Head-On</option>
+              <option value="4">4-Rear-to-Rear</option>
+              <option value="5">5-Backing</option>
+              <option value="6">6-Angle</option>
+              <option value="7">7-Sideswipe, Same Direction</option>
+              <option value="8">8-Sideswipe, Opposite Direction</option>
+              <option value="9">9-Other/Unknown</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="contour">Contour</label>
+            <select class="form-control selectpicker show-tick search-input" id="contour" name="contour"
+              data-category="crash">
+              <option value=""></option>
+              <option value="1">1-Straight Level</option>
+              <option value="2">2-Straight Grade</option>
+              <option value="3">3-Curve Level</option>
+              <option value="4">4-Curve Grade</option>
+              <option value="9">9-Other/Unknown</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="road_conditions">Road Conditions</label>
+            <select class="form-control selectpicker show-tick search-input" id="road_conditions" name="road_conditions"
+              data-category="crash">
+              <option value=""></option>
+              <option value="1">1-Dry</option>
+              <option value="2">2-Wet</option>
+              <option value="3">3-Snow</option>
+              <option value="4">4-Ice</option>
+              <option value="5">5-Sand, Mud, Dirt, Oil, Gravel</option>
+              <option value="6">6-Water (Standing, Moving)</option>
+              <option value="7">7-Slush</option>
+              <option value="9">9-Other/Unknown</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="surface">Surface</label>
+            <select class="form-control selectpicker show-tick search-input" id="surface" name="surface"
+              data-category="crash">
+              <option value=""></option>
+              <option value="1">1-Concrete</option>
+              <option value="2">2-Blacktop, Bituminous, Asphalt</option>
+              <option value="3">3-Brick/Block</option>
+              <option value="4">4-Slag, Gravel, Stone</option>
+              <option value="5">5-Dirt</option>
+              <option value="9">9-Other/Unknown</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="light_conditions">Light Conditions</label>
+            <select class="form-control selectpicker show-tick search-input" id="light_conditions"
+              name="light_conditions" data-category="crash">
+              <option value=""></option>
+              <option value="1">1-Daylight</option>
+              <option value="2">2-Dawn/Dusk</option>
+              <option value="3">3-Dark-Lighted Roadway</option>
+              <option value="4">4-Dark-Roadway Not Lighted</option>
+              <option value="5">5-Dark-Unknown Roadway Lighting</option>
+              <option value="9">9-Other/Unknown</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="weather">Weather</label>
+            <select class="form-control selectpicker show-tick search-input" id="weather" name="weather"
+              data-category="crash">
+              <option value=""></option>
+              <option value="1">1-Clear</option>
+              <option value="2">2-Cloudy</option>
+              <option value="3">3-Fog, Smog, Smoke</option>
+              <option value="4">4-Rain</option>
+              <option value="5">5-Sleet, Hail</option>
+              <option value="6">6-Snow</option>
+              <option value="7">7-Severe Crosswinds</option>
+              <option value="8">8-Blowing Sand, Soil, Dirt, Snow</option>
+              <option value="9">9-Freezing Rain or Freezing Drizzle</option>
+              <option value="99">99-Other/Unknown</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="unit_owner_type">Unit Owner Type</label>
+            <select class="form-control selectpicker show-tick search-input" id="unit_owner_type" name="unit_owner_type"
+              data-category="unit">
+              <option value=""></option>
+              <option value="P">Private</option>
+              <option value="C">Commercial</option>
+              <option value="O">Pedestrian</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="unit_type">Unit Type</label>
+            <select class="form-control selectpicker show-tick search-input" id="unit_type" name="unit_type"
+              data-category="unit">
+              <option value=""></option>
+              <option value="1">1-Passenger Car</option>
+              <option value="2">2-Passenger Van (Minivan)</option>
+              <option value="3">3-Sport Utility Vehicle</option>
+              <option value="4">4-Pick Up</option>
+              <option value="5">5-Cargo Van</option>
+              <option value="6">6-Van(9-15 Seats)</option>
+              <option value="7">7-Motorcycle 2-Wheeled</option>
+              <option value="8">8-Motorcycle 3-Wheeled</option>
+              <option value="9">9-Autocycle</option>
+              <option value="10">10-Moped or Motorized Bicycle</option>
+              <option value="11">11-All Terrain Vehicle (ATV/UTV)</option>
+              <option value="12">12-Golf Cart</option>
+              <option value="13">13-Snowmobile</option>
+              <option value="14">14-Single Unit Truck</option>
+              <option value="15">15-Semi-Tractor</option>
+              <option value="16">16-Farm Equipment</option>
+              <option value="17">17-Motorhome</option>
+              <option value="18">18-Limo (Livery Vehicle)</option>
+              <option value="19">19-Bus (16+Passengers)</option>
+              <option value="20">20-Other Vehicle</option>
+              <option value="21">21-Heavy Equipment</option>
+              <option value="22">22-Animal With Rider or Anima-Drawn Vehicle</option>
+              <option value="23">23-Pedestrian/Skater</option>
+              <option value="24">24-Wheelchair (Anytype)</option>
+              <option value="25">25-Other Non-Motorist</option>
+              <option value="26">26-Bicycle</option>
+              <option value="27">27-Train</option>
+              <option value="99">99-Unknown or Hit/Skip</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="type_of_use">Type of Use</label>
+            <select class="form-control selectpicker show-tick search-input" id="type_of_use" name="type_of_use"
+              data-category="unit">
+              <option value=""></option>
+              <option value="C">Commercial</option>
+              <option value="G">Government</option>
+              <option value="I">In Emergency Response</option>
+              <option value="P">Personal</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="damage_scale">Damage Scale</label>
+            <select class="form-control selectpicker show-tick search-input" id="damage_scale" name="damage_scale"
+              data-category="unit">
+              <option value=""></option>
+              <option value="1">None</option>
+              <option value="2">Minor</option>
+              <option value="3">Functional Damage</option>
+              <option value="4">Disabling Damage</option>
+              <option value="9">Unknown</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="injuries">Injuries</label>
+            <select class="form-control selectpicker show-tick search-input" id="injuries" name="injuries"
+              data-category="person">
+              <option value=""></option>
+              <option value="1">1-Fatal</option>
+              <option value="2">2-Suspected Serious Injury</option>
+              <option value="3">3-Suspected Minor Injury</option>
+              <option value="4">4-Possible Injury</option>
+              <option value="5">5-No Apparent Injury</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="narrative">Narrative</label>
+            <input type="text" class="form-control search-input" id="narrative" name="narrative" placeholder="Narrative"
+              data-category="crash">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="officer">Officer</label>
+            <input type="text" class="form-control search-input" id="officer" name="officer" placeholder="Officer"
+              data-category="crash">
+          </div>
+          <div class="form-group col-md-12 search-section">Person</div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="unit_owner_first_name">Unit Owner First Name</label>
+            <input type="text" class="form-control search-input" id="unit_owner_first_name" name="unit_owner_first_name"
+              placeholder="Unit Owner First Name" data-category="unit">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="unit_owner_last_name">Unit Owner Last Name</label>
+            <input type="text" class="form-control search-input" id="unit_owner_last_name" name="unit_owner_last_name"
+              placeholder="Unit Owner Last Name" data-category="unit">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="person_type">Person Type</label>
+            <select class="form-control selectpicker show-tick search-input" id="person_type" name="person_type"
+              data-category="person">
+              <option value=""></option>
+              <option value="D">Driver</option>
+              <option value="P">Pedestrian</option>
+              <option value="O">Passenger/Occupant</option>
+              <option value="W">Witness</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="traffic_person_first_name">First Name</label>
+            <input type="text" class="form-control search-input" id="traffic_person_first_name"
+              name="traffic_person_first_name" placeholder="First Name" data-category="person">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="traffic_person_last_name">Last Name</label>
+            <input type="text" class="form-control search-input" id="traffic_person_last_name"
+              name="traffic_person_last_name" placeholder="Last Name" data-category="person">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label class="col-sm-12" style="margin-left:-10px">Age</label>
+            <div class="flex-container">
+              <input type="number" class="form-control search-input" id="age_min" name="age_min"
+                placeholder="Min" data-category="person" />
+              -
+              <input type="number" class="form-control search-input" id="age_max" name="age_max"
+                placeholder="Max" data-category="person" />
+
+            </div>
+          </div>
+          <div class="form-group col-md-12 search-section">Place</div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="crash_location">Address</label>
+            <input type="text" class="form-control search-input" id="crash_location" name="crash_location"
+              placeholder="Example:Winton Road" data-category="crash">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="location_road_name">Location Road Name</label>
+            <input type="text" class="form-control search-input" id="location_road_name" name="location_road_name"
+              placeholder="Example:Winton Road" data-category="crash">
+          </div>
+          <div class="form-group col-md-12 search-section">Vehicle</div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="unit_license_plate">Unit License Plate</label>
+            <input type="text" class="form-control search-input" id="unit_license_plate" name="unit_license_plate"
+              placeholder="Unit License Plate" data-category="unit">
+          </div>
+          <div class="form-group col-md-2 col-sm-4 col-xs-12">
+            <label class="col-sm-12" style="margin-left:-10px">Vehicle Year</label>
+            <div class="flex-container">
+              <input type="number" class="form-control search-input" id="vehicle_year_min" name="vehicle_year_min"
+                placeholder="Min" style="font-size:16px;" data-category="unit" />
+              -
+              <input type="number" class="form-control search-input" id="vehicle_year_max" name="vehicle_year_max"
+                placeholder="Max" style="font-size:16px;" data-category="unit" />
+
+            </div>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="vehicle_make">Vehicle Make</label>
+            <input type="text" class="form-control search-input" id="vehicle_make" name="vehicle_make"
+              placeholder="Vehicle Make" data-category="unit">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="vehicle_model">Vehicle Model</label>
+            <input type="text" class="form-control search-input" id="vehicle_model" name="vehicle_model"
+              placeholder="Vehicle Model" data-category="unit">
+          </div>
+          <div class="form-group  col-xs-12 button-container" id="search_button_container">
+            <button type="button" class="btn btn-info pull-right" style="margin-top:30px; width:150px"
+              id="search_button">Search</button>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12 button-container d-none">
+            <button type="button" class="btn btn-success btn-block" style="margin-top:30px" id="add_more_field"><i
+                class="glyphicon glyphicon-plus"></i> Add More
+              Fields</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

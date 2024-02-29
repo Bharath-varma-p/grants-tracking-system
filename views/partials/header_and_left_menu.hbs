@@ -1,0 +1,1296 @@
+<link rel="stylesheet" href="/css/navbar.css" />
+{{#if darkMode }}
+<link rel="stylesheet" href="/css/navbar_dark.css" />
+{{/if}}
+
+
+<div class="main_container">
+	<div class="left_col">
+
+		<div class="site_title">
+			<a href="user_dashboard">
+				<h1 style="font-size: calc(25px);width: fit-content; max-width: 100%;">
+					<span id="peel" style="color:#FFFFFF;">RAF Vue</span>
+				</h1>
+			</a>
+		</div>
+
+		<div id="profile_info" style="margin-left:-25px;">
+			<h2>
+				<img src="{{department_logo}}" style="width: 141px; height: 57px; margin-left: 33px"></img>
+				{{!-- <span id="profile_info_text" style="font-size:13px;">{{department_name}} PD</span> --}}
+			</h2>
+		</div>
+
+		<div id="sidebar_menu">
+
+			<div id="nav_config">
+				<button id="load_def_conf">Load Default Configs</button>
+				<button id="save_conf">Save</button>
+			</div>
+
+			<div id="menu_section_create">
+				<ul id="sortable5" class="nav side-menu">
+					<!-- <li><a href="user_dashboard"><i class="fa fa-user"></i>Dashboard</a></li> -->
+				</ul>
+			</div>
+
+		</div>
+
+
+		<!-- VARIABLES THAT ARE USED IN JS PORTION -->
+		<input type="text" id="newList" style="display:none;">
+		<input type="text" id="load_default" value="0" style="display:none;">
+		<input type="text" id="current_active_page" value="0" style="display:none;">
+		<input type="text" id="master_name_active" value="Master Names/0" style="display:none;">
+		<input type="text" id="download_active" value="Download & Reports/0" style="display:none;">
+		<input type="text" id="system_active" value="System Admin/0" style="display:none;">
+		<input type="text" id="analytics_active" value="Analytics/0" style="display:none;">
+		<input type="text" id="rms_active" value="RMS/0" style="display:none;">
+		<input type="text" id="agency_active" value="agencyOnly/0" style="display:none;">
+		<input type="text" id="dark_mode_value" value="0" style="display:none;">
+		<input type="text" id="sensitive_mode_value" value="0" style="display:none;">
+		<input type="text" id="voice_commands_value" value="0" style="display:none;">
+		<input type="text" id="warrant_citation_arrest_value" value="0" style="display:none;">
+		<input type="text" id="incident_value" value="0" style="display:none;">
+		<input type="text" id="traffic_crash_value" value="0" style="display:none;">
+		<input type="text" id="traffic_citation_value" value="0" style="display:none;">
+		<input type="text" id="fir_value" value="0" style="display:none;">
+		<input type="text" id="daily_log_value" value="0" style="display:none;">
+		<input type="text" id="evidence_due_value" value="0" style="display:none;">
+		<input type="text" id="show_sealed_value" value="0" style="display:none;">
+
+		<!-- /menu footer buttons || NOT USED FOR NOW -->
+		<div class="sidebar-footer hidden-small" style="display:none;">
+			<a data-toggle="tooltip" data-placement="top" title="Settings">
+				<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+			</a>
+			<a data-toggle="tooltip" data-placement="top" title="FullScreen">
+				<span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+			</a>
+			<a data-toggle="tooltip" data-placement="top" title="Lock">
+				<span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+			</a>
+			<a data-toggle="tooltip" data-placement="top" title="Logout" href="../logout">
+				<span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+			</a>
+		</div>
+		<!-- /menu footer buttons -->
+	</div>
+
+	<div class="top_nav">
+
+		<div class="nav_menu">
+			<nav>
+				<div class="nav toggle">
+					<a id="menu_toggle"><i class="fa fa-bars"></i></a>
+				</div>
+				<div class="nav" style="display: flex;">
+					<ul class="nav navbar-nav navbar-left">
+						<li class="nav-item d-none" style="display:nne" id="quick_report_li">
+							<button class="btn btn-primary btn-sm btn-rounded" id="quick_report">Quick Reports</a>
+						</li>
+						<li class="nav-item" style="display:nne" id="on_duty_li">
+							<button class="btn btn-success btn-sm btn-rounded" id="on_duty">Active on RAF Vue</a>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{officer_name}} <span
+									class="glyphicon glyphicon-user pull-right navbar_icon"></span></a>
+
+							<ul class="dropdown-menu">
+
+								<li style="display:none;">
+									<a href="#">Account Settings <span
+											class="glyphicon glyphicon-cog pull-right"></span></a>
+								</li>
+								<li style="display:none;">
+									<a href="#">User stats <span
+											class="glyphicon glyphicon-stats pull-right"></span></a>
+								</li>
+								<li style="display:none;">
+									<a href="#">Messages <span class="badge pull-right"> 42 </span></a>
+								</li>
+
+
+								<li>
+									<a href="./email_reset">Email Reset <span
+											class="glyphicon glyphicon-refresh pull-right"></span></a>
+								</li>
+
+								<li class="divider"></li>
+
+								<li>
+									<a href="#" id="nav_confi_button">Configure Navbar
+										<input style="display:none" type="checkbox" id="nav_confi_checkbox">
+										<span class="slider round" data-toggle="toggle" data-on="Enabled"
+											data-off="Disabled"></span>
+									</a>
+								</li>
+
+
+								<li class="divider"></li>
+
+								<li>
+									<a href="#" id="dark_mode_button">Dark Mode
+										<input style="display:none" type="checkbox" id="dark_mode_checkbox">
+										<span class="slider round" data-toggle="toggle" data-on="Enabled"
+											data-off="Disabled"></span>
+									</a>
+								</li>
+
+								<li>
+									<a href="#" id="sensitive_button">Mask Sensitive
+										<input style="display:none" type="checkbox" id="sensitive_checkbox">
+										<span class="slider round" data-toggle="toggle" data-on="Enabled"
+											data-off="Disabled"></span>
+									</a>
+								</li>
+
+								<li class="divider"></li>
+
+								<li class="d-none">
+									<a href="#" id="voice_commands_button">Voice Commands
+										<input style="display:none" type="checkbox" id="voice_commands_checkbox">
+										<span class="slider round" data-toggle="toggle" data-on="Enabled"
+											data-off="Disabled"></span>
+									</a>
+								</li>
+
+								<li class="divider d-none"></li>
+
+								<li class="dropdown-submenu d-none">
+									<a class="dropdown-item" tabindex="-1" href="#">Dashboard Preferences</a>
+									<ul class='dropdown-menu'>
+										<li class="dropdown-item"><a tabindex="-1" href="#"
+												id="incident_button">Incident<input style="display:none;"
+													type="checkbox" id="incident_checkbox">
+												<span class="slider round" data-toggle="toggle" data-on="Enabled"
+													data-off="Disabled"></span></a></li>
+										<li class="dropdown-item"><a tabindex="-1" href="#"
+												id="traffic_crash_button">Traffic Crash<input style="display:none;"
+													type="checkbox" id="traffic_crash_checkbox">
+												<span class="slider round" data-toggle="toggle" data-on="Enabled"
+													data-off="Disabled"></span></a></li>
+										<li class="dropdown-item"><a tabindex="-1" href="#"
+												id="traffic_citation_button">Traffic Citation/Warning<input
+													style="display:none;" type="checkbox"
+													id="traffic_citation_checkbox">
+												<span class="slider round" data-toggle="toggle" data-on="Enabled"
+													data-off="Disabled"></span></a></li>
+										<li class="dropdown-item"><a tabindex="-1" href="#"
+												id='warrant_citation_button'>Warrant-Citation Arrest<input
+													style="display:none;" type="checkbox"
+													id="warrant_citation_checkbox">
+												<span class="slider round" data-toggle="toggle" data-on="Enabled"
+													data-off="Disabled"></span></a></li>
+										<li class="dropdown-item"><a tabindex="-1" href="#" id="fir_button">FIR<input
+													style="display:none;" type="checkbox" id="FIR_checkbox">
+												<span class="slider round" data-toggle="toggle" data-on="Enabled"
+													data-off="Disabled"></span></a></li>
+										<li class="dropdown-item"><a tabindex="-1" href="#" id="daily_log_button">Daily
+												Logs<input style="display:none;" type="checkbox"
+													id="daily_log_checkbox">
+												<span class="slider round" data-toggle="toggle" data-on="Enabled"
+													data-off="Disabled"></span></a></li>
+										<li class="dropdown-item"><a tabindex="-1" href="#"
+												id="evidence_due_button">Evidence Due<input style="display:none;"
+													type="checkbox" id="evidence_due_checkbox">
+												<span class="slider round" data-toggle="toggle" data-on="Enabled"
+													data-off="Disabled"></span></a></li>
+
+									</ul>
+									<span class="slider round" data-toggle="toggle" data-on="Enabled"
+										data-off="Disabled"></span>
+								</li>
+
+
+								<li class="divider"></li>
+								{{#if PRIVILEGE_UNSEAL_CASE.hasPermission}}
+								<li class="d-none"><a tabindex="-1" href="#" id="show_sealed_button">Show Sealed
+										Cases<input style="display:none;" type="checkbox" id="show_sealed_checkbox">
+										<span class="slider round" data-toggle="toggle" data-on="Enabled"
+											data-off="Disabled"></span></a></li>
+								<li class="divider"></li>
+								{{/if}}
+								<li>
+									<a href="../logout">Sign
+										Out <span class="glyphicon glyphicon-log-out pull-right"></span></a>
+								</li>
+
+							</ul>
+						</li>
+						<li class="nav-item to-be-hided">
+							<a href="./user_requests">Submit a Support Ticket<span class="sr-only">(current)</span></a>
+						</li>
+						<li class="nav-item to-be-hided">
+							<a href="./howto" class="dropdown-toggle">How To</a>
+						</li>
+						<li class="nav-item to-be-hided">
+							<a href="./whatsnew" class="dropdown-toggle" id="whatsnew-button">What's
+								<span class="whats-new">New</span></a>
+						</li>
+						<li class="nav-item to-be-hided">
+							<a href="#" class="dropdown-toggle d-none" id="happy_birthday_button">
+								<span class="happy-birthday">Happy Birthday {{user_first_name}}</span>
+								<img src="/images/birthday-cake.png" class="birthday-cake"></a>
+						</li>
+
+						<li class="nav-item hidden-xs d-none">
+							<span>Ohio Police Department<span class="sr-only">(current)</span></span>
+						</li>
+					</ul>
+				</div>
+
+			</nav>
+		</div>
+	</div>
+
+</div>
+
+
+<script src="/js/jquery.js"></script>
+<script src="/js/popper.js"></script>
+<script src="/js/moment.min.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/jquery-ui.js"></script>
+<script src="/js/artyom.js"></script>
+<script src="/js/artyom.window.js"></script>
+<script src="/js/artyom.window.min.js"></script>
+<script src="/js/menus.js"></script>
+<script src="/js/leftMenuCreate.js"></script>
+<script src="/js/jquery.colorbox.js"></script>
+<script src="/js/bootstrap-datetimepicker.min.js"></script>
+
+<script>
+	$('#whatsnew-button').on('click', () => {
+		$.ajax({
+			type: "POST",
+			url: "activate_new",
+			data: { fromActivate: 'no' },
+			success(data) {
+			}
+		})
+	})
+	$('ul.dropdown-menu').on('click', function (event) {
+		event.stopPropagation();
+	})
+	$('#dark_mode_button').click(function () {
+
+		var dark_mode_checked_old = $('#dark_mode_checkbox').is(':checked');
+
+		var dark_mode_checked_new = !dark_mode_checked_old;
+
+		$('#dark_mode_checkbox').prop('checked', dark_mode_checked_new);
+
+		if (dark_mode_checked_new) {
+			var dark_mode = 1;
+		} else {
+			dark_mode = 0;
+		}
+
+		$.ajax({
+			type: "POST",
+			url: "darkMode",
+			data: {
+				darkMode: dark_mode
+			},
+			success: function (data) {
+				window.location.reload();
+			}
+		});
+	});
+
+	$('#sensitive_button').click(function () {
+
+		var sensitive_mode_checked_old = $('#sensitive_checkbox').is(':checked');
+
+		var sensitive_mode_checked_new = !sensitive_mode_checked_old;
+
+		$('#sensitive_checkbox').prop('checked', sensitive_mode_checked_new);
+
+		if (sensitive_mode_checked_new) {
+			var sensitiveMode = 1;
+		} else {
+			sensitiveMode = 0;
+		}
+
+
+		$.ajax({
+			type: "POST",
+			url: "sensitiveMode",
+			data: {
+				sensitiveMode: sensitiveMode
+			},
+			success: function (data) {
+				window.location.reload();
+			}
+		});
+	});
+
+
+	$('#voice_commands_button').click(function () {
+		$('#voice_commands_checkbox').click();
+		if ($('#voice_commands_checkbox').is(':checked')) {
+			var voice_commands = 1;
+		} else {
+			voice_commands = 0;
+		}
+		$.ajax({
+			type: "POST",
+			url: "voiceCommands",
+			data: {
+				voiceCommands: voice_commands
+			},
+			success: function (data) {
+				window.location.reload();
+			}
+		});
+	});
+
+	$('#warrant_citation_button').click(function () {
+		$('#warrant_citation_checkbox').click();
+		if ($('#warrant_citation_checkbox').is(':checked')) {
+			var warrant_citation = 0;
+		} else {
+			warrant_citation = 1;
+		}
+		$.ajax({
+			type: 'POST',
+			url: 'warrant_citation_arrest',
+			data: {
+				warrant_citation_arrest: warrant_citation
+			},
+			success: function (data) {
+			}
+		});
+	});
+	$('#incident_button').click(function () {
+		$('#incident_checkbox').click();
+		if ($('#incident_checkbox').is(':checked')) {
+			var incident = 0;
+		} else {
+			incident = 1;
+		}
+		$.ajax({
+			type: 'POST',
+			url: 'incident_preference',
+			data: {
+				incident: incident
+			},
+			success: function (data) {
+			}
+		});
+	});
+	$('#traffic_crash_button').click(function () {
+		$('#traffic_crash_checkbox').click();
+		if ($('#traffic_crash_checkbox').is(':checked')) {
+			var traffic_crash = 0;
+		} else {
+			traffic_crash = 1;
+		}
+		$.ajax({
+			type: 'POST',
+			url: 'traffic_crash_preference',
+			data: {
+				traffic_crash: traffic_crash
+			},
+			success: function (data) {
+			}
+		});
+	});
+
+	$('#traffic_citation_button').click(function () {
+		$('#traffic_citation_checkbox').click();
+		if ($('#traffic_citation_checkbox').is(':checked')) {
+			var traffic_citation = 0;
+			var traffic_warning = 0;
+		} else {
+			traffic_citation = 1;
+			traffic_warning = 1;
+		}
+		$.ajax({
+			type: 'POST',
+			url: 'traffic_citation_preference',
+			data: {
+				traffic_citation: traffic_citation,
+				traffic_warning: traffic_warning
+			},
+			success: function (data) {
+			}
+		});
+	});
+
+	$('#fir_button').click(function () {
+		$('#FIR_checkbox').click();
+		if ($('#FIR_checkbox').is(':checked')) {
+			var fir = 0;
+		} else {
+			fir = 1;
+		}
+		$.ajax({
+			type: 'POST',
+			url: 'fir_preference',
+			data: {
+				fir: fir
+			},
+			success: function (data) {
+			}
+		});
+	});
+
+	$('#daily_log_button').click(function () {
+		$('#daily_log_checkbox').click();
+		if ($('#daily_log_checkbox').is(':checked')) {
+			var daily_log = 0;
+		} else {
+			daily_log = 1;
+		}
+		$.ajax({
+			type: 'POST',
+			url: 'daily_log_preference',
+			data: {
+				daily_log: daily_log
+			},
+			success: function (data) {
+			}
+		});
+	});
+
+	$('#evidence_due_button').click(function () {
+		$('#evidence_due_checkbox').click();
+		if ($('#evidence_due_checkbox').is(':checked')) {
+			var evidenceDue = 0;
+		} else {
+			evidenceDue = 1;
+		}
+		$.ajax({
+			type: 'POST',
+			url: 'evidence_due_preference',
+			data: {
+				evidenceDue
+			},
+			success: function (data) {
+			}
+		});
+	});
+
+	$('#show_sealed_button').click(function () {
+		$('#show_sealed_checkbox').click();
+		let show_sealed = 0;
+		if ($('#show_sealed_checkbox').is(':checked')) {
+			show_sealed = 1;
+		}
+		$.ajax({
+			type: 'POST',
+			url: 'show_sealed_preference',
+			data: {
+				show_sealed
+			},
+			success: function (data) {
+			}
+		});
+	});
+
+
+	$('#nav_confi_button').click(function () {
+		$('#nav_confi_checkbox').click();
+		if ($('#nav_confi_checkbox').is(':checked')) {
+			$("#load_def_conf").show();
+			$("#save_conf").show();
+			$("#sortable5").addClass('sortable');
+
+			$("#sortable5").sortable({
+				stop: function (event, ui) {
+					var newList = [];
+					var listItems = $("#sortable5 li");
+
+					for (i = 0; i < listItems.length; i++) {
+						newList.push(listItems[i].id);
+					}
+
+					$("#newList").val(newList);
+				}
+			});
+		} else {
+			$("#sortable5").removeClass('sortable');
+			$('#load_default').val(0);
+			$('#sortable5').remove();
+			$("#menu_section_create").append('<ul id="sortable5" class="nav side-menu"></il>')
+			$("#load_def_conf").hide();
+			$("#save_conf").hide();
+			init_navbar();
+			$("#sortable5").removeClass('sortable');
+			// $(".sortable" ).removeClass('sortable');
+			//window.location.reload();
+
+		}
+	});
+	$("label.btn.btn-default.active.toggle-off").hide();
+
+	$('#load_def_conf').click(function () {
+		$('#load_default').val(1);
+		save_navbar2();
+
+	});
+
+	$('#save_conf').click(function () {
+		save_navbar();
+		save_navbar3();
+		$('#nav_confi_checkbox').click();
+		//$('#sortable5').remove(); // be careful about these additions. If something goes wrong, check here first
+		//$("#menu_section_create").append('<ul id="sortable5" class="nav side-menu"></ul>') // be careful about these additions. If something goes wrong, check here first
+		//init_navbar(); // be careful about these additions. If something goes wrong, check here first
+
+	});
+
+	if ("{{whatsnew_notification}}" === "0") {
+		//const notificationImage = document.createElement("img")
+		//notificationImage.setAttribute("src","../images/notification.gif")
+		//notificationImage.style.height = "33px";
+		//document.getElementById("whatsnew-button").appendChild(notificationImage)
+		//$(".newGIF").hide();
+		$('.whats-new').addClass('blink');
+	}
+
+	if ("{{isBirthday}}" === 'true') {
+		$('#happy_birthday_button').removeClass('d-none');
+	}
+
+
+	// $( function() {
+
+	//$("#sortable51" ).disableSelection();
+	//} );
+	// $("#biricik, #sortable51, #sortable52").sortable({
+	//connectWith:".connectedSortable"
+	//}); 
+
+	var badge_check;
+	var CURRENT_URL = window.location.href.split('#')[0].split('?')[0];
+
+	var $BODY = $("body"),
+		$MENU_TOGGLE = $("#menu_toggle"),
+		$SIDEBAR_MENU = $("#sidebar_menu"),
+		$SIDEBAR_FOOTER = $(".sidebar-footer"),
+		$LEFT_COL = $(".left_col"),
+		$RIGHT_COL = $(".right_col"),
+		$NAV_MENU = $(".nav_menu"),
+		$FOOTER = $("footer"),
+		randNum = function () {
+			return Math.floor(21 * Math.random()) + 20
+		};
+
+	function init_sidebar() {
+		var setHeight = function () {
+
+			$RIGHT_COL.css("min-height", $(window).height());
+
+			var a = $BODY.outerHeight(),
+				b = $BODY.hasClass("footer_fixed") ? -10 : $FOOTER.height(),
+				c = $LEFT_COL.eq(1).height() + $SIDEBAR_FOOTER.height(),
+				d = a < c ? c : a;
+
+			d -= $NAV_MENU.height() + b;
+
+			$RIGHT_COL.css("min-height", d);
+		};
+
+		$SIDEBAR_MENU.find("a").on("click", function (b) {
+
+			var linkLabel = $(this).text();
+
+			var c = $(this).parent();
+
+			if (c.is(".active")) {
+				c.removeClass("active active-sm");
+				$("#current_active_page").val(linkLabel + '/0');
+				$("ul:first", c).slideUp(function () {
+					setHeight();
+				})
+			}
+			else {
+				if (c.parent().is(".child_menu")) {
+					if ($BODY.is(".nav-sm")) {
+						$SIDEBAR_MENU.find("li").removeClass("active active-sm"),
+							$SIDEBAR_MENU.find("li ul").slideUp()
+					}
+					else {
+						$SIDEBAR_MENU.find("li").removeClass("active active-sm")
+					}
+				}
+
+				$("#current_active_page").val(linkLabel + '/1');
+
+				c.addClass("active");
+
+				$("ul:first", c).slideDown(function () {
+					setHeight();
+				});
+			}
+
+			var data = document.getElementById('current_active_page').value.split("/");
+			var data2 = document.getElementById('current_active_page').value;
+
+			if (data[0] == 'Master Search') {
+				$("#master_name_active").val(data2)
+			}
+			if (data[0] == 'System Admin') {
+				$("#system_active").val(data2)
+			}
+			if (data[0] == 'Analytics') {
+				$("#analytics_active").val(data2)
+			}
+			if (data[0] == 'RMS') {
+				$("#rms_active").val(data2)
+			}
+			if (data[0] == 'Agency Only') {
+				$("#agency_active").val(data2)
+			}
+		});
+
+		$MENU_TOGGLE.on("click", function () {
+			if ($BODY.hasClass("nav-md")) {
+				$SIDEBAR_MENU.find("li.active ul").hide();
+				$SIDEBAR_MENU.find("li ul").hide();
+				$SIDEBAR_MENU.find("li.active")
+					.addClass("active-sm")
+					.removeClass("active");
+			}
+			else {
+				$SIDEBAR_MENU
+					.find("li.active-sm ul")
+					.show();
+
+				$SIDEBAR_MENU
+					.find("li.active-sm")
+					.addClass("active")
+					.removeClass("active-sm");
+			}
+
+			$BODY.toggleClass("nav-md nav-sm");
+			setHeight();
+		});
+
+		$SIDEBAR_MENU
+			.find('a[href="' + CURRENT_URL + '"]')
+			.parent("li")
+			.addClass("current-page");
+
+		$SIDEBAR_MENU
+			.find("a")
+			.filter(function () {
+				return this.href == CURRENT_URL
+			})
+			.parent("li")
+			.addClass("current-page")
+			.parents("ul").slideDown(function () {
+				setHeight();
+			})
+			.parent()
+			.addClass("active");
+
+		setHeight();
+
+		$.fn.mCustomScrollbar && $(".menu_fixed").mCustomScrollbar({
+			autoHideScrollbar: !0,
+			theme: "minimal",
+			mouseWheel: {
+				preventDefault: !0
+			}
+		})
+	}
+
+
+	function init_navbar() {
+		$.ajax({
+			type: "GET",
+			url: "fetch_links",
+			success: function (data) {
+
+				if (data[0].darkMode == 1) {
+					$("#dark_mode_value").val(1);
+					$("#dark_mode_checkbox").prop('checked', 'checked');
+				}
+				if (data[0].sensitiveMode == 1) {
+					$("#sensitive_mode_value").val(1);
+					$("#sensitive_checkbox").prop('checked', 'checked');
+				}
+
+				if (data[0].voiceCommands == 1) {
+					$("#voice_commands_value").val(1);
+					$("#voice_commands_checkbox").prop('checked', 'checked');
+					artyom.initialize({
+						lang: "en-US",
+						continuous: true,
+						debug: false,
+						listen: true
+					});
+				}
+
+
+				if (data[0].warrant_citation_arrest != 1) {
+					$('#warrant_citation_arrest_value').val(0);
+					$('#warrant_citation_checkbox').prop('checked', 'checked')
+				}
+
+				if (data[0].incident != 1) {
+					$('#incident_value').val(0);
+					$('#incident_checkbox').prop('checked', 'checked')
+				}
+
+				if (data[0].traffic_crash != 1) {
+					$('#traffic_crash_value').val(0);
+					$('#traffic_crash_checkbox').prop('checked', 'checked')
+				}
+
+				if (data[0].traffic_citation != 1) {
+					$('#traffic_citation_value').val(0);
+					$('#traffic_citation_checkbox').prop('checked', 'checked')
+				}
+
+				if (data[0].fir != 1) {
+					$('#fir_value').val(0);
+					$('#FIR_checkbox').prop('checked', 'checked')
+				}
+
+				if (data[0].daily_log != 1) {
+					$('#daily_log_value').val(0);
+					$('#daily_log_checkbox').prop('checked', 'checked')
+				}
+
+				if (data[0].evidence_due != 1) {
+					$('#evidence_due_value').val(0);
+					$('#evidence_due_checkbox').prop('checked', 'checked')
+				}
+
+				if (data[0].show_sealed == 1) {
+					$('#show_sealed_value').val(1);
+					$('#show_sealed_checkbox').prop('checked', true);
+				}
+
+				document.getElementById("current_active_page").value = data[0].collapsePage;
+
+				var datam2 = data[0].collapsePage.toString().split(',');
+				var pagePrefs = data[0].pagePrefers;
+				var privileges = data[0].privileges;
+
+				$("#master_name_active").val(datam2[0]);
+				$("#download_active").val(datam2[1]);
+				$("#system_active").val(datam2[2]);
+				$("#analytics_active").val(datam2[3]);
+				$("#rms_active").val(datam2[4]);
+				$("#agency_active").val(datam2[5]);
+
+				if (document.getElementById('load_default').value == 1) {
+
+					pagePrefs = [];
+				}
+
+				var notificationCount = 0;
+
+				$('#sortable5').empty();
+
+				createLeftMenu(notificationCount, pagePrefs, privileges, CURRENT_URL, function () {
+
+					//Remove Badge Number if it is 0
+					if (notificationCount < 1) {
+						$("#badge_sayi").addClass("d-none");
+					} else {
+						$("#badge_sayi").removeClass("d-none");
+					}
+
+					init_sidebar();
+
+					$("#navigation_priveleges").hide();
+
+					var data = document.getElementById('current_active_page').value.split(",");
+
+					if (data[0] == 'Master Search/1') {
+						$("#master_list ul").show();
+					}
+					if (data[1] == 'Download & Reports/1') {
+						$("#report_center ul").show();
+					}
+					if (data[2] == 'System Admin/1') {
+						$("#system_admin ul").show();
+					}
+					if (data[3] == 'Analytics/1') {
+						$("#Analytics ul").show();
+					}
+					if (data[4] == 'RMS/1') {
+						$("#RMS ul").show();
+					}
+					if (data[5] == 'Agency Only/1') {
+						$("#agencyOnly ul").show();
+					}
+
+					$("#download_center").addClass('d-none');
+
+				});
+			}
+
+		});
+	}
+
+	init_navbar();
+
+
+	/////Show constant links
+	$("#biricik ul").show();
+	$("#master_items ul").show();
+	$("#rms_items ul").show();
+
+
+	function save_navbar() {
+
+		var newList = document.getElementById("newList").value.trim();
+
+		if (newList) {
+			$.ajax({
+				type: "POST",
+				url: "fetch_links",
+				data: { newList: newList },
+				success: function (data) {
+					init_navbar();
+				}
+			});
+		}
+	}
+
+	function save_navbar2() {
+		$.ajax({
+			type: "POST",
+			url: "fetch_links2",
+			data: { newList: document.getElementById("newList").value },
+			success: function (data) {
+				document.getElementById("newList").value = '';
+				init_navbar();
+			}
+		});
+	}
+
+	function save_navbar3() {
+		$.ajax({
+			type: "POST",
+			url: "fetch_links3",
+			data: {
+				newList: document.getElementById("master_name_active").value + ',' + document.getElementById("download_active").value + ',' +
+					document.getElementById("system_active").value + ',' + document.getElementById("analytics_active").value + ',' + document.getElementById("rms_active").value + ',' + document.getElementById("agency_active").value
+			},
+			success: function (data) {
+			}
+		});
+	}
+
+	//ARTYOM START
+	var artyom = new Artyom();
+	artyom.addCommands([
+		{
+			description: "Goes to desired page in Peel9",
+			indexes: [/*0*/"go to user dashboard", /*1*/"go to dashboard", /*2*/"go to CFS", /*3*/"go to CFS database", /*4*/"go to incident RMS", /*5*/"go to incident", /*6*/"go to victim RMS", /*7*/"go to victim", /*8*/"go to suspect RMS", /*9*/"go to suspect", /*10*/"go to arrest RMS",
+            /*11*/"go to property RMS", /*12*/"go to property", /*13*/"go to traffic crashes", /*14*/"go to traffic crash", /*15*/"go to traffic citations", /*16*/"go to traffic citation", /*17*/"go to arrest", /*18*/"go to field interview reports", /*19*/"go to FIR", /*20*/"go to evidence database", /*21*/"go to evidence",
+            /*22*/"go to master names", /*23*/"go to master name", /*24*/"go to master name archive", /*25*/"go to business names", /*26*/"go to business", /*27*/"go to business name", /*28*/"go to vehicle database", /*29*/"go to vehicle", /*30*/"go to general search", /*31*/"go to advanced search", /*32*/"go to search", /*33*/"go to staffing analysis", /*34*/"go to staffing",
+            /*35*/"go to co-offending network", /*36*/"go to network", /*37*/"go to reporting and data", /*38*/"go to reporting", /*39*/"go to employees", /*40*/"go to employee", /*41*/"go to storage usage", /*42*/"go to storage", /*43*/"go to usage", /*44*/"go to user activity", /*45*/"go to activity", /*46*/"go to report builder", /*47*/"go to builder",
+            /*48*/"go to approval settings", /*49*/"go to settings", /*50*/"go to approval setting", /*51*/"go to codes", /*52*/"go to code", /*53*/"go to traffic codes", /*54*/"go to traffic code", /*55*/"go to help desk", /*56*/"go to whats new"],
+			action: function (i) {
+				if (i == 0 || i == 1) {
+					location.href = "./user_dashboard";
+				}
+				if (i == 2 || i == 3) {
+					location.href = "./cfs_database";
+				}
+				if (i == 4 || i == 5) {
+					location.href = "./view";
+				}
+				if (i == 6 || i == 7) {
+					location.href = "./victim_database";
+				}
+				if (i == 8 || i == 9) {
+					location.href = "./suspect_database";
+				}
+				if (i == 10) {
+					location.href = "./arrest_database";
+				}
+				if (i == 11 || i == 12) {
+					location.href = "./property_database";
+				}
+				if (i == 13 || i == 14) {
+					location.href = "./traffic_database";
+				}
+				if (i == 15 || i == 16) {
+					location.href = "./traffic_citation_database";
+				}
+				if (i == 17) {
+					location.href = "./arrest_database2";
+				}
+				if (i == 18 || i == 19) {
+					location.href = "./fir_database";
+				}
+				if (i == 20 || i == 21) {
+					location.href = "./evidence_database";
+				}
+				if (i == 22 || i == 23) {
+					location.href = "./master_name_database";
+				}
+				if (i == 25 || i == 26 || i == 27) {
+					location.href = "./business_name_database";
+				}
+				if (i == 28 || i == 29) {
+					location.href = "./vehicle_database";
+				}
+				if (i == 30 || i == 31 || i == 32) {
+					location.href = "./general_search";
+				}
+				if (i == 35 || i == 36) {
+					location.href = "./co_offending";
+				}
+				if (i == 37 || i == 38) {
+					location.href = "./report_center";
+				}
+				if ("true" == "{{ ROLE_POWER_ADMIN }}" && i == 39 || i == 40) {
+					location.href = "./employees";
+				}
+				if ("true" == "{{ ROLE_POWER_ADMIN }}" && i == 41 || i == 42 || i == 43) {
+					location.href = "./user_activity";
+				}
+				if ("true" == "{{ ROLE_POWER_ADMIN }}" && i == 44 || i == 45) {
+					location.href = "./user_activity_report";
+				}
+				if ("true" == "{{ ROLE_POWER_ADMIN }}" && i == 48 || i == 49 || i == 50) {
+					location.href = "./approval_design";
+				}
+				if ("true" == "{{ ROLE_POWER_ADMIN }}" && i == 51 || i == 52) {
+					location.href = "./codes";
+				}
+				if ("true" == "{{ ROLE_POWER_ADMIN }}" && i == 53 || i == 54) {
+					location.href = "./traffic_codes";
+				}
+				if (i == 55) {
+					location.href = "./user_requests";
+				}
+				if (i == 56) {
+					location.href = "./howto";
+				}
+			}
+		},
+		{
+			description: "stops artyom",
+			indexes: ["hey P9 stop"],
+			action: function () {
+				artyom.dontObey();
+				console.warn("artyom has stopped listening, please say hey to continue listening")
+			}
+		},
+		{
+			description: "look up given name in advanced search",
+			smart: true,
+			indexes: ["search for *", "search for * in incident"],
+			action: function (i, wildcard) {
+				if (i == 0) {
+					window.location.href = `./general_search?search=${wildcard}`;
+				}
+				if (i == 1) {
+					window.location.href = `./view?search=${wildcard}`;
+				}
+			}
+
+		}
+
+	]);
+
+	$("#artyom_start").addClass("active");
+	var settings = {
+		continuous: false,
+		onResult: function (text) {
+			$("#call_number").val(text);
+		},
+		onStart: function () {
+		},
+		onEnd: function () {
+			alert("Dictation stopped by the user");
+
+
+		}
+	}
+
+
+	var UserDictation = artyom.newDictation(settings);
+
+	window.onload = function () {
+		if (navigator.userAgent.indexOf("Firefox") > 0) {
+			$("#voice_commands_button").hide();
+			$("#voice_commands_checkbox").hide();
+		}
+	}
+
+	var today = new Date();
+	var this_month = new Date(today.getFullYear(), today.getMonth());
+	var previous_month = moment(this_month).add(-1, 'months').toDate();
+
+	function fillQuickReportYears() {
+		var quick_report_years = "";
+
+		for (var i = this_month.getFullYear(); i > 2015; i--) {
+			quick_report_years += `
+				<option value="${i}">${i}</option>
+			`;
+		}
+
+		return quick_report_years;
+	}
+
+
+
+	var popoverQuickReport = $('#quick_report').popover({
+		placement: 'bottom',
+		trigger: 'click',
+		html: true,
+		content: `
+				<div style="width:280px">
+					<select id="quick_report_type" class="form-control">
+						<option value="chart" selected>Charts</option>
+						<option value="compare_stats">Compare Stats</option>
+						<option value="summaries">Incidents with Details</option>
+					</select>
+					<select id="quick_report_range_type" class="form-control" style="margin-top:5px">
+						<option value="auto_detect" id="auto_detect_option" selected>Select Year and Month</option>
+						<option value="custom_range">Custom Date Range</option>
+					</select>
+					<select id="quick_report_year" class="form-control" style="margin-top:5px">
+						${fillQuickReportYears()}
+					</select>
+					<select id="quick_report_month" class="form-control" style="margin-top:5px" >
+					</select>
+					<div id="div_custom_range" class="d-none">
+							<label style="margin-top:5px" id="range1_label" class="d-none">Range 1</label>
+							<div style="margin-top:5px; display:flex">
+									<div class="input-group date" style="margin-right:5px">
+										<input type='text' class="form-control datepicker" id="quick_report_start_date_first" placeholder="Start Date"/> 
+										<span class="input-group-addon">
+											<span style="height:10px;" class="glyphicon glyphicon-calendar"></span>
+										</span>
+									</div>
+									<div class="input-group date">
+										<input type='text' class="form-control datepicker" id="quick_report_start_date_last" placeholder="End Date"/> 
+										<span class="input-group-addon">
+											<span style="height:10px;" class="glyphicon glyphicon-calendar"></span>
+										</span>
+									</div>
+							</div>
+							<div id="custom_range2" class="d-none">
+								<label style="margin-top:5px">Range 2</label>
+								<div style="margin-top:5px; display:flex">
+										<div class="input-group date" style="margin-right:5px">
+											<input type='text' class="form-control datepicker" id="quick_report_end_date_first" placeholder="Start Date"//> 
+											<span class="input-group-addon">
+												<span style="height:10px;" class="glyphicon glyphicon-calendar"></span>
+											</span>
+										</div>
+										<div class="input-group date">
+											<input type='text' class="form-control datepicker" id="quick_report_end_date_last" placeholder="End Date"//> 
+											<span class="input-group-addon">
+												<span style="height:10px;" class="glyphicon glyphicon-calendar"></span>
+											</span>
+										</div>
+								</div>
+							</div>
+					</div>
+					<label id="quick_report_error"></label>
+					<button id="get_quick_report" class="btn btn-primary btn-block" style="margin-top:5px">Get Report</button>
+				</label>
+			`
+	});
+
+	var popoverOnDuty = $('#on_duty').popover({
+		placement: 'bottom',
+		trigger: 'click',
+		html: true,
+		content: `
+				<div style="width:300px" id="active_users">
+					
+				</div>
+			`
+	});
+
+	function fillQuickReportMonths() {
+		$('#quick_report_month').empty();
+		var selectedYear = parseInt($("#quick_report_year").val());
+
+		$("#quick_report_month").append(`
+			<option value="whole_year">Whole Year</option>
+		`);
+
+		$("#quick_report_month").append(`
+			<option value="year_to_date">Year To Date</option>
+		`);
+
+		for (var month = 0; month <= 11; month++) {
+			var dt = new Date(selectedYear, month);
+			if (dt <= this_month) {
+				$("#quick_report_month").append(`
+					<option value="${month + 1}">${moment(dt).format('MMMM')}</option>
+				`);
+			}
+		}
+	}
+
+
+
+	$(document).on('change', '#quick_report_year', function () {
+		fillQuickReportMonths();
+	});
+
+	$(document).on('shown.bs.popover', '#quick_report', function () {
+		$("#quick_report_year").val(previous_month.getFullYear());
+		fillQuickReportMonths();
+		$("#quick_report_month").val(previous_month.getMonth() + 1);
+		$('#quick_report').siblings('.popover').show();
+		$("#div_custom_range .datepicker").datetimepicker({
+			format: 'MM/DD/YYYY'
+		});
+	});
+
+	$(document).on('hidden.bs.popover', '#quick_report', function () {
+		$('#quick_report').siblings('.popover').hide();
+	});
+
+	$(document).on('click', '#get_quick_report', function () {
+
+		$('html, body').addClass('no_scroll');
+
+		var report_type = $('#quick_report_type').val();
+		var rangeType = $('#quick_report_range_type').val();
+
+		if (rangeType === "custom_range") {
+			const atLeastOneDateIsEmpty = $("#div_custom_range .datepicker:visible").toArray().some(p => !p.value);
+
+			if (atLeastOneDateIsEmpty) {
+				$("#quick_report_error").html(`<span class="text-danger" style="text-transform:none">Please fill all date inputs !!!</span>`);
+				//$.alert("Please fill all the date inputs");
+				return;
+			}
+		}
+
+		var quick_report_year = $('#quick_report_year').val();
+		var quick_report_month = $('#quick_report_month').val();
+
+		const quick_report_start_date_first = $("#quick_report_start_date_first").val();
+		const quick_report_start_date_last = $("#quick_report_start_date_last").val();
+		const quick_report_end_date_first = $("#quick_report_end_date_first").val();
+		const quick_report_end_date_last = $("#quick_report_end_date_last").val();
+
+		popoverQuickReport.popover('hide');
+
+		var quick_report_url = `quick_report_charts/${quick_report_year}-${quick_report_month}-${encodeURIComponent(quick_report_start_date_first || null)}-${encodeURIComponent(quick_report_start_date_last || null)}-${rangeType || null}`;
+
+		if (report_type == "compare_stats") {
+			quick_report_url = `quick_report_compare_stats/${quick_report_year}-${quick_report_month}-${encodeURIComponent(quick_report_start_date_first || null)}-${encodeURIComponent(quick_report_start_date_last || null)}-${encodeURIComponent(quick_report_end_date_first || null)}-${encodeURIComponent(quick_report_end_date_last || null)}-${rangeType || null}`;
+		}
+
+		if (report_type == "summaries") {
+			quick_report_url = `quick_report_summaries/${quick_report_year}-${quick_report_month}-${encodeURIComponent(quick_report_start_date_first || null)}-${encodeURIComponent(quick_report_start_date_last || null)}-${rangeType || null}`;
+		}
+
+		myPopupWin(quick_report_url);
+	});
+
+	$('html').on('click', function (e) {
+		if (e.target != popoverQuickReport[0] &&
+			!$(e.target).parents().is('.popover.in')) {
+			popoverQuickReport.popover('hide');
+		}
+
+		if (e.target != popoverOnDuty[0] &&
+			!$(e.target).parents().is('.popover.in')) {
+			popoverOnDuty.popover('hide');
+		}
+	});
+
+	$(document).on('shown.bs.popover', '#on_duty', function () {
+		$.ajax({
+			type: "POST",
+			url: 'employees_getdataActive',
+			data: { page: 'active_on_peel9' },
+			async: true,
+			success: function (employees) {
+
+				employees.sort(function (x, y) {
+
+					if (x.active < y.active) return 1;
+
+					if (x.active > y.active) return -1;
+
+					if (x.username2.trim() < y.username2.trim()) return -1;
+
+					if (x.username2.trim() > y.username2.trim()) return 1;
+
+					return 0;
+
+				});
+
+				var user_html = '';
+
+				for (i = 0; i < employees.length; i++) {
+
+					if (employees[i].active == 1) {
+						var className = 'active-user';
+					} else {
+						className = 'passive-user';
+					}
+
+					user_html += `
+						<div class="${className}">
+							<span>
+								${i + 1} - ${employees[i].username2} 
+							</span>
+							<span>
+								${(employees[i].phone ? employees[i].phone : '')} 
+							</span>
+						</div>
+					`;
+				}
+
+				$('#active_users').html(user_html);
+
+				$('#on_duty').siblings('.popover').show();
+			},
+			error: function (result) { }
+		});
+	});
+
+	$(document).on('hidden.bs.popover', '#on_duty', function () {
+		$('#on_duty').siblings('.popover').hide();
+	});
+
+	$(document).on('change', '#quick_report_type', function () {
+		const selectedType = $("#quick_report_type").val();
+		if (selectedType === "compare_stats") {
+			$("#auto_detect_option").text("Auto Detected Date Range");
+			$("#range1_label").removeClass("d-none");
+			$("#custom_range2").removeClass("d-none");
+		}
+		else {
+			$("#auto_detect_option").text("Select Year and Month");
+			$("#range1_label").addClass("d-none");
+			$("#custom_range2").addClass("d-none");
+		}
+	});
+
+	$(document).on('change', '#quick_report_range_type', function () {
+		const selectedType = $("#quick_report_range_type").val();
+		if (selectedType === "custom_range") {
+			$("#div_custom_range").removeClass("d-none");
+			$("#quick_report_year").addClass("d-none");
+			$("#quick_report_month").addClass("d-none");
+		}
+		else {
+			$("#div_custom_range").addClass("d-none");
+			$("#quick_report_year").removeClass("d-none");
+			$("#quick_report_month").removeClass("d-none");
+		}
+	});
+
+
+</script>

@@ -1,0 +1,1455 @@
+<div class="modal fade" id="add_case_task_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-header-caption">Add / Edit Task</span>
+                <button type="button" name="closeModal" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+
+                <ul class="nav nav-tabs" id="nav_task">
+                    <li class="active"><a data-toggle="tab" href="#task_info">Task Info</a></li>
+                    <li><a data-toggle="tab" href="#task_assignees" id="nav_item_task_assignees"
+                            class="d-none">Assignees</a></li>
+                    <li><a data-toggle="tab" href="#task_linked_objects" id="nav_item_task_linked_objects"
+                            class="d-none">Related With</a></li>
+                    <li><a data-toggle="tab" href="#task_progress" id="nav_item_task_progress"
+                            class="d-none">Progress</a></li>
+                    <li><a data-toggle="tab" href="#task_history" id="nav_item_task_history" class="d-none">History</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content" id="tab_content_task">
+                    <div id="task_info" class="tab-pane fade in active">
+                        <form id="add_case_task_form">
+                            <div class="form-group">
+                                <label class="required">Assign to Officer</label>
+                                <select id="add_task_officer_select" class="selectpicker" required data-width="100%"
+                                    data-live-search="true" multiple data-actions-box="true"
+                                    data-live-search-placeholder="Search"></select>
+                            </div>
+                            <div class="form-group d-none" id="div_separate_task_for_every_assignee">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input"
+                                        id="create_separate_task_for_every_assignee" style="">
+                                    <label class="form-check-label" for="create_separate_task_for_every_assignee">Create
+                                        separate task for every assignee</label>
+                                </div>
+                            </div>
+                            <div id="add_task_section">
+                                <div id="task_type_container" class="form-group">
+                                    <label class="required">Task Type</label>
+                                    <select id="task_type" class="selectpicker" required data-width="100%"
+                                        data-live-search="true" multiple data-actions-box="true"
+                                        data-live-search-placeholder="Search">
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label style="display: block;">&nbsp;</label>
+                                    <button id="add_task_type" class="btn btn-primary" type="button" data-toggle="modal"
+                                        data-target="#add_case_task_type_modal">Add / Edit Task
+                                        Type</button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Note</label>
+                                <textarea rows="3" placeholder="Optional" id="task_note"
+                                    class="form-control"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Related With</label>
+                                <select id="add_task_related_with" class="selectpicker" data-width="100%"
+                                    data-live-search="true" multiple data-actions-box="true"
+                                    data-live-search-placeholder="Search"></select>
+                            </div>
+                            <div class="form-group d-none" id="div_separate_task_for_every_related_objects">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input"
+                                        id="create_separate_task_for_every_related_object" style="">
+                                    <label class="form-check-label"
+                                        for="create_separate_task_for_every_related_object">Create
+                                        separate task for every related objects</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="give_priority" style="">
+                                    <label class="form-check-label" for="give_priority">Give Priority</label>
+                                </div>
+                            </div>
+                            <div class="form-group d-none" id="task_extra_info">
+                                <div class="alert"></div>
+                            </div>
+                            <div class="form-group">
+                                <button id="btn_save_task" type="button" class="btn btn-primary btn-block">Add Task</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="task_assignees" class="tab-pane fade in">
+                        <table class="datatable" id="case_task_assignees_table" class="tableBorder">
+						<thead>
+							<tr class="header">
+								<th class="header" style="">Assignee</th>
+								<th class="header" style="">Assigned Time</th>
+								<th class="header" style="">Assigned By</th>
+								<th class="header" style="">Actions</th>
+							</tr>
+						</thead>
+					    </table>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div id="task_linked_objects" class="tab-pane fade in">
+                        <table class="datatable" id="case_task_linked_objects_table" class="tableBorder">
+						<thead>
+							<tr class="header">
+								<th class="header" style="">View</th>
+								<th class="header" style="">Name</th>
+								<th class="header" style="">Source</th>
+								<th class="header" style="">Created By</th>
+								<th class="header" style="">Created Time</th>
+								<th class="header" style="">Actions</th>
+							</tr>
+						</thead>
+					    </table>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div id="task_progress" class="tab-pane fade in">
+                        <div class="form-group">
+                            <button class="btn btn-primary" id="btn_add_task_progress"><i class="glyphicon glyphicon-plus"></i>&nbsp;Add Progress</button>
+                        </div>
+                        <table class="datatable" id="case_task_progress_table" class="tableBorder">
+						<thead>
+							<tr class="header">
+								<th class="header" style="display:none">Edited Time</th>
+                                <th class="header" style="">Progress Note</th>
+								<th class="header" style="">Edited By</th>
+								<th class="header" style="">Actions</th>
+							</tr>
+						</thead>
+					    </table>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div id="task_history" class="tab-pane fade in">
+                        <div class="form-group" id="task-history-toolbar">
+                                <div>
+                                    <select id="sort_task_history" class="form-control" style="width:200px">
+                                        <option value="oldest_to_newest">Oldest to newest</option>
+                                        <option value="newest_to_oldest">Newest to oldest</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <input type="text" id="search_task_history" class="form-control" placeholder="Search"/>
+                                </div>
+                        </div>
+                        <div id="task_history_list">
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button id="btn_complete_task" type="button" class="btn btn-success d-none">Complete Task</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../js/lodash.js"></script>
+<script>
+
+    function setLinkedObjectUrl(link, linked_id,linked_source, incident_id, incident_no)
+    {
+        var linked_object_href= null;
+
+        if (linked_source == 'Incident/Offense Location') {
+            linked_object_href = '/{{routLink}}incident_add/viewIncident_' + linked_id;
+        }
+
+        if (linked_source == 'Victim') {
+            linked_object_href = '/{{routLink}}victim/viewVictim_' + linked_id + '-' + incident_id;
+        }
+
+        if (linked_source  == 'Suspect') {
+            linked_object_href = '/{{routLink}}suspect/viewSuspect_' + linked_id + '-' + incident_id;
+        }
+
+        if (linked_source == 'Arrest' || linked_source == "Arrestee Address") {
+            linked_object_href = '/{{routLink}}arrest/viewArrest_' + linked_id + '-' + incident_id;
+        }
+        if (linked_source == 'Use of Force Subject') {
+            linked_object_href = '/{{routLink}}uof/viewUOF_' + linked_id  + '_' + incident_no + '-' + incident_id;
+        }
+        if (linked_source == 'Use of Force Officer') {
+            linked_object_href = '/{{routLink}}uof_officer/viewUOF_' + linked_id + '_' + incident_no+ '-' + incident_id;
+        }
+
+        if (linked_source == 'Evidence') {
+            linked_object_href = '/{{routLink}}evidence/viewEvidence_' + linked_id;
+        }
+
+        if (linked_source == 'Property') {
+            linked_object_href = '/{{routLink}}property/viewProperty_' + linked_id + '-' + incident_id;
+        }
+        if (linked_source == 'Vehicle') {
+            linked_object_href = '/{{routLink}}add_vehicle/viewVehicle_' + linked_id ;
+        }
+        if (linked_source == 'Incident Attachment') {
+            linked_object_href = "/{{routLink}}attachments_edit_locked/" + incident_no + '-' + "incident_attachments";
+        }
+        if (linked_source  == 'Narrative') {
+            linked_object_href= '/{{routLink}}narrative_edit/' + linked_id  + '_yes';
+        }
+        if (linked_source == 'Reportee' || linked_source == 'Involved Individual') {
+            linked_object_href = '/{{routLink}}reportee/viewReportee_' + linked_id + '-' + incident_id;
+        }
+        if (linked_source == 'Witness') {
+            linked_object_href = '/{{routLink}}witness/viewWitness_' + linked_id + '-' + incident_id;
+        }
+        if (linked_source == 'Property Attachment') {
+            linked_object_href = "/{{routLink}}attachments_edit_locked/" + incident_no + '-' + "property_attachments";
+        }
+        if (linked_source == 'Arrest Attachment') {
+            linked_object_href = "/{{routLink}}attachments_edit_locked/" + incident_no  + '-' + "arrest_attachments";
+        }
+        if (linked_source == 'Court Management') {
+            linked_object_href = "/{{routLink}}traffic_citation_court_edit_view/" + linked_id;
+        }
+
+        if (linked_source  == 'Linked Traffic Crash' || linked_source == 'Traffic Crash') {
+            linked_object_href = '/{{routLink}}traffic/viewTraffic_' + linked_id;
+        }
+
+        if (linked_source == 'Linked Traffic Citation' || linked_source == 'Traffic Citation' || linked_source == 'Traffic Citation Defendant Address') {
+            linked_object_href = '/{{routLink}}traffic_citations/viewCitation_' + linked_id;
+        }
+        if (linked_source == 'FIR' || linked_source == 'FIR Person Address') {
+            linked_object_href = '/{{routLink}}fir/viewFIR_' + linked_id;
+        }
+        if (linked_source == 'Warrant-Citation Arrest' || linked_source == 'Warrant-Citation Arrestee Address') {
+            linked_object_href = '/{{routLink}}arrest_non/viewArrest_' + linked_id;
+        }
+
+        if (linked_source == 'Traffic Person' || linked_source == 'Traffic Crash Involved Person Address') {
+            linked_object_href = '/{{routLink}}traffic_person/editPerson_' + linked_id;
+        }
+
+        if (linked_source == 'Vehicle' || linked_source == 'Incident Vehicle Owner Address') {
+            linked_object_href = '/{{routLink}}add_vehicle/viewVehicle_' + linked_id;
+        }
+
+        if (linked_source == 'Use of Force Subject' || linked_source == 'UOF Subject Address') {
+            linked_object_href = '/{{routLink}}uof/viewUOF_' + linked_id+ '_' + incident_no + '-' + incident_id;
+        }
+
+        if (link)
+        {
+            link.on('click',()=>{
+                myPopupWin(linked_object_href);
+            });
+        }
+
+        return linked_object_href;
+    }
+
+
+    if (typeof addCaseTaskModalController === 'undefined') {
+        function AddCaseTaskModalController() {
+
+            this.initModal = function () {
+                $(function () {
+
+                    if (!addCaseTaskModalController.modalHtml) {
+                        addCaseTaskModalController.modalHtml = $('#add_case_task_modal').html();
+                    }
+
+                    addCaseTaskModalController.reset = function()
+                    {
+                        addCaseTaskModalController.selectedTaskId = null;
+                        addCaseTaskModalController.isReadOnly = false;
+                        addCaseTaskModalController.from = null;
+                        addCaseTaskModalController.toOfficers = [];
+                        addCaseTaskModalController.taskData = null;
+                        addCaseTaskModalController.historyFetched = false;
+                        addCaseTaskModalController.historySort = null;
+                        addCaseTaskModalController.linkedObjects = [];
+                    }
+
+                    addCaseTaskModalController.createTaskAssigneeTable = function(){
+                        this.taskAssigneesTable.fnClearTable();
+                        
+                        if (this.taskData && this.taskData.assignees && this.taskData.assignees.length > 0)
+                        {
+                            this.taskAssigneesTable.fnAddData(this.taskData.assignees);
+                        }
+                        
+                        this.taskAssigneesTable.fnDraw();
+                    };
+
+                    addCaseTaskModalController.createTaskLinkedObjectsTable = function(){
+                        this.taskLinkedObjectsTable.fnClearTable();
+
+                        if ( this.taskData && this.taskData.linkedObjects && this.taskData.linkedObjects.length > 0)
+                        {
+                            this.taskLinkedObjectsTable.fnAddData(this.taskData.linkedObjects);
+                        }
+
+                        this.taskLinkedObjectsTable.fnDraw();
+                    };
+
+                    addCaseTaskModalController.createTaskProgressNoteTable = function(){
+                        
+                        this.taskProgressNotesTable.fnClearTable();
+                        
+                        if (this.taskData && this.taskData.progressNotes && this.taskData.progressNotes.length > 0)
+                        {
+                            this.taskProgressNotesTable.fnAddData(this.taskData.progressNotes);
+                        }
+                        
+                        this.taskProgressNotesTable.fnDraw();
+                    };
+
+                    addCaseTaskModalController.createTaskHistoryList = function(){
+
+                         var sortDirection = "asc";
+
+                        if (addCaseTaskModalController.historySort)
+                        {
+                            sortDirection = addCaseTaskModalController.historySort == 'newest_to_oldest' ? 'desc' : 'asc' ;
+
+                            addCaseTaskModalController.taskData.histories = _.orderBy(addCaseTaskModalController.taskData.histories,['id'],[sortDirection]);
+                        }
+
+
+                        var task_history_div = $('#task_history_list');
+                        task_history_div.empty();
+
+                        var search_val = $('#search_task_history').val();
+
+                        addCaseTaskModalController.taskData.histories.forEach((task_history,i) => {    
+                            
+                            var history_content= `
+                                <div class="history-row" style="style_param1">
+                                    <div class="history-item">
+                                        <h3 class="history-header">${ task_history.history_type }&nbsp;&nbsp;&nbsp;<small class="created-by">by ${ task_history.created_by_fullname} at ${  task_history.created_time_formatted} </small></h3>
+                                        <div class="history-body">
+                                            ${ task_history.detail || ''}
+                                        </div>
+                                    </div>
+                                    <div class="history-arrow">
+                                        <i class="glyphicon ${sortDirection == 'asc' ? "glyphicon-arrow-down" : "glyphicon-arrow-up"}"></i>
+                                    </div>
+                                </div>
+                            `;
+
+                            if (search_val)
+                            {
+                                if (history_content.toLocaleLowerCase().indexOf(search_val) == -1)
+                                   history_content =  _.replace(history_content ,'style_param1','display:none');
+                            }
+
+                            task_history_div.append(history_content);
+                        });
+
+                        if (addCaseTaskModalController.taskData.histories.length > 0)
+                        {
+                            $('#task-history-toolbar').removeClass('d-none');
+                        }
+                        else
+                        {
+                            $('#task_history_list').html(`
+                                <h2 class="no-data">No Data To Display</h2>
+                            `);
+                        }
+
+                        $('#task_history_list a[data-linked-id]').each(function(i,elem){
+                            
+                            var data= $(elem).attr("data-linked-id").split('_');
+
+                            var linked_id = data[0];
+                            var linked_source = data[1];
+                            var incident_id = data[2];
+                            var incident_no = data[3];
+
+                            setLinkedObjectUrl($(elem),linked_id, linked_source, incident_id, incident_no);
+                        });
+                    };
+
+                    addCaseTaskModalController.updateCounts = function(){
+
+                        if (addCaseTaskModalController.taskData)
+                        {
+                            if (addCaseTaskModalController.taskData.assignees && addCaseTaskModalController.taskData.assignees.length > 0)
+                                $('#nav_item_task_assignees').text(`Assignees (${addCaseTaskModalController.taskData.assignees.length})`);
+                            else
+                                $('#nav_item_task_assignees').text(`Assignees`);
+
+                            if (addCaseTaskModalController.taskData.linkedObjects && addCaseTaskModalController.taskData.linkedObjects.length > 0)
+                                $('#nav_item_task_linked_objects').text(`Related With (${addCaseTaskModalController.taskData.linkedObjects.length})`);
+                            else
+                                $('#nav_item_task_linked_objects').text(`Related With`);
+
+                            if (addCaseTaskModalController.taskData.progressNotes && addCaseTaskModalController.taskData.progressNotes.length > 0)
+                                $('#nav_item_task_progress').text(`Progress (${addCaseTaskModalController.taskData.progressNotes.length})`);
+                            else
+                                $('#nav_item_task_progress').text(`Progress`);
+
+                            if (addCaseTaskModalController.taskData.historyCount > 0)
+                                $('#nav_item_task_history').text(`History (${ addCaseTaskModalController.taskData.historyCount })`);
+                            else
+                                $('#nav_item_task_history').text(`History`);
+                            
+                        }
+                    };
+
+                    addCaseTaskModalController.fetchTaskData = function(){
+                        return new Promise((resolve, reject) => {
+                            if (addCaseTaskModalController.selectedTaskId) {
+
+                                $('#loading_viparlink').show();
+                                
+                                $.post('/{{routLink}}get_task_data', 
+                                { 
+                                    task_id: addCaseTaskModalController.selectedTaskId
+                                })
+                                .done(taskData => {
+                                    $('#loading_viparlink').hide();
+                                    addCaseTaskModalController.selectedIncidentId = taskData.incident_id;
+                                    addCaseTaskModalController.selectedIncidentNo = taskData.incidentNo;
+
+                                    if (taskData.assignees && taskData.assignees.some(p=> p.currentUserIsAssigned) && ! taskData.completed_time){
+                                        $("#btn_complete_task").removeClass("d-none");
+                                    }
+                                    else {
+                                        $("#btn_complete_task").addClass("d-none");
+                                    }
+
+                                    if (taskData.completed_time){
+                                        $("#task_extra_info .alert").addClass("alert-info").html(`
+                                            Task completed by ${ taskData.completed_by_fullname } <small>(${ taskData.completed_time_formatted })</small>
+                                        `);
+
+                                        $("#task_extra_info").removeClass("d-none");
+                                    } else if (taskData.reopen_time){
+                                        $("#task_extra_info .alert").addClass("alert-danger").html(`
+                                            Task reopened by ${ taskData.reopened_by_fullname } <small>(${ taskData.reopened_time_formatted })</small>
+                                            <br><br>
+                                            ${ taskData.reopen_note }
+                                        `);
+
+                                        $("#task_extra_info").removeClass("d-none");
+
+                                    }
+
+                                    resolve(taskData);
+                                })
+                                .fail(err => {
+                                    $('#loading_viparlink').hide();
+                                    reject(err);
+                                    console.error(err);
+                                });
+                            }
+                            else {
+                                resolve();
+                            }
+                        });
+                    };
+
+                    addCaseTaskModalController.updateTaskFields = function()
+                    {
+                        addCaseTaskModalController.updateCounts();
+                        addCaseTaskModalController.createTaskAssigneeTable();
+                        addCaseTaskModalController.createTaskLinkedObjectsTable();
+                        addCaseTaskModalController.createTaskProgressNoteTable();
+                    }
+
+                    $(document).on('shown.bs.modal', "#add_case_task_modal", function () {
+
+                        var validator = $('#add_case_task_form').validate({
+                            ignore: ":hidden:not(.selectpicker)"
+                        });
+
+                        addCaseTaskModalController.historyFetched=false;
+
+                        addCaseTaskModalController.taskAssigneesTable = $('#case_task_assignees_table');
+
+                        addCaseTaskModalController.taskAssigneesTableOptions = {
+                            destroy: true,
+                            responsive: true,
+                            "lengthMenu": [[7, 25, 50, 100], [7, 25, 50, 100]],
+                            "order": [[0, "desc"]],
+                            "oLanguage": {
+                                "oPaginate": {
+                                    "sFirst": "",
+                                    "sPrevious": "",
+                                    "sNext": "",
+                                    "sLast": ""
+                                },
+                                "sLengthMenu": "Records per page: _MENU_",
+                                "sInfo": "Total of _TOTAL_ records (showing _START_ to _END_)",
+                                "sInfoFiltered": "(filtered from _MAX_ total records)"
+                            },
+                            "deferRender": true,
+                            "fnDrawCallback": function (oSettings) {
+                                //DATATABLE LOADED ----------------------
+                            },
+                            "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+
+                                if (addCaseTaskModalController.isReadOnly)
+                                {
+                                    $('.delete-case-task-assignee',nRow).hide();
+                                }
+                                return nRow;
+                            },
+                            columnDefs: [
+                                {
+                                    targets: 0, className: "dt-nowrap",
+                                    data: function (d) {
+                                        return d.assignee_fullname;
+                                    },
+
+                                    defaultContent: ''
+                                },
+                                {
+                                    targets: 1, className: "dt-nowrap",
+                                    data: function (d) {
+                                        return d.created_time_formatted;
+                                    },
+
+                                    defaultContent: ''
+                                },
+                                {
+                                    targets: 2, className: "dt-nowrap",
+                                    data: function (d) {
+                                        return d.created_by_fullname;
+                                    },
+
+                                    defaultContent: ''
+                                },
+                                {
+                                    targets: 3, className: "dt-nowrap",
+                                    data: null,
+                                    width: "60px",
+                                    defaultContent:`
+                                        <button class="btn btn-xs btn-danger delete-case-task-assignee"><i class="glyphicon glyphicon-trash"></i></button> 
+                                    `
+                                }
+                            ]
+                        };
+
+                        addCaseTaskModalController.taskAssigneesTable.dataTable(addCaseTaskModalController.taskAssigneesTableOptions);
+
+                        addCaseTaskModalController.taskAssigneesTable.DataTable().on('click', '.delete-case-task-assignee', function () {
+                            
+                            var tr = $(this).parents('tr');
+
+                            var data = addCaseTaskModalController.taskAssigneesTable.DataTable().row(tr).data();     
+                            
+                            var assignee_id = data.id;
+                            var assignee_name = data.assignee_fullname;
+
+                            $.confirm({
+                                title: 'Are you sure?',
+                                content: 'This will unassign the user from the task',
+                                buttons: {
+                                    confirm: function () {
+
+                                         $('#loading_viparlink').show();
+
+                                        $.post('/{{routLink}}/delete_case_task_assignee', 
+                                        { 
+                                            id : assignee_id, 
+                                            task_id : addCaseTaskModalController.selectedTaskId, 
+                                            assignee_name : assignee_name
+                                        })
+                                        .done(currentUserDeleted => {
+
+                                             $('#loading_viparlink').hide();
+                                            
+                                            var deletedIndex = addCaseTaskModalController.taskData.assignees.findIndex(item=> item.user_id == assignee_id);
+
+                                            addCaseTaskModalController.taskData.assignees.splice(deletedIndex,1);
+
+                                            addCaseTaskModalController.taskAssigneesTable.fnDeleteRow(tr);
+
+                                            caseScope.drawTasksTable();
+                                            caseScope.drawHistoryList();
+
+                                            addCaseTaskModalController.taskData.historyCount++;
+
+                                            addCaseTaskModalController.historyFetched=false;
+
+                                            addCaseTaskModalController.updateCounts();
+
+                                            var assignees = addCaseTaskModalController.taskData.assignees.map(assignee => assignee.user_id);
+
+                                            $('#add_task_officer_select').val(assignees).selectpicker('refresh');
+
+                                            if (currentUserDeleted) {
+                                                $("#btn_complete_task").addClass("d-none");
+                                            }
+
+                                            $.alert("Succesfully unassigned");
+                                        })
+                                        .fail(err=> 
+                                        {
+                                             $('#loading_viparlink').hide();
+                                            console.error(err);
+                                            $.alert(err.responseText);
+                                        });
+                                    },
+                                    cancel: function () {
+                                    }
+                                }
+                            });
+                          
+                        });
+
+                        addCaseTaskModalController.taskLinkedObjectsTable = $('#case_task_linked_objects_table');
+
+                        addCaseTaskModalController.taskLinkedObjectsTableOptions = {
+                            destroy: true,
+                            responsive: true,
+                            "lengthMenu": [[7, 25, 50, 100], [7, 25, 50, 100]],
+                            "order": [[0, "desc"]],
+                            "oLanguage": {
+                                "oPaginate": {
+                                    "sFirst": "",
+                                    "sPrevious": "",
+                                    "sNext": "",
+                                    "sLast": ""
+                                },
+                                "sLengthMenu": "Records per page: _MENU_",
+                                "sInfo": "Total of _TOTAL_ records (showing _START_ to _END_)",
+                                "sInfoFiltered": "(filtered from _MAX_ total records)"
+                            },
+                            "deferRender": true,
+                            "fnDrawCallback": function (oSettings) {
+                                //DATATABLE LOADED ----------------------
+                            },
+                            "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+                                
+                                if (addCaseTaskModalController.isReadOnly)
+                                {
+                                    $('.delete-case-task-linked-object',nRow).hide();
+                                }
+                                return nRow;
+                            },
+                            columnDefs: [
+                                {
+                                    targets: 0, className: "dt-nowrap",
+                                    data: null,
+
+                                    defaultContent: `
+                    					<button type="button" class="iframe btn btn-xs view-case-object" data-toggle="tooltip" data-placement="top" title="View Related Case Object"><span class="glyphicon glyphicon-eye-open"></span></button>
+                                    `
+                                },
+                                {
+                                    targets: 1, className: "dt-nowrap",
+                                    data: function (d) {
+                                        return d.objectName;
+                                    },
+
+                                    defaultContent: ''
+                                },
+                                {
+                                    targets: 2, className: "dt-nowrap",
+                                    data: function (d) {
+                                        return d.dataSource;
+                                    },
+
+                                    defaultContent: ''
+                                },
+                                {
+                                    targets: 3, className: "dt-nowrap",
+                                    data: function (d) {
+                                        return d.created_by_fullname;
+                                    },
+
+                                    defaultContent: ''
+                                },
+                                                                {
+                                    targets: 4, className: "dt-nowrap",
+                                    data: function (d) {
+                                        return d.created_time_formatted;
+                                    },
+
+                                    defaultContent: ''
+                                },
+                                {
+                                    targets: 5, className: "dt-nowrap",
+                                    data: null,
+                                    width: "60px",
+                                    defaultContent:`
+                                        <button class="btn btn-xs btn-danger delete-case-task-linked-object"><i class="glyphicon glyphicon-trash"></i></button> 
+                                    `
+                                }
+                            ]
+                        };
+
+                        addCaseTaskModalController.taskLinkedObjectsTable.dataTable(addCaseTaskModalController.taskLinkedObjectsTableOptions);
+
+                        addCaseTaskModalController.taskLinkedObjectsTable.DataTable().on('click', '.delete-case-task-linked-object', function () {
+                            
+                            var tr = $(this).parents('tr');
+
+                            var data = addCaseTaskModalController.taskLinkedObjectsTable.DataTable().row(tr).data(); 
+
+                            data.incident_id = addCaseTaskModalController.selectedIncidentId;
+                            data.incident_no = addCaseTaskModalController.selectedIncidentNo;
+
+                            $.confirm({
+                                title: 'Are you sure?',
+                                content: 'This will delete the ralation with the task',
+                                buttons: {
+                                    confirm: function () {
+                                        
+                                         $('#loading_viparlink').show();
+
+                                        $.post('/{{routLink}}/delete_case_task_linked_object',data )
+                                        .done(result => {
+
+                                             $('#loading_viparlink').hide();
+                                            
+                                            var deletedIndex = addCaseTaskModalController.taskData.linkedObjects.findIndex(item=> item.id == data.id);
+
+                                            addCaseTaskModalController.taskData.linkedObjects.splice(deletedIndex,1);
+
+                                            addCaseTaskModalController.taskLinkedObjectsTable.fnDeleteRow(tr);
+
+                                            caseScope.drawTasksTable();
+                                            caseScope.drawHistoryList();
+
+                                            addCaseTaskModalController.taskData.historyCount++;
+
+                                            addCaseTaskModalController.historyFetched=false;
+
+                                            addCaseTaskModalController.updateCounts();
+
+                                            var linked_objects = addCaseTaskModalController.taskData.linkedObjects.map(linked_object => linked_object.unique_value);
+
+                                            $('#add_task_related_with').val(linked_objects).selectpicker('refresh');
+
+                                            $.alert("Succesfully removed");
+                                        })
+                                        .fail(err=> 
+                                        {
+                                             $('#loading_viparlink').hide();
+                                            console.error(err);
+                                            $.alert(err.responseText);
+                                        });
+                                        
+                                    },
+                                    cancel: function () {
+                                    }
+                                }
+                            });
+                          
+                        });
+
+                        addCaseTaskModalController.taskLinkedObjectsTable.DataTable().on('click', '.view-case-object', function () {
+                            
+                            var tr = $(this).parents('tr');
+
+                            var linked_object = addCaseTaskModalController.taskLinkedObjectsTable.DataTable().row(tr).data();     
+
+                            linked_object.incident_id = addCaseTaskModalController.selectedIncidentId; 
+                            linked_object.incident_no = addCaseTaskModalController.selectedIncidentNo; 
+
+                            setLinkedObjectUrl($(this), linked_object.linked_id, linked_object.linked_source, linked_object.incident_id, linked_object.incident_no);
+                        });
+
+
+                        addCaseTaskModalController.taskProgressNotesTable = $('#case_task_progress_table');
+
+                        addCaseTaskModalController.taskProgressNotesTableOptions = {
+                            destroy: true,
+                            responsive: true,
+                            "lengthMenu": [[7, 25, 50, 100], [7, 25, 50, 100]],
+                            "order": [[0, "desc"]],
+                            "oLanguage": {
+                                "oPaginate": {
+                                    "sFirst": "",
+                                    "sPrevious": "",
+                                    "sNext": "",
+                                    "sLast": ""
+                                },
+                                "sLengthMenu": "Records per page: _MENU_",
+                                "sInfo": "Total of _TOTAL_ records (showing _START_ to _END_)",
+                                "sInfoFiltered": "(filtered from _MAX_ total records)"
+                            },
+                            "deferRender": true,
+                            "fnDrawCallback": function (oSettings) {
+                                //DATATABLE LOADED ----------------------
+                            },
+                            "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+
+                                if (addCaseTaskModalController.isReadOnly)
+                                {
+                                    $('.edit-case-task-progress',nRow).hide();
+                                    $('.delete-case-task-progress',nRow).hide();
+                                }
+                                return nRow;
+                            },
+                            columnDefs: [
+                                 {
+                                    targets: 0, className: "dt-nowrap",
+                                    data: function (d) {
+                                        return d.edited_time_formatted;
+                                    },
+                                    "sType":"date",
+                                    visible: false,
+                                    defaultContent: ''
+                                },
+                                {
+                                    targets: 1, className: "dt-nowrap",
+                                    data: function (d) {
+                                        return d.progress_note;
+                                    },
+
+                                    defaultContent: ''
+                                },
+
+                                {
+                                    targets: 2, className: "dt-nowrap",
+                                    "iDataSort": 0,
+                                    "sType":"date",
+                                    data: function (d) {
+                                        return {
+                                            edit_mode: d.edit_mode,
+                                            edited_by : d.edited_by_fullname,
+                                            edited_time : d.edited_time_formatted
+                                        };
+                                    },
+                                    "mRender": function ( data, type, full ) {
+                                        return `
+                                            <i>${ data.edit_mode}</i>
+                                            <br>
+                                            ${ data.edited_by}
+                                            <br>
+                                            <small>${data.edited_time }</small>
+                                        
+                                        `;
+                                    },
+
+                                    defaultContent: ''
+                                },
+                                {
+                                    targets: 3, className: "dt-nowrap",
+                                    data: null,
+                                    width: "60px",
+                                    defaultContent:`
+                                        <button class="btn btn-xs btn-default edit-case-task-progress"><i class="glyphicon glyphicon-pencil"></i></button> 
+                                        <button class="btn btn-xs btn-danger delete-case-task-progress"><i class="glyphicon glyphicon-trash"></i></button> 
+                                    `
+                                }
+                            ]
+                        };
+
+                        addCaseTaskModalController.taskProgressNotesTable.dataTable(addCaseTaskModalController.taskProgressNotesTableOptions);
+
+                        addCaseTaskModalController.taskProgressNotesTable.DataTable().on('click', '.delete-case-task-progress', function () {
+                            
+                            var tr = $(this).parents('tr');
+
+                            var data = addCaseTaskModalController.taskProgressNotesTable.DataTable().row(tr).data();     
+                            
+                            var progress_id = data.id;
+                            var progress_note= data.progress_note;
+
+                            $.confirm({
+                                title: 'Are you sure?',
+                                content: 'This will delete the progress note',
+                                buttons: {
+                                    confirm: function () {
+
+                                        $('#loading_viparlink').show();
+
+                                        $.post('/{{routLink}}/delete_case_task_progress', { 
+                                            id : progress_id, 
+                                            task_id : addCaseTaskModalController.selectedTaskId,
+                                            progress_note : progress_note
+                                        })
+                                        .done(result => {
+                                            
+                                             $('#loading_viparlink').hide();
+
+                                            var deletedIndex = addCaseTaskModalController.taskData.progressNotes.findIndex(item=> item.id == progress_id);
+
+                                            addCaseTaskModalController.taskData.progressNotes.splice(deletedIndex,1);
+
+                                            addCaseTaskModalController.taskProgressNotesTable.fnDeleteRow(tr);
+
+                                            addCaseTaskModalController.taskData.historyCount++;
+
+                                            addCaseTaskModalController.historyFetched=false;
+
+                                            addCaseTaskModalController.updateCounts();
+
+                                            caseScope.drawHistoryList();
+
+                                            $.alert("Succesfully deleted");
+                                        })
+                                        .fail(err=> 
+                                        {
+                                             $('#loading_viparlink').hide();
+                                            console.error(err);
+                                            $.alert(err.responseText);
+                                        });
+                                    },
+                                    cancel: function () {
+                                    }
+                                }
+                            });
+                          
+                        });
+
+                        addCaseTaskModalController.taskProgressNotesTable.DataTable().on('click', '.edit-case-task-progress', function () {
+                            
+                            var tr = $(this).parents('tr');
+
+                            var data = addCaseTaskModalController.taskProgressNotesTable.DataTable().row(tr).data();     
+                            
+                            addCaseTaskProgressModalController.selectedCaseTaskProgressData = data;
+                            addCaseTaskProgressModalController.selectedCaseTaskId = addCaseTaskModalController.selectedTaskId;
+                            addCaseTaskProgressModalController.taskModalController = addCaseTaskModalController;
+                            addCaseTaskProgressModalController.isCompletingTask = false;
+
+                            $('#btn_save_task_progress').text('Update');
+
+                            $('#add_case_task_progress_modal').modal('show');
+                        });
+
+                        addCaseTaskModalController
+                        .fetchTaskData()
+                        .then(taskdata => {
+
+                            addCaseTaskModalController.taskData = taskdata;
+
+                            if (taskdata)
+                            {
+                                $('#task_type').attr('data-max-options', '1');
+                                $('#task_note').val(taskdata.note);
+                                $('#give_priority')[0].checked = taskdata.priority == 1;
+                                $('#btn_save_task').text('Update Task');
+                                $('#nav_task a[data-toggle="tab"]').removeClass('d-none');
+   
+                                addCaseTaskModalController.updateTaskFields();
+                            }
+
+                            $('#add_case_task_modal select.selectpicker').selectpicker('refresh');
+
+                            var officers_done = false;
+                            var task_types_done = false;
+                            var case_object_done = false;
+
+                            $('#loading_viparlink').show();
+
+                            $.post('/{{routLink}}get_officers_with_case_count')
+                                .done(data => {
+
+                                    officers_done=true;
+
+                                    if (officers_done && task_types_done && case_object_done)
+                                    {
+                                        $('#loading_viparlink').hide();
+                                    }
+
+                                    const add_task_officer_select = $('#add_task_officer_select');
+                                    add_task_officer_select.empty();
+
+                                    data.forEach(user => {
+                                        add_task_officer_select.append(`
+                                            <option value="${user.id}">${user.Count} (${user.Reviewer})</option>
+                                        `);
+                                    });
+
+                                    if (addCaseTaskModalController.from == 'add_investigator') {
+                                        add_task_officer_select.val(addCaseTaskModalController.toOfficers);
+                                    }
+
+                                    if (taskdata)
+                                    {
+                                        const task_assignees = taskdata.assignees.map(assignee => assignee.user_id);
+                                        
+                                        add_task_officer_select.val(task_assignees);
+                                    }
+
+                                    add_task_officer_select.selectpicker('refresh');
+
+                                    add_task_officer_select.on("change", function () {
+
+                                        if ($(this).val() && $(this).val().length > 1 && !addCaseTaskModalController.selectedTaskId) {
+                                            $('#div_separate_task_for_every_assignee').removeClass('d-none');
+                                        }
+                                        else $('#div_separate_task_for_every_assignee').addClass('d-none');
+
+                                        add_task_officer_select.valid();
+                                    });
+
+                                })
+                                .fail(err => {
+                                    console.error(err);
+
+                                    officers_done=true;
+
+                                    if (officers_done && task_types_done && case_object_done)
+                                    {
+                                        $('#loading_viparlink').hide();
+                                    }
+                                });
+
+                            $.post('/{{routLink}}get_case_management_task_types', { incident_id: addCaseTaskModalController.selectedIncidentId })
+                                .done(data => {
+
+                                    task_types_done=true;
+
+                                    if (officers_done && task_types_done && case_object_done)
+                                    {
+                                        $('#loading_viparlink').hide();
+                                    }
+
+                                    const task_type_select = $('#task_type');
+
+                                    if (data.General) {
+                                        var optgrp = $('<optgroup label="General"></optgroup>');
+
+                                        data.General.forEach(item => {
+                                            optgrp.append(`
+                                                <option value="${item.id}">${item.type_name}</option>
+                                            `);
+                                        });
+
+                                        task_type_select.append(optgrp);
+
+                                    }
+
+                                    if (data.Offense_Spesific) {
+                                        var optgrp = $('<optgroup label="Offense Specific"></optgroup>');
+
+                                        Object.keys(data.Offense_Spesific).forEach(id => {
+
+                                            optgrp.append(`
+                                                <option value="${id}">${data.Offense_Spesific[id][0].type_name}</option>
+                                            `);
+                                        });
+
+                                        task_type_select.append(optgrp);
+                                    }
+
+                                    if (taskdata)
+                                    {
+                                        task_type_select.val(taskdata.task_type);
+                                    }
+
+                                    task_type_select.selectpicker('refresh');
+                                })
+                                .fail(err => {
+
+                                    task_types_done=true;
+
+                                    if (officers_done && task_types_done && case_object_done)
+                                    {
+                                        $('#loading_viparlink').hide();
+                                    }
+                                    
+                                    console.error(err);
+                                });
+
+                            $.post('/{{routLink}}get_case_objects', { incident_id: addCaseTaskModalController.selectedIncidentId, incident_no: addCaseTaskModalController.selectedIncidentNo })
+                                .done(result => {
+                                    
+                                    case_object_done=true;
+
+                                    if (officers_done && task_types_done && case_object_done)
+                                    {
+                                        $('#loading_viparlink').hide();
+                                    }
+
+                                    var add_task_related_with = $('#add_task_related_with');
+
+                                    result.forEach(row => {
+                                        add_task_related_with.append(`
+                                            <option value="${row.id}_${row.data_source}" data-source="${row.data_source}">${row.object_name}</option>
+                                        `);
+                                    });
+
+                                    if (taskdata)
+                                    {
+                                        const task_linked_objects = taskdata.linkedObjects.map(linked_object => linked_object.unique_value);
+                                        
+                                        add_task_related_with.val(task_linked_objects);
+                                    }
+
+                                    if (addCaseTaskModalController.from == 'linked_object') {
+                                        add_task_related_with.val(addCaseTaskModalController.linkedObjects);
+                                    }
+
+                                    add_task_related_with.selectpicker('refresh');
+
+                                    add_task_related_with.on("change",function () {
+
+                                        var selected_val = $(this).val();
+
+                                        if (selected_val && selected_val.length > 1 && !addCaseTaskModalController.selectedTaskId) {
+                                            $('#div_separate_task_for_every_related_objects').removeClass('d-none');
+                                        }
+                                        else $('#div_separate_task_for_every_related_objects').addClass('d-none');
+                                    });
+
+                                    add_task_related_with.find('option').each(function (i, option) {
+                                        $(option)
+                                            .parent()
+                                            .parent()
+                                            .find('ul.dropdown-menu.inner li')
+                                            .eq(i)
+                                            .find('span.text')
+                                            .after(`
+                                                <span class="text" style="position:absolute;right:0;top:3px">( ${$(option).attr('data-source')} )</span>
+                                            `);
+                                    });
+                                })
+                                .fail(err => {
+                                    console.error(err);
+
+                                    case_object_done=true;
+
+                                    if (officers_done && task_types_done && case_object_done)
+                                    {
+                                        $('#loading_viparlink').hide();
+                                    }
+                                });
+
+                        })
+                        .catch(err=> {
+                           $("#add_case_task_modal").modal('hide');
+                           $.alert(err.responseText);
+                        });
+                    });
+
+                    $(document).on('hidden.bs.modal', "#add_case_task_modal", function () {
+                        $(this).data('bs.modal', null);
+                        $("#add_case_task_modal").html(addCaseTaskModalController.modalHtml);
+                    });
+
+                    $(document).on('click', '#btn_save_task', function () {
+                        var validator = $('#add_case_task_form').validate();
+                        var isValid = true;
+                        if (!validator.form()) isValid = false;
+                        if (!validator.element('#task_type')) isValid = false;
+
+                        var assignee_names= [];
+
+                        $('#add_task_officer_select option:selected').each((item,elem)=> {
+                            assignee_names.push( $(elem).text() );
+                        });
+
+                        var linked_object_names= [];
+
+                        $('#add_task_related_with option:selected').each((item,elem)=> {
+                            linked_object_names.push( $(elem).text() );
+                        });
+
+                        var task_type_names = [];
+
+                        $('#task_type option:selected').each((item,elem)=> {
+                            task_type_names.push( $(elem).text() );
+                        });
+
+                        if (isValid) {
+                            var post_data_save_task =
+                            {
+                                id: addCaseTaskModalController.selectedTaskId,
+                                incident_id: addCaseTaskModalController.selectedIncidentId,
+                                incident_no : addCaseTaskModalController.selectedIncidentNo,
+                                assignees: $('#add_task_officer_select').val(),
+                                assignee_names :  assignee_names,
+                                note: $('#task_note').val(),
+                                task_types: $('#task_type').val(),
+                                task_type_names : task_type_names,
+                                linked_ids: $('#add_task_related_with').val(),
+                                linked_object_names : linked_object_names,
+                                priority: $('#give_priority').is(':checked') ? 1 : 0,
+                                create_separate_task_for_every_assignee: $('#create_separate_task_for_every_assignee').is(':checked') ? 1 : 0,
+                                create_separate_task_for_every_related_objects: $('#create_separate_task_for_every_related_object').is(':checked') ? 1 : 0,
+                            }
+
+                            
+                            $('#loading_viparlink').show();
+
+                            $.post('/{{routLink}}save_case_task', post_data_save_task)
+                                .done(result => {
+                                    
+                                    $('#loading_viparlink').hide();
+                                    
+                                    if (result) {
+
+                                        addCaseTaskModalController.historyFetched=false;
+
+                                        if (addCaseTaskModalController.selectedTaskId)
+                                        {
+                                             addCaseTaskModalController.fetchTaskData()
+                                            .then(taskdata => {
+                                                addCaseTaskModalController.taskData = taskdata;
+                                                addCaseTaskModalController.updateTaskFields();
+                                            });
+
+                                            $.alert('Succesfully updated');
+                                        }
+                                        else 
+                                        {
+                                            $('#add_case_task_modal').modal('hide');
+                                            $.alert('Succesfully added');
+                                        }
+
+                                        if (typeof caseScope !== 'undefined')
+                                        {
+                                            caseScope.drawTasksTable();
+                                            caseScope.drawHistoryList();
+                                        }
+
+                                        if (typeof updateData !== 'undefined')
+                                        {
+                                            $('#case_management_table').DataTable().ajax.reload();
+                                            updateData();
+                                        }
+                                    }
+                                })
+                                .fail(err => {
+                                    $('#loading_viparlink').hide();
+                                    console.error(err);
+                                    $.alert(err.responseText);
+                                });
+                        }
+                    });
+
+                    $(document).on('click', '#btn_add_task_progress', function () {
+                        
+                        addCaseTaskProgressModalController.selectedCaseTaskId = addCaseTaskModalController.selectedTaskId;
+                        addCaseTaskProgressModalController.selectedCaseTaskProgressData = null;
+                        addCaseTaskProgressModalController.taskModalController = addCaseTaskModalController;
+                        addCaseTaskProgressModalController.isCompletingTask =false;
+                        
+                        $('#add_case_task_progress_modal').modal('show');
+                    });
+
+                    $(document).on('click', '#nav_item_task_history', function () {
+
+                        if (! addCaseTaskModalController.historyFetched)
+                        {
+                            $('#loading_viparlink').show();
+
+                            $.post('/{{routLink}}task_history',{ task_id : addCaseTaskModalController.selectedTaskId })
+                            .done (result => {
+
+                                $('#loading_viparlink').hide();
+
+                                addCaseTaskModalController.historyFetched = true;
+
+                                addCaseTaskModalController.taskData.histories = result; 
+
+                                addCaseTaskModalController.createTaskHistoryList();
+                            })
+                            .fail(err=> {
+                                $('#loading_viparlink').hide();
+                                console.error(err);
+                            });
+                        }
+                        
+                    });
+
+                    $(document).on('click','a[data-linked-id]',function(e){
+                        e.preventDefault();
+                    });
+
+                    $(document).on('change','#sort_task_history',function(){
+ 
+                        addCaseTaskModalController.historySort = $(this).val();
+
+                        addCaseTaskModalController.createTaskHistoryList();
+                    });
+
+                    function searchHistory()
+                    {
+                        var search_val = $('#search_task_history').val();
+
+                        $('#task_history_list .history-row').each(function(){
+                            
+                            if ($(this).text().toLowerCase().indexOf(search_val.toLowerCase()) == -1)
+                            {
+                                $(this).hide();
+                            }
+                            else
+                                $(this).show();
+                        });
+
+                        $('#task_history_list .history-arrow').show();
+
+                        $('#task_history_list .history-row').filter(':visible').last().find('.history-arrow').hide();
+                    }
+
+                    $(document).on('input','#search_task_history',  _.debounce(searchHistory,500));
+
+                    $(document).on('click', '#btn_complete_task', function () {
+                        addCaseTaskProgressModalController.selectedCaseTaskId = addCaseTaskModalController.selectedTaskId;
+                        addCaseTaskProgressModalController.isCompletingTask = true;
+                        addCaseTaskProgressModalController.taskModalController = addCaseTaskModalController;
+                        addCaseTaskProgressModalController.selectedCaseTaskProgressData = null;
+
+                        $('#add_case_task_progress_modal .modal-header-caption').text('Complete Task');
+                        $('#task_progress_note').removeAttr('required').attr('placeholder', 'Optional');
+                        $('#btn_save_task_progress').text('Complete Task');
+                        $('label[for="task_progress_note"]').removeClass('required');
+                        $('#add_case_task_progress_modal').modal('show');
+                    });
+                });
+            }
+        }
+
+        addCaseTaskModalController = new AddCaseTaskModalController();
+
+        addCaseTaskModalController.initModal();
+    }
+</script>
+<style>
+    #add_case_task_modal .modal-header {
+        background-color: #3f51b5;
+        color: white;
+    }
+
+    #add_case_task_modal .close {
+        color: white;
+        opacity: 1;
+    }
+
+    #add_task_section {
+        display: flex;
+    }
+
+    #give_priority,
+    #create_separate_task_for_every_assignee,
+    #create_separate_task_for_every_related_object {
+        width: 24px;
+        height: 24px;
+        float: left;
+    }
+
+    label[for="give_priority"],
+    label[for="create_separate_task_for_every_assignee"],
+    label[for="create_separate_task_for_every_related_object"] {
+        line-height: 25px;
+        margin: 5px;
+    }
+
+    #nav_task {
+        background-color: black;
+    }
+
+    #tab_content_task 
+    {
+        background: #555 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAB9JREFUeNpi/P//PwM6YGLAAuCCmpqacC2MRGsHCDAA+fIHfeQbO8kAAAAASUVORK5CYII=) !important;
+    }
+
+    #tab_content_task .tab-pane {
+        text-align: left;
+        background-color: rgba(200, 200, 200, 0.3);
+    }
+
+    #task_info
+    {
+        background-color: #efefef !important;
+    }
+
+    .dataTables_info
+    {
+        color:white;
+    }
+
+    .history-item
+    {
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #ccc;
+        border:1px solid #666;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .history-header{
+        border-bottom: 7px solid #8989ad;
+        padding:5px 0;
+        margin:0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .history-header > .created-by{
+        color:#ccc;
+    }
+
+    .history-body { 
+        padding: 15px 0;
+    }
+
+    .history-body  h3
+    {
+        font-size: 1.3rem;
+        display: table;
+        border-bottom: 3px solid #a2a756;
+    }
+
+    .history-body a
+    {
+        color: #66b4f7;
+    }
+
+    .history-diff
+    {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .history-diff hr
+    {
+        margin:5px 0;
+    }
+
+    .history-diff > *
+    {
+        flex-grow: 1;
+    }
+
+    .history-diff > *:first-child
+    {
+        margin-right: 50px;
+    }
+
+    #task_history_list
+    {
+        max-height: 60vh;
+        overflow-y: auto;
+
+    }
+
+    #task-history-toolbar
+    {
+        display:flex; 
+        justify-content:space-between; 
+        align-items:flex-end;
+    } 
+
+    .history-arrow {
+        text-align: center;
+        color: #a7a6a6;
+        font-size: 24px;
+    }
+
+
+    /*
+    #select_orc_codes_div .dropdown-menu {
+        max-width: 580px;
+    }
+    */
+</style>

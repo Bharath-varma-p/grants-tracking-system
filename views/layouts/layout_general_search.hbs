@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>{{title}}</title>
+
+	<link href="/img/favicon.png" rel="icon">
+
+	<link rel="stylesheet" href="/css/fontawesome/css/fontawesome.min.css"> <!-- load fontawesome -->
+	<link rel="stylesheet" href="/css/font-awesome/css/font-awesome.min.css"> <!-- load fontawesome -->
+	<link rel="stylesheet" href="/css/bootstrap.min.css"> <!-- load bootstrap css -->
+	<link rel="stylesheet" href="/css/jquery-ui.css" />
+	<link href="/css/dataTables.responsive.css" rel="stylesheet" />
+	<link rel="stylesheet" href="/css/jquery-confirm.css">
+	<link rel="stylesheet" href="/css/colorbox.css" />
+	<link rel="stylesheet" href="/css/main.css" />
+	<link rel="stylesheet" href="/css/bootstrap-select.min.css">
+	{{#if darkMode }}
+	<link rel="stylesheet" href="/css/main_dark.css" />
+	{{/if}}
+	{{>helper}}
+
+</head>
+
+<body class="nav-md">
+	{{{ body }}}
+	<footer>
+		<div class="footer-area-bottom">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 col-sm-12 col-xs-12">
+						<div class="copyright text-center">
+							<p style="color: rgba(245, 245, 245, 0.692)">
+								Copyright &copy;
+								<script>document.write(new Date().getFullYear())</script> RAF Vue. All Rights Reserved
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+</body>
+
+</html>

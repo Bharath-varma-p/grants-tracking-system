@@ -1,0 +1,181 @@
+<div class="panel-group col-md-12" id="advanced_search_fields" style="display:none">
+  <div class="panel panel-default">
+    <div id="search_criterias_header" class="panel-heading flex-container">
+      <h4 class="panel-title collapsed intro" data-toggle="collapse" data-target='#search_fields_accordion'
+        style='font-size: 18px; flex-grow : 1;'>Search Criteria</h4>
+      <div style="position: absolute; right:30px; display:flex">
+        <input id="filter_search_fields" placeholder="Filter Search Fields" />
+        <button class="btn btn-sm btn-primary" id="reset_search_filter">Reset</button>
+      </div>
+    </div>
+    <div class="panel-collapse collapse in" id="search_fields_accordion">
+      <div class="panel-body">
+        <div class="col-md-12 col-sm-12 col-xs-12" id="search_fields_container">
+          <div class="form-group col-md-4 col-sm-4 col-xs-12">
+            <label class="col-sm-12" style="margin-left:-10px">Start Date</label>
+            <div class="flex-container">
+              <div class="input-group date datetimepicker">
+                <input type="text" class="form-control search-input" id="start_date" name="start_date"
+                  placeholder="MM/DD/YYYY" style="font-size:16px;" />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+              &nbsp;&nbsp;-&nbsp;&nbsp;
+              <div class="input-group date datetimepicker">
+                <input type="text" class="form-control search-input" id="end_date" name="end_date"
+                  placeholder="MM/DD/YYYY" style="font-size:16px;" />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="course_title">Course Title</label>
+            <input type="text" class="form-control search-input" id="course_title" name="course_title">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="training_type">Training Type</label>
+            <select class="form-control selectpicker show-tick search-input" id="training_type" name="training_type"
+              multiple data-max-options="1" data-udt-source="training_type">
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="category">Category</label>
+            <select class="form-control selectpicker show-tick search-input" id="category" name="category" multiple
+              data-max-options="1" data-udt-source="training_category">
+              <option value=""></option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="frequency">Frequency</label>
+            <select class="form-control selectpicker show-tick search-input" id="frequency" name="frequency" multiple
+              data-max-options="1" data-udt-source="training_frequency">
+              <option value=""></option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label class="col-sm-12" style="margin-left:-10px">Hours of Training</label>
+            <div class="flex-container">
+              <input type="number" step="0.1" class="form-control search-input" id="hours_of_training_min"
+                name="hours_of_training_min" placeholder="Min" style="font-size:16px;" />
+              -
+              <input type="number" class="form-control search-input" id="hours_of_training_max"
+                name="hours_of_training_max" placeholder="Max" style="font-size:16px;" />
+
+            </div>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="instructor_name">Instructor Name</label>
+            <input type="text" class="form-control search-input" id="instructor_name" name="instructor_name">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="training_conducted_by">Training Conducted By</label>
+            <select class="form-control selectpicker show-tick search-input" data-live-search="true"
+              id="training_conducted_by" name="training_conducted_by" multiple data-max-options="1"
+              data-udt-source="training_conducted_by">
+              <option value=""></option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="completed">Completed</label>
+            <select class="form-control selectpicker show-tick search-input" id="completed" name="completed">
+              <option value=""></option>
+              <option value="N">No</option>
+              <option value="Y">Yes</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="certification">Certification</label>
+            <select class="form-control selectpicker show-tick search-input" id="certification" name="certification">
+              <option value=""></option>
+              <option value="N">No</option>
+              <option value="Y">Yes</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="certificate_issued">Certificate Issued</label>
+            <select class="form-control selectpicker show-tick search-input" id="certificate_issued"
+              name="certificate_issued">
+              <option value=""></option>
+              <option value="N">No</option>
+              <option value="Y">Yes</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="mandatory">Mandatory</label>
+            <select class="form-control selectpicker show-tick search-input" id="mandatory" name="mandatory">
+              <option value=""></option>
+              <option value="N">No</option>
+              <option value="Y">Yes</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="minimum_training_requirement">Minimum Training Requirement</label>
+            <select class="form-control selectpicker show-tick search-input" id="minimum_training_requirement"
+              name="minimum_training_requirement">
+              <option value=""></option>
+              <option value="N">No</option>
+              <option value="Y">Yes</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label class="col-sm-12" style="margin-left:-10px">Cost per Office</label>
+            <div class="flex-container">
+              <input type="number" step="0.1" class="form-control search-input" id="cost_per_office_min"
+                name="cost_per_office_min" placeholder="Min" style="font-size:16px;" />
+              -
+              <input type="number" class="form-control search-input" id="cost_per_office_max" name="cost_per_office_max"
+                placeholder="Max" style="font-size:16px;" />
+
+            </div>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="calea">CALEA</label>
+            <select class="form-control selectpicker show-tick search-input" id="calea" name="calea">
+              <option value=""></option>
+              <option value="N">No</option>
+              <option value="Y">Yes</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="lexipol">Lexipol</label>
+            <select class="form-control selectpicker show-tick search-input" id="lexipol" name="lexipol">
+              <option value=""></option>
+              <option value="N">No</option>
+              <option value="Y">Yes</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="opota">OPOTA</label>
+            <select class="form-control selectpicker show-tick search-input" id="opota" name="opota">
+              <option value=""></option>
+              <option value="N">No</option>
+              <option value="Y">Yes</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="police_one">Police One</label>
+            <select class="form-control selectpicker show-tick search-input" id="police_one" name="police_one">
+              <option value=""></option>
+              <option value="N">No</option>
+              <option value="Y">Yes</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="officer">Officer</label>
+            <select class="form-control selectpicker show-tick search-input officers" multiple data-max-options="1"
+              id="officer" name="officer">
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12 button-container" id="search_button_container">
+            <button type="button" class="btn btn-info btn-block" style="margin-top:30px"
+              id="search_button">Search</button>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12 button-container d-none">
+            <button type="button" class="btn btn-success btn-block" style="margin-top:30px" id="add_more_field"><i
+                class="glyphicon glyphicon-plus"></i> Add More
+              Fields</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

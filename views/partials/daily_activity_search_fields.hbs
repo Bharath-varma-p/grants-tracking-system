@@ -1,0 +1,232 @@
+<div class="panel-group col-md-12" id="advanced_search_fields" style="display:none">
+  <div class="panel panel-default">
+    <div id="search_criterias_header" class="panel-heading flex-container">
+      <h4 class="panel-title collapsed intro" data-toggle="collapse" data-target='#search_fields_accordion'
+        style='font-size: 18px; flex-grow : 1;'>Search Criteria</h4>
+      <div style="position: absolute; right:30px; display:flex">
+        <input id="filter_search_fields" placeholder="Filter Search Fields" />
+        <button class="btn btn-sm btn-primary" id="reset_search_filter">Reset</button>
+      </div>
+    </div>
+    <div class="panel-collapse collapse in" id="search_fields_accordion">
+      <div class="panel-body">
+        <div class="col-md-12 col-sm-12 col-xs-12" id="search_fields_container">
+          <div class="form-group col-md-4 col-sm-4 col-xs-12">
+            <label class="col-sm-12" style="margin-left:-10px">Created Date</label>
+            <div class="dateContainer flex-container">
+              <div class="input-group date datetimepicker">
+                <input type="text" class="form-control search-input advanced-search-date-short"
+                  id="daily_activity_start_date" name="daily_activity_start_date" placeholder="MM/DD/YYYY"
+                  style="font-size:16px;" />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+              -
+              <div class="input-group date datetimepicker">
+                <input type="text" class="form-control search-input advanced-search-date-short"
+                  id="daily_activity_end_date" name="daily_activity_end_date" placeholder="MM/DD/YYYY"
+                  style="font-size:16px;" />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="event_type">Event Type</label>
+            <select class="form-control selectpicker show-tick search-input" id="event_type" name="event_type"
+              data-live-search="true"></select>
+          </div>
+
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="daily_log_description">Event Description</label>
+            <input type="text" class="form-control search-input" id="daily_log_description" name="daily_log_description"
+              placeholder="Example:Patrol">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="priority">Priority</label>
+            <select class="form-control selectpicker show-tick search-input" id="priority" name="priority">
+              <option value=""></option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label>Division</label>
+            <select id="division" name="division" class="form-control selectpicker show-tick search-input">
+              <option value=""></option>
+              <option value="1">Detective</option>
+              <option value="2">Patrol</option>
+              <option value="3">Police Administration</option>
+              <option value="4">Prosecutor</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="event_action">Event Action</label>
+            <select id="event_action" name="event_action" class="form-control selectpicker show-tick search-input">
+              <option value=""></option>
+              <option value="1">Appointment</option>
+              <option value="2">To-Do List</option>
+              <option value="3">Private Event</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label>Frequency</label>
+            <select id="frequency" name="frequency" class="selectpicker form-control show-tick search-input">
+              <option value=""></option>
+              <option value="1">Daily</option>
+              <option value="7">Weekly</option>
+              <option value="14">Bi-Weekly</option>
+              <option value="28">Every 4 Weeks</option>
+            </select>
+          </div>
+
+          <div class="form-group col-md-2 col-sm-2 col-xs-12" style="display: block;">
+            <label>Weekday</label>
+            <select class="form-control selectpicker show-tick search-input" id="weekday" name="weekday">
+              <option value=""></option>
+              <option value="1">Sunday</option>
+              <option value="2">Monday</option>
+              <option value="3">Tuesday</option>
+              <option value="4">Wednesday</option>
+              <option value="5">Thursday</option>
+              <option value="6">Friday</option>
+              <option value="7">Saturday</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="vehicle_plate">Vehicle Plate Number</label>
+            <input type="text" class="form-control search-input" id="vehicle_plate" name="vehicle_plate"
+              placeholder="Vehicle Plate Number">
+          </div>
+          <div class="form-group col-md-4 col-sm-4 col-xs-12">
+            <label class="col-sm-12" style="margin-left:-10px">Event Start Date</label>
+            <div class="dateContainer flex-container">
+              <div class="input-group date event-date">
+                <input type="text" class="form-control search-input advanced-search-date-long"
+                  id="event_start_date_begin" name="event_start_date_begin" placeholder="MM/DD/YYYY HH:mm"
+                  style="font-size:16px;" />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+              -
+              <div class="input-group date event-date">
+                <input type="text" class="form-control search-input advanced-search-date-long" id="event_start_date_end"
+                  name="event_start_date_end" placeholder="MM/DD/YYYY HH:mm" style="font-size:16px;" />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-4 col-sm-4 col-xs-12">
+            <label class="col-sm-12" style="margin-left:-10px">Event End Date</label>
+            <div class="dateContainer flex-container">
+              <div class="input-group date event-date">
+                <input type="text" class="form-control search-input advanced-search-date-long" id="event_end_date_begin"
+                  name="event_end_date_begin" placeholder="MM/DD/YYYY HH:mm" style="font-size:16px;" />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+              -
+              <div class="input-group date event-date">
+                <input type="text" class="form-control search-input advanced-search-date-long" id="event_end_date_end"
+                  name="event_end_date_end" placeholder="MM/DD/YYYY HH:mm" style="font-size:16px;" />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="business_name">Business Name</label>
+            <input type="text" class="form-control search-input" id="business_name" name="business_name"
+              placeholder="Business Name">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="narrative_search">Narrative</label>
+            <input type="text" class="form-control search-input" id="narrative_search" name="narrative_search"
+              placeholder="Narrative Search">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label class="required" for="user">User</label>
+            <input type="text" class="form-control search-input" id="user" name="user" placeholder="User">
+          </div>
+          <div class="form-group col-md-12 search-section">Person</div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="involved_person">Involved Person</label>
+            <input type="text" class="form-control search-input" id="involved_person" data-category="person" name="involved_person"
+              placeholder="Involved Person">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label class="col-sm-12" style="margin-left:-10px">Age</label>
+            <div class="flex-container">
+              <input type="number" class="form-control search-input" data-category="person" id="age_min" name="age_min"
+                placeholder="Min" />
+              -
+              <input type="number" class="form-control search-input" data-category="person" id="age_max" name="age_max"
+                placeholder="Max"/>
+
+            </div>
+          </div>
+          <div class="form-group col-md-12 search-section">Place</div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="daily_log_address">Address</label>
+            <input type="text" class="form-control search-input" id="daily_log_address" name="daily_log_address"
+              placeholder="Example:Winton Road">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="apt_no">Apt #</label>
+            <input type="text" class="form-control search-input" id="apt_no" name="apt_no" placeholder="Example:1">
+          </div>
+          <div class="form-group col-xs-12 button-container" id="search_button_container">
+            <button type="button" class="btn btn-info pull-right" style="margin-top:30px;width:150px"
+              id="search_button">Search</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  function eventTypeFetch() {
+
+    return new Promise((resolve, reject) => {
+      $.ajax({
+        type: "GET",
+        url: "/{{routLink}}dailyLogTypes",
+        success: function (data) {
+
+          var a = ['<option value=""></option>'];
+
+          for (i = 0; i < data.length; i++) {
+
+            if (i == 0) {
+              a.push('<optgroup class="heading_style" label="' + data[i].event_group + '">');
+            } else {
+              if (data[i - 1].event_group != data[i].event_group) {
+                a.push('</optgroup>');
+                a.push('<optgroup class="heading_style" label="' + data[i].event_group + '">');
+              }
+            }
+
+            a.push('<option class="option25" label="' + data[i].priority + '" value="' + data[i].eventType + '">' + data[i].eventType + '</option>');
+
+            if (i == (data.length - 1)) {
+              a.push('</optgroup>');
+            }
+          }
+
+          var div = document.getElementById('event_type');
+          div.innerHTML += a;
+          $("#event_type").selectpicker('refresh');
+
+          resolve();
+        },
+        error: function (err) {
+          console.error(err);
+          reject(err);
+        }
+      });
+
+    });
+
+  }
+
+  function fillSearchFields() {
+    eventTypeFetch();
+  }
+</script>

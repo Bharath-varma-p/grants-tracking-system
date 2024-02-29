@@ -1,0 +1,72 @@
+<div class="modal fade" id="crash_diagram_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document" style="width:90%">
+        <div class="modal-content">
+            <div class="modal-header" style="font-weight:bold;text-align:center;float:center">
+                Select a Crash Diagram
+            </div>
+            <div class="modal-body" id="crash_diagram_modal_body">
+                <div id="crash_diagrams_container">
+                
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary no-print" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    #crash_diagrams_container {
+        display:flex;
+        overflow: auto;
+        align-items:flex-end;
+    }
+
+    .crash-diagram-container {
+        text-align:center;
+        margin:20px;
+    }
+
+    .crash-diagram-container > img{
+        max-height: 500px;
+    }
+</style>
+
+<script>
+    async function showCrashDiagramSelectModal(crash_no)
+    {
+       const crashDiagrams = await $.post("/"+globalVariables.routLink+"get_crash_diagrams", { crash_no });
+
+       if (crashDiagrams.length == 0) return null;
+
+        if (crashDiagrams.length == 1) return crashDiagrams[0].id;
+
+       $("#crash_diagrams_container").empty();
+
+       crashDiagrams.forEach((crashDiagram)=> {
+           $("#crash_diagrams_container").append(`
+                <div class="crash-diagram-container">
+                   <img class="img-responsive" src="${globalVariables.departmentBucketFullURL}/${ crashDiagram.file_name }?v=${ crashDiagram.last_edited_date }"/>
+                   <br>
+                   <button class="btn btn-primary select-crash-diagram" data-id="${ crashDiagram.id  }">Select</button>
+                </div>
+           `);
+       });
+
+        $("#crash_diagram_modal").modal("show");
+
+       return new Promise((resolve,reject)=>{
+            $(".select-crash-diagram","#crash_diagrams_container").on('click',function(){
+                const selectedCrashDiagramId = $(this).attr("data-id");
+                resolve(selectedCrashDiagramId);
+                $("#crash_diagram_modal").modal("hide");
+            })
+
+            $("#crash_diagram_modal").on("hidden.bs.modal", function(){
+                reject();
+            });
+       });
+    }
+</script>
+

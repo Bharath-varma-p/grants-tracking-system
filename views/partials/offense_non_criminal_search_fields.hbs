@@ -1,0 +1,510 @@
+<div class="panel-group col-md-12" id="advanced_search_fields" style="display:none">
+  <div class="panel panel-default">
+    <div id="search_criterias_header" class="panel-heading flex-container" data-toggle="collapse"
+      data-parent="#advanced_search_fields" data-target='#search_fields_accordion'>
+      <h4 class="panel-title collapsed intro" data-toggle="collapse" data-target='#search_fields_accordion'
+        style='font-size: 18px; flex-grow : 1;'>
+        Search Criteria</h4>
+      <div style="position: absolute; right:30px; display:flex">
+        <input id="filter_search_fields" placeholder="Filter Search Fields" />
+        <button class="btn btn-sm btn-primary" id="reset_search_filter">Reset</button>
+      </div>
+    </div>
+    <div class="panel-collapse collapse in" id="search_fields_accordion">
+      <div class="panel-body">
+        <div class="col-md-12 col-sm-12 col-xs-12" id="search_fields_container">
+          <div class="form-group col-md-2 col-sm-2 col-xs-12" id="name_search">
+            <label class="col-sm-12" style="margin-left:-10px">Start Date</label>
+            <div class="dateContainer">
+              <div class="input-group date">
+                <input type="text" class="form-control" id='search_input' name='search_input' placeholder="MM/DD/YYYY"
+                  style="font-size:16px;" />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group col-md-2 col-sm-2 col-xs-12" id="name_search2">
+            <label class="col-sm-12" style="margin-left:-10px">End Date</label>
+            <div class="dateContainer">
+              <div class="input-group date">
+                <input type="text" class="form-control" id='search_input2' name='search_input2' placeholder="MM/DD/YYYY"
+                  style="font-size:16px;" />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label class="required">Case Clearances</label>
+            <select id="case_clearences" name="case_clearences" class="form-control selectpicker show-tick">
+              <option value=''></option>
+              <option class="option25" value="A">A - Death of Offender</option>,<option class="option25" value="B">B -
+                Prosecution Declined</option>,<option class="option25" value="C">C - In Custody of Other Jurisdiction
+              </option>,
+              <option class="option25" value="D">D - Victim Refuses to Cooperate</option>,
+              <option class="option25" value="E">E - Juvenile/No Custody</option>,<option class="option25" value="F">F -
+                Cleared By Arrest – Adult</option>,<option class="option25" value="G">G - Cleared By Arrest – Juvenile
+              </option>,<option class="option25" value="H">H - Warrant Issued</option>,<option class="option25"
+                value="I">I - Investigation Pending</option>,<option class="option25" value="J">J - Closed</option>,
+              <option class="option25" value="K">K - Unfounded</option>,<option class="option25" value="U">U -
+                Unknown</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm- col-xs-12" style="display: block;">
+            <label>Criminal Activity</label>
+            <select class="form-control selectpicker" id="criminal_activity" name="criminal_activity" tabindex="-98">
+              <option value='' class="option25"></option>
+              <option class="option25" value="B">B - Buying/Receiving</option>
+              <option class="option25" value="C">C - Cultivating/Manufacturing/Publishing</option>
+              <option class="option25" value="D">D - Distributing/Selling</option>
+              <option class="option25" value="E">E - Exploiting Children</option>
+              <option class="option25" value="G">G - Other Gang</option>
+              <option class="option25" value="J">J - Juvenile Gang</option>
+              <option class="option25" value="N">N - No Gang Involvement</option>
+              <option class="option25" value="O">O - Operating/Promoting/Assisting</option>
+              <option class="option25" value="P">P - Possessing/Concealing</option>
+              <option class="option25" value="T">T - Transporting/Transmitting/Importing</option>
+              <option class="option25" value="U">U - Using/Consuming</option>
+              <option class="option25" value="A">A - Simple/Gross Neglect</option>
+              <option class="option25" value="F">F - Organized Abuse</option>
+              <option class="option25" value="I">I - Intentional Abuse and Torture</option>
+              <option class="option25" value="S">S - Animal Sexual Abuse (Bestiality)</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12" style="display: nne" id="weapon_type_div">
+            <label class="required">Weapon/Force</label>
+            <select class="form-control selectpicker show-tick" data-live-search="true"
+              data-live-search-placeholder="Search" id="weapon_type" name="weapon_type" data-max-options="1"
+              tabindex="-98">
+              <option value=''></option>
+              <option class="option25" value="11">11 - Firearm </option>,<option class="option25" value="12">12 -
+                Handgun </option>,<option class="option25" value="12A">12A - Automatic Handgun </option>,<option
+                class="option25" value="13">13 - Rifle</option>,<option class="option25" value="13A">13A -
+                Fully Automatic Rifle</option>,<option class="option25" value="13B">13B -
+                Other Fully Automatic Firearm</option>,<option class="option25" value="14">
+                14 - Shotgun</option>,<option class="option25" value="15">15 - Other Firearm
+              </option>,<option class="option25" value="15A">15A - Semi-Automatic Sporting
+                Rifle</option>,<option class="option25" value="15B">15B - Semi-Automatic
+                Assault Firearm</option>,<option class="option25" value="15C">15C - Machine
+                Pistols</option>,<option class="option25" value="16">16 - Imitation Firearm
+              </option>,<option class="option25" value="17">17 - Simulated Firearm</option>,
+              <option class="option25" value="18">18 - BB and Pellet Guns</option>,<option class="option25" value="20">
+                20 - Knife/Cutting Instrument</option>,<option class="option25" value="30">30 - Blunt Object</option>,
+              <option class="option25" value="35">35 - Motor Vehicle</option>,<option class="option25" value="40">40 -
+                Personal Weapons</option>,<option class="option25" value="50">50 - Poison</option>,<option
+                class="option25" value="60">60 - Explosives</option>,<option class="option25" value="65">65 -
+                Fire/Incendiary Device</option>,<option class="option25" value="70">70 -
+                Drugs/Narcotics/Sleeping Pills</option>,<option class="option25" value="80">
+                80 - Other Weapon</option>,<option class="option25" value="85">85 -
+                Asphyxiation</option>,<option class="option25" value="99">99 - None</option>
+              ,<option class="option25" value="U">U - Unknown</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12" id="method_of_operation_div">
+            <label>Method of Operation</label>
+            <select class="form-control selectpicker valid" data-live-search="true"
+              data-live-search-placeholder="Search" id="method_of_operation" name="method_of_operation" tabindex="-98">
+              <optgroup class="heading_style" label="ACCOMPLICE">,<option value=''></option>
+                <option class="option25" value="01">01 - Accomplice Drives Car </option>,
+                <option class="option25" value="02">02 - Accomplice Takes Part in Crime
+                </option>,
+              </optgroup>,<optgroup class="heading_style" label="ALARM DISABLING">,<option class="option25" value="03">
+                  03 - Alarm Cut </option>,<option class="option25" value="04">04 - Alarm Disconnected </option>,<option
+                  class="option25" value="05">05 - Animal with Suspect </option>,<option class="option25" value="06">06
+                  - Bound and Gagged Victim </option>,
+              </optgroup>,<optgroup class="heading_style" label="CAR RELATED">,<option class="option25" value="07">07 -
+                  Car - Abandoned </option>,<option class="option25" value="08">08 - Car - Disables Victim's </option>,
+                <option class="option25" value="09">09 - Car - Hides in Victim's </option>,
+                <option class="option25" value="10">10 - Car - Takes Victim's </option>,
+                <option class="option25" value="11">11 - Car - Takes Victim's Keys </option>
+                ,
+              </optgroup>,<optgroup class="heading_style" label="GUN">,<option class="option25" value="12">12 - Carries
+                  Gun </option>,</optgroup>,
+              <optgroup class="heading_style" label="ENTRY MODE">,<option class="option25" value="13">13 - Disturbs Very
+                  Little </option>,<option class="option25" value="16">16 - Familiar With Premises </option>,<option
+                  class="option25" value="17">17 - Fingerprints - Avoids </option>,<option class="option25" value="18">
+                  18 - Gentlemanly </option>,<option class="option25" value="19">19 - Handcuffed Victim </option>,
+                <option class="option25" value="20">20 - Impersonates Officer </option>,<option class="option25"
+                  value="21">21 - Neatly Dressed </option>,<option class="option25" value="22">22 - Pretended to be
+                  Delivery Man </option>,
+                <option class="option25" value="23">23 - Pretended to be Lost </option>,
+                <option class="option25" value="24">24 - Profane Language </option>,<option class="option25" value="25">
+                  25 - Ransacks Premises </option>,<option class="option25" value="26">26 - Rings Doorbell or Knocks
+                </option>,
+                <option class="option25" value="27">27 - Safe Broken Into </option>,<option class="option25" value="28">
+                  28 - Safe Carried Away </option>,<option class="option25" value="29">29 - Says Nothing </option>,
+                <option class="option25" value="30">30 - Solicited Information </option>,<option class="option25"
+                  value="31">31 - Solicited Subscription </option>,
+                <option class="option25" value="32">32 - Stole Key </option>,
+              </optgroup>,
+              <optgroup class="heading_style" label="TAKING">,<option class="option25" value="33">33 - Takes Only
+                  Jewelry </option>,<option class="option25" value="34">34 - Takes Only Money </option>,<option
+                  class="option25" value="35">35 - Takes Only Special Items </option>,<option class="option25"
+                  value="36">36 - Telephones Victim </option>,<option class="option25" value="37">37 - Telephone Wire
+                  Cut </option>,
+              </optgroup>,<optgroup class="heading_style" label="USING">,<option class="option25" value="38">38 - Used
+                  Auto </option>,<option class="option25" value="39">39 - Used Bike </option>,<option class="option25"
+                  value="40">40 - Used Light </option>,<option class="option25" value="41">41 - Used Matches </option>,
+                <option class="option25" value="42">42 - Used Other Illumination </option>,
+                <option class="option25" value="43">43 - Used Motorcycle </option>,<option class="option25" value="44">
+                  44 - Used Narcotics </option>,<option class="option25" value="45">45 - Used Tobacco</option>,
+              </optgroup>,
+              <optgroup class="heading_style" label="WEARING">,<option class="option25" value="46">46 - Wore Gloves
+                </option>,<option class="option25" value="47">47 - Wore Silk Stocking </option>,<option class="option25"
+                  value="48">48 - Wore Ski Mask </option>,<option class="option25" value="49">49 - Wore Other Mask
+                </option>,<option class="option25" value="88">88 - Wore Wig </option>,</optgroup>,<optgroup
+                class="heading_style" label="SHOPLIFTING">,<option class="option25" value="52">52 - Shoplifting - Large
+                  Purse </option>,<option class="option25" value="53">53 - Shoplifting - Under Coat </option>,
+                <option class="option25" value="54">54 - Shoplifting - Under Dress </option>
+                ,<option class="option25" value="55">55 - Shoplifting - Inside Pants
+                </option>,<option class="option25" value="56">56 - Shoplifting - Booster Box
+                </option>,<option class="option25" value="57">57 - Shoplifting - Used
+                  Container </option>,<option class="option25" value="58">58 - Shoplifting
+                  - Price Switch </option>,<option class="option25" value="59">59 -
+                  Shoplifting - Wears Item </option>,<option class="option25" value="60">
+                  60 - Shoplifting - General </option>,
+              </optgroup>,<optgroup class="heading_style" label="CHECKS/CREDIT">,<option class="option25" value="61">61
+                  - Uses Bad Checks - NSF </option>,<option class="option25" value="62">62 - Bad Checks - Closed Account
+                </option>,
+                <option class="option25" value="63">63 - Bad Checks - Stolen </option>,
+                <option class="option25" value="64">64 - Credit Cards - Stolen </option>,
+                <option class="option25" value="65">65 - Credit Cards - Over Limit </option>
+                ,
+                <option class="option25" value="66">66 - Alters Currency/Checks/Money Order
+                </option>,
+              </optgroup>,<optgroup class="heading_style" label="OTHER">,<option class="option25" value="14">14 - Does
+                  Not Take Jewelry </option>,<option class="option25" value="15">15 - Does Not Take Money </option>,
+                <option class="option25" value="68">68 - Acts as Prostitute or John </option>,
+                <option class="option25" value="70">70 - Threatens Victim </option>,<option class="option25" value="71">
+                  71 - Uses Ropes </option>,<option class="option25" value="73">73 - Writes Threatening Letter </option>
+                ,
+                <option class="option25" value="75">75 - Defecates on Premises </option>,
+                <option class="option25" value="80">80 - Sexual Fetishist </option>,<option class="option25" value="85">
+                  85 - Lures Victim with Money/Candy/Food
+                </option>,<option class="option25" value="86">86 - Uses Obscene Material
+                </option>,<option class="option25" value="87">87 - Impersonates Family
+                  Member </option>,<option class="option25" value="50">50 - Works Alone
+                </option>,<option class="option25" value="51">51 - Lures Victim - Newspaper
+                  Ads </option>,<option class="option25" value="89">89 - Other</option>,
+              </optgroup>
+            </select>
+          </div>
+
+
+
+          <div class="form-group col-md-2 col-sm-2 col-xs-12" id="force_div" style="display:nne;">
+            <label>Use of Force</label>
+            <select class="form-control selectpicker show-tick" id="force" name="force">
+              <option value=''></option>
+              <option value="Y">Yes</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12" style="display:nne;">
+            <label>NIBRS Submissions</label>
+            <select class="form-control selectpicker show-tick" id="nibrs" name="nibrs">
+              <option value=''></option>
+              <option value='non-nibrs'>Non-NIBRS</option>
+              <option value="nibrs">NIBRS</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label class="required" for="inputPassword4">User</label>
+            <input type="text" class="form-control" id="user" name="user" placeholder="User">
+          </div>
+
+          <div class="form-group col-md-2 col-sm-2 col-xs-12" style="display: nne" id="forced_div">
+            <label>Confidential</label>
+            <select class="form-control selectpicker show-tick" id="confidential" name="confidential" multiple
+              data-max-options="1">
+              <option value=""></option>
+              <option value="N">No</option>
+              <option value="Y">Yes</option>
+            </select>
+          </div>
+
+          <div class="form-group col-md-2 col-sm-2 col-xs-12" style="display: nne">
+            <label>BWC or other Video</label>
+            <select class="form-control selectpicker show-tick" id="camera_recording" name="camera_recording" multiple
+              data-max-options="1">
+              <option value=""></option>
+              <option value="N">No</option>
+              <option value="Y">Yes</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="narrative_search">Narrative</label>
+            <input type="text" class="form-control search-input" id="narrative_search" name="narrative_search"
+              placeholder="Narrative Search">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="business_name">Business</label>
+            <input type="text" class="form-control search-input" id="business_name" name="business_name"
+              placeholder="Business Name">
+          </div>
+          <div class="clearfix"></div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="vehicle_plate_number">Vehicle Plate Number</label>
+            <input type="text" class="form-control search-input" id="vehicle_plate_number" name="vehicle_plate_number"
+              placeholder="Vehicle Plate Number">
+          </div>
+
+          <div class="form-group col-md-2 col-sm-2 col-xs-12 d-none">
+            <label>Link Existence</label>
+            <select class="form-control selectpicker show-tick" id="link_existence" name="link_existence" multiple
+              data-max-options="1">
+              <option value=""></option>
+              <option value="arrest_exist">Arrest Exists</option>
+              <option value="suspect_exist">Suspect Exists</option>
+              <option value="victim_exist">Victim Exists</option>
+              <option value="reportee_exist">Reportee / Involved Individual Exists</option>
+              <option value="witness_exist">Witness Exists</option>
+              <option value="vehicle_exist">Vehicle Exists</option>
+              <option value="narrative_exist">Narrative Exists</option>
+              <option value="fir_exist">FIR Exists</option>
+              <option value="traffic_crash_exist">Traffic Crash Exists</option>
+              <option value="traffic_citation_exist">Traffic Citation Exists</option>
+              <option value="warrant_citation_arrest_exist">Warrant-Citation Arrest Exists
+              </option>
+              <option value="property_exist">Property Exists</option>
+              <option value="property_attachment_exist">Property Attachment Exists</option>
+              <option value="incident_attachment_exist">Incident Attachment Exists</option>
+              <option value="arrest_attachment_exist">Arrest Attachment Exists</option>
+              <option value="arrest_not_exist">Arrest Not Exists</option>
+              <option value="suspect_not_exist">Suspect Not Exists</option>
+              <option value="victim_not_exist">Victim Not Exists</option>
+              <option value="reportee_not_exist">Reportee / Involved Individual Not Exists
+              </option>
+              <option value="witness_not_exist">Witness Not Exists</option>
+              <option value="vehicle_not_exist">Vehicle Not Exists</option>
+              <option value="narrative_not_exist">Narrative Not Exists</option>
+              <option value="fir_not_exist">FIR Not Exists</option>
+              <option value="traffic_crash_not_exist">Traffic Crash Not Exists</option>
+              <option value="traffic_citation_not_exist">Traffic Citation Not Exists</option>
+              <option value="warrant_citation_arrest_not_exist">Warrant-Citation Arrest Not
+                Exists</option>
+              <option value="property_not_exist">Property Not Exists</option>
+              <option value="property_attachment_not_exist">Property Attachment Not Exists
+              </option>
+              <option value="incident_attachment_not_exist">Incident Attachment Not Exists
+              </option>
+              <option value="arrest_attachment_not_exist">Arrest Attachment Not Exists
+              </option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label>Juvenile</label>
+            <select class="form-control selectpicker show-tick" id="juvenile" name="juvenile" multiple
+              data-max-options="1">
+              <option value=""></option>
+              <option value="arrest_exist">Arrest Exists</option>
+              <option value="suspect_exist">Suspect Exists</option>
+              <option value="victim_exist">Victim Exists</option>
+              <option value="reportee_exist">Reportee / Involved Individual Exists</option>
+              <option value="witness_exist">Witness Exists</option>
+              <option value="uof_exist">UOF Exists</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12" style="display: nne">
+            <label>Show Linked Incidents</label>
+            <select class="form-control selectpicker show-tick" id="linked_incident_no" name="linked_incident_no"
+              multiple data-max-options="1">
+              <option value=""></option>
+              <option value="">No</option>
+              <option value="Y">Yes</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12" style="display:nne;">
+            <label>Incident Type</label>
+            <select class="form-control selectpicker show-tick" id="incident_genre" name="incident_genre">
+              <option value=''></option>
+              <option value='offense'>Offense</option>
+              <option value="incident">Incident</option>
+            </select>
+          </div>
+          {{#if PRIVILEGE_UNSEAL_CASE.hasPermission}}
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label>Sealed Case</label>
+            <select class="form-control selectpicker show-tick" id="sealed_case" name="sealed_case">
+              <option value=""></option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+          {{/if}}
+          <div class="form-group col-md-12 search-section">Person</div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="search_first_name">First Name</label>
+            <input type="text" class="form-control search-input" id="search_first_name" name="search_first_name"
+              placeholder="First Name">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="search_last_name">Last Name</label>
+            <input type="text" class="form-control search-input" id="search_last_name" name="search_last_name"
+              placeholder="Last Name">
+          </div>
+          <div class="form-group col-md-4 col-sm-4 col-xs-12">
+            <label class="col-sm-12" style="margin-left:-10px">Birth Date</label>
+            <div class="flex-container">
+              <div class="input-group advanced-search-date-short">
+                <input type="text" class="form-control search-input " id="birth_date_start" name="birth_date_start"
+                  placeholder="MM/DD/YYYY" style="font-size:16px;" />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+              -
+              <div class="input-group advanced-search-date-short">
+                <input type="text" class="form-control search-input " id="birth_date_end" name="birth_date_end"
+                  placeholder="MM/DD/YYYY" style="font-size:16px;" />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label class="col-sm-12" style="margin-left:-10px">Age</label>
+            <div class="flex-container">
+              <input type="number" class="form-control search-input" id="age_min" name="age_min"
+                placeholder="Min" />
+              -
+              <input type="number" class="form-control search-input" id="age_max" name="age_max"
+                placeholder="Max" />
+            </div>
+          </div>
+          <div class="form-group col-md-12 search-section">Place</div>
+          <input type="text" id="select_bucket" style="display:none">
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label class="required" for="inputPassword4">Address</label>
+            <input type="text" class="form-control" id="address" name="address" placeholder="Example:1 Main St">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label class="required" for="inputPassword4">Apt No</label>
+            <input type="text" class="form-control" id="apt_no" name="apt_no" placeholder="Example:12">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label>Location Type</label>
+            <select id="location_type" name="location_type" class="selectpicker form-control show-tick dropdown-menu2"
+              data-live-search="true" data-live-search-placeholder="Search">
+              <optgroup class="heading_style" label="RESIDENTIAL STRUCTURES"></optgroup>
+              <option value=''></option>
+              <option class="option25" value="">None</option>
+              <option class="option25" value="01">01 - Single Family Home</option>
+              <option class="option25" value="02">02 - Multiple Dwelling</option>
+              <option class="option25" value="03">03 - Residential Facility</option>
+              <option class="option25" value="04">04 - Other Residential</option>
+              <option class="option25" value="05">05 - Garage/Shed</option>
+              <optgroup class="heading_style" label="PUBLIC ACCESS BUILDINGS"></optgroup>
+              <option class="option25" value="06">06 - Transit Facility</option>
+              <option class="option25" value="07">07 - Government Office</option>
+              <option class="option25" value="08">08 - School</option>
+              <option class="option25" value="09">09 - College</option>
+              <option class="option25" value="67">67 - Library</option>
+              <option class="option25" value="10">10 - Church</option>
+              <option class="option25" value="11">11 - Hospital</option>
+              <option class="option25" value="12">12 - Jail/Prison</option>
+              <option class="option25" value="13">13 - Parking Garage</option>
+              <option class="option25" value="68">68 - Community Center</option>
+              <option class="option25" value="14">14 - Other Public Access Building Commercial
+                Services</option>
+              <optgroup class="heading_style" label="COMMERCIAL SERVICES"></optgroup>
+              <option class="option25" value="15">15 - Auto Shop</option>
+              <option class="option25" value="16">16 - Financial Institution</option>
+              <option class="option25" value="17">17 - Barber/Beauty Shop</option>
+              <option class="option25" value="18">18 - Hotel/Motel</option>
+              <option class="option25" value="19">19 - Dry Cleaners/Laundry</option>
+              <option class="option25" value="20">20 - Professional Office</option>
+              <option class="option25" value="21">21 - Doctor’s Office</option>
+              <option class="option25" value="22">22 - Other Business Office</option>
+              <option class="option25" value="23">23 - Recreation/Entertainment Center
+              </option>
+              <option class="option25" value="54">54 - Amusement Park</option>
+              <option class="option25" value="24">24 - Rental Storage Facility</option>
+              <option class="option25" value="56">56 - ATM Machine Separate from Bank</option>
+              <option class="option25" value="59">59 - Daycare Facility</option>
+              <option class="option25" value="25">25 - Other Commercial Service Location
+              </option>
+              <optgroup class="heading_style" label="RETAIL"></optgroup>
+              <option class="option25" value="26">26 - Bar</option>
+              <option class="option25" value="27">27 - Buy/Sell/Trade Shop</option>
+              <option class="option25" value="28">28 - Restaurant</option>
+              <option class="option25" value="29">29 - Gas Station</option>
+              <option class="option25" value="30">30 - Auto Sales Lot</option>
+              <option class="option25" value="31">31 - Jewelry Store</option>
+              <option class="option25" value="32">32 - Clothing Store</option>
+              <option class="option25" value="33">33 - Drugstore</option>
+              <option class="option25" value="34">34 - Liquor Store</option>
+              <option class="option25" value="35">35 - Shopping Mall</option>
+              <option class="option25" value="36">36 - Sporting Goods</option>
+              <option class="option25" value="37">37 - Grocery/Supermarket</option>
+              <option class="option25" value="38">38 - Variety/Convenience Store</option>
+              <option class="option25" value="39">39 - Department/Discount Store</option>
+              <option class="option25" value="40">40 - Other Retail Store</option>
+              <option class="option25" value="41">41 - Factory/Mill/Plant </option>
+              <option class="option25" value="42">42 - Other Building</option>
+              <optgroup class="heading_style" label="OUTSIDE"></optgroup>
+              <option class="option25" value="43">43 - Yard</option>
+              <option class="option25" value="44">44 - Construction Site</option>
+              <option class="option25" value="45">45 - Lake/Waterway</option>
+              <option class="option25" value="46">46 - Field/Woods</option>
+              <option class="option25" value="47">47 - Street</option>
+              <option class="option25" value="48">48 - Parking Lot</option>
+              <option class="option25" value="49">49 - Park/Playground</option>
+              <option class="option25" value="50">50 - Cemetery</option>
+              <option class="option25" value="51">51 - Public Transit Vehicle</option>
+              <option class="option25" value="70">70 - Other Vehicle</option>
+              <option class="option25" value="57">57 - Camp/Campground</option>
+              <option class="option25" value="64">64 - Rest Area</option>
+              <option class="option25" value="52">52 - Other outside Location</option>
+              <optgroup class="heading_style" label="OTHER"></optgroup>
+              <option class="option25" value="53">53 - Abandoned/Condemned Structure</option>
+              <option class="option25" value="55">55 - Arena/Stadium/Fairgrounds/Coliseum
+              </option>
+              <option class="option25" value="58">58 - Cargo Container</option>
+              <option class="option25" value="60">60 - Dock/Wharf/Freight/Modal Terminal
+              </option>
+              <option class="option25" value="61">61 - Farm Facility</option>
+              <option class="option25" value="62">62 - Gambling Facility/Casino/Race Track
+              </option>
+              <option class="option25" value="63">63 - Military Installation</option>
+              <option class="option25" value="65">65 - Shelter-Mission/Homeless </option>
+              <option class="option25" value="66">66 - Tribal Lands</option>
+              <option class="option25" value="69">69 - Cyberspace</option>
+              <option class="option25" value="77">77 - Other Location</option>
+            </select>
+          </div>
+          <div class="form-group col-md-12 search-section">Offense</div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label class="required" for="inputPassword4">Incident/Offense Name-1</label>
+            <input type="text" class="form-control" id="incident_type" name="incident_type" placeholder="Example:Theft">
+          </div>
+
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label class="required" for="inputPassword4">Incident/Offense Name-2</label>
+            <input type="text" class="form-control" id="incident_type2" name="incident_type2"
+              placeholder="Example:Theft">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label class="required" for="inputPassword4">Incident/Offense Name-3</label>
+            <input type="text" class="form-control" id="incident_type3" name="incident_type3"
+              placeholder="Example:Theft">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label class="required" for="inputPassword4">Incident/Non-Criminal Name</label>
+            <input type="text" class="form-control" id="incident_non_criminal_name" name="incident_non_criminal_name"
+              placeholder="Example:Lockout">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label>Theft/Larceny Type</label>
+            <select class="form-control selectpicker show-tick" id="larceny_type_search" name="larceny_type_search"
+              multiple>
+            </select>
+          </div>
+          <div class="form-group col-xs-12 button-container" id="search_button_container">
+            <button type="button" class="btn btn-info pull-right" style="margin-top:30px;width:150px"
+              id="search_button">Search</button>
+          </div>
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

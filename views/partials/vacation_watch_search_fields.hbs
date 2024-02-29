@@ -1,0 +1,192 @@
+<div class="panel-group col-md-12" id="advanced_search_fields" style="display:none">
+  <div class="panel panel-default">
+    <div id="search_criterias_header" class="panel-heading flex-container">
+      <h4 class="panel-title collapsed intro" data-toggle="collapse" data-target='#search_fields_accordion'
+        style='font-size: 18px; flex-grow : 1;'>Search Criteria</h4>
+      <div style="position: absolute; right:30px; display:flex">
+        <input id="filter_search_fields" placeholder="Filter Search Fields" />
+        <button class="btn btn-sm btn-primary" id="reset_search_filter">Reset</button>
+      </div>
+    </div>
+    <div class="panel-collapse collapse in" id="search_fields_accordion">
+      <div class="panel-body">
+        <div class="col-md-12 col-sm-12 col-xs-12" id="search_fields_container">
+          <div class="form-group col-md-4 col-sm-4 col-xs-12">
+            <label class="col-sm-12" style="margin-left:-10px">Start Date</label>
+            <div class="flex-container">
+              <div class="input-group advanced-search-date-long">
+                <input type="text" class="form-control search-input" id="start_date_from" name="start_date_from" data-category="vacation" 
+                  placeholder="MM/DD/YYYY HH:mm" style="font-size:16px;" />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+              &nbsp;&nbsp;-&nbsp;&nbsp;
+              <div class="input-group advanced-search-date-long">
+                <input type="text" class="form-control search-input" id="start_date_to" name="start_date_to"
+                  placeholder="MM/DD/YYYY HH:mm" style="font-size:16px;" data-category="vacation"/>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-4 col-sm-4 col-xs-12">
+            <label class="col-sm-12" style="margin-left:-10px">End Date</label>
+            <div class="flex-container">
+              <div class="input-group advanced-search-date-long">
+                <input type="text" class="form-control search-input" id="end_date_from" name="end_date_from" data-category="vacation" 
+                  placeholder="MM/DD/YYYY HH:mm" style="font-size:16px;" />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+              &nbsp;&nbsp;-&nbsp;&nbsp;
+              <div class="input-group advanced-search-date-long">
+                <input type="text" class="form-control search-input" id="end_date_to" name="end_date_to"
+                  placeholder="MM/DD/YYYY HH:mm" style="font-size:16px;" data-category="vacation"/>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="address">Address</label>
+            <input type="text" name="address" id="address" class="form-control" data-category="vacation">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="beat">Beat</label>
+            <select class="form-control selectpicker show-tick search-input" id="beat" name="beat" multiple
+              data-max-options="1" data-udt-source="beat" data-category="vacation">
+              <option value=""></option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="zone">Zone</label>
+            <select class="form-control selectpicker show-tick search-input" id="zone" name="zone" multiple
+              data-max-options="1" data-udt-source="zone" data-category="vacation">
+              <option value=""></option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="alarm_system">Alarm System</label>
+            <select class="form-control selectpicker show-tick search-input" id="alarm_system" name="alarm_system"
+              multiple data-max-options="1" data-udt-source="alarm_system" data-category="vacation">
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="pet_on_premise">Pet On Premise</label>
+            <select class="form-control selectpicker show-tick search-input" id="pet_on_premise" name="pet_on_premise"
+              multiple data-max-options="1" data-udt-source="pet_on_premise" data-category="vacation">
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="emergency_contact_holder_name">Emergency Contact Name</label>
+            <input type="text" name="emergency_contact_holder_name" id="emergency_contact_holder_name" class="form-control search-input" data-category="vacation">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="emergency_contact_holder_phone">Emergency Contact Phone</label>
+            <input type="text" name="emergency_contact_holder_phone" id="emergency_contact_holder_phone" class="form-control search-input" data-category="vacation">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="key_holder_name">Key Holder Name</label>
+            <input type="text" name="key_holder_name" id="key_holder_name" class="form-control search-input" data-category="vacation">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="key_holder_phone">Key Holder Phone</label>
+            <input type="text" name="key_holder_phone" id="key_holder_phone" class="form-control search-input" data-category="vacation">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="alarm_code_holder_name">Alarm Code Holder Name</label>
+            <input type="text" name="alarm_code_holder_name" id="alarm_code_holder_name" class="form-control search-input" data-category="vacation">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="alarm_code_holder_phone">Alarm Code Holder Phone</label>
+            <input type="text" name="alarm_code_holder_phone" id="alarm_code_holder_phone" class="form-control search-input" data-category="vacation">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="lights_on_timer">Lights On Timer</label>
+            <select class="form-control selectpicker show-tick search-input" id="lights_on_timer" name="lights_on_timer"
+              multiple data-max-options="1" data-category="vacation">
+              <option value="Yes">Yes</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="delivery_stopped">Newspaper/Mail Delivery Stopped</label>
+            <select class="form-control selectpicker show-tick search-input" id="delivery_stopped" name="delivery_stopped"
+              multiple data-max-options="1" data-category="vacation">
+              <option value="Yes">Yes</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="narrative">Narrative</label>
+            <input type="text" class="form-control search-input" id="narrative" name="narrative" data-category="vacation">
+          </div>
+          <div class="form-group col-md-12 search-section">Person</div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="search_first_name">First Name</label>
+            <input type="text" class="form-control search-input" id="search_first_name" name="search_first_name"
+              placeholder="First Name" data-category="person">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="search_last_name">Last Name</label>
+            <input type="text" class="form-control search-input" id="search_last_name" name="search_last_name"
+              placeholder="Last Name" data-category="person">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="phone">Phone</label>
+            <input type="text" class="form-control search-input" id="phone" name="phone"
+              placeholder="Phone" data-category="person">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="email">Email</label>
+            <input type="text" class="form-control search-input" id="email" name="email"
+              placeholder="Email" data-category="person">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="person_type">Person Type</label>
+            <select class="form-control selectpicker show-tick search-input" id="person_type" name="person_type"
+              multiple data-max-options="1" data-category="person">
+              <option value="Owner">Owner</option>
+              <option value="Permitted on Premise">Permitted On Premise</option>
+            </select>
+          </div>
+          <div class="form-group col-md-12 search-section">Check Log</div>
+          <div class="form-group col-md-4 col-sm-4 col-xs-12">
+            <label class="col-sm-12" style="margin-left:-10px">Check Start Date</label>
+            <div class="flex-container">
+              <div class="input-group advanced-search-date-long">
+                <input type="text" class="form-control search-input" id="check_log_start_date" name="check_log_start_date"
+                  placeholder="MM/DD/YYYY HH:mm" style="font-size:16px;" data-category="check_log" />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+              &nbsp;&nbsp;-&nbsp;&nbsp;
+              <div class="input-group advanced-search-date-long">
+                <input type="text" class="form-control search-input" id="check_log_end_date" name="check_log_end_date"
+                  placeholder="MM/DD/YYYY HH:mm" style="font-size:16px;" data-category="check_log"/>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="checking_officer">Checking Officer</label>
+            <input type="text" class="form-control search-input" id="checking_officer" name="checking_officer"
+              placeholder="Checking Officer" data-category="check_log">
+          </div>       
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="disposition">Disposition</label>
+            <select class="form-control selectpicker show-tick search-input" id="disposition" name="disposition"
+              multiple data-max-options="1" data-udt-source="vacation_check_status" data-category="check_log">
+            </select>
+          </div> 
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="check_log_narrative">Check Log Narrative</label>
+            <input type="text" class="form-control search-input" id="check_log_narrative" name="check_log_narrative" data-category="check_log">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12 button-container" id="search_button_container">
+            <button type="button" class="btn btn-info btn-block" style="margin-top:30px"
+              id="search_button">Search</button>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12 button-container d-none">
+            <button type="button" class="btn btn-success btn-block" style="margin-top:30px" id="add_more_field"><i
+                class="glyphicon glyphicon-plus"></i> Add More
+              Fields</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

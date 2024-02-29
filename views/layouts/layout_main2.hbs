@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	{{#if isLiveServer}}
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-155116865-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'UA-155116865-1');
+	</script>
+	{{/if}}
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>{{title}}</title>
+
+	<link href="/img/favicon.png" rel="icon">
+	<link
+		href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700|Raleway:300,400,400i,500,500i,700,800,900"
+		rel="stylesheet">
+	{{#if toggle }}
+	<link href="/css/bootstrap-toggle.min.css" rel="stylesheet">
+	{{/if}}
+	<link rel="stylesheet" href="/css/fontawesome/css/fontawesome.min.css"> <!-- load fontawesome -->
+	<link rel="stylesheet" href="/css/font-awesome/css/font-awesome.min.css"> <!-- load fontawesome -->
+	<link href="/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="/css/bootstrap.min.css"> <!-- load bootstrap css -->
+
+	<link rel="stylesheet" href="/css/dataTables.checkboxes.css"> <!-- load bootstrap css -->
+	<link href="/css/bootstrap-select.min.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="/css/dc.css" />
+	<link rel="stylesheet" href="/css/jquery-ui.css" />
+	<link href="/css/dataTables.responsive.css" rel="stylesheet" />
+	<!--link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap.min.css" rel="stylesheet" /-->
+	<link rel="stylesheet" href="/css/jquery-confirm.css">
+	<link rel="stylesheet" href="/css/colorbox.css" />
+	<link rel="stylesheet" href="/imgSlides/imgSlides.css" />
+	<link rel="stylesheet" href="/css/main.css" />
+	{{#if darkMode }}
+	<link rel="stylesheet" href="/css/main_dark.css" />
+	{{/if}}
+	<link href="/css/google-fonts.css" rel="stylesheet">
+	{{>helper}}
+</head>
+
+<body class="nav-md">
+
+	{{{ body }}}
+
+
+	<script>
+		if ("{{city}}" == null || "{{city}}" == "") {
+			$("#uc").val("{{address}}");
+		}
+		/*
+		$(document).ready(function () {
+			$('.selectpicker').selectpicker().change(function(){
+				$(this).valid()
+			});
+		});
+		*/
+		/*
+	if(document.querySelector('textarea')){
+	var textarea = document.querySelector('textarea');
+	
+	textarea.addEventListener('keydown', autosize);
+				 
+	}
+	*/
+	</script>
+	<footer>
+		<div class="footer-area-bottom">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 col-sm-12 col-xs-12">
+						<div class="copyright text-center">
+							<p style="color: rgba(245, 245, 245, 0.692)">
+								Copyright &copy;
+								<script>document.write(new Date().getFullYear())</script> RAF Vue. All Rights Reserved
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+</body>
+
+</html>

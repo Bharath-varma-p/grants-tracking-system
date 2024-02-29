@@ -1,0 +1,360 @@
+<div class="panel-group col-md-12" id="advanced_search_fields" style="display:none">
+  <div class="panel panel-default">
+    <div id="search_criterias_header" class="panel-heading flex-container">
+      <h4 class="panel-title collapsed intro" data-toggle="collapse" data-target='#search_fields_accordion'
+        style='font-size: 18px; flex-grow : 1;'>Search Criteria</h4>
+      <div style="position: absolute; right:30px; display:flex">
+        <input id="filter_search_fields" placeholder="Filter Search Fields" />
+        <button class="btn btn-sm btn-primary" id="reset_search_filter">Reset</button>
+      </div>
+    </div>
+    <div class="panel-collapse collapse in" id="search_fields_accordion">
+      <div class="panel-body">
+        <div class="col-md-12 col-sm-12 col-xs-12" id="search_fields_container">
+          <div class="form-group col-md-4 col-sm-4 col-xs-12">
+            <label class="col-sm-12" style="margin-left:-10px">Citation Date</label>
+            <div class="flex-container">
+              <div class="input-group">
+                <input type="text" class="form-control search-input advanced-search-date-short" data-category="citation"
+                  id="citation_date_start" name="citation_date_start" placeholder="MM/DD/YYYY"
+                  style="font-size:16px;" />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+              &nbsp;&nbsp;-&nbsp;&nbsp;
+              <div class="input-group">
+                <input type="text" class="form-control search-input advanced-search-date-short" data-category="citation"
+                  id="citation_date_end" name="citation_date_end" placeholder="MM/DD/YYYY" style="font-size:16px;" />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="citation_warning_void">Citation/Warning/Void</label>
+            <select class="form-control selectpicker show-tick search-input" id="citation_warning_void"
+              name="citation_warning_void" data-category="citation">
+              <option value=""></option>
+              <option value="Citation">Citation</option>
+              <option value="Warning">Warning</option>
+              <option value="Void">Void</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="charge">Charge</label>
+            <select class="form-control selectpicker show-tick search-input" data-live-search="true" id="charge"
+              name="charge" data-category="citation">
+              <option value=""></option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="is_local_code">Charge is Local Code</label>
+            <select class="form-control selectpicker show-tick search-input" id="is_local_code" name="is_local_code"
+              data-category="citation">
+              <option value=""></option>
+              <option value="Y">Yes</option>
+              <option value="N">No</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="ticket">Ticket #</label>
+            <input type="text" class="form-control search-input" id="ticket" name="ticket" data-category="citation">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="case_no">Case #</label>
+            <input type="text" class="form-control search-input" id="case_no" name="case_no"
+              placeholder="Exp: 2021T0000001" data-category="citation">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="citation_type">Citation Type</label>
+            <select class="form-control selectpicker show-tick search-input" id="citation_type" name="citation_type"
+              data-category="citation">
+              <option value=""></option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="is_juvenile">Is Juvenile</label>
+            <select class="form-control selectpicker show-tick search-input" id="is_juvenile" name="is_juvenile"
+              data-category="citation">
+              <option value=""></option>
+              <option value="N">No</option>
+              <option value="Y">Yes</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="driver_license">Driver License #</label>
+            <input type="text" class="form-control search-input" id="driver_license" name="driver_license"
+              placeholder="" data-category="citation">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label class="col-sm-12" style="margin-left:-10px">Speeding MPH In</label>
+            <div class="flex-container">
+              <input type="number" class="form-control search-input" id="speed_mph_in_min" name="speed_mph_in_min"
+                placeholder="Min" style="font-size:16px;" data-category="citation" />
+              -
+              <input type="number" class="form-control search-input" id="speed_mph_in_max" name="speed_mph_in_max"
+                placeholder="Max" style="font-size:16px;" data-category="citation" />
+
+            </div>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label class="col-sm-12" style="margin-left:-10px">Speeding MPH Zone</label>
+            <div class="flex-container">
+              <input type="number" class="form-control search-input" id="speed_mph_zone_min" name="speed_mph_zone_min"
+                placeholder="Min" style="font-size:16px;" data-category="citation" />
+              -
+              <input type="number" class="form-control search-input" id="speed_mph_zone_max" name="speed_mph_zone_max"
+                placeholder="Max" style="font-size:16px;" data-category="citation" />
+
+            </div>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="alcohol_drug_suspected">Alcohol/Drug Suspected</label>
+            <select class="form-control selectpicker show-tick search-input" id="alcohol_drug_suspected"
+              name="alcohol_drug_suspected" data-category="citation">
+              <option value=""></option>
+              <option value="1">Prohibited Blood Alcohol Concentration</option>
+              <option value="2">Other Drug</option>
+              <option value="3">Marijuana</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label class="col-sm-12" style="margin-left:-10px">Alcohol Test Result</label>
+            <div class="flex-container">
+              <input type="number" class="form-control search-input" id="alcohol_test_result_min"
+                name="alcohol_test_result_min" placeholder="Min" style="font-size:16px;" data-category="citation" />
+              -
+              <input type="number" class="form-control search-input" id="alcohol_test_result_max"
+                name="alcohol_test_result_max" placeholder="Max" style="font-size:16px;" data-category="citation" />
+
+            </div>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="driver_license_status">Driver License Status</label>
+            <select class="form-control selectpicker show-tick search-input" id="driver_license_status"
+              name="driver_license_status" data-category="citation">
+              <option value=""></option>
+              <option value="None">None</option>
+              <option value="Not on person">Not on person</option>
+              <option value="Revoked">Revoked</option>
+              <option value="Suspended">Suspended</option>
+              <option value="Expried<6">Expired less than 6 months ago</option>
+              <option value="Expried>6">Expired more than 6 months ago</option>
+              <option value="FailureRenew">Failure to Reinstate</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="safety_belt_failure_to_wear">Safety Belt Failure to Wear</label>
+            <select class="form-control selectpicker show-tick search-input" id="safety_belt_failure_to_wear"
+              name="safety_belt_failure_to_wear" data-category="citation">
+              <option value=""></option>
+              <option value="D">Driver</option>
+              <option value="P">Passenger</option>
+              <option value="C">Child Restraint
+              </option>
+              <option value="B">Booster Seat</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="area">Area</label>
+            <select class="form-control selectpicker show-tick search-input" id="area" name="area"
+              data-category="citation">
+              <option value=""></option>
+              <option value="Business">Business</option>
+              <option value="Rural">Rural</option>
+              <option value="Residential">Residential</option>
+              <option value="Industrial">Industrial</option>
+              <option value="School">School</option>
+              <option value="Freeway">Freeway</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="crash">Crash</label>
+            <select class="form-control selectpicker show-tick search-input" id="crash" name="crash"
+              data-category="citation">
+              <option value=""></option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+              <option value="Almost Caused">Almost Caused</option>
+              <option value="Non-Injury">Non-Injury</option>
+              <option value="Injury">Injury</option>
+              <option value="Fatal">Fatal</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="traffic_crash_no">Traffic Crash No</label>
+            <input type="text" class="form-control search-input" id="traffic_crash_no" name="traffic_crash_no"
+              placeholder="" data-category="citation">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="court_name">Court Name</label>
+            <select class="form-control selectpicker show-tick search-input" id="court_name" name="court_name"
+              data-category="citation" data-udt-source="court_name">
+              <option value=""></option>
+            </select>
+          </div>
+          <div class="form-group col-md-4 col-sm-4 col-xs-12">
+            <label class="col-sm-12" style="margin-left:-10px">Court Date</label>
+            <div class="flex-container">
+              <div class="input-group ">
+                <input type="text" class="form-control search-input advanced-search-date-short" data-category="citation"
+                  id="court_date_start" name="court_date_start" placeholder="MM/DD/YYYY" style="font-size:16px;" />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+              &nbsp;&nbsp;-&nbsp;&nbsp;
+              <div class="input-group">
+                <input type="text" class="form-control search-input advanced-search-date-short" data-category="citation"
+                  id="court_date_end" name="court_date_end" placeholder="MM/DD/YYYY" style="font-size:16px;" />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="officer_action">Officer Action</label>
+            <select class="form-control selectpicker show-tick search-input" id="officer_action" name="officer_action"
+              data-category="citation">
+              <option value=""></option>
+              <option value="">None</option>
+              <option value="Held">Driver License Held</option>
+              <option value="Seized">Vehicle Seized</option>
+              <option value="Juv">Juvenile Traffic Offender</option>
+              <option value="Dist">Distracted Driving Penalty Enhancement Applies</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="charging_officer">Charging Officer</label>
+            <input type="text" class="form-control search-input" id="charging_officer" name="charging_officer"
+              placeholder="" data-category="citation">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="issuing_officer">Issuing Officer</label>
+            <input type="text" class="form-control search-input" id="issuing_officer" name="issuing_officer"
+              placeholder="" data-category="citation">
+          </div>
+
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="narrative">Narrative</label>
+            <input type="text" class="form-control search-input" id="narrative" name="narrative" placeholder="Narrative"
+              data-category="citation">
+          </div>
+          {{#if PRIVILEGE_UNSEAL_CASE.hasPermission}}
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label>Sealed Case</label>
+            <select class="form-control selectpicker show-tick search-input" id="sealed_case" name="sealed_case"
+              data-category="citation">
+              <option value=""></option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+          {{/if}}
+          <div class="form-group col-md-12 search-section">Person</div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="first_name">First Name</label>
+            <input type="text" class="form-control search-input" id="first_name" name="first_name" placeholder=""
+              data-category="citation">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="last_name">Last Name</label>
+            <input type="text" class="form-control search-input" id="last_name" name="last_name" placeholder=""
+              data-category="citation">
+          </div>
+          <div class="form-group col-md-4 col-sm-4 col-xs-12">
+            <label class="col-sm-12" style="margin-left:-10px">Date Of Birth</label>
+            <div class="flex-container">
+              <div class="input-group">
+                <input type="text" class="form-control search-input advanced-search-date-short" data-category="citation"
+                  id="dob_date_start" name="dob_date_start" placeholder="MM/DD/YYYY" style="font-size:16px;" />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+              &nbsp;&nbsp;-&nbsp;&nbsp;
+              <div class="input-group">
+                <input type="text" class="form-control search-input advanced-search-date-short" data-category="citation"
+                  id="dob_date_end" name="dob_date_end" placeholder="MM/DD/YYYY" style="font-size:16px;" />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label class="col-sm-12" style="margin-left:-10px">Age</label>
+            <div class="flex-container">
+              <input type="number" class="form-control search-input" id="age_min" name="age_min"
+                placeholder="Min" data-category="citation" />
+              -
+              <input type="number" class="form-control search-input" id="age_max" name="age_max"
+                placeholder="Max" data-category="citation" />
+
+            </div>
+          </div>
+          <div class="form-group col-md-12 search-section">Place</div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="citation_address">Citation Address</label>
+            <input type="text" class="form-control search-input" id="citation_address" name="citation_address"
+              placeholder="" data-category="citation">
+          </div>
+          <div class="form-group col-md-12 search-section">Vehicle</div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="licence_plate">License Plate</label>
+            <input type="text" class="form-control search-input" id="licence_plate" name="licence_plate" placeholder=""
+              data-category="citation">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="vehicle_make">Vehicle Make</label>
+            <input type="text" class="form-control search-input" id="vehicle_make" name="vehicle_make" placeholder=""
+              data-category="citation">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="vehicle_model">Vehicle Model</label>
+            <input type="text" class="form-control search-input" id="vehicle_model" name="vehicle_model" placeholder=""
+              data-category="citation">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label class="col-sm-12" style="margin-left:-10px">Vehicle Year</label>
+            <div class="flex-container">
+              <input type="number" class="form-control search-input" id="vehicle_year_min" name="vehicle_year_min"
+                placeholder="Min" style="font-size:16px;" data-category="citation" />
+              -
+              <input type="number" class="form-control search-input" id="vehicle_year_max" name="vehicle_year_max"
+                placeholder="Max" style="font-size:16px;" data-category="citation" />
+
+            </div>
+          </div>
+          <div class="form-group col-xs-12 button-container" id="search_button_container">
+            <button type="button" class="btn btn-info pull-right" style="margin-top:30px; width:150px"
+              id="search_button">Search</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{>user_defined_table_modal}}
+<script>
+  function fillSearchFields() {
+
+    //Fill Citation Type
+    $.get('view_citationTypes').done(data => {
+
+      if (!data) return;
+
+      data = data[0].json.split(',');
+
+      const citation_type_select = $("#citation_type");
+
+      for (const citation_type of data) {
+        citation_type_select.append(`<option value="${citation_type}">${citation_type}</option>`)
+      }
+
+      citation_type_select.selectpicker('refresh');
+    });
+
+    //Fill Chart Type
+    $.get('api/traffic_codes_data').done(data => {
+
+      const charge_select = $("#charge");
+
+      for (const charge of data) {
+        charge_select.append(`<option class="option25" ek_code3="${charge.orc}" ek_code2="${charge.label}" ek_code="${charge.violent}" local_code="${charge.local_code}" value="${charge.orc}">${charge.orc} - ${charge.label} (Local Code:${charge.local_code})</option>`);
+      }
+      charge_select.selectpicker('refresh');
+    });
+  }
+</script>

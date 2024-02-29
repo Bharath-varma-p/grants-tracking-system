@@ -1,0 +1,347 @@
+<div class="modal fade" id="prosecutorPrintModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document" style="width:1100px;">
+        <div class="modal-content">
+            <div class="modal-header d-none">
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+            </div>
+            <div class="modal-body" id="modelim2">
+
+
+            </div>
+
+            <div class="modal-footer">
+                <button id="printme2" type="button" class="btn btn-primary">Print</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="/js/print.min.js"></script>
+<script>
+    function fillPresecutorPrintModal(row_data, data) {
+        $("#modelim2").empty();
+        if (row_data[26]) {
+            var cfs1 = ` / CFS IncidentID ${row_data[26]}`
+        } else {
+            var cfs1 = ''
+        }
+        if (row_data[27]) {
+            var cfs2 = ` / CFS Incident# ${row_data[27]}`
+        } else {
+            var cfs2 = ''
+        }
+
+        //https://cadbrowser.hamilton-co.org/VisiNetBrowser/Login.aspx?referer=~/Default.aspx
+        $("#modelim2").append(`<h2 style="color:black; font-weight:bold; text-align:center; width:100%">Incident Report (Incident# ${row_data[1]} ${cfs1} ${cfs2})</h2><hr/>`);
+        $("#modelim2").append(`<a href=${generateLink("incident", "print", {incident_no: row_data[1]}, {templateId: 90, formName: "Prosecutor"})} target="_blank"><button id="incident_button_print" style="width:40%" type="button" class="btn btn-primary">Print Incident Report</button></a></br></br>`);
+        $(`#incident_button_print`).click(function () {
+            $(this).removeClass('btn-primary');
+            $(this).addClass('btn-success');
+        })
+
+        if (data.length > 0) {
+
+            var incident_i = 0;
+            var arrest_i = 0;
+            var arrest_attachments_i = 0;
+            var property_attachments_i = 0;
+            var arrest_non_i = 0;
+            var citation_i = 0;
+            var traffic_i = 0;
+            var narrative_i = 0;
+            var fir_i = 0;
+            var evidence_i = 0;
+            var uof_i = 0;
+
+
+            data.forEach(function (d, i) {
+                if (d.data_source == 'Incident Attachment') {
+                    if (incident_i == 0) {
+                        $("#modelim2").append(`<h2 style="color:black; font-weight:bold; text-align:center; width:100%">Incident Attachments</h2><hr/>`);
+                    }
+                    incident_i++;
+                    if (getType(d.data_name) == 'image') {
+                        $("#modelim2").append(`<button type="button" style="width:40%; margin:5px" class="btn btn-primary" id="incident_attachment_button${incident_i}" onclick="printJS({printable: '${globalVariables.departmentBucketFullURL}/${d.file_name}', type: 'image', header: '${d.data_name}'})">Print Attachment (${d.data_name})</button>`);
+                    }
+                    else if (getType(d.data_name) == 'pdf') {
+                        $("#modelim2").append(`<button type="button" style="width:40%; margin:5px" class="btn btn-primary" id="incident_attachment_button${incident_i}" onclick="printJS({printable: '${globalVariables.departmentBucketFullURL}/${d.file_name}', type: 'pdf', showModal:true})">Print Attachment (${d.data_name})</button>`);
+                    }
+                    else if (getType(d.data_name) != 'pdf' || getType(d, data_name) != 'image') {
+                        $("#modelim2").append(`<a href="${globalVariables.departmentBucketFullURL}/${d.file_name}" target="_blank"><button type="button" style="width:40%; margin:5px;" class="btn btn-secondary" id="incident_attachment_button${incident_i}">Non-Printable (${d.data_name})</button></a>`);
+                    }
+                    $(`#incident_attachment_button${incident_i}`).click(function () {
+                        $(this).removeClass('btn-primary');
+                        $(this).removeClass('btn-secondary');
+                        $(this).addClass('btn-success');
+                    })
+                    /*      prosecutor_data.attachment_list.push({
+                            original_name:d.data_name,
+                            file_name:d.file_name
+                        })
+                        */
+                }
+                if (d.data_source == 'Linked Traffic Crash') {
+                    if (traffic_i == 0) {
+                        $("#modelim2").append(`<h2 style="color:black; font-weight:bold; text-align:center; width:100%">Traffic Crash</h2><hr/>`);
+                    }
+                    traffic_i++;
+                    const printLink = generateLink("traffic_crash", "print", {crash_no: d.data_id})
+                    $("#modelim2").append(`<a href="${printLink}" target="_blank"><button type="button" id="traffic_button${traffic_i}" style="width:40%; margin:5px" class="btn btn-primary">Print Traffic Crash</button></a>`);
+                    $(`#traffic_button${traffic_i}`).click(function () {
+                        $(this).removeClass('btn-primary');
+                        $(this).addClass('btn-success');
+                    })
+                }
+                if (d.data_source == 'FIR') {
+                    if (fir_i == 0) {
+                        $("#modelim2").append(`<h2 style="color:black; font-weight:bold; text-align:center; width:100%">Field Interview Reports(FIR)</h2><hr/>`);
+                    }
+                    fir_i++;
+                    $("#modelim2").append(`<a href="fir_print/${d.data_id}" target="_blank"><button type="button" id="fir_button${fir_i}" style="width:40%; margin:5px" class="btn btn-primary">Print FIR (${d.data_name})</button></a>`);
+                    $(`#fir_button${fir_i}`).click(function () {
+                        $(this).removeClass('btn-primary');
+                        $(this).addClass('btn-success');
+                    })
+                }
+
+                if (d.data_source == 'Narrative') {
+                    if (narrative_i == 0) {
+                        $("#modelim2").append(`<h2 style="color:black; font-weight:bold; text-align:center; width:100%">Investigative Narratives</h2><hr/>`);
+                    }
+                    narrative_i++;
+                    $("#modelim2").append(`<a href="${generateLink("narrative", "print", {id: d.data_id, incident_no: d.incident_no})}" target="_blank"><button type="button" id="narrative_button${narrative_i}" style="width:40%; margin:5px" class="btn btn-primary">Print Narrative - ${narrative_i}</button></a>`);
+                    $(`#narrative_button${narrative_i}`).click(function () {
+                        $(this).removeClass('btn-primary');
+                        $(this).addClass('btn-success');
+                    })
+                }
+
+                if (d.data_source == 'Use of Force Subject') {
+                    if (uof_i == 0) {
+                        $("#modelim2").append(`<h2 style="color:black; font-weight:bold; text-align:center; width:100%">Use of Force</h2><hr/>`);
+                        uof_i++;
+                        $("#modelim2").append(`<a href="uof_print/${d.incident_no}-_${d.master_name_id}-_-_UOF" target="_blank"><button type="button" id="uof_button${uof_i}" style="width:40%; margin:5px" class="btn btn-primary">Print UOF - ${d.incident_no}</button></a>`);
+                        $(`#uof_button${uof_i}`).click(function () {
+                            $(this).removeClass('btn-primary');
+                            $(this).addClass('btn-success');
+                        })
+                    }
+
+                }
+
+                if (d.data_source == 'Linked Traffic Citation') {
+                    if (citation_i == 0) {
+                        $("#modelim2").append(`<h2 style="color:black; font-weight:bold; text-align:center; width:100%">Traffic Citation</h2><hr/>`);
+                    }
+                    citation_i++;
+                    $("#modelim2").append(`<a href="traffic_citation_print/${d.incident_no}" target="_blank"><button type="button" id="traffic_citation_button${citation_i}" style="width:40%; margin:5px" class="btn btn-primary">Print Traffic Citation</button></a>`);
+                    $(`#traffic_citation_button${citation_i}`).click(function () {
+                        $(this).removeClass('btn-primary');
+                        $(this).addClass('btn-success');
+                    })
+                }
+                if (d.data_source == 'Arrest Attachment') {
+                    if (arrest_attachments_i == 0) {
+                        $("#modelim2").append(`<h2 style="color:black; font-weight:bold; text-align:center; width:100%">Arrest Attachments</h2><hr/>`);
+                    }
+                    arrest_attachments_i++;
+                    if (getType(d.data_name) == 'image') {
+                        $("#modelim2").append(`<button type="button" style="width:40%; margin:5px" class="btn btn-primary" id="arrest_attachment_button${arrest_attachments_i}" onclick="printJS({printable: '${globalVariables.departmentBucketFullURL}/${d.file_name}', type: 'image', header: '${d.data_name}'})">Print Attachment (${d.data_name})</button>`);
+                    }
+                    else if (getType(d.data_name) == 'pdf') {
+                        $("#modelim2").append(`<button type="button" style="width:40%; margin:5px" class="btn btn-primary" id="arrest_attachment_button${arrest_attachments_i}" onclick="printJS({printable: '${globalVariables.departmentBucketFullURL}/${d.file_name}', type: 'pdf', showModal:true})">Print Attachment (${d.data_name})</button>`);
+                    }
+                    else if (getType(d.data_name) != 'pdf' || getType(d, data_name) != 'image') {
+                        $("#modelim2").append(`<a href="${globalVariables.departmentBucketFullURL}/${d.file_name}" target="_blank"><button type="button" style="width:40%; margin:5px;" class="btn btn-secondary" id="arrest_attachment_button${arrest_attachments_i}">Non-Printable (${d.data_name})</button></a>`);
+                    }
+                    $(`#arrest_attachment_button${arrest_attachments_i}`).click(function () {
+                        $(this).removeClass('btn-primary');
+                        $(this).removeClass('btn-secondary');
+                        $(this).addClass('btn-success');
+                    })
+                }
+                if (d.data_source == 'Property Attachment') {
+                    if (property_attachments_i == 0) {
+                        $("#modelim2").append(`<h2 style="color:black; font-weight:bold; text-align:center; width:100%">Property Attachments</h2><hr/>`);
+                    }
+                    property_attachments_i++;
+
+                    if (getType(d.data_name) == 'image') {
+                        $("#modelim2").append(`<button type="button" style="width:40%; margin:5px" class="btn btn-primary" id="property_attachment_button${property_attachments_i}" onclick="printJS({printable: '${globalVariables.departmentBucketFullURL}/${d.file_name}', type: 'image', header: '${d.data_name}'})">Print Attachment (${d.data_name})</button>`);
+                    }
+                    else if (getType(d.data_name) == 'pdf') {
+                        $("#modelim2").append(`<button type="button" style="width:40%; margin:5px" class="btn btn-primary" id="property_attachment_button${property_attachments_i}" onclick="printJS({printable: '${globalVariables.departmentBucketFullURL}/${d.file_name}', type: 'pdf', showModal:true})">Print Attachment (${d.data_name})</button>`);
+                    }
+                    else if (getType(d.data_name) != 'pdf' || getType(d, data_name) != 'image') {
+                        $("#modelim2").append(`<a href="${globalVariables.departmentBucketFullURL}/${d.file_name}" target="_blank"><button type="button" style="width:40%; margin:5px;" class="btn btn-secondary" id="property_attachment_button${property_attachments_i}">Non-Printable (${d.data_name})</button></a>`);
+                    }
+
+                    $(`#property_attachment_button${property_attachments_i}`).click(function () {
+                        $(this).removeClass('btn-primary');
+                        $(this).removeClass('btn-secondary');
+                        $(this).addClass('btn-success');
+                    })
+                }
+                if (d.data_source == 'Arrest') {
+                    if (arrest_i == 0) {
+                        $("#modelim2").append(`<h2 style="color:black; font-weight:bold; text-align:center; width:100%">Arrest Forms</h2><hr/>`);
+                    }
+                    arrest_i++;
+                    
+                    $("#modelim2").append(`<a href="${generateLink("arrest", "print", {incident_no: d.incident_no, master_name_id: d.master_name_id }, {court_type: 0, prosecutorForm: "Arrest527"})}" target="_blank"><button type="button" id="arrest_button${arrest_i}" style="width:40%; margin:5px" class="btn btn-primary">Print Mayor's Arrest527 (${d.data_name})</button></a>`);
+                    $(`#arrest_button${arrest_i}`).click(function () {
+                        $(this).removeClass('btn-primary');
+                        $(this).addClass('btn-success');
+                    })
+                    arrest_i++;
+                    $("#modelim2").append(`<a href="${generateLink("arrest", "print", {incident_no: d.incident_no, master_name_id: d.master_name_id }, {court_type: 1, prosecutorForm: "Arrest527"})}" target="_blank"><button type="button" id="arrest_button${arrest_i}" style="width:40%; margin:5px" class="btn btn-warning">Print State's Arrest527 (${d.data_name})</button></a>`);
+                    $(`#arrest_button${arrest_i}`).click(function () {
+                        $(this).removeClass('btn-warning');
+                        $(this).addClass('btn-success');
+                    })
+                    arrest_i++;
+                    $("#modelim2").append(`<a href="${generateLink("arrest", "print", {incident_no: d.incident_no, master_name_id: d.master_name_id}, { court_type: 0, prosecutorForm: "Warrant"})}}" target="_blank"><button type="button" id="arrest_button${arrest_i}" style="width:40%; margin:5px" class="btn btn-primary">Print Mayor's Warrant Form (${d.data_name})</button></a>`);
+                    $(`#arrest_button${arrest_i}`).click(function () {
+                        $(this).removeClass('btn-primary');
+                        $(this).addClass('btn-success');
+                    })
+                    arrest_i++;
+                    $("#modelim2").append(`<a href="${generateLink("arrest", "print", {incident_no: d.incident_no, master_name_id: d.master_name_id}, {court_type: 1, prosecutorForm: "Warrant"})}" target="_blank"><button type="button" id="arrest_button${arrest_i}" style="width:40%; margin:5px" class="btn btn-warning">Print State's Warrant Form (${d.data_name})</button></a>`);
+                    $(`#arrest_button${arrest_i}`).click(function () {
+                        $(this).removeClass('btn-warning');
+                        $(this).addClass('btn-success');
+                    })
+                    arrest_i++;
+                    $("#modelim2").append(`<a href="${generateLink("arrest", "print", {incident_no: d.incident_no, master_name_id: d.master_name_id}, {court_type: 0, prosecutorForm: "Affidavit"})}" target="_blank"><button type="button" id="arrest_button${arrest_i}" style="width:40%; margin:5px" class="btn btn-primary">Print Mayor's Affidavit Form (${d.data_name})</button></a>`);
+                    $(`#arrest_button${arrest_i}`).click(function () {
+                        $(this).removeClass('btn-primary');
+                        $(this).addClass('btn-success');
+                    })
+                    arrest_i++;
+                    $("#modelim2").append(`<a href="${generateLink("arrest", "print", {incident_no: d.incident_no, master_name_id: d.master_name_id, }, {court_type: 1, prosecutorForm: "Affidavit"})}" target="_blank"><button type="button" id="arrest_button${arrest_i}" style="width:40%; margin:5px" class="btn btn-warning">Print State's Affidavit Form (${d.data_name})</button></a>`);
+                    $(`#arrest_button${arrest_i}`).click(function () {
+                        $(this).removeClass('btn-warning');
+                        $(this).addClass('btn-success');
+                    })
+                    arrest_i++;
+                    $("#modelim2").append(`<a href="${generateLink("arrest", "print", {incident_no: d.incident_no, master_name_id: d.master_name_id, }, {court_type: 0, prosecutorForm: "Trial"})}" target="_blank"><button type="button" id="arrest_button${arrest_i}" style="width:40%; margin:5px" class="btn btn-primary">Print Mayor's Trial Form (${d.data_name})</button></a>`);
+                    $(`#arrest_button${arrest_i}`).click(function () {
+                        $(this).removeClass('btn-primary');
+                        $(this).addClass('btn-success');
+                    })
+                    arrest_i++;
+                    $("#modelim2").append(`<a href="${generateLink("arrest", "print", {incident_no: d.incident_no, master_name_id: d.master_name_id, }, {court_type: 1, prosecutorForm: "Trial"})}" target="_blank"><button type="button" id="arrest_button${arrest_i}" style="width:40%; margin:5px" class="btn btn-warning">Print State's Trial Form (${d.data_name})</button></a>`);
+                    $(`#arrest_button${arrest_i}`).click(function () {
+                        $(this).removeClass('btn-warning');
+                        $(this).addClass('btn-success');
+                    })
+                    arrest_i++;
+                    $("#modelim2").append(`<a href="${generateLink("arrest", "print", {incident_no: d.incident_no, master_name_id: d.master_name_id, }, {court_type: 0, prosecutorForm: "Complaint"})}" target="_blank"><button type="button" id="arrest_button${arrest_i}" style="width:40%; margin:5px" class="btn btn-primary">Print Mayor's Complaint Form (${d.data_name})</button></a>`);
+                    $(`#arrest_button${arrest_i}`).click(function () {
+                        $(this).removeClass('btn-primary');
+                        $(this).addClass('btn-success');
+                    })
+                    arrest_i++;
+                    $("#modelim2").append(`<a href="${generateLink("arrest", "print", {incident_no: d.incident_no, master_name_id: d.master_name_id, }, {court_type: 1, prosecutorForm: "Complaint"})}" target="_blank"><button type="button" id="arrest_button${arrest_i}" style="width:40%; margin:5px" class="btn btn-warning">Print State's Complaint Form (${d.data_name})</button></a>`);
+                    $(`#arrest_button${arrest_i}`).click(function () {
+                        $(this).removeClass('btn-warning');
+                        $(this).addClass('btn-success');
+                    })
+                }
+                if (d.data_source == 'Warrant-Citation Arrest') {
+                    if (arrest_non_i == 0) {
+                        $("#modelim2").append(`<h2 style="color:black; font-weight:bold; text-align:left; width:100%">Warrant Citation Arrest Forms</h2><hr/>`);
+                    }
+                    arrest_non_i++;
+                    $("#modelim2").append(`<a href="${generateLink("warrant_citation_arrest", "print", {incident_no: d.incident_no, masterNameId: d.master_name_id}, {court_type: 0, prosecutorForm: "Arrest527"})}" target="_blank"><button id="arrest_non_button${arrest_non_i}" type="button" style="width:40%" class="btn btn-primary">Print Mayor's Arrest527 (${d.data_name})</button></a>`);
+                    $(`#arrest_non_button${arrest_non_i}`).click(function () {
+                        $(this).removeClass('btn-primary');
+                        $(this).addClass('btn-success');
+                    })
+                    arrest_i++;
+                    $("#modelim2").append(`<a href="${generateLink("warrant_citation_arrest", "print", {incident_no: d.incident_no, masterNameId: d.master_name_id}, {court_type: 1, prosecutorForm: "Arrest527"})}" target="_blank"><button id="arrest_non_button${arrest_non_i}" type="button" style="width:40%; margin-left:10px;" class="btn btn-warning">Print State's Arrest527 (${d.data_name})</button></a>`);
+                    $(`#arrest_non_button${arrest_non_i}`).click(function () {
+                        $(this).removeClass('btn-warning');
+                        $(this).addClass('btn-success');
+                    })
+                    arrest_i++;
+                    $("#modelim2").append(`<a href="${generateLink("warrant_citation_arrest", "print", {incident_no: d.incident_no, masterNameId: d.master_name_id}, {court_type: 0, prosecutorForm: "Warrant"})}" target="_blank"><button id="arrest_non_button${arrest_non_i}" type="button" style="width:40%" class="btn btn-primary">Print Mayor's Warrant Form (${d.data_name})</button></a>`);
+                    $(`#arrest_non_button${arrest_non_i}`).click(function () {
+                        $(this).removeClass('btn-primary');
+                        $(this).addClass('btn-success');
+                    })
+                    arrest_i++;
+                    $("#modelim2").append(`<a href="${generateLink("warrant_citation_arrest", "print", {incident_no: d.incident_no, masterNameId: d.master_name_id}, {court_type: 1, prosecutorForm: "Warrant"})}" target="_blank"><button id="arrest_non_button${arrest_non_i}" type="button" style="width:40%; margin-left:10px;" class="btn btn-warning">Print State's Warrant Form (${d.data_name})</button></a>`);
+                    $(`#arrest_non_button${arrest_non_i}`).click(function () {
+                        $(this).removeClass('btn-warning');
+                        $(this).addClass('btn-success');
+                    })
+                    arrest_i++;
+                    $("#modelim2").append(`<a href="${generateLink("warrant_citation_arrest", "print", {incident_no: d.incident_no, masterNameId: d.master_name_id}, {court_type: 0, prosecutorForm: "Affidavit"})}" target="_blank"><button id="arrest_non_button${arrest_non_i}" type="button" style="width:40%" class="btn btn-primary">Print Mayor's Affidavit Form (${d.data_name})</button></a>`);
+                    $(`#arrest_non_button${arrest_non_i}`).click(function () {
+                        $(this).removeClass('btn-primary');
+                        $(this).addClass('btn-success');
+                    })
+                    arrest_i++;
+                    $("#modelim2").append(`<a href="${generateLink("warrant_citation_arrest", "print", {incident_no: d.incident_no, masterNameId: d.master_name_id}, {court_type: 1, prosecutorForm: "Affidavit"})}" target="_blank"><button id="arrest_non_button${arrest_non_i}" type="button" style="width:40%; margin-left:10px;" class="btn btn-warning">Print State's Affidavit Form (${d.data_name})</button></a>`);
+                    $(`#arrest_non_button${arrest_non_i}`).click(function () {
+                        $(this).removeClass('btn-warning');
+                        $(this).addClass('btn-success');
+                    })
+                    arrest_i++;
+                    $("#modelim2").append(`<a href="${generateLink("warrant_citation_arrest", "print", {incident_no: d.incident_no, masterNameId: d.master_name_id}, {court_type: 0, prosecutorForm: "Trial"})}" target="_blank"><button id="arrest_non_button${arrest_non_i}" type="button" style="width:40%" class="btn btn-primary">Print Mayor's Trial Form (${d.data_name})</button></a>`);
+                    $(`#arrest_non_button${arrest_non_i}`).click(function () {
+                        $(this).removeClass('btn-primary');
+                        $(this).addClass('btn-success');
+                    })
+                    arrest_i++;
+                    $("#modelim2").append(`<a href="${generateLink("warrant_citation_arrest", "print", {incident_no: d.incident_no, masterNameId: d.master_name_id}, {court_type: 1, prosecutorForm: "Trial"})}" target="_blank"><button id="arrest_non_button${arrest_non_i}" type="button" style="width:40%; margin-left:10px;" class="btn btn-warning">Print State's Trial Form (${d.data_name})</button></a>`);
+                    $(`#arrest_non_button${arrest_non_i}`).click(function () {
+                        $(this).removeClass('btn-warning');
+                        $(this).addClass('btn-success');
+                    })
+                    arrest_i++;
+                    $("#modelim2").append(`<a href="${generateLink("warrant_citation_arrest", "print", {incident_no: d.incident_no, masterNameId: d.master_name_id}, {court_type: 0, prosecutorForm: "Complaint"})}" target="_blank"><button id="arrest_non_button${arrest_non_i}" type="button" style="width:40%" class="btn btn-primary">Print Mayor's Complaint Form (${d.data_name})</button></a>`);
+                    $(`#arrest_non_button${arrest_non_i}`).click(function () {
+                        $(this).removeClass('btn-primary');
+                        $(this).addClass('btn-success');
+                    })
+                    arrest_i++;
+                    $("#modelim2").append(`<a href="${generateLink("warrant_citation_arrest", "print", {incident_no: d.incident_no, masterNameId: d.master_name_id}, {court_type: 1, prosecutorForm: "Complaint"})}" target="_blank"><button id="arrest_non_button${arrest_non_i}" type="button" style="width:40%; margin-left:10px;" class="btn btn-warning">Print State's Complaint Form (${d.data_name})</button></a>`);
+                    $(`#arrest_non_button${arrest_non_i}`).click(function () {
+                        $(this).removeClass('btn-warning');
+                        $(this).addClass('btn-success');
+                    })
+                    $(`#arrest_non_button${arrest_non_i}`).click(function () {
+                        $(this).removeClass('btn-primary');
+                        $(this).addClass('btn-success');
+                    })
+                }
+                if (d.data_source == 'Evidence') {
+                    if (evidence_i == 0) {
+                        $("#modelim2").append(`<h2 style="color:black; font-weight:bold; text-align:center; width:100%">Evidences</h2><hr/>`);
+                    }
+                    evidence_i++;
+                    $("#modelim2").append(`<a href="${generateLink("evidence", "print", {id: d.data_id})}" target="_blank"><button type="button" id="evidence_button${evidence_i}" style="width:40%; margin:5px" class="btn btn-primary">Print Evidence# ${d.master_name_id}</button></a>`);
+                    $(`#evidence_button${citation_i}`).click(function () {
+                        $(this).removeClass('btn-primary');
+                        $(this).addClass('btn-success');
+                    })
+                }
+            });
+
+            $("#prosecutorPrintModal #modelim2 a").each(function(){
+                const href= $(this).attr("href");
+                $(this).attr("href", insertSourcePage(href));
+            });
+
+
+        }
+    }
+</script>

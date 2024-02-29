@@ -1,0 +1,607 @@
+<style>
+    .group
+    {
+        margin: 20px;
+    }
+
+    .group-header
+    {
+        padding: 10px;
+        background: #FDC830;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right,rgba(243,115,53,.7), rgba(253,200,48,.7));  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, rgba(243,115,53,.7), rgba(253,200,48,.7)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        border-radius: 10px;
+        font-weight: bold;
+        font-size: 18px;
+        cursor: pointer;
+    }
+
+    .group-header > i
+    {
+        vertical-align: middle;
+    }
+
+    .group-content
+    {
+        padding: 20px;
+        background: #bdc3c7;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #2c3e50 70%, #787a7b);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #2c3e50 70%, #787a7b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        border-radius: 0 0 10px 10px;
+    }
+
+    .form-check
+    {
+        padding: 10px;
+        border-right: 1px dashed #eee;
+    }
+
+    .form-check:first-child
+    {
+        background-color: darkgray;
+    }
+
+    .form-check-input {
+        width: 25px;
+        height: 25px;
+    }
+
+    .form-check-label
+    {
+        line-height: 30px;
+        vertical-align: bottom;
+        float: none;
+    }
+
+    .form-check:first-child .form-check-label
+    {
+        color: #444;
+        min-width: 300px;
+    }
+
+    .checkboxes {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin: 10px 0;
+    }
+
+    .check-all-group-div
+    {
+        padding: 10px;
+        border-bottom: 2px outset #eee;
+    }
+
+    .check-all-div, .show-only-checked-div
+    {
+        margin: 0 10px;
+        display: inline-block;
+        width: auto;
+        vertical-align: bottom;
+    }
+
+    .hide {
+        display: none;
+    }
+
+    .not-active
+    {
+        color: white;
+        background-color: red;
+        padding: 5px;
+    }
+
+    #form {
+        margin-top:50px;
+    }
+
+    label {
+        color: #ccc;
+    }
+
+    .how-to
+    {
+        font-size: 32px;
+        vertical-align: top;
+        color: orange;
+    }
+
+    #buttons_div .popover-title
+    {
+        color: #444;
+        text-shadow: none;
+    }
+
+    #buttons_div .popover-content
+    {
+        text-transform: none;
+    }
+
+    .jconfirm-box {
+        background-color: #262626 !important;
+    }
+
+    .jconfirm-content,
+    .jconfirm-title-c {
+        color: white !important;
+    }
+</style>
+<form class="form-horizontal" id="form">
+    <div class="form-group">
+        <label class="control-label col-sm-offset-4 col-sm-4" style="text-align: center; font-size:24px; border:1px solid #ccc; color: #444; background-color: gainsboro">
+            {{ role_name}}
+        </label>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-4 col-sm-4" style="text-align: center;" id="buttons_div">
+            <button type="button" class="btn btn-primary" id="save_button">Save</button>
+            <button type="reset" class="btn btn-danger" id="reset_button" data-toggle="tooltip" title="This button will reset all fields as if the user reloads the page">Reset</button>
+            {{#if departmentPrivileges}}
+            <button type="button" class="btn btn-info" id="apply_defaults_button" data-toggle="tooltip" title="This will delete the specific privileges for the role and apply the default privileges to the role">Apply Defaults</button>
+            {{/if}}
+            <span class="how-to" data-toggle="popover" title="How To" data-trigger="hover" data-html="true" data-placement="bottom" data-content="If the special privileges for the user are defined, they will primarily be applied. 
+            <br/><br/>
+            If not, this time it will be checked whether the power admin has made department-specific definitions for the user's role.
+            <br/><br/>
+            If the power admin has made department-specific definitions, these privileges will be applied.
+            <br/><br/>
+            If there are no user-specific privileges and the power admin has not made department-specific definitions for their department, this time the default privileges of the system will be applied for the user's privileges.
+            "><i class="glyphicon glyphicon-question-sign"></i></span> 
+
+        </div>
+    </div>
+    <div>
+        <button type="button" id="open_all" class="btn btn-default" style="margin:0 20px">Open All</button>
+        <button type="button" id="collapse_all" class="btn btn-default">Collapse All</button>
+        <div class="check-all-div">
+            <input type="checkbox" class="form-check-input check-all"
+                id="check_all">
+            <label class="form-check-label" for="check_all">Check / Uncheck All</label>
+        </div>
+        <div class="show-only-checked-div">
+            <input type="checkbox" class="form-check-input show-only-checked"
+                id="show_only_checked">
+            <label class="form-check-label" for="show_only_checked">Show Only Checked</label>
+        </div>
+        <input type="text" id="search" placeholder="Search" class="form-control" style="float: right;width:200px; margin-right:20px"/>
+        <div class="clearfix"></div>
+    </div>
+    <div id="privileges_div">
+
+    </div>
+</form>
+
+<link rel="stylesheet" href="/css/jquery-confirm.css">
+
+<script src="/js/jquery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/lodash.js"></script>
+<script src="/js/jquery-confirm.js"></script>
+<script>
+
+    const isDepartmentPrivileges = "{{departmentPrivileges}}" == "true";
+
+    function fillRolePrivileges()
+    {
+       
+        const url = isDepartmentPrivileges ? "../get_department_role_privileges" : "/get_role_privileges";
+
+        $.post(url, { role_name : '{{ role_name }}' })
+        .done((data) => {
+
+            data = JSON.parse(JSON.stringify(data).replace(/\:null/gi, "\:\"\""));
+
+            const { all_privileges, role_privileges } = data;
+
+            const privileges_groups =  _.groupBy(all_privileges, "group_name");
+
+            const group_names = Object.keys(privileges_groups).sort();
+
+            const privileges_div = $("#privileges_div");
+            
+            privileges_div.empty();
+
+            let group_index= 1;
+
+            for (const group_name of group_names)
+            {
+                 const group_div_id= "group" + group_index;
+
+                 privileges_div.append(`
+                    <div class="group">
+                        <div class="group-header" data-toggle="collapse" data-target="#${ group_div_id }">${ group_name || "General" } <i class="glyphicon glyphicon-chevron-down"/></div>
+                        <div id="${ group_div_id }" class="group-content collapse"></div>
+                    </div>`
+                 );
+
+                 const group_privileges = privileges_groups[group_name];
+
+                 $("#"+group_div_id).append(`
+                    <div class="check-all-group-div">
+                        <input type="checkbox" class="form-check-input check-all-group"
+                            id="check_all_${ group_index }">
+                        <label class="form-check-label" for="check_all_${ group_index }">Check / Uncheck All</label>
+                    </div>
+                 `);
+
+                 let group_privilege_index = 1;
+
+                 isAllChecked=true;
+
+                 for (const group_privilege of group_privileges)
+                 {
+                     const form_group = $(`<div class="checkboxes" data-privilege-name="${ group_privilege.name }"></div>`);
+
+                     const old_privilege = role_privileges.find(old => old.privilege_name == group_privilege.name );
+
+                     let checked = false, read_checked = false, write_checked = false, delete_checked = false, seal_checked = false;
+
+                     if (old_privilege)
+                     {
+                         checked= Boolean(old_privilege.has_permission) || ! isDepartmentPrivileges;
+                         read_checked = Boolean(old_privilege.read_permission);
+                         write_checked = Boolean(old_privilege.write_permission);
+                         delete_checked = Boolean(old_privilege.delete_permission);
+                         seal_checked = Boolean(old_privilege.seal_permission);
+                     }
+
+                     if (isAllChecked) isAllChecked = checked;
+
+                     form_group.append(`
+                        <div class="form-check">
+                                <input type="checkbox" class="form-check-input privilege-check"
+                                    id="group_privilege_${ group_index }_${ group_privilege_index }" ${ checked ? "checked" :"" }>
+                                <label class="form-check-label" for="group_privilege_${ group_index }_${ group_privilege_index }">
+                                    ${ group_privilege.name } ${ group_privilege.active ? "" : '<span class="not-active"> (Not Active) <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="Deactivated by system admin. The privilege has no effect until activated"></i></span>' }
+                                </label>
+                        </div>
+                     `);
+
+                     if (group_privilege.show_read_write_delete == 1)
+                     {
+                         form_group.append(`
+                            <div class="form-check ${ checked ? "" : "hide" }">
+                                    <input type="checkbox" class="form-check-input privilege-read-check"
+                                        id="group_privilege_read_${ group_index }_${ group_privilege_index }" ${ read_checked ? "checked" :"" }>
+                                    <label class="form-check-label" for="group_privilege_read_${ group_index }_${ group_privilege_index }">Read</label>
+                            </div>
+                        `);
+
+                        form_group.append(`
+                            <div class="form-check ${ checked ? "" : "hide" }">
+                                    <input type="checkbox" class="form-check-input privilege-write-check"
+                                        id="group_privilege_write_${ group_index }_${ group_privilege_index }" ${ write_checked ? "checked" :"" }>
+                                    <label class="form-check-label" for="group_privilege_write_${ group_index }_${ group_privilege_index }">Write</label>
+                            </div>
+                        `);
+
+                        form_group.append(`
+                            <div class="form-check ${ checked ? "" : "hide" }">
+                                    <input type="checkbox" class="form-check-input privilege-delete-check"
+                                        id="group_privilege_delete_${ group_index }_${ group_privilege_index }" ${ delete_checked ? "checked" :"" }>
+                                    <label class="form-check-label" for="group_privilege_delete_${ group_index }_${ group_privilege_index }">Delete</label>
+                            </div>
+                        `);
+
+                        if (isAllChecked) isAllChecked = read_checked && write_checked && delete_checked;
+                     }
+
+                     if (group_privilege.show_seal == 1)
+                     {
+                         form_group.append(`
+                            <div class="form-check ${ checked ? "" : "hide" }">
+                                    <input type="checkbox" class="form-check-input privilege-seal-check"
+                                        id="group_privilege_seal_${ group_index }_${ group_privilege_index }" ${ seal_checked ? "checked" :"" }>
+                                    <label class="form-check-label" for="group_privilege_seal_${ group_index }_${ group_privilege_index }">Seal</label>
+                            </div>
+                        `);
+
+                        if (isAllChecked) isAllChecked = seal_checked;
+
+                     }
+
+                     $("#"+group_div_id).append(form_group);
+                     $("#"+group_div_id).on('hide.bs.collapse',function(){
+                        $(this).prev().find("i").eq(0).removeClass("glyphicon-chevron-up").addClass("glyphicon-chevron-down");
+                        $(this).prev().css("border-radius","10px");
+                    }).on('show.bs.collapse',function(){
+                        $(this).prev().find("i").eq(0).removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-up");
+                        $(this).prev().css("border-radius","10px 10px 0 0");
+                    });
+
+                     group_privilege_index++;
+                 }
+
+                 if (isAllChecked)
+                 {
+                     $("#"+group_div_id).find(".check-all-group").eq(0).prop('checked',true);
+                 }
+
+                 group_index++;
+            }
+
+             $('[data-toggle="tooltip"]').tooltip(); 
+           
+        })
+        .fail(console.error);
+    }
+
+    $(document).ready(function () {
+
+
+        fillRolePrivileges();
+
+        $("#save_button").on('click',()=>{
+
+            $.confirm({
+                title: 'Are you sure to override the default privileges of system for this role?',
+                content: "When you override, the default privileges for this role will not be applied until you click apply defaults",
+                buttons: {
+                    confirm: function () {
+
+                        const privileges= [];
+
+                        $('[data-privilege-name]').each(function(){
+                            
+                            const checkboxes_div = $(this);
+
+                            const isChecked = $(this).find(".privilege-check").eq(0).is(':checked');
+
+                            const privilege_name = $(this).attr("data-privilege-name");
+                            const isRead = $(this).find(".privilege-read-check").eq(0).is(':checked');
+                            const isWrite = $(this).find(".privilege-write-check").eq(0).is(':checked');
+                            const isDelete = $(this).find(".privilege-delete-check").eq(0).is(':checked');
+                            const isSeal = $(this).find(".privilege-seal-check").eq(0).is(':checked');
+
+                            if (isChecked || isDepartmentPrivileges)
+                            {
+                                privileges.push({
+                                    privilege_name : privilege_name,
+                                    read: +isRead,
+                                    write: +isWrite,
+                                    delete : +isDelete,
+                                    seal: +isSeal,
+                                    isChecked : isChecked
+                                });
+                            }
+
+                        });
+
+                        const url = isDepartmentPrivileges ? "../save_department_role_privileges" : "/save_role_privileges";
+
+                        $.post(url, {privileges : privileges || [] , role_name : '{{role_name}}'})
+                        .done(()=> {
+                            $.alert("Saved succesfully");
+                            
+                        })
+                        .fail(err => {
+                            console.error(err);
+                            $.alert(err.responseText);
+                        });
+                    },
+                    cancel: function () {
+                        
+                    }
+                }
+            });
+
+
+            
+        });
+
+        $("#open_all").on('click',function(){
+            $('.group-content').collapse('show');
+        });
+
+        $("#collapse_all").on('click',function(){
+            $('.group-content').each (function(){
+                if ($(this).hasClass("in"))
+                    $(this).collapse("hide");
+            });
+        });
+
+        function search()
+        {
+            //debugger;
+            
+            var search_value = $("#search").val();
+
+            if (search_value)
+            {
+                $('.group').each(function(){
+
+                    var regex= new RegExp( search_value, 'gi' );
+                    const isFound = $(this).text().match(regex);
+
+                    if (isFound) 
+                    {
+                        $(this).show();
+                        $(this).find(".group-content").eq(0).collapse('show');
+                    }
+                    else
+                    {
+                        $(this).hide();
+                    }
+
+                });
+            }
+            else 
+            {
+                $('.group').show();
+            }
+
+            if ($("#show_only_checked").is(':checked'))
+                    showOnlyChecked();
+
+
+        }
+
+        $("#search").on('input',_.debounce(search,500));
+
+        $(document).on('change','.check-all-group',function(){
+            const isChecked = $(this).is(':checked');
+            const checkboxes = $(this).parents(".group-content").find(".checkboxes :checkbox");
+            checkboxes.prop('checked',isChecked);
+
+            checkboxes.each(function(){
+
+                if (! $(this).hasClass("privilege-check"))
+                {
+                    if (isChecked) $(this).parent().removeClass("hide");
+                    else $(this).parent().addClass("hide");
+                }
+            })
+            
+        });
+
+        $("#check_all").on('change',function(){
+            const isChecked = $(this).is(':checked');
+            $('.group :checkbox').prop('checked',isChecked);
+            
+            if (isChecked)
+            {
+               $('.privilege-read-check, .privilege-write-check, .privilege-delete-check, .privilege-seal-check').parent().removeClass("hide");
+            }
+            else {
+                $('.privilege-read-check, .privilege-write-check, .privilege-delete-check, .privilege-seal-check').parent().addClass("hide");
+            }
+
+            if ($("#show_only_checked").is(':checked'))
+            {
+                showOnlyChecked();
+            }
+        });
+
+        function showOnlyChecked()
+        {
+            const isChecked = $("#show_only_checked").is(':checked');
+
+            const search_value = $("#search").val();
+
+            if (isChecked)
+            {
+                $('.checkboxes').each(function(){
+                    if ($(this).find(':checkbox').eq(0).is(':checked') == false || $(this).find(":checked").length == 0)
+                    {
+                        $(this).hide();
+                    }
+                    else {
+                        $(this).show();
+                        $(this).parent().collapse('show');
+
+                    }
+                });
+
+                $('.group').each(function(){
+                    if ($(this).find('.checkboxes:visible :checked').length == 0)
+                    {
+                        $(this).hide();
+                    }
+                    else
+                    {
+                        if (search_value) 
+                        {
+                            var regex= new RegExp( search_value, 'gi' );
+                            const isFound = $(this).text().match(regex);
+
+                            if (isFound) $(this).show();
+                        }
+                        else $(this).show();
+                    }
+                });
+            }
+            else 
+            {
+                $('.checkboxes').show();
+
+                $('.group').show();
+
+                if ($("#search").val()) 
+                    search();
+            }
+
+
+        }
+
+        $("#show_only_checked").on('change',showOnlyChecked);
+
+        $(document).on('change','.privilege-check',function(){
+            
+            const isChecked = $(this).is(":checked");
+
+            if (isChecked)
+            {
+                $(this).parent().siblings('.form-check').removeClass("hide");
+            }
+            else {
+                $(this).parent().siblings('.form-check').addClass("hide");
+            }
+
+        });
+
+        $(document).on('change','.group :checkbox',function(){
+            if ($("#show_only_checked").is(':checked'))
+                showOnlyChecked();
+
+            const group = $(this).parents(".group").eq(0);
+
+             if (group.find(".checkboxes:visible :checkbox:visible").length == group.find(".checkboxes:visible :checked:visible").length)
+             {
+                group.find(".check-all-group").prop("checked",true);
+
+                if (group.find("#privileges_div .checkboxes:visible :checkbox:visible").length == group.find("#privileges_div .checkboxes:visible :checked:visible").length)
+                {
+                    $("#check_all").prop("checked",true);
+                }
+             }
+             else 
+             {
+                 group.find(".check-all-group").prop("checked",false);
+                 $("#check_all").prop("checked",false);
+             }
+        });
+
+        $("#reset_button").on('click',function(){
+            $("#search").val("");
+            $("#check_all").prop('checked',false);
+            $("#show_only_checked").prop('checked',false);
+            fillRolePrivileges();
+
+        });
+
+        $("#apply_defaults_button").on('click',function(){
+
+             $.confirm({
+                title: 'Are you sure to delete the spesific privileges and apply default privileges to the role?',
+                content: "Default privileges will be applied to the role",
+                buttons: {
+                    confirm: function () {
+
+                        $.post('../apply_default_role_privileges', {role_name : '{{role_name}}'} )
+                        .done(()=> {
+                            
+                            $("#check_all").prop('checked',false);
+                            
+                            fillRolePrivileges();
+
+                            $.alert("Saved succesfully");
+                            
+                        })
+                        .fail(err => {
+                            console.error(err);
+                            $.alert(err.responseText);
+                        });
+                    },
+                    cancel: function () {
+                        
+                    }
+                }
+            });
+        });
+
+        $('[data-toggle="tooltip"]').tooltip();
+
+        $('[data-toggle="popover"]').popover();
+    });
+
+</script>

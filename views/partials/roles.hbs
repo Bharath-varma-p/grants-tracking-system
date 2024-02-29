@@ -1,0 +1,285 @@
+<style>
+    .form-check-input {
+        width: 25px;
+        height: 25px;
+    }
+
+    .form-check-label
+    {
+        line-height: 25px;
+        vertical-align: bottom;
+    }
+
+    .icon
+    {
+        font-size: 25px;
+    }
+
+    .icon.glyphicon-ok-sign
+    {
+        color: green;
+    }
+    
+    .icon.glyphicon-remove-sign
+    {
+        color: #ad3232;
+    }
+
+</style>
+{{#if rolePrivileges}}
+<form class="form-horizontal" id="form">
+    <div class="form-group">
+        <label class="control-label col-sm-offset-2 col-sm-2" for="role_name">Role Name:</label>
+        <div class="col-sm-4">
+            <input name="role_name" class="form-control" id="role_name" required>
+             <input type="hidden" name="update_role" id="update_role" value="">
+        </div>
+    </div>
+        <div class="form-group">
+        <div class="col-sm-offset-4 col-sm-4">
+            <input type="checkbox" class="form-check-input" id="active" name="active">
+            <label class="form-check-label" for="active">Active</label>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-4 col-sm-4">
+            <input type="checkbox" class="form-check-input" id="only_to_peel9_team" name="only_to_peel9_team">
+            <label class="form-check-label" for="only_to_peel9_team">Only to Peel9 Team</label>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-4 col-sm-4">
+            <button type="button" class="btn btn-primary" id="save_button">Save</button>
+            <button type="reset" class="btn btn-danger" id="reset_button">Reset</button>
+        </div>
+    </div>
+</form>
+{{/if}}
+
+<div id="dc-table-chart" class="tableBorder" style="display: block;">
+    <div>
+        <table class="datatable" id="roles_table">
+            <thead>
+                <tr class="header">
+                    <th class="header">Role Name</th>
+                    <th class="header">Active</th>
+                    <th class="header">Only to Peel9 Team</th>
+                    <th class="header">Edited By</th>
+                    <th class="header">Edited Time</th>
+                    <th class="header">
+                        <a data-toggle="popover">
+                            <i class="glyphicon glyphicon-info-sign"></i>
+                        </a>
+                        Functions
+                    </th>
+                    <th class="header"></th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+<script>
+
+    var no_write = "{{PRIVILEGE_PRIVILEGE_SETTINGS.write}}" != "true"; 
+    var no_read = "{{PRIVILEGE_PRIVILEGE_SETTINGS.read}}" != "true"; 
+    var no_delete = "{{PRIVILEGE_PRIVILEGE_SETTINGS.delete}}" != "true"; 
+    var no_seal = "{{PRIVILEGE_PRIVILEGE_SETTINGS.seal}}" != "true"; 
+
+    let rolesTable = null;
+
+    function fillRoles()
+    {
+        rolesTable.dataTable().fnClearTable();
+
+        $.post('get_roles')
+        .done((roles) => {
+
+            if (roles.length > 0)
+            {
+                rolesTable.dataTable().fnAddData(roles);
+
+                rolesTable.dataTable().fnDraw();
+            }
+        })
+        .fail(console.error);
+    }
+
+    $(document).ready(function () {
+
+        rolesTable = $("#roles_table");
+
+        const isDepartmentPrivileges =  "{{departmentPrivileges}}" == "true" ;
+
+        rolesTable.DataTable({
+            "lengthMenu": [[25, 50, 100], [25, 50, 100]],
+            "order": [[6, "desc"]],
+            "oLanguage": {
+                "oPaginate": {
+                    "sFirst": "",
+                    "sPrevious": "",
+                    "sNext": "",
+                    "sLast": ""
+                },
+                "sLengthMenu": "Records per page: _MENU_",
+                "sInfo": "Total of _TOTAL_ records (showing _START_ to _END_)"
+                //"sInfoFiltered": "(filtered from _MAX_ total records)"
+            },
+            searchHighlight: true,
+            columnDefs: [
+                {
+                    targets: 0,
+                    data: function (d) {
+                        return d.role_name
+                    }
+                },
+                {
+                    targets: 1,
+                    data: function (d) {
+                        return d.active
+                    },
+                    render : function(data, type, full){
+					    return `
+                            <i class="icon glyphicon ${ data == 1 ? "glyphicon-ok-sign" : "glyphicon-remove-sign" }"></i>
+                         `
+                    },
+                    visible : ! isDepartmentPrivileges
+                },
+                {
+                    targets: 2,
+                    data: function (d) {
+                        return d.only_to_peel9_team
+                    },
+                    render : function(data, type, full){
+					    return `
+                            <i class="icon glyphicon ${ data == 1 ? "glyphicon-ok-sign" : "glyphicon-remove-sign" }"></i>
+                         `
+                    },
+                    visible :  ! isDepartmentPrivileges
+                },
+                {
+                    targets: 3,
+                    data: function (d) {
+                        return d.edited_by
+                    },
+                    visible :  ! isDepartmentPrivileges
+                },
+                {
+                    targets: 4,
+                    data: function (d) {
+                        return d.edited_time_formatted
+                    },
+                    visible : ! isDepartmentPrivileges
+                },
+                {
+                    targets: 5,
+                    data: null,
+                    defaultContent: `
+                    	${
+                            isDepartmentPrivileges ? "" :
+                            `
+                                <button class="btn btn-default edit-role"><i class="glyphicon glyphicon-pencil"></i></button>
+                                <button class="btn btn-danger delete-role"><i class="glyphicon glyphicon-trash"></i></button>
+                            `
+                        }
+                        ${ isDepartmentPrivileges && no_write ? "" : `<button class="btn btn-primary add-privileges">Privileges</button> `}
+						
+                    `
+                },
+                {
+                    targets: 6,
+                    data: function (d) {
+                        return d.edited_time;
+                    },
+                    visible:false
+                },
+            ]
+        });
+
+        rolesTable.DataTable().on('click', '.edit-role', function () {
+            
+            var data = rolesTable.DataTable().row($(this).parents('tr')).data();
+
+            $("#role_name").val(data.role_name);
+            $("#update_role").val(data.role_name);
+            $("#active").prop("checked",data.active == "1");
+            $("#only_to_peel9_team").prop("checked",data.only_to_peel9_team == "1");
+            $("#form").valid();
+        });
+
+        rolesTable.DataTable().on('click', '.delete-role', function () {
+            
+            var data = rolesTable.DataTable().row($(this).parents('tr')).data();
+
+            $.confirm({
+                title: 'Are you sure?',
+                content: 'This will delete the role',
+                buttons: {
+                    confirm: function () {
+
+                        $.post('/delete_role', { role : data })
+                            .done(result => {
+
+                                fillRoles();
+
+                                if (data.role_name == $("#update_role").val())
+                                {
+                                    $("#form")[0].reset();
+                                    $("#update_role").val("");
+                                }
+                                    
+                                $.alert('Succesfully deleted');
+                            })
+                            .fail(err => {
+                                console.error(err);
+                                $.alert('Delete failed');
+                            });
+                        },
+                        cancel: function () {
+                        }
+                }
+		    });
+        });
+
+        rolesTable.DataTable().on('click', '.add-privileges', function () {
+            
+            var data = rolesTable.DataTable().row($(this).parents('tr')).data();
+
+            if (isDepartmentPrivileges)
+            {
+                myPopupWin("department_role_privileges/"+data.role_name);
+            }
+            else
+                location.href = "/role_privileges/"+data.role_name;
+		});
+
+
+        fillRoles();
+
+        $("#save_button").on('click',()=>{
+
+            if (! $("#form").valid()) return;
+
+            $.post('save_role',$("#form").serialize())
+            .done(()=> {
+                fillRoles();
+                $("#form")[0].reset();
+                $("#update_role").val("");
+                $.alert("Saved succesfully");
+                
+            })
+            .fail(err => {
+                console.error(err);
+                $.alert(err.responseText);
+            });
+        });
+
+        $("#reset_button").on('click',function(){
+             $("#update_role").val("");
+        });
+
+    });
+</script>

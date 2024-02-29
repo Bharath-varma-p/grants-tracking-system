@@ -1,0 +1,200 @@
+<div class="modal fade" id="add_investigator_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                Add Reviewer
+                <button type="button" name="closeModal" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <form id="add_investigator_form">
+                    <div class="form-group">
+                        <label class="required">Reviewer</label>
+                        <select id="case_investigator_select" class="selectpicker" required data-width="100%"
+                            data-live-search="true" data-actions-box="false"
+                            data-live-search-placeholder="Search"></select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="btn_add_investigator" type="button" class="btn btn-primary">Add Reviewer</button>
+                <button type="button" class="btn btn-danger no-print" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<style>
+    #add_task_collapse {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    #task_type_container {
+        flex-grow: 1;
+    }
+
+    #add_task_type {
+        width: 150px;
+        margin-left: 10px;
+
+    }
+</style>	
+<script>
+
+
+
+    if (typeof addInvestigatorModalCtrl === 'undefined') {
+
+        function AddInvestigatorModalCtrl() {
+
+            this.initModal = function () {
+
+                $(function () {
+                    
+
+                    if (! addInvestigatorModalCtrl.modalHtml)
+                    {
+                        addInvestigatorModalCtrl.modalHtml = $('#add_investigator_modal').html();
+                    }
+
+                    $(document).on('click', '#btn_add_investigator', function (e) {
+
+                        var validator = $('#add_investigator_form').validate();
+                        var isValid = validator.form();
+
+                        if (isValid)
+                        {
+                            var investigator_names= [];
+                            var reviewerId;
+
+                            $('#case_investigator_select option:selected').each((item,elem)=> {
+                                
+                                investigator_names.push( $(elem).text() );
+
+                            });
+                            
+                            var post_data_add_investigator= {
+                                subscriber_id: addInvestigatorModalCtrl.subscriberId,
+                                assigned_investigators :  $('#case_investigator_select').val(),
+                                assigned_investigators_names: investigator_names
+                            };
+
+                            $.post('/{{routeLink}}add_investigator', post_data_add_investigator)
+                            .done(result=> {
+                                
+                                $('#add_investigator_modal').modal('hide');
+
+                                if (typeof caseScope !== "undefined")
+                                {
+                                    caseScope.investigatorsFetched = false;
+
+                                    caseScope.drawInvestigatorsTable();
+
+                                    caseScope.drawHistoryList();
+                                }
+                                
+
+                                if (typeof updateData !== 'undefined')
+                                {
+                                    $('#case_management_table').DataTable().ajax.reload();
+
+                                    updateData();
+                                }
+
+                            $.confirm({
+                                title: 'Successfully Added',
+                                content: '',
+                                buttons: {
+                                    ok: function () {
+                                    }
+                                }
+                            });
+
+
+                            })
+                            .fail(err=> {
+                                console.error(err);
+                                $.alert(err.responseText);
+                            });
+                        }
+
+                    });
+                   
+                    $(document).on('shown.bs.modal', "#add_investigator_modal", function () {
+
+
+
+
+
+
+
+
+
+                        var validator = $('#add_investigator_form').validate({
+                            ignore: ":hidden:not(.selectpicker)"
+                        });
+
+                        $.post('/{{routeLink}}get_officers_with_case_count')
+                            .done(data => {
+
+                                const case_investigator_select = $('#case_investigator_select');
+                                case_investigator_select.empty();
+
+                                data.forEach(user => {
+                                     
+                                    case_investigator_select.append(`
+                                    
+                                        <option value="${user.id}" user_name="${user.fullname}" user_id="2"  data-case-count="${user.review_counts}">${user.fullname} (${user.review_counts}) </option>
+                                    `);
+                                });
+
+                                case_investigator_select.selectpicker('refresh');
+
+                                case_investigator_select.selectpicker().change(function () {
+
+                                    const selected_users = $(this).val();
+
+                                    validator.form();
+                                });
+
+                            })
+                            .fail(err => {
+                                console.error(err);
+                            });
+
+
+                            
+                    });
+
+                    $(document).on('hidden.bs.modal', "#add_investigator_modal", function () {
+                        $(this).data('bs.modal', null);
+                        $("#add_investigator_modal").html(addInvestigatorModalCtrl.modalHtml);
+                    });
+                   
+                });
+            }
+        }
+
+        addInvestigatorModalCtrl = new AddInvestigatorModalCtrl();
+
+        addInvestigatorModalCtrl.initModal();
+    }
+
+
+</script>
+<style>
+    #add_investigator_modal .modal-header {
+        background-color: #3f51b5;
+        color: white;
+    }
+
+    #add_investigator_modal .close {
+        color: rgb(255, 255, 255);
+        opacity: 1;
+        margin-top: 3px;
+
+        
+    }
+</style>

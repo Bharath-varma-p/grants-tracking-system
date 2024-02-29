@@ -1,0 +1,40 @@
+<html lang="en">
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+{{#if isLiveServer}}
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-155116865-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-155116865-1');
+</script>
+{{/if}}
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{title}}</title>
+    {{>helper}}
+    <link rel="stylesheet" href="/css/print-settings.css">
+    
+    <style media="print" type="text/css">      
+      
+      @page :footer {
+          display: none
+      }
+    
+      @page :header {
+          display: none
+      }
+
+    </style>
+	</head>
+<body nav-md>
+{{{ body }}}
+
+
+
+
+</body>
+</html>

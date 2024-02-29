@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>{{title}}</title>
+	<link href="/img/favicon.png" rel="icon">
+
+	<link rel="stylesheet" href="/css/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/bootstrap-select.min.css">
+	<link rel="stylesheet" href="/css/bootstrap-datetimepicker.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/colorbox.css" />
+	<link rel="stylesheet" href="/css/jquery-confirm.css" />
+	<link rel="stylesheet" href="/css/jquery-ui.css" />
+  <link href="/css/weather-icons/css/weather-icons.min.css" rel="stylesheet">
+
+	<link rel="stylesheet" type="text/css" href="/css/progress_form.css" />
+	{{#if darkMode }}
+	<link rel="stylesheet" type="text/css" href="/css/progress_form_dark.css" />
+	{{/if}}
+	{{>helper}}
+</head>
+
+<body>
+
+	<script src="/js/getNow.js"></script>
+	<script src="/js/jquery.js"></script>
+	<script src="/js/myPopupWin.js"></script>
+	<script src="/js/selectboxInputSearchAutoFocus.js" defer></script>
+	<script>
+		if ("{{city}}" == null || "{{city}}" == "") { $("#uc").val("{{address}}"); }
+		if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+			var width = 1;
+			var height = .97;
+		}
+		else {
+			var width = 0.95;
+			var height = .97;
+		}
+		function toTitleCase(str) {
+			return str.split(/\s+/).map(s => s.charAt(0).toUpperCase() + s.substring(1).toLowerCase()).join(" ");
+		}
+
+		$('#first_name,#middle_name,#last_name').on('keyup', function (event) {
+			$(this).val(toTitleCase($(this).val()));
+		});
+		$('#ssn').keyup(function () {
+			$(this).val($(this).val().replace(/(\d{3})\-?(\d{2})\-?(\d{4})/, '$1-$2-$3'));
+		});
+		$('#employer_phone,#work_tel,#cell,#other_tel,#owner_phone').keyup(function () {
+			$(this).val($(this).val().replace(/(\d{3})\-?(\d{3})\-?(\d{4})/, '$1-$2-$3'))
+		});
+		if (document.querySelector('textarea')) {
+			var textarea = document.querySelector('textarea');
+
+			textarea.addEventListener('keydown', autosize);
+
+			function autosize() {
+				var el = this;
+				setTimeout(function () {
+					el.style.cssText = 'height:auto; padding:0';
+					// for box-sizing other than "content-box" use:
+					// el.style.cssText = '-moz-box-sizing:content-box';
+					el.style.cssText = 'height:' + el.scrollHeight + 'px';
+				}, 0);
+			}
+		}
+	</script>
+	<div id="progress-form-backdrop">
+		<div class="center-screen" id="loading_peel9">
+			<div>
+				<img src="/images/Peel9Animated_5.gif" alt="loading_gif" style="height: 100px;">
+				<br>
+				Saving...
+				<br>
+				Please wait
+			</div>
+		</div>
+	</div>
+	{{{ body }}}
+
+
+
+	<div id="progress_form_buttons" class="col-md-8 col-md-offset-2 no-print">
+		<button type="button" style="float:left" class="btn btn-basic btn-xs no-print"
+			id="cancel_button">Cancel</button>
+		<button type="button" style="float:left;display:none" class="btn btn-basic btn-xs no-print" id="save_progress">Save
+			Progress</button>
+		<button type="button" style="float:left; display:none" class="btn btn-basic btn-xs no-print" id="start_me">DL
+			Decoder</button>
+		<button type="button" style="float:right" class="btn btn-basic btn-xs no-print" id="next_button">Next</button>
+		<button type="button" style="float:right; display:none" class="btn btn-basic btn-xs no-print"
+			id="next_button_save">Save & Close</button>
+		<button type="button" style="float:right; display:none" class="btn btn-basic btn-xs no-print d-none"
+			id="next_button_save_approve">Approve & Save & Lock</button>
+		<button type="button" style="float:right" class="btn btn-basic btn-xs no-print"
+			id="previous_button">Previous</button>
+	</div>
+	{{>generate_uuid}}
+
+</body>
+
+<script src="/js/select-field-index-fix.js" defer></script>
+
+
+</html>

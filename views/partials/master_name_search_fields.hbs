@@ -1,0 +1,581 @@
+<div class="panel-group col-md-12" id="advanced_search_fields" style="display:none">
+  <div class="panel panel-default">
+    <div id="search_criterias_header" class="panel-heading flex-container">
+      <h4 class="panel-title collapsed intro" data-toggle="collapse" data-target='#search_fields_accordion'
+        style='font-size: 18px; flex-grow : 1;'>Search Criteria</h4>
+      <div style="position: absolute; right:30px; display:flex">
+        <input id="filter_search_fields" placeholder="Filter Search Fields" />
+        <button class="btn btn-sm btn-primary" id="reset_search_filter">Reset</button>
+      </div>
+    </div>
+    <div class="panel-collapse collapse in" id="search_fields_accordion">
+      <div class="panel-body">
+        <div id="search_fields_container">
+          <div class="form-group col-md-4 col-sm-4 col-xs-12">
+            <label class="col-sm-12" style="margin-left:-10px">Created Date</label>
+            <div class="flex-container">
+              <div class="input-group date datetimepicker">
+                <input type="text" class="form-control search-input advanced-search-date-short"
+                  data-category="master_name" id="created_date_start" name="created_date_start" placeholder="MM/DD/YYYY"
+                  style="font-size:16px;" />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+              &nbsp;&nbsp;-&nbsp;&nbsp;
+              <div class="input-group date datetimepicker">
+                <input type="text" class="form-control search-input advanced-search-date-short"
+                  data-category="master_name" id="created_date_end" name="created_date_end" placeholder="MM/DD/YYYY"
+                  style="font-size:16px;" />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="first_name">First Name</label>
+            <input type="text" class="form-control search-input" id="first_name" name="first_name"
+              data-category="master_name">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="middle_name">Middle Name</label>
+            <input type="text" class="form-control search-input" id="middle_name" name="middle_name"
+              data-category="master_name">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="last_name">Last Name</label>
+            <input type="text" class="form-control search-input" id="last_name" name="last_name"
+              data-category="master_name">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="suffix">Suffix</label>
+            <input type="text" class="form-control search-input" id="suffix" name="suffix" data-category="master_name">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="alias1">Alias 1</label>
+            <input type="text" class="form-control search-input" id="alias1" name="alias1" data-category="master_name">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="alias2">Alias 2</label>
+            <input type="text" class="form-control search-input" id="alias2" name="alias2" data-category="master_name">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="alias3">Alias 3</label>
+            <input type="text" class="form-control search-input" id="alias3" name="alias3" data-category="master_name">
+          </div>
+          <div class="form-group col-md-4 col-sm-4 col-xs-12">
+            <label class="col-sm-12" style="margin-left:-10px">Date Of Birth</label>
+            <div class="flex-container">
+              <div class="input-group date datetimepicker">
+                <input type="text" class="form-control search-input advanced-search-date-short"
+                  data-category="master_name" id="dob_date_start" name="dob_date_start" placeholder="MM/DD/YYYY"
+                  style="font-size:16px;" />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+              &nbsp;&nbsp;-&nbsp;&nbsp;
+              <div class="input-group date datetimepicker">
+                <input type="text" class="form-control search-input advanced-search-date-short"
+                  data-category="master_name" id="dob_date_end" name="dob_date_end" placeholder="MM/DD/YYYY"
+                  style="font-size:16px;" />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label class="col-sm-12" style="margin-left:-10px">Age</label>
+            <div class="flex-container">
+              <input type="number" class="form-control search-input" id="age_min" name="age_min" placeholder="Min"
+                data-category="master_name" />
+              -
+              <input type="number" class="form-control search-input" id="age_max" name="age_max" placeholder="Max"
+                data-category="master_name" />
+
+            </div>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="sex">Sex</label>
+            <select class="form-control selectpicker show-tick search-input" id="sex" name="sex"
+              data-category="master_name">
+              <option value=""></option>
+              <option value="M">Male</option>
+              <option value="F">Female</option>
+              <option value="U">Unknown</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="race">Race</label>
+            <select class="form-control selectpicker show-tick search-input" id="race" name="race"
+              data-category="master_name">
+              <option value=""></option>
+              <option value="A">Asian</option>
+              <option value="B">Black or African American</option>
+              <option value="H">Hispanic or Latino</option>
+              <option value="I">American Indian or Alaskan Native</option>
+              <option value="P">Native Hawaiian or Other Pacific Islander</option>
+              <option value="W">White</option>
+              <option value="F">Pending Further Investigation</option>
+              <option value="U">Unknown/Not Reported</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="marital_status">Marital Status</label>
+            <select class="form-control selectpicker show-tick search-input" id="marital_status" name="marital_status"
+              data-category="master_name">
+              <option value=""></option>
+              <option value="M">Married</option>
+              <option value="MC">Married/Common Law</option>
+              <option value="S">Single</option>
+              <option value="D">Divorced</option>
+              <option value="W">Widowed</option>
+              <option value="O">Other</option>
+              <option value="U">Unknown</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="place_of_birth">Place of Birth</label>
+            <input type="text" class="form-control search-input" id="place_of_birth" name="place_of_birth"
+              data-category="master_name">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="state_of_birth">State of Birth</label>
+            <select class="form-control selectpicker show-tick search-input" id="state_of_birth" name="state_of_birth"
+              data-category="master_name">
+              <option value=""></option>
+              <option value="AL">Alabama</option>
+              <option value="AK">Alaska</option>
+              <option value="AZ">Arizona</option>
+              <option value="AR">Arkansas</option>
+              <option value="CA">California</option>
+              <option value="CO">Colorado</option>
+              <option value="CT">Connecticut</option>
+              <option value="DE">Delaware</option>
+              <option value="DC">District Of Columbia</option>
+              <option value="FL">Florida</option>
+              <option value="GA">Georgia</option>
+              <option value="HI">Hawaii</option>
+              <option value="ID">Idaho</option>
+              <option value="IL">Illinois</option>
+              <option value="IN">Indiana</option>
+              <option value="IA">Iowa</option>
+              <option value="KS">Kansas</option>
+              <option value="KY">Kentucky</option>
+              <option value="LA">Louisiana</option>
+              <option value="ME">Maine</option>
+              <option value="MD">Maryland</option>
+              <option value="MA">Massachusetts</option>
+              <option value="MI">Michigan</option>
+              <option value="MN">Minnesota</option>
+              <option value="MS">Mississippi</option>
+              <option value="MO">Missouri</option>
+              <option value="MT">Montana</option>
+              <option value="NE">Nebraska</option>
+              <option value="NV">Nevada</option>
+              <option value="NH">New Hampshire</option>
+              <option value="NJ">New Jersey</option>
+              <option value="NM">New Mexico</option>
+              <option value="NY">New York</option>
+              <option value="NC">North Carolina</option>
+              <option value="ND">North Dakota</option>
+              <option value="OH">Ohio</option>
+              <option value="OK">Oklahoma</option>
+              <option value="OR">Oregon</option>
+              <option value="PA">Pennsylvania</option>
+              <option value="RI">Rhode Island</option>
+              <option value="SC">South Carolina</option>
+              <option value="SD">South Dakota</option>
+              <option value="TN">Tennessee</option>
+              <option value="TX">Texas</option>
+              <option value="UT">Utah</option>
+              <option value="VT">Vermont</option>
+              <option value="VA">Virginia</option>
+              <option value="WA">Washington</option>
+              <option value="WV">West Virginia</option>
+              <option value="WI">Wisconsin</option>
+              <option value="WY">Wyoming</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="ssn">SSN</label>
+            <input type="text" class="form-control search-input" id="ssn" name="ssn" data-category="master_name">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="fbi">FBI#</label>
+            <input type="text" class="form-control search-input" id="fbi" name="fbi" data-category="master_name">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="bci">BCI#</label>
+            <input type="text" class="form-control search-input" id="bci" name="bci" data-category="master_name">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="control">Control#</label>
+            <input type="text" class="form-control search-input" id="control" name="control"
+              data-category="master_name">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="jacket">Jacket#</label>
+            <input type="text" class="form-control search-input" id="jacket" name="jacket" data-category="master_name">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="gang_affiliation">Gang Affiliation</label>
+            <input type="text" class="form-control search-input" id="gang_affiliation" name="gang_affiliation"
+              data-category="master_name">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="additional_info">Additional Info</label>
+            <input type="text" class="form-control search-input" id="additional_info" name="additional_info"
+              placeholder="" data-category="master_name">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="hair_color">Hair Color</label>
+            <select class="form-control selectpicker show-tick search-input" id="hair_color" name="hair_color"
+              data-category="master_name">
+              <option value=""></option>
+              <option value="BLD">Bald</option>
+              <option value="BLK">Black</option>
+              <option value="BLN">Blond or Strawberry</option>
+              <option value="BRO">Brown</option>
+              <option value="GRY">Gray or Partially Gray</option>
+              <option value="RED">Red Auburn</option>
+              <option value="SDY">Sandy</option>
+              <option value="WHI">White</option>
+              <option value="OOO">Other</option>
+              <option value="U">Unknown</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="eye_color">Eye Color</label>
+            <select class="form-control selectpicker show-tick search-input" id="eye_color" name="eye_color"
+              data-category="master_name">
+              <option value=""></option>
+              <option value="BLK">Black</option>
+              <option value="BLU">Blue</option>
+              <option value="BRO">Brown</option>
+              <option value="GRY">Gray</option>
+              <option value="GRN">Green</option>
+              <option value="HAZ">Hazel</option>
+              <option value="MAR">Maroon</option>
+              <option value="MUL">Multicolored</option>
+              <option value="PNK">Pink</option>
+              <option value="OOO">Other</option>
+              <option value="U">Unknown</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12 d-none">
+            <label class="col-sm-12" style="margin-left:-10px">Height</label>
+            <div class="flex-container">
+              <input type="number" class="form-control search-input" id="height_min" name="height_min"
+                placeholder="Min inch" style="font-size:16px;" data-category="master_name" />
+              -
+              <input type="number" class="form-control search-input" id="height_max" name="height_max"
+                placeholder="Max inch" style="font-size:16px;" data-category="master_name" />
+
+            </div>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12 d-none">
+            <label class="col-sm-12" style="margin-left:-10px">Weight</label>
+            <div class="flex-container">
+              <input type="number" class="form-control search-input" id="weight_min" name="weight_min" placeholder="Min"
+                style="font-size:16px;" data-category="master_name" />
+              -
+              <input type="number" class="form-control search-input" id="weight_max" name="weight_max" placeholder="Max"
+                style="font-size:16px;" data-category="master_name" />
+
+            </div>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="scars">Scars/Marks/Tattoos</label>
+            <input type="text" class="form-control search-input" id="scars" name="scars" placeholder=""
+              data-category="master_name">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="occupation">Occupation/School</label>
+            <input type="text" class="form-control search-input" id="occupation" name="occupation" placeholder=""
+              data-category="master_name">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="note">Note</label>
+            <input type="text" class="form-control search-input" id="note" name="note" placeholder=""
+              data-category="master_name">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="violent_crime">Violent Crime</label>
+            <select class="form-control selectpicker show-tick search-input" id="violent_crime" name="violent_crime"
+              data-category="master_name">
+              <option value=""></option>
+              <option value="Y">Yes</option>
+              <option value="N">No</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="cautious">Caution</label>
+            <select class="form-control selectpicker show-tick search-input" id="cautious" name="cautious"
+              data-category="master_name">
+              <option value=""></option>
+              <option value="Y">Yes</option>
+              <option value="N">No</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="cautious_note">Caution Note</label>
+            <input type="text" class="form-control search-input" id="cautious_note" name="cautious_note" placeholder=""
+              data-category="master_name">
+          </div>
+          <div class="form-group col-md-12 search-section">Place</div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="address">Address</label>
+            <input type="text" class="form-control search-input" id="address" name="address" placeholder=""
+              data-category="master_name">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="neighborhood">Neighborhood</label>
+            <input type="text" class="form-control search-input" id="neighborhood" name="neighborhood" placeholder=""
+              data-category="master_name">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="city">City</label>
+            <input type="text" class="form-control search-input" id="city" name="city" placeholder=""
+              data-category="master_name">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="county">County</label>
+            <input type="text" class="form-control search-input" id="county" name="county" placeholder=""
+              data-category="master_name">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="state">State</label>
+            <select class="form-control selectpicker show-tick search-input" id="state" name="state"
+              data-category="master_name">
+              <option value=""></option>
+              <option value="AL">Alabama</option>
+              <option value="AK">Alaska</option>
+              <option value="AZ">Arizona</option>
+              <option value="AR">Arkansas</option>
+              <option value="CA">California</option>
+              <option value="CO">Colorado</option>
+              <option value="CT">Connecticut</option>
+              <option value="DE">Delaware</option>
+              <option value="DC">District Of Columbia</option>
+              <option value="FL">Florida</option>
+              <option value="GA">Georgia</option>
+              <option value="HI">Hawaii</option>
+              <option value="ID">Idaho</option>
+              <option value="IL">Illinois</option>
+              <option value="IN">Indiana</option>
+              <option value="IA">Iowa</option>
+              <option value="KS">Kansas</option>
+              <option value="KY">Kentucky</option>
+              <option value="LA">Louisiana</option>
+              <option value="ME">Maine</option>
+              <option value="MD">Maryland</option>
+              <option value="MA">Massachusetts</option>
+              <option value="MI">Michigan</option>
+              <option value="MN">Minnesota</option>
+              <option value="MS">Mississippi</option>
+              <option value="MO">Missouri</option>
+              <option value="MT">Montana</option>
+              <option value="NE">Nebraska</option>
+              <option value="NV">Nevada</option>
+              <option value="NH">New Hampshire</option>
+              <option value="NJ">New Jersey</option>
+              <option value="NM">New Mexico</option>
+              <option value="NY">New York</option>
+              <option value="NC">North Carolina</option>
+              <option value="ND">North Dakota</option>
+              <option value="OH">Ohio</option>
+              <option value="OK">Oklahoma</option>
+              <option value="OR">Oregon</option>
+              <option value="PA">Pennsylvania</option>
+              <option value="RI">Rhode Island</option>
+              <option value="SC">South Carolina</option>
+              <option value="SD">South Dakota</option>
+              <option value="TN">Tennessee</option>
+              <option value="TX">Texas</option>
+              <option value="UT">Utah</option>
+              <option value="VT">Vermont</option>
+              <option value="VA">Virginia</option>
+              <option value="WA">Washington</option>
+              <option value="WV">West Virginia</option>
+              <option value="WI">Wisconsin</option>
+              <option value="WY">Wyoming</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="zip_code">Zip Code</label>
+            <input type="text" class="form-control search-input" id="zip_code" name="zip_code" placeholder=""
+              data-category="master_name">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="apt_no">Apt No</label>
+            <input type="text" class="form-control search-input" id="apt_no" name="apt_no" placeholder=""
+              data-category="master_name">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="resident_status">Resident Status</label>
+            <select class="form-control selectpicker show-tick search-input" id="resident_status" name="resident_status"
+              data-category="master_name">
+              <option value=""></option>
+              <option value="1">Resident</option>
+              <option value="2">Tourist</option>
+              <option value="3">Military</option>
+              <option value="4">Student</option>
+              <option value="5">Other Status</option>
+              <option value="R">Not Reported</option>
+              <option value="U">Unknown</option>
+            </select>
+          </div>
+          <div class="form-group col-md-12 search-section">Driver License</div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="driver_license_no">Driver License No</label>
+            <input type="text" class="form-control search-input" id="driver_license_no" name="driver_license_no"
+              data-category="master_name">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="driver_license_state">Driver License State</label>
+            <select class="form-control selectpicker show-tick search-input" id="driver_license_state"
+              name="driver_license_state" data-category="master_name">
+              <option value=""></option>
+              <option value="AL">Alabama</option>
+              <option value="AK">Alaska</option>
+              <option value="AZ">Arizona</option>
+              <option value="AR">Arkansas</option>
+              <option value="CA">California</option>
+              <option value="CO">Colorado</option>
+              <option value="CT">Connecticut</option>
+              <option value="DE">Delaware</option>
+              <option value="DC">District Of Columbia</option>
+              <option value="FL">Florida</option>
+              <option value="GA">Georgia</option>
+              <option value="HI">Hawaii</option>
+              <option value="ID">Idaho</option>
+              <option value="IL">Illinois</option>
+              <option value="IN">Indiana</option>
+              <option value="IA">Iowa</option>
+              <option value="KS">Kansas</option>
+              <option value="KY">Kentucky</option>
+              <option value="LA">Louisiana</option>
+              <option value="ME">Maine</option>
+              <option value="MD">Maryland</option>
+              <option value="MA">Massachusetts</option>
+              <option value="MI">Michigan</option>
+              <option value="MN">Minnesota</option>
+              <option value="MS">Mississippi</option>
+              <option value="MO">Missouri</option>
+              <option value="MT">Montana</option>
+              <option value="NE">Nebraska</option>
+              <option value="NV">Nevada</option>
+              <option value="NH">New Hampshire</option>
+              <option value="NJ">New Jersey</option>
+              <option value="NM">New Mexico</option>
+              <option value="NY">New York</option>
+              <option value="NC">North Carolina</option>
+              <option value="ND">North Dakota</option>
+              <option value="OH">Ohio</option>
+              <option value="OK">Oklahoma</option>
+              <option value="OR">Oregon</option>
+              <option value="PA">Pennsylvania</option>
+              <option value="RI">Rhode Island</option>
+              <option value="SC">South Carolina</option>
+              <option value="SD">South Dakota</option>
+              <option value="TN">Tennessee</option>
+              <option value="TX">Texas</option>
+              <option value="UT">Utah</option>
+              <option value="VT">Vermont</option>
+              <option value="VA">Virginia</option>
+              <option value="WA">Washington</option>
+              <option value="WV">West Virginia</option>
+              <option value="WI">Wisconsin</option>
+              <option value="WY">Wyoming</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="driver_license_class">Driver License Class</label>
+            <select class="form-control selectpicker show-tick search-input" id="driver_license_class"
+              name="driver_license_class" data-category="master_name" multiple data-max-options="1">
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+              <option value="I">I</option>
+            </select>
+          </div>
+          <div class="form-group col-md-4 col-sm-4 col-xs-12">
+            <label class="col-sm-12" style="margin-left:-10px">DL Issued Date</label>
+            <div class="flex-container">
+              <div class="input-group date datetimepicker">
+                <input type="text" class="form-control search-input advanced-search-date-short"
+                  data-category="master_name" id="dl_issued_date_start" name="dl_issued_date_start"
+                  placeholder="MM/DD/YYYY" style="font-size:16px;" />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+              &nbsp;&nbsp;-&nbsp;&nbsp;
+              <div class="input-group date datetimepicker">
+                <input type="text" class="form-control search-input advanced-search-date-short"
+                  data-category="master_name" id="dl_issued_date_end" name="dl_issued_date_end" placeholder="MM/DD/YYYY"
+                  style="font-size:16px;" />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-4 col-sm-4 col-xs-12">
+            <label class="col-sm-12" style="margin-left:-10px">DL Expiration Date</label>
+            <div class="flex-container">
+              <div class="input-group date datetimepicker">
+                <input type="text" class="form-control search-input advanced-search-date-short"
+                  data-category="master_name" id="dl_expiration_start" name="dl_expiration_start"
+                  placeholder="MM/DD/YYYY" style="font-size:16px;" />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+              &nbsp;&nbsp;-&nbsp;&nbsp;
+              <div class="input-group date datetimepicker">
+                <input type="text" class="form-control search-input advanced-search-date-short"
+                  data-category="master_name" id="dl_expiration_end" name="dl_expiration_end" placeholder="MM/DD/YYYY"
+                  style="font-size:16px;" />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-12 search-section">Phone/Email</div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="work_tel">Work Tel</label>
+            <input type="text" class="form-control search-input" id="work_tel" name="work_tel" placeholder=""
+              data-category="master_name">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="cell_phone">Cell Phone</label>
+            <input type="text" class="form-control search-input" id="cell_phone" name="cell_phone" placeholder=""
+              data-category="master_name">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="other_tel">Other Tel</label>
+            <input type="text" class="form-control search-input" id="other_tel" name="other_tel" placeholder=""
+              data-category="master_name">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="email">Email</label>
+            <input type="text" class="form-control search-input" id="email" name="email" placeholder=""
+              data-category="master_name">
+          </div>
+          <div class="form-group col-md-12 search-section">Employer</div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="employer">Employer</label>
+            <input type="text" class="form-control search-input" id="employer" name="employer" placeholder=""
+              data-category="master_name">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="employer_phone">Employer Phone</label>
+            <input type="text" class="form-control search-input" id="employer_phone" name="employer_phone"
+              placeholder="" data-category="master_name">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="employer_address">Employer Address</label>
+            <input type="text" class="form-control search-input" id="employer_address" name="employer_address"
+              placeholder="" data-category="master_name">
+          </div>
+
+          <div class="form-group col-xs-12 button-container" id="search_button_container">
+            <button type="button" class="btn btn-info pull-right" style="margin-top:30px; width:150px"
+              id="search_button">Search</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

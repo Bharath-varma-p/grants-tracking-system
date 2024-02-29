@@ -1,0 +1,393 @@
+<div class="modal fade" id="add_case_task_type_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                Add / Edit Task Type
+                <button type="button" name="closeModal" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <form id="add_case_task_type_form">
+                    <div class="form-group">
+                        <label class="required">Type Name</label>
+                        <input type="text" id="task_type_name" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Task Category</label>
+                        <select id="case_task_type_category" class="selectpicker" required data-width="100%">
+                            <option value="General">General</option>
+                            <option value="Offense_Spesific">Offense Spesific</option>
+                        </select>
+                    </div>
+                    <div class="form-group d-none" id="select_orc_codes_div">
+                        <label class="required">Select ORC Codes</label>
+                        <select id="case_task_type_related_orc" class="selectpicker" required data-width="100%"
+                            data-live-search="true" multiple data-actions-box="true"
+                            data-live-search-placeholder="Search"></select>
+                    </div>
+                </form>
+                <div id="task_types_table_container">
+                    <label>All Case Task Types</label>
+                    <table id="task_types_table" class="table table-bordered table-striped table-responsive">
+                        <thead>
+                            <th>TYPE NAME</th>
+                            <th>CATEGORY</th>
+                            <th style="width: 50px;">ACTIONS</th>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btn_save_task_type" type="button" class="btn btn-primary">Add</button>
+                <button id="btn_cancel_task_type" style="display: none;" type="button"
+                    class="btn btn-default">Cancel</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    if (typeof addCaseTaskTypeModalController === 'undefined') {
+        function AddCaseTaskTypeModalController() {
+
+            this.selectedCaseTaskTypeId = null;
+            this.case_task_types = [];
+            this.category_change_promise = null;
+
+            this.resetForm = function () {
+                addCaseTaskTypeModalController.selectedCaseTaskTypeId = null;
+                $('#task_type_name').val('');
+                $('#case_task_type_related_orc').val([]).selectpicker('refresh');
+                $('#btn_save_task_type').text('Add');
+                $('#btn_cancel_task_type').hide();
+                $('#task_types_table tr').removeClass('selected-task-type');
+                $('#add_case_task_type_form').validate().resetForm();
+            };
+
+            this.createCaseTaskTypesTable = function () {
+
+                $('#loading_peel9').show();
+
+                $.post('/{{routeLink}}get_case_management_task_types/')
+                    .done(data => {
+
+                        $('#loading_peel9').hide();
+
+                        addCaseTaskTypeModalController.case_task_types = data;
+
+                        var task_types_table_tbody = $('#task_types_table > tbody');
+
+                        var task_modal_task_type_select = $('#task_type');
+
+                        var old_selected_task_types = [];
+
+                        if (task_modal_task_type_select.length > 0) {
+                            old_selected_task_types = $('#task_type').val();
+                            $('#task_type').empty();
+                        }
+
+                        task_types_table_tbody.empty();
+
+                        if (data.General) {
+
+                            var optgroup = $(`<optgroup label="General"></optgroup>`);
+
+                            data.General.forEach(item => {
+                                task_types_table_tbody.append(`
+                                <tr>
+                                    <td>${item.type_name}</td>
+                                    <td>General</td>
+                                    <td>
+                                        <button class="btn btn-xs btn-default edit-case-task-type" data-id="${item.id}" data-category="General"> <i class="glyphicon glyphicon-pencil" /></button>
+                                        <button class="btn btn-xs btn-danger delete-case-task-type" data-id="${item.id}" data-category="General"> <i class="glyphicon glyphicon-trash"/></button> 
+                                    </td>
+                                </tr>
+                            `);
+
+                                optgroup.append(`<option value="${item.id}">${item.type_name}</option>`);
+                            });
+
+                            task_modal_task_type_select.append(optgroup);
+                        }
+
+                        if (data.Offense_Spesific) {
+
+                            var optgroup = $(`<optgroup label="Offense Spesific"></optgroup>`);
+
+                            var optgroup_add_task_modal_select = null;
+
+                            Object.keys(data.Offense_Spesific).forEach(key => {
+
+                                var records = data.Offense_Spesific[key];
+
+                                task_types_table_tbody.append(`
+                                <tr>
+                                    <td>${records[0].type_name}</td>
+                                    <td>Offense Spesific (${records.length})</td>
+                                        <td>
+                                        <button class="btn btn-xs btn-default edit-case-task-type" data-id="${key}" data-category="Offense_Spesific"><i class="glyphicon glyphicon-pencil"/></button> 
+                                        <button class="btn btn-xs btn-danger delete-case-task-type" data-id="${key}" data-category="Offense_Spesific"><i class="glyphicon glyphicon-trash" /></button> 
+                                    </td>
+                                </tr>
+                            `);
+
+                                optgroup.append(`<option value="${key}">${records[0].type_name}</option>`);
+
+                                if (addCaseTaskModalController) {
+                                    records.forEach(item => {
+                                        if (item.related_orc == addCaseTaskModalController.selectedIncidentOrcNo) {
+                                            if (!optgroup_add_task_modal_select) {
+                                                optgroup_add_task_modal_select = $(`<optgroup label="Offense Spesific"></optgroup>`);
+                                                task_modal_task_type_select.append(optgroup_add_task_modal_select);
+                                            }
+
+                                            optgroup_add_task_modal_select.append(`<option value="${key}">${item.type_name}</option>`);
+
+                                        }
+                                    })
+                                }
+                            });
+                        }
+
+                        task_modal_task_type_select.val(old_selected_task_types).selectpicker('refresh');
+
+                        if (data.General || data.Offense_Spesific) {
+                            $('#task_types_table_container').show();
+                        }
+                        else $('#task_types_table_container').hide();
+
+
+                    })
+                    .fail(err => {
+                        console.error(err);
+                        $('#loading_peel9').hide();
+                    });
+            };
+
+
+            this.initModal = function () {
+
+                $(function () {
+
+                    if (!addCaseTaskTypeModalController.modalHtml) {
+                        addCaseTaskTypeModalController.modalHtml = $('#add_case_task_type_modal').html();
+                    }
+
+                    $(document).on('shown.bs.modal', "#add_case_task_type_modal", function () {
+
+                        var validator = $('#add_case_task_type_form').validate({
+                            ignore: ":hidden:not(.selectpicker)"
+                        });
+
+                        $('#add_case_task_type_modal .selectpicker').selectpicker('refresh');
+
+                        $('#case_task_type_category').selectpicker().change(function () {
+
+                            var task_category = $('#case_task_type_category').val();
+
+                            if (task_category == 'Offense_Spesific') {
+
+                                $('#select_orc_codes_div').removeClass('d-none');
+
+                                if ($('#case_task_type_related_orc option').length == 0) {
+                                    addCaseTaskTypeModalController.category_change_promise = new Promise(function (resolve, reject) {
+
+                                        fillOffenseCodes("#case_task_type_related_orc").then(() => {
+                                            $('#case_task_type_related_orc').selectpicker().change(function () {
+
+                                                const selected_users = $(this).val();
+
+                                                validator.element("#case_task_type_related_orc");
+                                            });
+                                        }).catch(err => {
+                                            console.error(err);
+                                        })
+                                        .finally(resolve);
+                                    });
+
+                                }
+                            }
+                            else $('#select_orc_codes_div').addClass('d-none');
+
+
+                        });
+
+                        addCaseTaskTypeModalController.createCaseTaskTypesTable();
+
+                        $('#add_case_task_type_form').validate({
+                            ignore: ":hidden:not(.selectpicker)"
+                        });
+                    });
+
+                    $(document).on('hidden.bs.modal', "#add_case_task_type_modal", function () {
+                        $(this).data('bs.modal', null);
+                        $("#add_case_task_type_modal").html(addCaseTaskTypeModalController.modalHtml);
+                    });
+
+                    $(document).on('click', '#btn_save_task_type', function () {
+                        var validator = $('#add_case_task_type_form').validate();
+                        var isValid = true;
+                        if (!validator.form()) isValid = false;
+
+                        if ($('#select_orc_codes_div:visible #case_task_type_related_orc').length > 0) {
+                            if (!validator.element("#select_orc_codes_div:visible #case_task_type_related_orc")) isValid = false;
+                        }
+
+                        if (isValid) {
+                            var post_data_save_task_type =
+                            {
+                                id: addCaseTaskTypeModalController.selectedCaseTaskTypeId,
+                                type_name: $('#task_type_name').val(),
+                                category: $('#case_task_type_category').val(),
+                                related_orcs: $('#case_task_type_related_orc').val()
+                            }
+
+                            $('#loading_peel9').show();
+
+                            $.post('/{{routeLink}}add_case_task_type', post_data_save_task_type)
+                                .done(result => {
+
+                                    $('#loading_peel9').hide();
+
+                                    if (result) {
+                                        $.alert('Succesfully saved');
+                                        addCaseTaskTypeModalController.resetForm();
+
+                                        addCaseTaskTypeModalController.createCaseTaskTypesTable();
+                                    }
+                                })
+                                .fail(err => {
+                                    $('#loading_peel9').hide();
+                                    console.error(err);
+                                    $.alert(err.responseText);
+                                });
+                        }
+                    });
+
+                    $(document).on('click', '#btn_cancel_task_type', function () {
+                        addCaseTaskTypeModalController.resetForm();
+                    });
+
+                    $(document).on('click', '.edit-case-task-type', function () {
+
+                        addCaseTaskTypeModalController.selectedCaseTaskTypeId = $(this).attr('data-id');
+
+                        $('#task_types_table tr').removeClass('selected-task-type');
+
+                        $(this).parents('tr').addClass('selected-task-type');
+
+                        var case_task_type_category = $(this).attr('data-category');
+
+                        var selected_case_task_type = null;
+
+                        var selected_case_task_types = [];
+
+                        if (case_task_type_category == "General") {
+                            selected_case_task_type = addCaseTaskTypeModalController.case_task_types.General.find(item => item.id == addCaseTaskTypeModalController.selectedCaseTaskTypeId);
+                        }
+                        else {
+                            selected_case_task_types = addCaseTaskTypeModalController.case_task_types.Offense_Spesific[addCaseTaskTypeModalController.selectedCaseTaskTypeId];
+
+                            selected_case_task_type = selected_case_task_types[0];
+                        }
+
+
+                        $('#task_type_name').val(selected_case_task_type.type_name);
+
+                        $('#case_task_type_category').val(selected_case_task_type.category).selectpicker('refresh');
+                        $('#case_task_type_category').selectpicker().change();
+
+                        if (addCaseTaskTypeModalController.category_change_promise) {
+                            addCaseTaskTypeModalController.category_change_promise.then(function () {
+                                $('#case_task_type_related_orc').val(selected_case_task_types.map(item => item.related_orc)).selectpicker('refresh');
+                            });
+                        }
+
+                        $('#btn_save_task_type').text('Update');
+                        $('#btn_cancel_task_type').show();
+
+                    });
+
+                    $(document).on('click', '.delete-case-task-type', function () {
+
+                        var deletedCaseTaskTypeId = $(this).attr('data-id');
+
+                        $.confirm({
+                            title: 'Are you sure?',
+                            content: 'This will delete task type',
+                            buttons: {
+                                confirm: function () {
+
+                                    $('#loading_peel9').show();
+
+                                    $.post('/{{routeLink}}delete_case_task_type', { id: deletedCaseTaskTypeId })
+                                        .done(result => {
+
+                                            $('#loading_peel9').hide();
+
+                                            $.alert('Succesfully deleted');
+
+                                            if (addCaseTaskTypeModalController.selectedCaseTaskTypeId == deletedCaseTaskTypeId) {
+                                                addCaseTaskTypeModalController.resetForm();
+                                            }
+
+                                            addCaseTaskTypeModalController.createCaseTaskTypesTable();
+
+                                        })
+                                        .fail(err => {
+                                            $('#loading_peel9').hide();
+                                            console.error(err);
+                                            $.alert('Delete failed');
+                                        });
+
+                                },
+                                cancel: function () {
+                                }
+                            }
+                        });
+
+
+                    });
+
+
+
+                });
+            };
+        }
+        addCaseTaskTypeModalController = new AddCaseTaskTypeModalController();
+
+        addCaseTaskTypeModalController.initModal();
+    }
+</script>
+<style>
+    #add_case_task_type_modal .modal-header {
+        background-color: #3f51b5;
+        color: white;
+    }
+
+    #add_case_task_type_modal .close {
+        color: white;
+        opacity: 1;
+    }
+
+    #select_orc_codes_div .dropdown-menu {
+        max-width: 580px;
+    }
+
+    .selected-task-type {
+        background-color: #e8e271 !important;
+    }
+
+    #task_types_table>thead>tr>th {
+        background-color: #aedce2;
+        font-weight: bold;
+    }
+
+    #task_types_table_container {
+        max-height: 500px;
+        overflow-y: auto;
+    }
+</style>

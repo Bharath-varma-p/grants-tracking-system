@@ -1,0 +1,582 @@
+<style>
+  .swal2-title {
+    color: #8AAAE5;
+  }
+
+  .swal2-popup {
+    background: #FFFFFF;
+  }
+
+  .swal2-content {
+    color: #8AAAE5;
+  }
+
+  #reviewer_queries_info {
+    font-weight: bold;
+    margin-right: 389px;
+    margin-top: -2px;
+  }
+
+  .tableBorder {
+    border-radius: 4px;
+  }
+
+  .mainContainer {
+    margin: 0 15px 30px 15px;
+  }
+
+  .patientDetails {
+    display: none;
+    margin-bottom: 10px;
+  }
+
+  #container {
+    padding: 20px;
+    margin: 10px 15px 30px 15px
+  }
+
+  #dropdowns-container {
+    .dropdown-menu {
+      max-width: 600px;
+      height: 580px;
+    }
+  }
+
+  tr.group,
+  tr.group:hover {
+    background-color: #42b8ca !important;
+  }
+</style>
+<div class="container body">
+  {{> sideMenu }}
+
+  <div class="right_col" role="main" style="background: transparent;">
+
+    <div class="row top_tiles">
+      <div>
+        <h1 id="main_header" style="color: #2d4283">
+          Review Analysis
+        </h1>
+      </div>
+
+
+      <div class="clearfix"></div>
+      <div id="loading-screen">
+        <div id="loading_gif">
+          <img src="../../images/Peel9Animated_5.gif" alt="loading_gif">
+        </div>
+      </div>
+      <div id="main-container" class="mainContainer">
+        <div id="container">
+          <div class="row">
+            <div class="form-group col-md-2 col-sm-6 col-xs-12">
+              <label>Start Date</label>
+              <div class="input-group date" id="datetimepicker3">
+                <input type="text" class="form-control" id="last_visiters_time" placeholder="MM/DD/YYYY" required />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+            </div>
+
+            <div class="form-group col-md-2 col-sm-6 col-xs-12">
+              <label>End Date</label>
+              <div class="input-group date" id="datetimepicker4">
+                <input type="text" class="form-control" id="recent_visiters_time" placeholder="MM/DD/YYYY" required />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+            </div>
+
+            <div class="form-group col-md-1 col-sm-1 col-xs-12">
+              <label style="display: block; visibility: hidden;">Search</label>
+              <button type="button" class="btn btn-primary" id="searchButton1">Search</button>
+            </div>
+
+            <div class="form-group col-md-2 col-sm-6 col-xs-12" style="display: inline-grid;">
+              <label>Reviewers:</label>
+              <select multiple id="reviewersDropdown" class="selectpicker" required data-live-search="true"
+                data-actions-box="false" data-live-search-placeholder="Search">
+              </select>
+            </div>
+
+          </div>
+        </div>
+        <div id="dc-table-chart2" class="tableBorder">
+          <div id="tablePanel" class="fixed_height_700">
+            <table class="datatable display nowrap" id="dc-table-chart">
+              <thead>
+                <tr class="header">
+                  <th class="header" style="">Id</th>
+                  <th class="header" style="display:none">Reviewer Id</th>
+                  <th class="header" style="">Reviewer Name</th>
+                  <th class="header" style="">Total Review Completed</th>
+                  <th class="header" style="">Individual Daily average</th>
+                  <th class="header" style="">ICD 10 Reviewed</th>
+                  <th class="header">ICD 10 Removed</th>
+                  <th class="header">New ICD 10 Entered</th>
+                  <th class="header">Query Sent</th>
+                  <th class="header">Query per Patient</th>
+                  {{!-- <th class="header">HCC validated Higher</th>
+                  <th class="header">HCC validated Lower</th> --}}
+                </tr>
+              </thead>
+            </table>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+
+        <div id="accordion13">
+          <div id="dc-table-chart3" class="tableBorder">
+
+            <div class="panel-default panel">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  REVIEW DETAILS
+                </h4>
+              </div>
+            </div>
+
+            <table class="datatable" id="reviewer_queries">
+              <thead>
+                <tr class="header">
+                  <th class="header" style="">MRN</th>
+                  <th class="header" style="">Full Name</th>
+                  <th class="header" style="">Reviewed ICD count</th>
+                  <th class="header" style="">Followup Query Count</th>
+                  <th class="header" style="">Closed Queries</th>
+                </tr>
+              </thead>
+            </table>
+
+            <div class="clearfix"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../public/js/jquery.js"></script>
+<script src="../public/js/lodash.js"></script>
+<script src="../public/js/moment.min.js"></script>
+<script src="../public/js/jquery.dataTables.min.js"></script>
+<script src="../public/js/dataTables.rowGroup.min.js"></script>
+<script src="../public/js/underscore-min.js"></script>
+<script type="text/javascript" src="../public/js/printCustomClass.js"></script>
+<script type="text/javascript" src="../public/js/FileSaver.js"></script>
+<script type="text/javascript" src="../public/js/reductio.min.js"></script>
+<script src="../public/js/bootstrap-datetimepicker.min.js"></script>
+<script src="../public/js/dynamic_table.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../public/css/rowGroup.bootstrap.min.css">
+
+<script>
+  let clicked_row_id = null;
+  let current_clicked_row_id = null;
+  let clicked_row_data = null;
+  var approved_date;
+  var data13;
+  var row_check;
+  var different_row = 0;
+  var table = null;
+  const FORM = $('#victim_form');
+  let icd_details = [];
+
+  function generateRandomLetters() {
+    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let randomString = '';
+    for (let i = 0; i < 5; i++) {
+      const randomIndex = Math.floor(Math.random() * letters.length);
+      randomString += letters.charAt(randomIndex);
+    }
+    return randomString;
+  }
+
+  $(document).ready(function () {
+    // MAIN TABLE
+    var urlParams = new URLSearchParams(window.location.search);
+    var incident_no = urlParams.get('search');
+    var firstTable;
+    var dignosisTable;
+    var initialData;
+
+    function initializeFirstTable(routeLink = './review_analysis_page_data') {
+      firstTable = $('#dc-table-chart').DataTable({
+        "responsive": true,
+        "bServerSide": true, searchHighlight: true,
+        "bProcessing": true,
+        "bSort": true,
+        'bSortable': true,
+        destroy: true,
+        "lengthMenu": [[25, 50, 100], [25, 50, 100]],
+        "oLanguage": {
+          "oPaginate": {
+            "sFirst": "",
+            "sPrevious": "",
+            "sNext": "",
+            "sLast": ""
+          },
+          "sLengthMenu": "Records per page: _MENU_",
+          "sInfo": "<span style='font-size:15px'><b>Total of _TOTAL_ records (showing _START_ to _END_)<b></span>",
+          "sInfoFiltered": "(filtered from _MAX_ total records)"
+        },
+        "sAjaxSource": routeLink,
+        "fnDrawCallback": function (oSettings) {
+          $('#loading-screen').hide();
+          $('#dc-table-chart2').show();
+
+        },
+        "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+          return nRow;
+        },
+        "search": {
+          "search": incident_no
+        },
+        columns: [
+          {
+            data: 1,
+            visible: false,
+            sortable: true,
+          },
+          {
+            data: 0,
+            sortable: true,
+            visible: false,
+          },
+          {
+            data: 1,
+            sortable: true,
+            render: function (data, type, row) {
+              if ('{{sensitiveMode}}' == 'true') {
+                return generateRandomLetters();
+              }
+              return data;
+            }
+          },
+          {
+            data: 2,
+            sortable: true,
+            render: function (data, type, row) {
+
+              if ('{{sensitiveMode}}' == 'true') {
+                return generateRandomLetters();
+              }
+              return data;
+            }
+          },
+          {
+            data: 3,
+            sortable: true,
+          },
+          {
+            data: 4,
+            sortable: true,
+          },
+          {
+            data: 5, //  Date of Birth column 
+            sortable: true,
+            render: function (data, type, row) {
+              // Assuming 'data' is in 'YYYYMMDD' format
+              if ('{{sensitiveMode}}' == 'true') {
+                return '****';
+              } else {
+                if (data && data.length === 8) {
+                  const year = data.substring(0, 4);
+                  const month = data.substring(4, 6);
+                  const day = data.substring(6, 8);
+                  const formattedDate = `${year}-${month}-${day}`;
+                  return formattedDate;
+                }
+                return data;
+              }
+              if (data && data.length === 8) {
+                const year = data.substring(0, 4);
+                const month = data.substring(4, 6);
+                const day = data.substring(6, 8);
+                const formattedDate = `${year}-${month}-${day}`;
+                return formattedDate;
+              }
+              return data;
+
+            }
+          },
+          {
+            data: 6,
+            sortable: true,
+          },
+          {
+            data: 7,
+            sortable: true,
+          },
+          {
+            data: 8,
+            sortable: true,
+          },
+
+        ]
+
+
+      });
+    }
+
+    initializeFirstTable();
+
+    function updateDataTable() {
+      var selectedReviewers = $('#reviewersDropdown').val();
+      var LastVisitStartDate = $('#last_visiters_time').val();
+      var LastVisitEndDate = $('#recent_visiters_time').val();
+
+      var formattedLastVisitStartDate;
+      var formattedLastVisitEndDate;
+
+      function validateAndFormatDate(dateString) {
+        if (dateString.length > 0) {
+          return formatDate(new Date(dateString));
+        }
+        return null;
+      }
+
+      function appendParam(key, value) {
+        if (value !== null && value !== undefined) {
+          params.push(key + '=' + encodeURIComponent(value));
+        }
+      }
+
+      var params = [];
+
+      formattedLastVisitStartDate = validateAndFormatDate(LastVisitStartDate);
+      formattedLastVisitEndDate = validateAndFormatDate(LastVisitEndDate);
+
+      if (formattedLastVisitStartDate && formattedLastVisitEndDate) {
+        if (new Date(formattedLastVisitStartDate) > new Date(formattedLastVisitEndDate)) {
+          alert('End date must be greater than start date.');
+          return;
+        }
+        appendParam('start_date', formattedLastVisitStartDate);
+        appendParam('end_date', formattedLastVisitEndDate);
+      }
+
+      appendParam('reviewers', selectedReviewers);
+
+      var baseURL = './review_analysis_page_data?' + params.join('&');
+
+      if ($.fn.DataTable.isDataTable('#dc-table-chart')) {
+        $('#dc-table-chart').DataTable().clear().destroy();
+      }
+      initializeFirstTable(baseURL);
+    }
+
+    function formatDate(date) {
+      const year = date.getFullYear();
+      const month = ('0' + (date.getMonth() + 1)).slice(-2);
+      const day = ('0' + date.getDate()).slice(-2);
+      const hours = ('0' + date.getHours()).slice(-2);
+      const minutes = ('0' + date.getMinutes()).slice(-2);
+      const seconds = ('0' + date.getSeconds()).slice(-2);
+
+      return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    }
+
+    $('#reviewersDropdown').on('change', function () {
+      updateDataTable();
+    });
+
+    //MAIN TABLE LISTENERS PATIENT-ID table
+    $('#dc-table-chart tbody').on('click', 'tr', function () {
+      firstTable = $("#dc-table-chart").DataTable();
+      document.getElementById("accordion13").style.display = "block";
+      $("#loading-screen").show();
+      clicked_row_id = $(this).index();
+      current_clicked_row_id = $(this).index();
+      clicked_row_data = firstTable.row($(this)).data();
+
+      $.ajax({
+        url: './get_reviewer_patients',
+        type: 'POST',
+        data: {
+          id: clicked_row_data[0]
+        },
+        success: function (data) {
+          $("#loading-screen").hide();
+          dataTable2 = $("#reviewer_queries").DataTable();
+          if (data.length == 0) {
+            dataTable2.clear();
+            dataTable2.draw();
+          } else {
+            dataTable2.clear();
+            dataTable2.rows.add(data);
+            dataTable2.draw();
+          }
+        }
+      });
+    });
+
+    $.ajax({
+      url: './get_reviewers',
+      method: 'GET',
+      success: function (data) {
+        if (data && Array.isArray(data)) {
+
+          $('#reviewersDropdown').empty();
+
+          data.forEach(function (item) {
+            $('#reviewersDropdown').append($('<option>', {
+              value: item.full_name,
+              text: item.full_name
+            }));
+          });
+          $('#reviewersDropdown').selectpicker('refresh'); // Refresh the selectpicker
+        }
+      },
+      error: function (error) {
+        console.error('Error loading details:', error);
+      }
+    });
+
+    $('#datetimepicker3').datetimepicker({
+      format: 'MM/DD/YYYY'
+    });
+
+    $('#datetimepicker4').datetimepicker({
+      format: 'MM/DD/YYYY',
+      useCurrent: false // Important: see below
+    });
+
+    $("#datetimepicker3").on("dp.change", function (e) {
+      $('#datetimepicker4').data("DateTimePicker").minDate(e.date);
+      checkDateSelection1();
+    });
+
+    $("#datetimepicker4").on("dp.change", function (e) {
+      $('#datetimepicker3').data("DateTimePicker").maxDate(e.date);
+      checkDateSelection1();
+    });
+    $('#searchButton1').prop('disabled', true);
+
+    function checkDateSelection1() {
+      var startDate = $('#last_visiters_time').val();
+      var endDate = $('#recent_visiters_time').val();
+      if (startDate && endDate) {
+        $('#searchButton1').prop('disabled', false);
+      } else {
+        $('#searchButton1').prop('disabled', true);
+      }
+    }
+
+    $('#searchButton1').click(function () {
+      updateDataTable()
+    });
+
+    function generateICDTable(icd_details) {
+      const icd_details_table = $(`<table class="icd_details_table" style="min-width:100%; max-width: 100%"></table>`)
+      const header_row = $(`<tr></tr>`);
+      header_row.append(`<th class="">ICD-10</th>`)
+      header_row.append(`<th class="">Follow Up</th>`)
+      header_row.append(`<th class="">Case Action</th>`)
+      header_row.append(`<th class="">Follow Up Status</th>`)
+      header_row.append(`<th class="">Follow up Outcome</th>`)
+      header_row.append(`<th class="">Pre Review ICD 10</th>`)
+      icd_details_table.append(header_row);
+      icd_details.forEach(detail => {
+        const detail_row = $(`<tr></tr>`)
+        detail_row.append(`<td class="">${detail['icd 10']}</td>`);
+        detail_row.append(`<td class="">${detail['followup']}</td>`);
+        detail_row.append(`<td class="">${detail['Case Action']}</td>`);
+        detail_row.append(`<td class="">${detail['follow up status']}</td>`);
+        detail_row.append(`<td class="">${detail['followup outcome']}</td>`);
+        detail_row.append(`<td class="">${detail['pre review icd 10']}</td>`);
+
+        icd_details_table.append(detail_row);
+      })
+      return icd_details_table;
+    }
+
+    $('#reviewer_queries').on('click', '.patient_info', function () {
+      firstTable = $("#dc-table-chart").DataTable();
+      clicked_row_data = firstTable.row($(this)).data();
+      let current_idx = $(this).index();
+      var tr = $(this).closest('tr');
+
+      $('.icd_details').remove();
+      if (current_idx !== clicked_row_id) {
+        if (clicked_row_id === null || clicked_row_id > current_idx) {
+          clicked_row_id = current_idx;
+        } else {
+          clicked_row_id = current_idx - 1;
+        }
+
+        const details_row = $('<tr class="icd_details"></tr>');
+        const gap_column = $('<td colspan="1"></td>')
+        const details_column = $('<td colspan="4"></td>')
+        details_column.append(generateICDTable(icd_details[clicked_row_id]));
+        details_row.append(gap_column);
+        details_row.append(details_column);
+        tr.after(details_row);
+
+        $('.icd_details_table tr td').css('background-color', 'white');
+        $('.icd_details_table tr th')
+          .css('background-color', 'white')
+          .css('color', 'black')
+          .css('text-shadow', 'none')
+          .css('font-size', '1.0em');
+      } else {
+        clicked_row_id = null;
+      }
+    })
+
+    // SECONDARY TABLE
+    var dataTable = $('#reviewer_queries').dataTable({
+      "responsive": true,
+      "bSort": true,
+      'bSortable': true,
+      destroy: true,
+      "lengthMenu": [[5, 10, 50, 100], [5, 10, 50, 100]],
+      "oLanguage": {
+        "oPaginate": {
+          "sFirst": "",
+          "sPrevious": "",
+          "sNext": "",
+          "sLast": ""
+        },
+        "sLengthMenu": "Records per page: _MENU_",
+        "sInfo": "<span style='font-size:15px'><b>Total of _TOTAL_ records (showing _START_ to _END_)<b></span>",
+        "sInfoFiltered": "(filtered from _MAX_ total records)"
+      },
+      "drawCallback": function (settings) {
+      },
+      "data": [],
+      "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+        $('#loading-screen').hide();
+        $('#dc-table-chart3').show();
+        icd_details.push(JSON.parse(aData.icd_data));
+        $(nRow).addClass('patient_info');
+        return nRow;
+      },
+      "destroy": function (settings) {
+        icd_details = [];
+        clicked_row_data = null;
+        clicked_row_id = null;
+      },
+      "columns": [
+        { data: "MRN" },
+        { data: "full_name" },
+        { data: "reviewed_icds" },
+        { data: "follow_up_queries_count" },
+        { data: "closed_queries" },
+      ],
+      "dom": '<"top"lfi<"info"r>t<"bottom"p>'
+    });
+
+    $('#main-container').on('click', '#showAll', function () {
+      $('#patient-details').hide();
+      $('#reviewButton').hide();
+      $('#historyButton').hide();
+      $('#additional_div_cover').hide();
+      $('#main_header').text('Reviewers Stastics');
+      $('#dc-table-chart2').show();
+      $('#dc-table-chart tbody tr').show();
+      $(this).hide();
+      showingSingleRow = false;
+      $('#dc-table-chart3').hide();
+    });
+
+  });
+</script>

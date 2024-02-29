@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{{title}}</title>
+	<!--
+	<link href="/img/favicon.png" rel="icon">
+	<link rel="stylesheet" href="../../css/fontawesome/css/fontawesome.min.css"> 
+	<link rel="stylesheet" href="../../css/style4.css">
+	<link href="../../css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
+	<link type="text/css" href="../../css/leaflet.markercluster.css" rel="stylesheet" />
+	<link rel="stylesheet" href="../../css/bootstrap.min.css"> 
+	<link rel="stylesheet" type="text/css" href="../../css/leaflet.css" />
+	<link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
+	<link rel="stylesheet" type="text/css" href="../../css/dc.css" />
+	<link href="../../css/custom2.min.css" rel="stylesheet">
+	<link href="../../css/ics2_crime.css" rel="stylesheet">
+	<link rel="stylesheet" href="../../css/jquery-ui.css" />
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700|Raleway:300,400,400i,500,500i,700,800,900" rel="stylesheet">-->
+	<link href="/img/favicon.png" rel="icon">
+	<link rel="stylesheet" href="../../css/font-awesome/css/font-awesome.min.css"> <!-- load fontawesome -->
+    <link rel="stylesheet" href="../../css/fontawesome/css/all.css"> <!-- load fontawesome -->
+	<link rel="stylesheet" type="text/css" href="../../css/add_form_main.css" />
+	<link rel="stylesheet" href="../../css/bootstrap.min.css"> <!-- load bootstrap css -->
+	<!link href="../../css/weather_icons.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="../../css/bootstrap-select.min.css"> <!-- load fontawesome -->		 
+	<link href="../../css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />	
+	<link rel="stylesheet" type="text/css" href="../../css/leaflet.css" />
+	<link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
+	<link href="../../css/ics2_crime.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../css/dc.css" />
+	<link rel="stylesheet" type="text/css" href="../../css/colorbox.css" />
+	<link rel="stylesheet" href="../../css/jquery-ui.css" />
+	<link rel="stylesheet" href="../../css/bootstrapValidator.min.css" />
+	<link rel="stylesheet" href="../../css/bootstrap-datetimepicker.min.css" />
+	<link rel="stylesheet" href="../../css/googleapis.css?family=Open+Sans:300,400,400i,600,700|Raleway:300,400,400i,500,500i,700,800,900" />
+
+	<!link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700|Raleway:300,400,400i,500,500i,700,800,900" rel="stylesheet">
+
+	<style>
+		.no-js #loader {
+			display: none;
+		}
+
+		.js #loader {
+			display: block;
+			position: absolute;
+			left: 100px;
+			top: 0;
+		}
+	</style>
+	{{>helper }}
+</head>
+
+<body>
+
+	{{{ body }}}
+
+	<script>
+		if ("true" == "{{ ROLE_USER }}") {
+			$(".management").hide();
+		}
+
+    if("{{city}}"==null || "{{city}}"==""){
+    $("#uc").val("{{address}}");
+    }
+	/*
+if(document.querySelector('textarea')){
+var textarea = document.querySelector('textarea');
+
+textarea.addEventListener('keydown', autosize);
+
+ /*            
+function autosize(){
+$('textarea').autogrow();
+  
+}
+
+}*/
+	</script>
+
+</body>
+
+</html>

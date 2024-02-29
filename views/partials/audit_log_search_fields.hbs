@@ -1,0 +1,226 @@
+<div class="panel-group col-md-12" id="advanced_search_fields">
+  <div class="panel panel-default">
+    <div id="search_criterias_header" class="panel-heading flex-container">
+      <h4 class="panel-title collapsed intro" data-toggle="collapse" data-target='#search_fields_accordion'
+        style='font-size: 18px; flex-grow : 1;'>Search Criteria</h4>
+    </div>
+    <div class="panel-collapse collapse in" id="search_fields_accordion">
+      <div class="panel-body">
+        <div class="col-md-12 col-sm-12 col-xs-12" id="search_fields_container">
+
+          <div class="form-group col-md-3 col-sm-3 col-xs-12">
+            <label for="username">User</label>
+            <select multiple class="form-control selectpicker show-tick search-input officers officer-usernames" id="username"
+              name="username" data-live-search="true"></select>
+          </div>
+
+          <div class="form-group col-md-3 col-sm-3 col-xs-12">
+            <label for="user_role">User Role</label>
+            <select multiple class="form-control selectpicker show-tick search-input" id="user_role" name="user_role"
+              data-live-search="true" data-actions-box="true">
+              <option value=""></option>
+              <option value="Power Admin" selected>Power Admin</option>
+              <option value="Prosecutor" selected>Prosecutor</option>
+              <option value="Supervisor" selected>Supervisor</option>
+              <option value="User" selected>User</option>
+              
+            </select>
+          </div>
+
+          <div class="form-group col-md-3 col-sm-3 col-xs-12">
+            <label for="page_name">Page Name</label>
+            <select multiple class="form-control selectpicker show-tick search-input" id="page_name" name="page_name"
+              data-live-search="true" data-actions-box="true">
+              <option value=""></option>
+              <option value="User Login Page">User Login Page</option>
+              <option value="User OTP Page">User OTP Page</option>
+              <option value="User Logout Page">User Logout Page</option>
+              <option value="User Password Reset Page">User Password Reset Page</option>
+              <option value="User QR Code Register Page">User QR Code Register Page</option>
+              <option value="User Email Reset Page">User Email Reset Page</option>
+              <option value="User Dark Mode Page">User Dark Mode Page</option>
+              <option value="Dashboard Page">Dashboard</option>
+              <option value="Daily Activity">Daily Activity</option>
+              <option value="Daily Activity Log Database">Daily Activity Log Database</option>
+              <option value="CFS Page">CFS Page</option>
+              <option value="Call Management Page">Call Management</option>
+              <option value="RMS Offense/Non-Criminal">Offense/Non Criminal</option>
+              <option value="RMS Traffic Crash">Traffic Crash</option>
+              <option value="RMS Traffic Citation">Traffic Citation</option>
+              <option value="RMS Warrant Citation Arrest">Traffic Citation Arrest</option>
+              <option value="RMS FIR">FIR Page</option>
+              <option value="Case Management Page">Case Management</option>
+              <option value="Master Search - Names">Master Search - Names</option>
+              <option value="Master Search - Vehicles">Master Search - Vehicles</option>
+              <option value="Master Search - Business">Master Search - Business</option>
+              <option value="Agency Only - Agency Search">Agency Only - Agency Search</option>
+              <option value="Agency Only - Victim">Agency Only - Victim</option>
+              <option value="Agency Only - Suspect">Agency Only - Suspect</option>
+              <option value="Agency Only - Arrest">Agency Only - Arrest</option>
+              <option value="Agency Only - Property">Agency Only - Property</option>
+              <option value="Evidence & Property">Evidence & Property</option>
+              <option value="Court Management">Court Management</option>
+              <option value="Analytics Co-offending Network">Analytics Co-offending Network</option>
+              <option value="Analytics User Dashboards">Analytics User Dashboards</option>
+              <option value="Analytics Build Your Own Charts">Analytics Build Your Own Charts</option>
+              <option value="Analytics Place & People">Analytics Place & People</option>
+              <option value="Miscallaneous - Permits">Miscallaneous - Permits</option>
+              <option value="Miscallaneous - Vehicle Maintenance">Miscallaneous - Vehicle Maintenance</option>
+              <option value="Miscallaneous - Trainings">Miscallaneous - Trainings</option>
+              <option value="Miscallaneous - Tow Management">Miscallaneous - Tow Management</option>
+              <option value="Miscallaneous - Vacation Watch">Miscallaneous - Vacation Watch</option>
+              <option value="System Admin - Storage Usage">System Admin - Storage Usage</option>
+              <option value="System Admin - Employees">System Admin - Employees</option>
+              <option value="System Admin - User Activity">System Admin - User Activity</option>
+              <option value="System Admin - Approval Configuration">System Admin - Approval Configuration</option>
+              <option value="System Admin - Municipally Codes">System Admin - Municipally Codes</option>
+              <option value="System Admin - Local Traffic Codes">System Admin - Local Traffic Codes</option>
+              <option value="System Admin - Privilege Settings">System Admin - Privilege Settings</option>
+              <option value="System Admin - OIBRS Data Submission">System Admin - OIBRS Data Submission</option>
+              <option value="System Admin - Locator Database">System Admin - Locator Database</option>
+              <option value="System Admin - Audit Logs">System Admin - Audit Logs</option>
+              <option value="Contact - Support">Contact - Support</option>
+              <option value="Active on Peel9">Active on Peel9</option>
+              <option value="Quick Reports - Charts">Quick Reports - Charts</option>
+              <option value="Quick Reports - Compare Stats">Quick Reports - Compare Stats</option>
+              <option value="Quick Reports - Incident With Details">Quick Reports - Incident With Details</option>
+              <option value="What's New Page">What's New Page</option>
+              <option value="How-to Page">How-to Page</option>
+            </select>
+          </div>
+          <div class="form-group col-md-3 col-sm-3 col-xs-12">
+            <label for="action">Action</label>
+            <select class="form-control selectpicker show-tick search-input" id="action" name="action" multiple
+              data-live-search="true" data-actions-box="true">
+              <option value="Page Visit">Page Visit</option>
+              <option value="Case Creation" selected>Case Creation</option>
+              <option value="Case Update" selected>Case Update</option>
+              <option value="Case Delete" selected>Case Delete</option>
+              <option value="Case Restore" selected>Case Restore</option>
+              <option value="Other Dept Record View" selected>Other Department Record View</option>
+              <option value="Record View From Master Search - Names" selected>Record View From Master Search - Names</option>
+              <option value="Master Search - Person Creation" selected>Master Search - Person Creation</option>
+              <option value="Master Search - Person Update" selected>Master Search - Person Update</option>
+              <option value="Master Search - Person Delete" selected>Master Search - Person Delete</option>
+              <option value="Master Search - Person Restore" selected>Master Search - Person Restore</option>
+              <option value="Master Search - Vehicle Creation" selected>Master Search - Vehicle Creation</option>
+              <option value="Master Search - Vehicle Update" selected>Master Search - Vehicle Update</option>
+              <option value="Master Search - Vehicle Delete" selected>Master Search - Vehicle Delete</option>
+              <option value="Master Search - Vehicle Restore" selected>Master Search - Vehicle Restore</option>
+              <option value="Master Search - Business Creation" selected>Master Search - Business Creation</option>
+              <option value="Master Search - Business Update" selected>Master Search - Business Update	</option>
+              <option value="Master Search - Business Delete" selected>Master Search - Business Delete</option>
+              <option value="Master Search - Business Restore" selected>Master Search - Business Restore</option>
+              <option value="Success Login" selected>Success Login</option>
+              <option value="Failed Login" selected>Failed Login</option>
+              <option value="Success OTP" selected>Success OTP</option>
+              <option value="Failed OTP" selected>Failed OTP</option>
+              <option value="User Logout" selected>Logout</option>
+              <option value="User Account - Created" selected>User Create</option>
+              <option value="User Account - Edited" selected>User Edit</option>
+              <option value="User Account - Inactivated" selected>User Inactivate</option>
+              <option value="User Account - Reactivated" selected>User Reactivate</option>
+              <option value="User Account - Deleted" selected>User Delete</option>
+              <option value="User Account - QR Code Reset" selected>User QR Code Reset</option>
+              <option value="Email Reset - Request" selected>Email Reset Request</option>
+              <option value="Email Reset - Success" selected>Email Reset Success</option>
+              <option value="Email Reset - Fail" selected>Email Reset Token Fail</option>
+              <option value="Pwd Reset - Request" selected>Password Reset Request</option>
+              <option value="Pwd Reset - Request Fail" selected>Password Reset Request Fail</option>
+              <option value="Pwd Reset - Token Fail" selected>Password Reset Token Fail</option>
+              <option value="Pwd Reset - Success" selected>Password Reset Success</option>
+              <option value="Pwd Reset - Fail" selected>Password Reset Fail</option>
+              <option value="User Account - Privilege Configured" selected>User Privilege Configure</option>
+              <option value="User Account - New QR Code" selected>User Account - New QR Code</option>
+              <option value="User Account - Training Added" selected>New Training</option>
+              <option value="User Account - Training Delete" selected>Training Delete</option>
+              <option value="New Permit" selected>New Permit</option>
+              <option value="Permit Delete" selected>Permit Delete</option>
+              <option value="New Vehicle Maintenance" selected>New Vehicle Maintenance</option>
+              <option value="Vehicle Maintenance Delete" selected>Vehicle Maintenance Delete</option>
+              <option value="Get Daily Notes" selected>Get Daily Notes</option>
+              <option value="Update Daily Notes" selected>Update Daily Notes</option>
+              <option value="Send Daily Notes" selected>Send Daily Notes</option>
+              <option value="Calendar Event Created" selected>Calendar Event Created</option>
+              <option value="Calendar Event Deleted" selected>Calendar Event Deleted</option>
+              <option value="Calendar Event Updated" selected>Calendar Event Updated</option>
+              <option value="Stats Interval Change" selected>Stats Interval Change</option>
+              <option value="Attachment Delete" selected>Attachment Delete</option>
+              <option value="New Attachment" selected>New Attachment</option>
+              <option value="New Status" selected>New Status</option>
+              <option value="Status Update" selected>Status Update</option>
+              <option value="Status Delete" selected>Status Delete</option>
+              <option value="Add Person" selected>Add Person</option>
+              <option value="Update Person" selected>Update Person</option>
+              <option value="Delete Person" selected>Delete Person</option>
+              <option value="Add Vehicle" selected>Add Vehicle</option>
+              <option value="Update Vehicle" selected>Update Vehicle</option>
+              <option value="Delete Vehicle" selected>Delete Vehicle</option>
+              <option value="Add Business" selected>Add Business</option>
+              <option value="Update Business" selected>Add Business</option>
+              <option value="Delete Business" selected>Add Business</option>
+              <option value="Approve Request" selected>Approve Request</option>
+              <option value="Approved Before User Request" selected>Approved Before User Request</option>
+              <option value="Supervisor Approved" selected>Supervisor Approved</option>
+              <option value="Disapproved" selected>Disapproved</option>
+              <option value="Approve Request Canceled" selected>Approve Request Canceled</option>
+              <option value="Case Unlock" selected>Case Unlock</option>
+            </select>
+          </div>
+          <div class="form-group col-md-3 col-sm-3 col-xs-12">
+            <label for="case_no">Log ID</label>
+            <input type="text" class="form-control search-input" id="case_no" name="case_no" placeholder="Example: 987">
+          </div>
+          <div class="form-group col-md-3 col-sm-3 col-xs-12">
+            <label>Search in "Details"</label>
+            <input type="text" class="form-control search-input" id="keyword_search" name="keyword_search"
+              placeholder="keyword">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label>IP Address</label>
+            <input type="text" class="form-control search-input" id="ip_address" name="ip_address"
+              placeholder="98.139.180.149">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label>Location</label>
+            <input type="text" class="form-control search-input" id="location" name="location" placeholder="Cincinnati">
+          </div>
+
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="department">Department</label>
+            <select multiple class="form-control selectpicker show-tick search-input" id="department" name="department"
+              data-live-search="true">
+              {{#each departments}} 
+                <option name="{{this.name}}">{{this.name}}</option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12 button-container" id="search_button_container">
+            <button type="button" class="btn btn-info pull-left" style="width:150px" id="search_button">Search</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  function fillSearchFields() {
+    audit_officers();    
+    var department = $("#department")
+    var pages = $("#page_name")
+    if (!("{{department_name}}" == "Peel9" || "{{department_name}}" == "Demo")) {
+      department.empty().append('<option value="{{department_name}}">{{department_name}}</option>');
+    } else {
+      pages.append([
+              '<option value="Root - Privileges">Root - Privileges</option>',
+              '<option value="Root - Roles">Root - Roles</option>',
+              '<option value="Root - Users">Root - Users</option>',
+              '<option value="Root - Admin Tasks">Root - Admin Tasks</option>',
+              '<option value="Root - Departments Page">Root - Departments Page</option>',
+              '<option value="Root - Migrations">Root - Migrations</option>',
+      ])
+    }
+  }
+
+</script>

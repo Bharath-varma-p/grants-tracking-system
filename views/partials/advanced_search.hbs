@@ -1,0 +1,44 @@
+<style>
+  .flex-container {
+    display: flex;
+    align-items: center;
+    clear: both;
+  }
+
+  #filter_search_fields {
+    width: 200px;
+    background-color: white;
+    font-size: 14px;
+    font-weight: normal;
+    padding: 5px;
+  }
+
+  #search_fields_container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-end;
+  }
+
+  .flex-container>.input-group {
+    width: 100%;
+  }
+
+  .search-section{
+    font-size: 20px;
+    border-bottom: 10px solid #444;
+  }
+</style>
+<button class="btn btn-secondary d-nne" id="open_advanced_search"
+  style="height:38px; margin-top:10px; margin-left:5px; float: left;">Advanced Search
+</button>
+<button class="btn btn-danger" id="close_advanced_search"
+  style="height:38px; margin-top:10px; margin-left:5px; display:none">Close Search Window
+</button>
+
+<button class="btn btn-info" id="reset_advanced_search"
+  style="height:38px; margin-top:10px; margin-left:5px; display:none">Reset
+  Search
+</button>
+
+<script src="/js/advanced-search/advanced-search.js" defer></script>

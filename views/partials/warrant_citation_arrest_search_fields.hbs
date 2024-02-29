@@ -1,0 +1,218 @@
+<div class="panel-group col-md-12" id="advanced_search_fields" style="display:none">
+  <div class="panel panel-default">
+    <div id="search_criterias_header" class="panel-heading flex-container" data-toggle="collapse"
+      data-parent="#advanced_search_fields" data-target='#search_fields_accordion'>
+      <h4 class="panel-title collapsed intro" data-toggle="collapse" data-target='#search_fields_accordion'
+        style='font-size: 18px; flex-grow : 1;'>
+        Search Criteria</h4>
+      <div style="position: absolute; right:30px; display:flex">
+        <input id="filter_search_fields" placeholder="Filter Search Fields" />
+        <button class="btn btn-sm btn-primary" id="reset_search_filter">Reset</button>
+      </div>
+    </div>
+    <div class="panel-collapse collapse in" id="search_fields_accordion">
+      <div class="panel-body">
+        <div class="col-md-12 col-sm-12 col-xs-12" id="search_fields_container">
+          <div class="form-group col-md-2 col-sm-2 col-xs-12" id="name_search">
+            <label class="col-sm-12" style="margin-left:-10px">Start Date</label>
+            <div class="flex-container">
+              <div class="input-group date">
+                <input type="text" class="form-control search-input advanced-search-date-short" id='arrest_start_date'
+                  name='arrest_start_date' placeholder="MM/DD/YYYY" style="font-size:16px;" />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group col-md-2 col-sm-2 col-xs-12" id="name_search2">
+            <label class="col-sm-12" style="margin-left:-10px">End Date</label>
+            <div class="flex-container">
+              <div class="input-group date">
+                <input type="text" class="form-control search-input advanced-search-date-short" id='arrest_end_date'
+                  name='arrest_end_date' placeholder="MM/DD/YYYY" style="font-size:16px;" />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="arrest_no">Arrest No</label>
+            <input type="text" class="form-control search-input" id="arrest_no" name="arrest_no"
+              placeholder="Example:2022A00000001">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="arrestee_type">Arrestee Type</label>
+            <select id="arrestee_type" name="arrestee_type" class="form-control selectpicker show-tick search-input">
+              <option value=''></option>
+              <option value="1">Arrest (Adult)</option>
+              <option value="2">Arrest (Juvenile)</option>
+              <option value="3">Runaway Arrest (Adult)</option>
+              <option value="4">Runaway Arrest (Juvenile)</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="arrest_type">Arrest Type</label>
+            <select id="arrest_type" name="arrest_type" class="form-control selectpicker show-tick search-input">
+              <option value=''></option>
+              <option value="1">Complaint</option>
+              <option value="2">Crime In Progress</option>
+              <option value="3">Warrant</option>
+              <option value="4">Court Summons/Citation</option>
+              <option value="9">Other</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="recite">Recite or Arrest or Tax or Zoning?</label>
+            <select id="recite" name="recite" class="form-control selectpicker show-tick search-input">
+              <option value=''></option>
+              <option value="Arrest">Arrest</option>
+              <option value="Recites">Recite</option>
+              <option value="Tax">Tax</option>
+              <option value="Zoning">Zoning</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="armed_with">Was Armed With</label>
+            <select id="armed_with" name="armed_with" class="form-control selectpicker show-tick search-input">
+              <option value=''></option>
+              <option value="99">None</option>
+              <option value="11">Firearm</option>
+              <option value="12">Handgun</option>
+              <option value="12A">Automatic Handgun</option>
+              <option value="13">Rifle</option>
+              <option value="13A">Fully Automatic Rifle</option>
+              <option value="13B">Other Fully Automatic Firearm</option>
+              <option value="14">Shotgun</option>
+              <option value="15">Other Firearm</option>
+              <option value="15A">Semi-Automatic Sporting Rifle</option>
+              <option value="15B">Semi-Automatic Assault Firearm</option>
+              <option value="15C">Machine Pistol</option>
+              <option value="16">Imitation Firearm</option>
+              <option value="17">Simulated Firearm</option>
+              <option value="18">BB and Pellet Guns</option>
+              <option value="20">Knife/Cutting Instrument</option>
+              <option value="30">Blunt Object</option>
+              <option value="50">Poison</option>
+              <option value="60">Explosives</option>
+              <option value="65">Fire/Incediary Device</option>
+              <option value="70">Drugs/Narcatics/Sleeping Pills</option>
+              <option value="80">Other Weapon</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="orc_no">ORC No</label>
+            <input type="text" class="form-control search-input" id="orc_no" name="orc_no">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="offense_name">Offense Name</label>
+            <input type="text" class="form-control search-input" id="offense_name" name="offense_name"
+              placeholder="Example:Theft">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="nta">NTA/Citation No</label>
+            <input type="text" class="form-control search-input" id="nta" name="nta">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="reason_for_stop">Reason For Stop</label>
+            <select id="reason_for_stop" name="reason_for_stop" data-udt-source="warrant_citation"
+              class="form-control selectpicker show-tick search-input" multiple data-max-options="1">
+            </select>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="licence_plate">License Plate</label>
+            <input type="text" class="form-control search-input" id="licence_plate" name="licence_plate">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="ssn">SSN</label>
+            <input type="text" class="form-control search-input" id="ssn" name="ssn">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="fbi">FBI#</label>
+            <input type="text" class="form-control search-input" id="fbi" name="fbi">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="control">Control#</label>
+            <input type="text" class="form-control search-input" id="control" name="control">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="gang">Gang Affiliation</label>
+            <input type="text" class="form-control search-input" id="gang" name="gang">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="agency_name">Agency Name</label>
+            <input type="text" class="form-control search-input" id="agency_name" name="agency_name">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="warrant_number">Warrant Number</label>
+            <input type="text" class="form-control search-input" id="warrant_number" name="warrant_number">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label class="required" for="user">User</label>
+            <input type="text" class="form-control" id="user" name="user" placeholder="User">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="narrative_search">Narrative</label>
+            <input type="text" class="form-control search-input" id="narrative_search" name="narrative_search"
+              placeholder="Narrative Search">
+          </div>
+          {{#if PRIVILEGE_UNSEAL_CASE.hasPermission}}
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label>Sealed Case</label>
+            <select class="form-control selectpicker show-tick" id="sealed_case" name="sealed_case">
+              <option value=""></option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+          {{/if}}
+          <div class="form-group col-md-12 search-section">Person</div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="first_name">First Name</label>
+            <input type="text" class="form-control search-input" id="first_name" name="first_name" placeholder="">
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="last_name">Last Name</label>
+            <input type="text" class="form-control search-input" id="last_name" name="last_name" placeholder="">
+          </div>
+          <div class="form-group col-md-4 col-sm-4 col-xs-12">
+            <label class="col-sm-12" style="margin-left:-10px">Date Of Birth</label>
+            <div class="flex-container">
+              <div class="input-group date datetimepicker">
+                <input type="text" class="form-control search-input advanced-search-date-short" id="dob_date_start"
+                  name="dob_date_start" placeholder="MM/DD/YYYY" style="font-size:16px;" />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+              &nbsp;&nbsp;-&nbsp;&nbsp;
+              <div class="input-group date datetimepicker">
+                <input type="text" class="form-control search-input advanced-search-date-short" id="dob_date_end"
+                  name="dob_date_end" placeholder="MM/DD/YYYY" style="font-size:16px;" />
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label class="col-sm-12" style="margin-left:-10px">Age</label>
+            <div class="flex-container">
+              <input type="number" class="form-control search-input" id="age_min" name="age_min"
+                placeholder="Min"/>
+              -
+              <input type="number" class="form-control search-input" id="age_max" name="age_max"
+                placeholder="Max"/>
+
+            </div>
+          </div>
+          <div class="form-group col-md-12 search-section">Place</div>
+          <div class="form-group col-md-2 col-sm-2 col-xs-12">
+            <label for="arrest_address">Arrest Address</label>
+            <input type="text" class="form-control search-input" id="arrest_address" name="arrest_address">
+          </div>
+          <div class="form-group col-xs-12 button-container" id="search_button_container">
+            <button type="button" class="btn btn-info pull-right" style="margin-top:30px;width:150px"
+              id="search_button">Search</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+{{>user_defined_table_modal}}
