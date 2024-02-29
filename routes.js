@@ -18,6 +18,6 @@ router.post("/dashboard",grantsController.handleDashboard)
 router.get("/enable-tfa",grantsController.enableTfa)
 router.post("/verify-tfa",grantsController.verifyTfa)
 router.post("/count-total-pages",grantsController.countTotalPages)
-
+router.get("/userRole",userController.fetchUserRole)
 
 module.exports=router;

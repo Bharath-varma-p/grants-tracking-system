@@ -84,13 +84,14 @@
   <div>
     {{> sideMenu}}
   </div>
-  <div>
+  <div id="keyboardSearch">
     <form id="dashboard" action="/dashboard" method="post">
       <label class="keyword-label" for="keyword">Keyword:</label>
       <input type="text" id="keyword" name="keyword" required>
       <button class="submit-button" type="submit">Search</button>
     </form>
     <br>
+  </div>
 
   <div id="paginationOptions">
     <label for="rowsPerPage">Rows per page:</label>
@@ -138,6 +139,30 @@
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script type="text/javascript">
    $(document).ready(function() {
+
+    var userEmail = '{{userEmail}}'
+    console.log("userEmail",userEmail)
+    fetchUserEmail(userEmail);
+
+    function fetchUserEmail(userEmail){
+      $.ajax({
+        url:'/userRole',
+        method: 'GET',
+        data: {email: userEmail},
+        success : function(response){
+          var userRole = response.role
+          var firstName = response.firstname
+          if(userRole == 'admin'){
+             $('.user-info h3').text('Hello Admin'+ '('+firstName+')')
+          }else{
+            $('.user-info h3').text('Hello '+ firstName)
+          }
+        },
+         error: function(xhr,status,error){
+            console.error(error);
+          }
+      })
+    }
       function handleViewButtonClick() {
          var rowId = $(this).data('row-id');
          redirectToViewResults(rowId);
