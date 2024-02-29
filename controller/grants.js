@@ -41,7 +41,23 @@ exports.viewDashboard = (req,res) => {
         connection.query(sql, [limit, offset], (err,results) => {
          // console.log("results",results);
           console.log("results in render",results.length);
-          res.render('dashboard', { data:results,userEmail });
+          var tableLength = 'SELECT COUNT(*) AS total FROM grants_trackings';
+          connection.query(tableLength, (err, result) => {
+            if (err) {
+              console.error('Error counting total pages:', err);
+              return res.status(500).send('Error counting total pages');
+            }
+            const totalRecords = result[0].total; // Extract total count from results
+            const totalPages = Math.ceil(totalRecords / limit); // Calculate total pages
+            console.log("totalPages",totalRecords);
+            var pagesarr=[]
+            for(i=100;i<=totalRecords;i=i+100){
+                pagesarr.push(i)
+            }
+            res.render('dashboard', { data:results,userEmail,pagesarr});
+          })
+          
+          
         })
 };
 exports.handleDashboard = (req,res) => {
