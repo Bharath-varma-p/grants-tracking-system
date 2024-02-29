@@ -1,0 +1,173 @@
+body {
+    background: #111 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAB9JREFUeNpi/P//PwM6YGLAAuCCmpqacC2MRGsHCDAA+fIHfeQbO8kAAAAASUVORK5CYII=);
+}
+
+html, body {
+    height: 100%;
+}
+
+.panel-heading {
+    background-color: rgb(46, 77, 46) !important;
+}
+
+#progressbar li {
+    color: rgb(200, 200, 200);
+}
+
+#progressbar li.list_hover {
+    text-shadow: black 0 0 15px;
+}
+
+#progressbar li.list_hover::before {
+    background-color: #ffffff;
+    color: #0f0f0f;
+}
+
+#progressbar li.list_click_failed::before {
+    background-color: #ac3c3c;
+    color: #f3f3f3;
+}
+
+#progressbar li:before {
+    color: rgb(26, 26, 26);
+    background: rgb(221, 221, 221);
+}
+
+#progressbar li:after {
+    background: rgb(221, 221, 221);
+}
+
+#progressbar li.active:before, #progressbar li.active:after {
+    background: #ee0979;
+    color: white;
+}
+
+#narrative, .typeahead {
+    color: rgb(230, 230, 230);
+    background-color: rgb(44, 44, 44);
+}
+
+#narrative:focus, .typeahead:focus {
+    border-color: rgb(163, 44, 44);
+    background-color: #555;
+}
+
+#progress_form_buttons button {
+    box-shadow: #000000 0 0 4px 2px;
+}
+
+.panel-default {
+    border-color: #000;
+}
+
+.panel {
+    background-color: #222;
+    color: #ededed;
+}
+
+label {
+    color: #ededed;
+}
+
+.highlight {
+    background: #2c2c00 !important;
+}
+
+.popover-title {
+    color: #bbb;
+    background-color: #1f2b35;
+}
+
+.popover-content {
+    background-color: #444;
+    color: #ededed;
+}
+
+.popover{
+    min-width:250px;
+}
+
+.form-control, .btn-default, .tt-dropdown-menu {
+    color: #ededed;
+    background-color: #222;
+    border: 1px solid rgb(151, 151, 151);
+}
+
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control, .btn-default.disabled, .btn-default[disabled], fieldset[disabled] .btn-default, .btn-default.disabled:hover, .btn-default[disabled]:hover, fieldset[disabled] .btn-default:hover, .btn-default.disabled:focus, .btn-default[disabled]:focus, fieldset[disabled] .btn-default:focus, .btn-default.disabled.focus, .btn-default[disabled].focus, fieldset[disabled] .btn-default.focus, .btn-default.disabled:active, .btn-default[disabled]:active, fieldset[disabled] .btn-default:active, .btn-default.disabled.active, .btn-default[disabled].active, fieldset[disabled] .btn-default.active {
+    background-color: #3a3a3a;
+    color: #fff;
+}
+
+.btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active, .open>.dropdown-toggle.btn-default, .dropdown-menu, .dropdown-menu>li>a, .bootstrap-select.btn-group .no-results {
+    color: #fff;
+    background-color: #0e0e0e;
+    border-color: #adadad;
+}
+
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, textarea:-webkit-autofill, textarea:-webkit-autofill:hover, textarea:-webkit-autofill:focus, select:-webkit-autofill, select:-webkit-autofill:hover, select:-webkit-autofill:focus {
+    -webkit-text-fill-color: #ededed;
+    -webkit-box-shadow: 0 0 0px 1000px #222222 inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+/* input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active {
+    transition: background-color 0s 864000s, color 0s 864000s; WONT WORK BECAUSE IT APPLIES AFTER CHANGING PAGES
+} */
+
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus, .bootstrap-datetimepicker-widget table td span:hover, .bootstrap-datetimepicker-widget table thead tr:first-child th:hover, .bootstrap-datetimepicker-widget table td.day:hover, .bootstrap-datetimepicker-widget table td.hour:hover, .bootstrap-datetimepicker-widget table td.minute:hover, .bootstrap-datetimepicker-widget table td.second:hover {
+    color: #ffffff;
+    background-color: rgb(95, 95, 95);
+}
+
+.heading_style {
+    color: #286ba5;
+}
+
+.input-group-addon {
+    background-color: #333333;
+    background-color: rgb(95, 95, 95);
+    color: #ededed;
+}
+
+.btn.disabled, .btn[disabled], fieldset[disabled] .btn {
+    opacity: .9;
+}
+
+.caret {
+    color: rgb(228, 228, 228);
+}
+
+.tt-suggestion.tt-cursor {
+    background-color: #005b7c;
+    color: #ffffff;
+}
+
+::-webkit-scrollbar {
+    background-color: rgb(29, 29, 29);
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(194, 194, 194, 0.3);
+    background-color: rgb(168, 168, 168);
+}
+
+/* MODAL STUFF */
+
+.modal-content, .modal-header, .modal-body, .modal-footer {
+    background-color: rgb(37 37 37) !important;
+}
+
+.modal-body tr {
+    background-color: #161616 !important;
+    color: #ededed;
+}
+
+.close {
+    color: #fff;
+    opacity: .6;
+}
+
+.close:focus, .close:hover {
+    color: #fff;
+    opacity: 1;
+}

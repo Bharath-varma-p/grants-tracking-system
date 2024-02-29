@@ -1,0 +1,30 @@
+#filter_department_wrapper
+{
+    display: none;
+    align-items: center;
+    justify-content: flex-end;
+    float: right;
+    margin-right: 20px;
+    margin-top: -3px;
+}
+
+#filter_department_wrapper > .bootstrap-select
+{
+    width: 200px;
+}
+
+label[for="filter_department"]
+{
+    color: #ccc;
+    margin-right: 5px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+#filter_department
+{
+    width: 200px;
+}
+select#filter_department{
+    display: none;
+}

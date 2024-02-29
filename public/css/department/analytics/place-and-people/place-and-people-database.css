@@ -1,0 +1,10 @@
+.popup-container {
+    display: flex;
+    overflow: auto;
+}
+
+.tableColumn,
+.tableColumn>div {
+    font-weight: bold !important;
+    background: silver !important
+}

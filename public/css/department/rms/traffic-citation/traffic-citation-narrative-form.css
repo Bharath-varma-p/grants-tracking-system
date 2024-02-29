@@ -1,0 +1,35 @@
+.line {
+    width: 95%;
+    border-bottom: 3px solid black;
+    border-color: red;
+    position: absolute;
+
+    .form-group .form-control-feedback {
+
+        margin-right: 40px;
+        margin-top: -3px;
+        top: 3px;
+        pointer-events: auto;
+        /* or - auto // or -  unset  */
+    }
+
+    .panel-heading {
+        cursor: pointer;
+        background-color: darkseagreen !important;
+    }
+
+    #next_button_save {
+        background-color: #078861;
+        min-width: 120.70px;
+        color: whitesmoke;
+        height: 35px;
+        font-size: 14px;
+    }
+
+    #next_button_save:hover {
+        background-color: #13a579;
+    }
+
+    #next_button_save:active {
+        background-color: #00553b;
+    }

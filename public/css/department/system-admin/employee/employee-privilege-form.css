@@ -1,0 +1,120 @@
+
+.group
+{
+    margin: 20px;
+}
+
+.group-header
+{
+    padding: 10px;
+    background: #FDC830;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right,rgba(243,115,53,.7), rgba(253,200,48,.7));  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, rgba(243,115,53,.7), rgba(253,200,48,.7)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.group-header > i
+{
+    vertical-align: middle;
+}
+
+.group-content
+{
+    padding: 20px;
+    background: #bdc3c7;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2c3e50 70%, #787a7b);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #2c3e50 70%, #787a7b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    border-radius: 0 0 10px 10px;
+}
+
+.form-check
+{
+    padding: 10px;
+    border-right: 1px dashed #eee;
+}
+
+.form-check:first-child
+{
+    background-color: darkgray;
+}
+
+.form-check-input {
+    width: 25px;
+    height: 25px;
+}
+
+.form-check-label
+{
+    line-height: 30px;
+    vertical-align: bottom;
+    float: none;
+}
+
+.form-check:first-child .form-check-label
+{
+    color: #444;
+    min-width: 200px;
+}
+
+.checkboxes {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 10px 0;
+}
+
+.check-all-group-div
+{
+    padding: 10px;
+    border-bottom: 2px outset #eee;
+}
+
+.check-all-div, .show-only-checked-div
+{
+    margin: 0 10px;
+    display: inline-block;
+    width: auto;
+    vertical-align: bottom;
+}
+
+.hide {
+    display: none;
+}
+
+#form {
+    margin-top:50px;
+}
+
+label {
+    color: #ccc;
+}
+
+.jconfirm-box {
+    background-color: #262626 !important;
+}
+
+.jconfirm-content,
+.jconfirm-title-c {
+    color: white !important;
+}
+
+.how-to
+{
+    font-size: 32px;
+    vertical-align: top;
+    color: orange;
+}
+
+#buttons_div .popover-title
+{
+    color: #444;
+    text-shadow: none;
+}
+
+#buttons_div .popover-content
+{
+    text-transform: none;
+}

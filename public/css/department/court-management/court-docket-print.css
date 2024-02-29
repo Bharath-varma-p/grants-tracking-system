@@ -1,0 +1,127 @@
+
+body {
+    width: 100%;
+    -webkit-print-color-adjust: exact;
+  }
+
+  @page {
+
+    /* this affects the margin in the printer settings */
+    margin: 5mm 5mm 5mm 5mm;
+    size: A4 landscape;
+  }
+
+
+
+  @media print {
+    #spacer {
+      height: 2em;
+    }
+
+    /* height of footer + a little extra */
+    #footer {
+      position: fixed;
+      bottom: 0;
+    }
+
+    .no-print,
+    .no-print * {
+      display: none !important;
+    }
+
+    .td1 {
+      background-color: silver !important
+    }
+
+    table td {
+      font-size: 12px !important
+    }
+
+    .modal {
+      position: absolute;
+      left: 0;
+      top: 0;
+      margin: 0;
+      padding: 0;
+      overflow: visible !important;
+    }
+
+    a[href]:after {
+      content: none !important;
+    }
+
+    .sekiz {
+      width: 8% !important
+    }
+
+    .on {
+      width: 10% !important
+    }
+
+    .yedi {
+      width: 7% !important
+    }
+
+    .onbes {
+      width: 15% !important
+    }
+
+    .yirmi {
+      width: 20% !important
+    }
+
+    .yirmibes {
+      width: 25% !important
+    }
+
+    .bes {
+      width: 5% !important
+    }
+
+
+    tbody {
+      display: inline;
+      page-break-after: always;
+      page-break-inside: avoid;
+      page-break-before: avoid;
+    }
+  }
+
+  .tg {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
+  .tg td {
+    border-color: gray;
+    border-style: solid;
+    border-width: 1px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    overflow: hidden;
+    padding: 10px 5px;
+    word-break: normal;
+  }
+
+  .tg th {
+    border-color: gray;
+    border-style: solid;
+    border-width: 1px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    overflow: hidden;
+    padding: 10px 5px;
+    word-break: normal;
+  }
+
+  .tg .tg-1wig {
+    font-weight: bold;
+    text-align: left;
+    vertical-align: top
+  }
+
+  .tg .tg-0lax {
+    text-align: left;
+    vertical-align: top
+  }

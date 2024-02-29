@@ -1,0 +1,7 @@
+table.dataTable td {
+    word-break: break-word;
+}
+
+.minWidth {
+    width: 35%;
+}

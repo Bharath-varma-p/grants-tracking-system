@@ -1,0 +1,263 @@
+
+body {
+    font-family: 'Oxygen', Arial, Helvetica, sans-serif;
+    color: #666;
+    background: #333333 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAB9JREFUeNpi/P//PwM6YGLAAuCCmpqacC2MRGsHCDAA+fIHfeQbO8kAAAAASUVORK5CYII=);
+    padding-top: 50px;
+  }
+
+  .page {
+    width: 30cm;
+    height: 44cm;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    margin: 10px auto;
+  }
+
+  .marker-cluster-small {
+    background-color: rgba(181, 226, 140, 0.6) !important;
+  }
+
+  .marker-cluster-small div {
+    background-color: rgba(110, 204, 57, 0.6) !important;
+  }
+
+  .marker-cluster-medium {
+    background-color: rgba(241, 211, 87, 0.6) !important;
+  }
+
+  .marker-cluster-medium div {
+    background-color: rgba(240, 194, 12, 0.6) !important;
+  }
+
+  .marker-cluster-large {
+    background-color: rgba(253, 156, 115, 0.6) !important;
+  }
+
+  .marker-cluster-large div {
+    background-color: rgba(241, 128, 23, 0.6) !important;
+  }
+
+  .page-header {
+    height: 200px;
+    padding: 20px;
+    margin: 0;
+    border: none;
+  }
+
+  .page-footer,
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .department-logo {
+    max-width: 150px;
+    max-height: 150px;
+  }
+
+  .department-info {
+    text-align: center;
+  }
+
+  .department-chief-address {
+    text-align: right;
+    font-size: smaller;
+  }
+
+  .page-content {
+    height: 100%;
+  }
+
+  .chart-container {
+    position: relative;
+    height: 100%;
+  }
+
+  .half-page {
+    height: 50%;
+  }
+
+  .chart {
+    height: 100%;
+  }
+
+  .chart-title {
+    top: -10px;
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+    text-align: center;
+    font-size: x-large;
+    color: #666;
+    /*text-shadow: 1px 2px 1px rgba(150, 150, 150, .6);*/
+  }
+
+  .page-footer {
+    height: 60px;
+    align-items: center;
+    padding: 0 10px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: -40px;
+    z-index: 10;
+    position: relative;
+  }
+
+  .department-name {
+    font-size: 15px;
+  }
+
+  .department-info {
+    font-size: smaller;
+  }
+
+  .print-btn,
+  #print-settings-btn {
+    background-color: rgb(73, 73, 252);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    opacity: .85;
+    z-index: 20;
+    -webkit-box-shadow: 1px 1px 22px 6px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 1px 1px 22px 6px rgba(0, 0, 0, 0.75);
+    box-shadow: 1px 1px 22px 6px rgba(0, 0, 0, 0.75);
+    font-weight: bold;
+    display: none;
+  }
+
+
+
+  .print-btn:hover,
+  #print-settings-btn:hover {
+    cursor: pointer;
+    background-color: rgb(243, 106, 14);
+    color: white;
+    opacity: 1;
+  }
+
+  #print-settings-btn {
+    top: 60px;
+    right: 10px;
+    left: auto;
+    width: auto;
+    background-color: rgb(166, 166, 167);
+    font-size: 25px;
+    height: auto;
+    display: inline-block;
+  }
+
+  .no-data {
+    margin-top: 100px;
+    text-align: center;
+    color: orange;
+    font-weight: bold;
+  }
+
+  .header-note {
+    font-size: 15px;
+  }
+
+  .center-screen {
+    position: fixed;
+    left: 50%;
+    top: 40%;
+  }
+
+  #almost_there {
+    text-align: center;
+  }
+
+  .page-title {
+    margin-top: 5px;
+    font-size: 14px;
+  }
+
+  .chart-total {
+    font-size: 16px;
+    color: #444;
+  }
+
+  .quick_report_map {
+    padding-top: 100px;
+    width: 80%;
+    margin-left: 10%;
+  }
+
+  .peel9-label {
+    font-size: small;
+    position: absolute;
+    left: calc(50% - 10px);
+  }
+
+  #print-settings {
+    background-color: white;
+    border: 1px solid #ccc;
+    position: fixed;
+    top: 120px;
+    width: 350px;
+    right: 10px;
+    box-shadow: 1px 1px 5px 1px black;
+    padding: 10px;
+    z-index: 20;
+
+  }
+
+  #draw_charts {
+    margin-top: 10px;
+  }
+
+  #main_header {
+    color: #FFA500;
+    padding: 0 375px;
+    text-align: center;
+    font-weight: bold;
+    margin: 22px 0 10px 0;
+    text-shadow: 0px 0px 2px black;
+  }
+
+  #note {
+    text-align: center;
+    color: #999;
+  }
+
+  @media print {
+
+    .no-print,
+    .no-print * {
+      display: none !important;
+    }
+
+    body {
+      padding-top: 0;
+    }
+
+    .page {
+      page-break-after: always;
+    }
+
+    .leaflet-control-container {
+      display: none !important;
+    }
+
+    @-moz-document url-prefix() {
+      .page {
+        height: 39cm;
+      }
+    }
+  }
+
+  @page {
+    size: A4;
+    margin: 0;
+  }

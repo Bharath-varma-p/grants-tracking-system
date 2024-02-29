@@ -1,0 +1,22 @@
+.check_list_container {
+    border:	2px solid #ccc; 
+    height: 200px; 
+    overflow-y: scroll;
+    border-radius: 8px;
+}
+.check_list_item {
+    display: flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:flex-start;
+    padding-left: 0px;
+    margin-bottom: 3px;
+    margin-top: 3px;
+    padding: 4px 8px
+}
+.new_item {
+    background-color: #e6f9ff;
+}
+#check_list_item_text {
+    margin-left: 8px;
+}

@@ -1,0 +1,20 @@
+.dc-chart svg {
+    width: initial;
+    height: initial;
+}
+
+#dst2 g.row text {
+    fill: black;
+}
+
+.popup-container {
+    display: flex;
+    overflow: auto;
+}
+
+
+.tableColumn,
+.tableColumn>div {
+    font-weight: bold !important;
+    background: silver !important
+}

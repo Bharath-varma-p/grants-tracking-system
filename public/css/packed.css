@@ -1,0 +1,716 @@
+@import "reset-fonts.css";
+
+
+.dialog {
+	position: absolute;
+	z-index: 999;
+	padding: 1px;
+}
+
+.dialog .content {
+   width: 100%;
+   height: 100%;
+}
+
+.dialog .closeText {
+	display:none;
+	position:absolute;
+}
+
+.dialog {
+   overflow: visible !important;
+   margin: 0px auto;
+   min-width: 8em;
+   color: #000;
+   margin-left: 12px; /* default, width of left corner */
+   margin-bottom: 0.5em; /* spacing under dialog */
+}
+
+.dialog .content,
+.dialog .t,
+.dialog .b,
+.dialog .b div {
+   background: transparent url(../gfx/design/dialog.png) no-repeat top right;
+   _background-image: url(../gfx/design/dialog.gif);
+}
+
+.dialog .content {
+   position: relative;
+   zoom: 1;
+   padding-top: 10px;
+}
+
+.dialog .t {
+   /* top+left vertical slice */
+   position: absolute;
+   left: 0px;
+   top: 0px;
+   width: 12px; /* top slice width */
+   margin-left: -12px;
+   height: 100%;
+   _height: expression(this.nextSibling.offsetHeight + 10 + 'px');
+   background-position: top left;
+}
+
+.dialog .b {
+   /* bottom */
+   position: relative;
+   width: 100%;
+}
+
+.dialog .b,
+.dialog .b div {
+   height: 30px; /* height of bottom cap/shade */
+   font-size: 1px;
+}
+
+.dialog .b {
+   background-position: bottom right;
+}
+
+.dialog .b div {
+   position: relative;
+   width: 12px; /* bottom corner width */
+   margin-left: -12px;
+   background-position: bottom left;
+}
+
+.dialog .hd,
+.dialog .bd,
+.dialog .ft {
+   position: relative;
+}
+
+.dialog .content .titleBar {
+   padding: 0 0 3px;
+   outline-style: none;
+   outline-width: 0;
+}
+
+.dialog .content .titleBar .dijitDialogTitle {
+   padding: 0;
+}
+
+.dialog .content .titleBar .dijitDialogCloseIcon {
+   top: 10px;
+   right: 12px;
+}
+
+.dialog .content {
+   overflow: visible;
+   z-index: 100;
+}
+
+.dialog .buttonPane {
+   width: 100%;
+   text-align: center;
+}
+
+/* APPLICATION LOGIC
+   ----------------- */
+
+#unfallskizze-container {
+   -moz-user-select: none;
+   -khtml-user-select: none;
+   user-select: none;
+}
+
+#unfallskizze-area {
+   overflow: hidden;
+   margin: 0 !important;
+   padding: 0 !important;
+}
+
+#unfallskizze-viewport {
+   position: absolute;
+   overflow: hidden !important;
+}
+
+.bg {
+   position: absolute !important;
+   z-index: 0;
+}
+
+.text-tile {
+   text-align: center;
+   text-shadow: 2px 2px 2px black;
+}
+
+.tile, .text-tile, .arrow-tile, .arrow-end-tile, .rectangle-tile {
+   position: absolute !important;
+   z-index: 1;
+}
+
+#unfallskizze-tile-control-ring {
+   position: absolute;
+   z-index: 2;
+}
+
+#unfallskizze-tile-control-rotate {
+   position: absolute;
+   z-index: 4;
+}
+
+/* STYLING
+   ------- */
+
+html, body, #main {
+   font-family: sans-serif;
+   background-color: white;
+   width: 100%;	/* make the body expand to fill the visible window */
+   height: 100%;
+   padding: 0;
+   margin: 0;
+   overflow: hidden;
+}
+
+body {
+   background-color: #EAEAEA;
+}
+
+a.hidden-link {
+   text-decoration: none !important;
+}
+
+#main-container {
+   position: absolute;
+   top: 0;
+   left: 0;
+}
+
+#main {
+   background-image: url(../gfx/design/layout-container-fill-bg.png);
+}
+
+h3, strong {
+   font-weight: bold;
+}
+
+h3, p {
+   margin-bottom: 1em;
+}
+
+#welcome-overlay {
+   z-index: 100;
+}
+
+#welcome-overlay, #welcome-overlay .dijitDialogUnderlay {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+}
+
+.dijitDialog {
+   /* Also adjust dialog.endOpacity in main.js! */
+   opacity: 0.8;
+	filter: Alpha(Opacity=80);
+}
+
+.tundra .dijitDialog .dijitButtonDisabled .dijitButtonNode * {
+	filter: none !important;
+}
+
+.dijitDialogUnderlay {
+   background-color: #777777 !important;
+   opacity: 0.7 !important;
+}
+
+h1.header {
+   border: 1px solid white;
+   height: 56px;
+   background: url(../gfx/design/header-bg.png) repeat;
+}
+
+.footer {
+   background: #333333;
+}
+
+#statusbar, .vehicle-info {
+   border-top: 1px solid white;
+   border-bottom: 1px solid white;
+}
+
+.dijitAccordionBody {
+   /* Behebt Firefox-Bug beim Scrolling: https://bugzilla.mozilla.org/show_bug.cgi?id=422132 */
+   font-size: 10px !important;
+   
+   /* Behebt einen IE-Bug beim Zeichnen des Inhalts in Zusammenhang mit Scrolling -- flgr */
+   position: relative !important;
+   
+   overflow-x: hidden !important;
+}
+
+.dijitAccordionBody img {
+   vertical-align: middle;
+}
+
+.dijitVerticalSliderBar, .dijitVerticalSliderBumper {
+   width: 5px !important;
+   border: none !important;
+}
+
+.dijitVerticalSliderRemainingBar, .dijitVerticalSliderProgressBar,
+.dijitVerticalSliderBumper {
+   background: #999999 !important;
+}
+
+.dijitVerticalSliderImageHandle {
+   left: -4px !important;
+   border: 1px solid #999999 !important;
+   height: 8px !important;
+   width: 11px !important;
+   background: white !important;
+}
+
+.dijitVerticalSliderTopBumper {
+   height: 8px !important;
+}
+
+.dijitSliderBottomBumper {
+   height: 2px !important;
+}
+
+.vehicle-info, .vehicle-color-picker {
+   background-color: #333333;
+}
+
+.vehicle-info {
+   height: 32px;
+   line-height: 16px !important;
+}
+
+.vehicle-info h2 {
+   margin: 0;
+   font-weight: inherit;
+   color: #FA7E38;
+}
+
+.vehicle-info #enemy-vehicle-no, .vehicle-info #own-vehicle-no {
+   cursor: pointer;
+}
+
+.vehicle {
+   text-align: center;
+   background: url(../gfx/design/vehicle-gradient.png) repeat;
+}
+
+.dijitPopup {
+   overflow: hidden !important;
+}
+
+.vehicle-menu {
+   width: 528px;
+   overflow: hidden !important;
+   background-color: #666666;
+   padding-right: 1px;
+   padding-bottom: 1px;
+}
+
+.vehicle-menu .vehicle {
+   cursor: pointer !important;
+   float: left;
+   margin-top: 1px;
+   margin-left: 1px;
+}
+
+.vehicle-menu .vehicle:hover {
+   background: url(../gfx/design/vehicle-hover.png) repeat;
+}
+
+#sidebar-left, #sidebar-right {
+   /*border-bottom: 1px solid white;*/
+}
+
+#sidebar-left {
+   border-right: 1px solid white;
+}
+
+#sidebar-right {
+   border-left: 1px solid white;
+}
+
+#sidebar-left .vehicle-expand {
+   margin: 0 !important;
+   padding: 0 !important;
+   border-left: 1px solid #9B5527;
+}
+
+#sidebar-right .vehicle-expand {
+   margin: 0 !important;
+   padding: 0 !important;
+   border-right: 1px solid #9B5527;
+}
+
+#sidebar-left .tundra .dijitAccordionPane .dijitAccordionTitle,
+#sidebar-left .vehicle-info,
+#sidebar-left .vehicle-panel,
+#sidebar-left .vehicle-color-picker,
+#sidebar-left .action-bar,
+#control-status {
+   border-left: 1px solid white !important;
+}
+
+#sidebar-right .tundra .dijitAccordionPane .dijitAccordionTitle,
+#sidebar-right .vehicle-info,
+#sidebar-right .vehicle-panel,
+#sidebar-right .vehicle-color-picker,
+#sidebar-right .action-bar,
+#control-status,
+#control-scale {
+   border-right: 1px solid white !important;
+}
+
+.tundra .dijitAccordionPane .dijitAccordionTitle,
+.vehicle-info, 
+.vehicle-color-picker,
+.footer,
+.action-bar {
+   color: white !important;
+   font-size: 11px !important;
+}
+
+.tundra .dijitAccordionPane .dijitAccordionTitle,
+.vehicle-info, 
+.vehicle-color-picker,
+.footer {
+   padding: 4px !important;
+   padding-left: 6px !important;
+}
+
+.tundra .dijitAccordionPane .dijitAccordionTitle,
+.vehicle-info, 
+.vehicle-color-picker {
+   border-top: 1px solid white !important;
+}
+
+.tundra .dijitAccordionPane .dijitAccordionTitle,
+.vehicle-info, 
+.vehicle-color-picker,
+.action-bar {
+   letter-spacing: 1px;
+   font-weight: bold !important;
+}
+
+
+.tundra .dijitAccordionPane .dijitAccordionTitle,
+.vehicle-color-picker,
+.footer {
+   line-height: 13px !important;
+}
+
+.tundra .dijitAccordionPane .dijitAccordionTitle {
+   background: #4A4A4A url(../gfx/design/titlebar-inactive.png) repeat-x left bottom !important;
+   border: 0 !important;
+   border-top: 1px solid white !important;
+   border-left: 1px solid white !important;
+}
+
+.tundra .dijitAccordionPane-selected .dijitAccordionTitle {
+   border-bottom: 1px solid white !important;
+   background: #E26C29 url(../gfx/design/titlebar-active.png) repeat-x left bottom !important;
+}
+
+.tundra .dijitAccordionPane .dijitAccordionArrow {
+   display: none;
+}
+
+.tundra .dijitAccordionPane-selected .dijitAccordionArrow {
+   background-image: url(../gfx/design/titlebar-active-arrow.png) !important;
+   margin: 0 !important;
+   display: block;
+}
+
+.tundra .dijitAccordionPane .dijitAccordionBody {
+   line-height: 1;
+   font-size: 0;
+   text-align: center;
+   border: 0 !important;
+   border-right: 1px solid white !important;
+   /* Anmerkung: Hier darf kein Padding definiert sein. dijit zieht bei der
+    * Berechnung der Box-HÃ¶he fÃ¼r den AccordionBody kein Padding ab. D.h. dass
+    * alle nachfolgenden AccordionHeader um die Summe von padding-top/-bottom
+    * verschoben sind. */
+   /*padding-top: 6px;
+   padding-left: 6px;*/
+}
+
+.new-tile-bg {
+   border: 1px solid #686868;
+   margin: 3px;
+}
+
+.vehicle-color-picker {
+   padding-right: 0 !important;
+   padding-bottom: 0 !important;
+}
+
+.vehicle-color {
+   cursor: pointer;
+   border: 1px solid white;
+   /*border-right-color: silver;
+   border-bottom-color: silver;*/
+   margin-right: 4px;
+   margin-bottom: 4px;
+   width: 16px;
+   height: 16px;
+   padding: 0;
+   float: left;
+}
+
+.vehicle-color.mousedown {
+   border-top-color: silver;
+   border-left-color: silver;
+   border-right-color: white;
+   border-bottom-color: white;
+}
+
+.vehicle-color .selected-color {
+   width: 16px;
+   height: 16px;
+   background: url(../gfx/design/selected-color.png) no-repeat center;
+}
+
+.zoom-control {
+   overflow: hidden !important;
+}
+
+.zoom-control .zoom-button {
+   cursor: pointer;
+   float: left;
+   text-align: center;
+   font-weight: bold;
+   color: white;
+   background-color: #666666;
+}
+
+.zoom-control .zoom-bar {
+   cursor: pointer;
+   padding: 1px;
+   width: 7px;
+   float: left;
+}
+
+.zoom-control .zoom-bar .inner {
+   background: url(../gfx/design/zoom-bar-bg.png);
+}
+
+.zoom-control .zoom-bar.active .inner {
+   background-image: none;
+   background-color: #FF6600;
+}
+
+.scale-vis-control {
+   height: 10px;
+}
+
+.scale-vis-control-label {
+   float: left;
+   font-size: 10px;
+   font-weight: bold;
+   height: 10px;
+   padding-left: 4px;
+   padding-right: 4px;
+   text-align: center;
+}
+
+.scale-vis-control-start, .scale-vis-control-end {
+   float: left;
+   height: 10px;
+   font-size: 0;
+   width: 2px;
+   background-color: #666666;
+}
+
+.scale-vis-control-line {
+   float: left;
+   margin-top: 4px;
+   height: 2px;
+   font-size: 0;
+   background-color: #666666;
+}
+
+.unfallskizzeVehicleButton {
+   width: 20px;   
+   padding: 0px 1px;
+   height: 100%;
+   border: none;
+	background-color: #FA7E38 !important;
+	color: #333333;
+	overflow:visible;
+	line-height:normal;
+	font-family:inherit;
+	font-size:inherit;
+	cursor:pointer;
+	vertical-align:middle;	
+	text-align:center;
+	white-space: nowrap;
+}
+
+.vehicle-node {
+   margin: auto;
+   background-position: center;
+   background-repeat: no-repeat;
+}
+
+.action-bar {
+   padding-top: 4px;
+   background-color: #2A2A2A;
+   overflow: auto;
+   overflow-x: hidden;
+   overflow-y: auto;
+}
+
+.action-bar .header {
+   width: 100%;
+   background-color: #666666;   
+   color: #333333;
+   height: 30px;
+}
+
+.action-bar .content {
+   width: 100%;
+}
+
+.action-bar h2 {
+   background: url(../gfx/design/edit-icon.gif) no-repeat left;
+   padding: 10px 0px 6px 40px;
+   text-transform: uppercase;
+   font-weight: inherit;
+   border-top: 1px solid #2A2A2A !important;
+}
+
+.action-bar h2.first {
+   border-top: none !important;
+}
+
+.action-bar .dijitButton {
+   display: block;
+   width: 100%;
+   overflow: hidden;
+   text-align: left;
+   background: #3F3F3F !important;
+   padding: 0 !important;
+   border: 0 !important;
+   margin: 0;
+   border-top: 1px solid #2A2A2A !important;
+}
+
+.action-bar .dijitButtonNode {
+   text-align: left;
+   color: #CACACA !important;
+   font-weight: bold;
+   width: 100%;
+   border: 0 !important;
+   margin: 0;
+   padding: 0 !important;
+   background: url(../gfx/design/edit-icon-bg-inactive.png) no-repeat left !important;
+   height: 30px;
+}
+
+.action-bar .dijitButtonNode span {
+    position: relative;
+    top: -1px;
+}
+.action-bar .dijitButtonNode span img {
+    position: relative;
+    left: -6px;
+    top: -1px;
+    margin-right: -8px;
+}
+
+.action-bar .dijitButtonHover .dijitButtonNode,
+.action-bar .dijitButtonActive .dijitButtonNode {
+   color: white !important;
+   background: url(../gfx/design/edit-icon-bg-active.png) no-repeat left !important;   
+}
+
+#unfallskizze-area {
+   border: 2px solid #aaa;
+   background-color: white;
+}
+
+.unfallskizze-area-control-scroll-background {
+   background-color: white;
+}
+
+.unfallskizze-area-control-scroll-decoration {
+   background-color: #666666;
+}
+
+.scroll-arrow {
+   width: 100%;
+   height: 100%;
+}
+
+.unfallskizze-area-control-scroll-N .scroll-arrow {
+   background: url(../gfx/design/scroll-arrow-n.png) no-repeat top;
+}
+
+.unfallskizze-area-control-scroll-E .scroll-arrow {
+   background: url(../gfx/design/scroll-arrow-e.png) no-repeat right;
+}
+
+.unfallskizze-area-control-scroll-S .scroll-arrow {
+   background: url(../gfx/design/scroll-arrow-s.png) no-repeat bottom;
+}
+
+.unfallskizze-area-control-scroll-W .scroll-arrow {
+   background: url(../gfx/design/scroll-arrow-w.png) no-repeat left;
+}
+
+.unfallskizze-area-control-scroll-NW .scroll-arrow {
+   background: url(../gfx/design/scroll-arrow-nw.png) no-repeat top left;
+}
+
+.unfallskizze-area-control-scroll-NE .scroll-arrow {
+   background: url(../gfx/design/scroll-arrow-ne.png) no-repeat top right;
+}
+
+.unfallskizze-area-control-scroll-SE .scroll-arrow {
+   background: url(../gfx/design/scroll-arrow-se.png) no-repeat bottom right;
+}
+
+.unfallskizze-area-control-scroll-SW .scroll-arrow {
+   background: url(../gfx/design/scroll-arrow-sw.png) no-repeat bottom left;
+}
+
+.unfallskizze-area-control-trash {
+   z-index: 1;
+   position: absolute;
+   left: 0px;
+   top: 0px;
+   background: url(../gfx/controls/trashcan_empty.png) no-repeat;
+   width: 64px;
+   height: 64px;
+}
+
+.unfallskizze-area-control-trash.trashcan-full {
+   background: url(../gfx/controls/trashcan_full.png) no-repeat;
+}
+
+#unfallskizze-control-new-stuff {
+   display: block;
+   position: absolute;
+   top: 0px;   
+   right: 0px;
+}
+
+#unfallskizze-container {
+   overflow: hidden;
+}
+
+#unfallskizze-viewport {
+   border: 1px solid white;
+}
+
+#unfallskizze-tile-control-rotate {
+   width: 13px;
+   height: 13px;
+   background: url(../gfx/controls/tile_control_rotate.png) no-repeat;
+}
+
+iframe {
+   border: 0;
+}

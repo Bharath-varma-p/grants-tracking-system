@@ -1,0 +1,22 @@
+body {
+    background: #111 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAB9JREFUeNpi/P//PwM6YGLAAuCCmpqacC2MRGsHCDAA+fIHfeQbO8kAAAAASUVORK5CYII=);
+}
+
+.file-preview,
+.form-control,
+.modal-content {
+    background-color: rgb(23 23 23);
+    color: white;
+}
+
+.btn-primary {
+    background-color: #084478;
+}
+
+.krajee-default.file-preview-frame:not(.file-preview-error) {
+    background-color: #404040;
+}
+
+.krajee-default .file-footer-caption {
+    color: rgb(230, 230, 230);
+}

@@ -1,0 +1,105 @@
+.main_container .left_col {
+    background: #000000;
+    border-right: #333 1px solid;
+    color: #ededed;
+}
+
+.container.body .right_col {
+    color: #bbb;
+    background: #111 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAB9JREFUeNpi/P//PwM6YGLAAuCCmpqacC2MRGsHCDAA+fIHfeQbO8kAAAAASUVORK5CYII=) !important;
+}
+
+/* ----------- SIDEBAR CSS START ----------- */
+
+.site_title {
+    border-bottom: 1px solid #848a92;
+}
+
+.nav li li.current-page a {
+    color: #fff;
+}
+#peel9 {
+    color: #006bb3;
+}
+
+#nav_config button {
+    background-color: #003b63;
+    color: #ededed;
+}
+
+#nav_config button:hover {
+    background-color: #005f9e;
+    color: #f8f8f8;
+}
+
+.nav.side-menu {
+    text-shadow: 0 0 3px black;
+}
+
+.nav.side-menu>li>a, .nav.child_menu>li>a {
+    color: #ededed;
+}
+
+
+
+.nav.side-menu li.current-page {
+    background-color: #00263f;
+    border-right: 2px solid #ededed;
+}
+
+.nav.side-menu>li.active {
+    border-right: 1px solid #ededed;
+}
+
+.nav.side-menu>li.active>a {
+    background-color: #20262b;
+}
+
+.nav.side-menu>li>a:hover, .nav.side-menu ul li:hover, .nav.side-menu>li>a:focus, .nav.side-menu ul li:focus {
+    background-color: #313131;
+}
+
+
+
+/* ----------- SIDEBAR CSS END ----------- */
+
+/* ----------- TOP NAV CSS START ----------- */
+
+.nav_menu {
+    background: #071722;
+    border-bottom: 1px solid #848a92;
+}
+
+.toggle a i {
+    color: #ededed;
+}
+.top_nav .navbar-right li {
+    color: #444;
+}
+.top_nav .dropdown-menu {
+    background-color: #071722;
+}
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
+    background-color: #313131;
+}
+.top_nav .dropdown-menu>li>a {
+    color: #ededed;
+}
+.top_nav .navbar-right>li>a {
+    color: #ededed;
+}
+.top_nav .navbar-right>li>a:hover, .top_nav .navbar-right>li>a:focus {
+    background-color: #313131;
+}
+.top_nav .navbar-right>li.open>a {
+    background-color: #00263F;
+    color: #ededed;
+    text-shadow: 0 0 3px black;
+}
+.top_nav .divider{
+    background-color: #444;
+}
+/* ----------- TOP NAV CSS END ----------- */
+
+
+/* ----------- RIGHT COL CSS(main page content) IS CONTAINED WITHIN ITS OWN CSS FILE CALLED main.css ----------- */

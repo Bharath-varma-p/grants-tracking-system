@@ -1,0 +1,56 @@
+    .reset_button {
+        float: right;
+        color: rgb(106, 168, 187);
+    }
+
+    @page {
+        size: auto;
+        /* auto is the initial value */
+        margin top: 1%;
+        /* this affects the margin in the printer settings */
+        margin-bottom: 2%;
+        margin-left: 1% margin-right:1%;
+
+    }
+
+
+    tr.border_bottom td2 {
+        border-bottom: 1pt solid black;
+    }
+
+    #header {
+        position: fixed;
+        width: 90%;
+        height: auto;
+        top: 10;
+        right: 0;
+        bottom: auto;
+        left: 5%;
+        background: white;
+    }
+
+    #header2 {
+        position: fixed;
+        width: 90%;
+        height: auto;
+        top: 10;
+        right: 0;
+        bottom: auto;
+        left: 80%;
+    }
+
+    #scanned-evidence-location-table th {
+        font-size: 16px;
+        background-color: #444;
+        color: #f7f7f7;
+    }
+
+    #scanned-evidence-location-table td,
+    #scanned-evidence-location-table th {
+        border-bottom: 1px solid #ccc;
+        padding: 3px;
+    }
+
+    #QR_Reader .qrcode-reader {
+        display: block;
+    }

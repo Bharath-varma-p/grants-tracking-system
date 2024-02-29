@@ -1,0 +1,149 @@
+
+* {
+    padding: 0;
+    border: 0;
+    outline: 0;
+    margin: 0;
+}
+
+html {
+    font-size: 14px;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+body {
+    font-family: 'Oxygen', Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    text-align: left;
+    color: #666;
+    background: #555 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAB9JREFUeNpi/P//PwM6YGLAAuCCmpqacC2MRGsHCDAA+fIHfeQbO8kAAAAASUVORK5CYII=);
+}
+
+input {
+    background-color: transparent;
+    font-size: 14px;
+    font-weight: bold;
+    color: #262626;
+}
+
+#narrative {
+    height: 100px;
+    background-color: transparent;
+    border: 1px solid #26262626;
+    resize: vertical;
+    font-size: 16px;
+}
+
+.panel-group>.panel-default {
+    border: 1px solid #ededed70;
+    height: 180px;
+    border-radius: 15px;
+    color: #262626;
+}
+
+.panel-default>.panel-heading {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom: silver solid thin;
+    background-color: #4d4d4d;
+    text-align: center;
+    color: rgb(252, 252, 252);
+    font-weight: bold;
+    font-size: 14px;
+}
+
+#clearance {
+    text-align: center;
+    font-size: 18px;
+    color: #262626;
+    font-weight: bold;
+    padding-top: 15px;
+}
+
+#header {
+    color: #FFA500;
+    padding: 0 200px;
+    text-align: center;
+    font-weight: bold;
+    margin: 30px 0;
+    text-shadow: 0px 0px 2px black;
+}
+
+#citation_no {
+    color: #EDEDED;
+    font-size: 20px;
+    text-align: center;
+}
+
+.button {
+    width: auto;
+    color: whitesmoke;
+    border: thin #aaaaaa solid;
+    text-shadow: 0 0 2px black;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 15px;
+    padding: 10px 15px;
+    margin: 0 5px;
+    transition: ease-in-out 100ms background-color;
+}
+
+#approve_button,
+#send_approval_button {
+    float: left;
+    background-color: rgb(63, 139, 0);
+}
+
+#approve_button:hover,
+#send_approval_button:hover {
+    background-color: rgb(0, 177, 0);
+    border-color: white;
+}
+
+#disapprove_button {
+    float: left;
+    background-color: rgb(139, 44, 0);
+}
+
+#disapprove_button:hover {
+    background-color: rgb(177, 50, 0);
+    border-color: white;
+}
+
+#cancel_button {
+    background-color: rgb(71, 71, 71);
+    float: right;
+}
+
+#cancel_button:hover {
+    background-color: rgb(95, 95, 95);
+    border-color: white;
+}
+
+.icon-cog {
+    color: #262626;
+}
+
+#approve_before_user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    float: left;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+#approve_before_user label {
+    cursor: pointer;
+    color: #EDEDED;
+    margin: 1px 0 0 5px;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+#approve_before_user input {
+    cursor: pointer;
+    margin: 0;
+}

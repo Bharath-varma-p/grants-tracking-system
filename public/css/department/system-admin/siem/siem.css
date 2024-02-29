@@ -1,0 +1,26 @@
+.td3 {
+    background-color: whitesmoke;
+}
+
+.td5 {
+    background-color: silver;
+}
+
+.reset
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.reset > .panel-title
+{
+    flex-grow: 1;
+}
+
+.popover-content
+{
+    max-height: 600px;
+    overflow-y: auto;
+}

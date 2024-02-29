@@ -1,0 +1,105 @@
+
+body 		{ padding-top:30px;
+    background: #555 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAB9JREFUeNpi/P//PwM6YGLAAuCCmpqacC2MRGsHCDAA+fIHfeQbO8kAAAAASUVORK5CYII=);
+
+
+}
+
+.intro{color:whitesmoke;
+}
+
+
+
+#property_post .action-button {
+width: 100px;
+background: #ee0979;
+font-weight: bold;
+color: white;
+border: 0 none;
+border-radius: 25px;
+cursor: pointer;
+padding: 10px 5px;
+margin: 10px 5px;
+}
+
+#property_post .action-button2 {
+
+background: orange;
+font-weight: bold;
+color: white;
+border: 0 none;
+border-radius: 25px;
+cursor: pointer;
+padding: 10px 5px;
+margin: 10px 5px;
+}
+
+
+label { float: left; margin-left: 0.2em; margin-bottom:-0.1em; color:black; font-weight:600}
+
+.panel-heading {
+    cursor: pointer;
+    background-color: darkseagreen !important;
+
+
+}
+.panel-title {font-weight: bold;
+
+}
+
+.panel-title:after {
+    /* symbol for"opening" panels */
+    font-family: 'Glyphicons Halflings';  /* essential for enabling glyphicon */
+    content:"\e113";    /* adjust as needed, taken from bootstrap.css */
+    float: right;        /* adjust as needed */
+    color: grey;         /* adjust as needed */
+
+}
+.panel-title.collapsed:after {
+    /* symbol for"collapsed" panels */
+    content:"\e114";    /* adjust as needed, taken from bootstrap.css */
+}
+
+.dropdown-menu {
+    max-width: 600px;
+}
+
+.caret{
+    color: darkblue;
+    margin-right:-2px;
+    margin-bottom:8px;
+
+}
+
+.dropdown-menu2 li a {
+    max-width: 500px;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+
+.heading_style {
+    font-size: 14px;
+    font-weight: bold;
+    color:#2b465e;
+    overflow-wrap: break-word;
+    white-space: normal;
+
+}
+
+
+
+.required:after { content:" *"; color:red}
+
+.form-group .form-control-feedback {  
+margin-right: 18px; margin-top:15px;
+pointer-events: auto; /* or - auto // or -  unset  */
+}
+
+.jconfirm-box {background-color:#262626 !important;}
+.jconfirm-content{color:white !important}
+a.my-tool-tip, a.my-tool-tip:hover, a.my-tool-tip:visited {
+
+color: black;
+
+}

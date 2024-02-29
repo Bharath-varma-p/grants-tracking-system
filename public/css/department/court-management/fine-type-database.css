@@ -1,0 +1,20 @@
+td {
+    text-align: center !important
+}
+
+.add_cancel {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgb(116, 53, 53);
+    color: whitesmoke;
+    float: left;
+    margin-left: 30px;
+    border: thin solid rgb(221, 139, 139);
+    width: 200px;
+}
+
+.add_cancel:hover {
+    background-color: rgb(117, 67, 67);
+    border: thin solid rgb(219, 151, 151);
+    color: white;
+}

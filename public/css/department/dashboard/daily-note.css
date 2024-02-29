@@ -1,0 +1,16 @@
+.panel-heading {
+    cursor: pointer;
+    background-color: darkseagreen !important;
+}
+#next_button {background-color: #078861;
+min-width: 120.70px;
+color:whitesmoke;
+height:35px;
+font-size:14px;	
+}
+#next_button:hover {
+background-color: #13a579;
+}
+#next_button:active {
+background-color: #00553b;
+}

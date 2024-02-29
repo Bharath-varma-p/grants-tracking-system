@@ -1,0 +1,276 @@
+[
+  {
+    "id": "1",
+    "pageName": "Landing Page",
+    "list_id": "user_dashboard",
+    "a_href": "user_landingpage",
+    "icon_class": "fa fa-home",
+    "notificationCount": 0,
+    "childMenuId": "",
+    "subMenus": [],
+    "defaultDisplay": false
+  },
+  {
+    "id": "2",
+    "pageName": "Case Selection",
+    "list_id": "co_offending",
+    "a_href": "case_selection",
+    "icon_class": "fa fa-tasks",
+    "notificationCount": 0,
+    "childMenuId": "",
+    "subMenus": [],
+    "defaultDisplay": false
+  },
+  {
+    "id": "3",
+    "pageName": "My Patients",
+    "list_id": "co_offending",
+    "a_href": "my_patients",
+    "icon_class": "fa fa-folder-open",
+    "notificationCount": 0,
+    "childMenuId": "",
+    "subMenus": [],
+    "defaultDisplay": true
+  }, 
+  {
+    "id": "4",
+    "pageName": "Follow Ups",
+    "list_id": "follow_up",
+    "a_href": "follow_up",
+    "icon_class": "fa fa-check-square",
+    "notificationCount": 0,
+    "childMenuId": "",
+    "subMenus": [],
+    "defaultDisplay": true
+  },
+  {
+    "id": "5",
+    "pageName": "Quality Review",
+    "list_id": "quality_check",
+    "a_href": "quality_check",
+    "icon_class": "fa fa-exchange",
+    "notificationCount": 0,
+    "childMenuId": "",
+    "subMenus": [],
+    "defaultDisplay": true
+  },  
+  {
+    "id": "7",
+    "pageName": "Baseline Analysis",
+    "list_id": "baseline_analytics",
+    "a_href": "baseline_analytics",
+    "icon_class": "fa fa-chart-line",
+    "notificationCount": 0,
+    "childMenuId": "",
+    "subMenus": [],
+    "defaultDisplay": false
+  },
+  {
+    "id": "6",
+    "pageName": "Reports",
+    "list_id": "co_offending",
+    "a_href": null,
+    "icon_class": "fa fa-bar-chart",
+    "notificationCount": 0,
+    "childMenuId": "co_offending2",
+    "defaultDisplay": true,
+    "subMenus": [
+      {
+        "id": "6.1",
+        "pageName": "Reports Summary",
+        "list_id": "co_offending",
+        "a_href": "reports_page",
+        "defaultDisplay": true
+      },
+      {
+        "id": "6.2",
+        "pageName": "Review Activity Report",
+        "list_id": "co_offending",
+        "a_href": "review_activity",
+        "defaultDisplay": true
+      },
+      {
+        "id": "6.3",
+        "pageName": "Review Analysis",
+        "list_id": "co_offending",
+        "a_href": "review_analysis_page",
+        "defaultDisplay": true
+      },
+      {
+        "id": "6.4",
+        "pageName": "Follow-Up Analysis",
+        "list_id": "co_offending",
+        "a_href": "followup_analysis",
+        "defaultDisplay": true
+      },
+      {
+        "id": "6.5",
+        "pageName": "Provider Analysis",
+        "list_id": "co_offending",
+        "a_href": "provider_analysis_page",
+        "defaultDisplay": true
+      }
+    ]
+  },  
+   
+  
+  
+
+ 
+
+  
+
+
+
+
+
+  
+  {
+    "id": "13",
+    "pageName": "System Admin",
+    "list_id": "system_admin",
+    "a_href": null,
+    "icon_class": "fa fa-cogs",
+    "notificationCount": 0,
+    "childMenuId": "system_admin2",
+    "defaultDisplay": true,
+    "subMenus": [
+      {
+        "id": "13.1",
+        "pageName": "Employees",
+        "list_id": "employees",
+        "a_href": "employees",
+        "defaultDisplay": true
+      },
+      {
+        "id": "13.2",
+        "pageName": "Trainings",
+        "list_id": "training_database",
+        "a_href": "training_database"
+      },
+      {
+        "id": "13.3",
+        "pageName": "Storage Usage",
+        "list_id": "user_activity",
+        "a_href": "user_activity",
+        "defaultDisplay": false
+      },
+      {
+        "id": "13.4",
+        "pageName": "User Activity",
+        "list_id": "user_activity_report",
+        "a_href": "user_activity_report",
+        "defaultDisplay": false
+      },
+      {
+        "id": "13.5",
+        "pageName": "Approval Configuration",
+        "list_id": "approval_design",
+        "a_href": "approval_design",
+        "defaultDisplay": false
+      },
+      {
+        "id": "13.6",
+        "pageName": "Municipality Codes",
+        "list_id": "codes",
+        "a_href": "codes",
+        "defaultDisplay": false
+      },
+      {
+        "id": "13.7",
+        "pageName": "Local Traffic Codes",
+        "list_id": "traffic_codes",
+        "a_href": "traffic_codes",
+        "defaultDisplay": false
+      },
+      {
+        "id": "13.8",
+        "pageName": "Data Sharing Configuration",
+        "list_id": "data_sharing",
+        "a_href": "data_sharing",
+        "defaultDisplay": false,
+        "dontShowAtEmployeesPage": true
+      },
+      {
+        "id": "privilege_settings",
+        "pageName": "Privilege Settings",
+        "list_id": "privilege_settings",
+        "a_href": "privilege_settings",
+        "defaultDisplay": true
+      },
+      {
+        "id": "oibrs_submission",
+        "pageName": "OIBRS Submission",
+        "list_id": "oibrs_submission",
+        "a_href": "oibrs_submission",
+        "defaultDisplay": false
+      },
+      {
+        "id": "locator_database",
+        "pageName": "Demographic Weights",
+        "list_id": "demographic_weights",
+        "a_href": "DemographicWeights",
+        "defaultDisplay": true,
+        "requirePrivilege": false
+      },
+      {
+        "id": "hcc_codes_database",
+        "pageName": "HCC Codes",
+        "list_id": "hcc_database",
+        "a_href": "hcc_database",
+        "defaultDisplay": true,
+        "requirePrivilege": false
+      },
+      {
+        "id": "itac_hierarchies_database",
+        "pageName": "ITAC Hierarchies",
+        "list_id": "itac_hierarchies_database",
+        "a_href": "itac_hierarchies_database",
+        "defaultDisplay": true,
+        "requirePrivilege": false
+      },
+      {
+        "id": "interactions_database",
+        "pageName": "Interactions",
+        "list_id": "interactions_database",
+        "a_href": "interactions_database",
+        "defaultDisplay": true,
+        "requirePrivilege": false
+      },
+      {
+        "id": "audit_logs",
+        "pageName": "Audit Logs",
+        "list_id": "audit_logs",
+        "a_href": "audit_logs",
+        "defaultDisplay": false
+      }
+    ]
+  },
+  {
+    "id": "14",
+    "pageName": "Help & Support",
+    "list_id": "helpsupport",
+    "a_href": null,
+    "icon_class": "fa fa-info",
+    "notificationCount": 0,
+    "childMenuId": "helpsupport2",
+    "defaultDisplay": false,
+    "dontShowAtEmployeesPage": true,
+    "subMenus": [
+      {
+        "id": "14.1",
+        "pageName": "Help Desk",
+        "list_id": "user_requests",
+        "a_href": "user_requests",
+        "defaultDisplay": false
+      },
+      {
+        "id": "14.2",
+        "pageName": "How To",
+        "list_id": "whatsnew",
+        "a_href": "whatsnew",
+        "defaultDisplay": false
+      }
+    ]
+  }
+]

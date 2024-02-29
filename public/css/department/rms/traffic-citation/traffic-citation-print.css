@@ -1,0 +1,74 @@
+.footer {
+    text-align: center;
+  }
+
+
+
+  th,
+  td {
+    padding: 2px;
+  }
+
+
+
+  body {
+    -webkit-print-color-adjust: exact !important;
+    counter-reset: section;
+
+    text-align: justify;
+  }
+
+  @page {
+    size: auto;
+    /* auto is the initial value */
+    margin: 1rem;
+  }
+
+
+  @media print {
+    /* height of footer + a little extra */
+
+    .no-print {
+      display: none !important;
+    }
+  }
+
+  .color {
+    border: none;
+  }
+
+  #printTable {
+    table-layout: fixed;
+  }
+
+  .print-data {
+    border: 1px solid #ccc;
+    border-radius: 5px !important;
+    display: block;
+    width: 100%;
+    height: auto;
+    min-height: 25px;
+    line-height: 15px;
+    padding: 5px;
+    vertical-align: middle;
+    white-space: pre-wrap;
+
+  }
+
+  .section-label {
+    border-bottom: 1px solid #ccc;
+  }
+
+  .section-label td {
+    padding-top: 20px;
+  }
+
+  .vehicle span {
+    border: none;
+  }
+
+  #content {
+    margin-top: 0px;
+    width: 1100px;
+    margin: auto;
+  }

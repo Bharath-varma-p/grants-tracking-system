@@ -1,0 +1,307 @@
+body {
+  counter-reset: section;
+  text-align: justify;
+}
+.highlighted{
+	background-color: yellow;
+}
+
+  div {
+  min-width:50px;  
+  display:block;  
+  }
+  div span {
+  min-width:50px;
+  min-height:20px;
+  display:block;
+  opacity:0.7;
+  background:#ffffb3;
+  }
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;  
+  color: white;
+  text-align: center;
+}
+.page {
+  width: 21cm;
+  min-height: 25.7cm;
+  padding: 0cm;
+  margin: 0cm auto;
+  border-radius: 5px;
+  background: white;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+table {
+  width: 100%;
+ 
+}
+
+table, th, td {
+  
+  border-collapse: collapse;
+  background-color:white;
+  contenteditable:true;
+ 
+}
+
+
+table, th, td {  
+  border-collapse: collapse;
+  background-color:white;
+  font-size:14px;
+ 
+}
+
+textarea{ 
+  width:700px
+}
+
+.custom_border td {
+border: 1px solid lightgrey;
+}
+
+
+th, td {
+  padding: 2px 4px;
+}
+.content {padding:5%;}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+p,
+ul,
+ol,
+form,
+table,
+address {
+  margin-top: 0;
+  margin-bottom: 20px;
+  margin-bottom: 2rem;
+}
+
+#incident_first_part td {
+width:8.33%
+}
+
+
+body {
+  -webkit-print-color-adjust: exact !important;
+  counter-reset: section;
+  
+  text-align: justify;
+}
+@page  
+{    
+
+    /* this affects the margin in the printer settings */ 
+    margin: 5mm 5mm 5mm 5mm;  
+	   size: A4 portrait;
+}
+@media print {
+  tr.page
+      {
+        page-break-after: always;
+        page-break-inside: avoid;
+      }
+}
+
+
+
+
+ 
+.col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {
+  float: left;
+}
+.col-sm-12 {
+  width: 100%;
+}
+.col-sm-11 {
+  width: 91.66666666666666%;
+}
+.col-sm-10 {
+  width: 83.33333333333334%;
+}
+.col-sm-9 {
+  width: 75%;
+}
+.col-sm-8 {
+  width: 66.66666666666666%;
+}
+.col-sm-7 {
+  width: 58.333333333333336%;
+}
+.col-sm-6 {
+  width: 50%;
+}
+.col-sm-5 {
+  width: 41.66666666666667%;
+}
+.col-sm-4 {
+  width: 33.33333333333333%;
+}
+.col-sm-3 {
+  width: 25%;
+}
+.col-sm-2 {
+  width: 16.666666666666664%;
+}
+.col-sm-1 {
+  width: 8.333333333333332%;
+}
+
+ table { page-break-inside:auto }
+    tr    { page-break-inside:avoid; page-break-after:auto }
+    thead { display:table-header-group }
+    tfoot { display:table-footer-group }
+	
+
+tr.border_bottom td2 {
+  border-bottom:1pt solid black;
+}
+ #header {
+        position: fixed;
+        width: 90%;
+        height: auto;
+        top: 10;
+        right: 0;
+        bottom: auto;
+        left: 5%;
+		background:white;
+      }
+
+ #header2 {
+        position: fixed;
+        width: 90%;		
+        height: auto;
+        top: 10;
+        right: 0;		
+        bottom: auto;
+        left: 80%;
+      }	
+
+@media print {
+   #spacer {height: 2em;} /* height of footer + a little extra */
+  #footer {
+    position: fixed;
+    bottom: 0;   
+  }
+
+  .no-print, .no-print *
+    {
+        display: none !important;
+    }
+  
+ thead {display: table-header-group; 
+		}				
+		tbody {
+    display:table-row-group;
+}
+  div.pag {
+  display: none;
+  position: absolute;
+  page-break-before: always;
+  page-break-after: always;
+  bottom: 0;
+  right: 0;
+}
+
+div.pag::before {
+  position: fixed;
+  
+ 
+  
+}
+div.pag {
+    display: initial;
+   
+  }
+  .print {
+    display: none;
+  }
+    tbody::after {
+        content: ''; display: block;
+        page-break-after: always;
+        page-break-inside: avoid;
+        page-break-before: avoid;        
+    }
+  
+
+  table.report { page-break-after:auto }
+  table.report tr    { page-break-inside:avoid; page-break-after:auto }
+  table.report td    { page-break-inside:avoid; page-break-after:auto }
+  table.report thead { display:table-header-group }
+  table.report tfoot { display:table-footer-group }
+  
+  table {background:white;}
+  table td {background:transparent;}
+ }
+ 
+ #incident_first_part td{
+ background-color:#e6e6ff;
+ }
+ 
+ 
+  #involved_business td{
+ background-color:#ffffcc;
+ }
+ #involved_individuals td{
+ background-color:#ffffcc;
+ }
+ 
+ #property td{
+ background-color:#ffffcc;
+ }
+  #narrative_arrest td{
+ background-color:#ffffcc;
+ }
+  #narrative_normal td{
+ background-color:#e6e6ff;
+ }
+ 
+ .b16, .c16, .d16, .t16 {color:blue}
+
+.td3 {
+	background-color: silver !important;
+	font-weight: bold;
+}
+
+@media print {
+    div span{
+        background:transparent
+    }
+    .td1 {
+        background-color: #dedede !important;
+    }
+    .td2 {
+        background-color: whitesmoke !important;
+    }
+    .td3 {
+        background-color: silver !important;
+    }
+    td {
+        background-color: transparent !important;	 
+    }
+
+    html, body {
+        height:100vh; 
+        zoom:85%;
+        margin: 0 !important; 
+        padding: 0 !important;
+        
+    }
+
+}

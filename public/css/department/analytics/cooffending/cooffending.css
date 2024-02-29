@@ -1,0 +1,160 @@
+.panel-default>.panel-heading {
+    opacity: 1;
+}
+
+body {
+    background: #555 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAB9JREFUeNpi/P//PwM6YGLAAuCCmpqacC2MRGsHCDAA+fIHfeQbO8kAAAAASUVORK5CYII=);
+}
+
+.link line {
+    stroke: silver;
+    stroke-opacity: .5
+}
+
+.link line.separator {
+    stroke: white;
+    stroke-opacity: .3;
+}
+
+.node circle {
+    stroke: gray;
+    stroke-width: 3;
+}
+
+.node text {
+    font: 12px sans-serif;
+    color: #FFF;
+    pointer-events: none;
+}
+
+.link {
+    stroke: #999;
+    stroke-opacity: .3;
+}
+
+circle,
+circle+text {
+    cursor: pointer;
+}
+
+.d3-tip {
+    line-height: 1;
+    font-weight: bold;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+    box-sizing: border-box;
+    display: inline;
+    font-size: 10px;
+    width: 100%;
+    line-height: 1;
+    color: rgba(0, 0, 0, 0.8);
+    content: "\25BC";
+    position: absolute;
+    text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+    margin: -1px 0 0 0;
+    top: 100%;
+    left: 0;
+}
+
+#download_container {
+    --download-button-width: 135px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#download_container h4 {
+    margin-left: var(--download-button-width);
+    flex-grow: 1;
+}
+
+#download_container button {
+    margin-left: auto;
+    background-color: #49724b;
+    width: var(--download-button-width);
+    color: white;
+    font-weight: bold;
+    height: 30px;
+    font-size: 14px;
+    border: 1px solid #999;
+}
+
+#download_container button:hover {
+    background-color: #6da070;
+
+}
+
+#graph-chart {
+    background-color: #e0ebeb;
+    height: 810px;
+}
+
+#age-chart2,
+#source-chart2,
+#chart2,
+#year-chart2 {
+    background-color: #e0ebeb;
+    min-height: 33%;
+}
+
+#source-chart2 {
+    min-height: 100%;
+}
+
+.reset_button {
+    float: right;
+    color: rgb(106, 168, 187);
+}
+
+.center-screen {
+    position: fixed;
+    left: 50%;
+    top: 40%;
+    height: 140px;
+    width: 100px;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #333;
+    border-radius: 10px;
+    color: white;
+    border: 1px solid #111;
+    opacity: .9;
+    z-index: 99999;
+}
+
+.link2 {
+    stroke-width: 3px;
+}
+
+.link2:hover {
+    cursor: pointer;
+    stroke-width: 6px;
+    stroke: red;
+}
+
+#dc-table-chart2 td>hr {
+    border: 1px solid #aaa;
+    margin: 0;
+
+
+
+}
+
+#dc-table-chart tbody>tr>td:first-child {
+    background: #000b0b !important;
+    
+    
+
+
+}

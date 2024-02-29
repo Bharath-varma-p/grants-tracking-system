@@ -1,0 +1,188 @@
+.traffic_crash_diagram_unit_section{
+    z-index: 400;
+    transform: translate(0, -90%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    flex-direction: column;
+    background-color: #2626265b;
+    border-radius: 0 0 25px 25px;
+    width: 90%px;
+    margin: auto;
+    transition: transform 200ms ease-in-out, width 400ms ease-in-out, background-color 200ms ease;
+}
+.traffic_crash_diagram_unit_section:hover {
+    transform: translate(0, -91%);
+    background-color: #262626a8;
+    cursor: pointer;
+}
+.traffic_crash_diagram_unit_section.active {
+    background-color: #262626a8;
+    width: 90%;
+    transform: translate(0, 0%);
+
+    transition: transform 200ms ease-in-out, width 0ms ease-in-out;
+}
+.traffic_crash_diagram_unit_section.active .traffic_crash_diagram_arrow{
+    transform: rotate(225deg);
+}
+
+.traffic_crash_diagram_unit_button{
+    height: 61px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    flex-flow: column;
+    text-align: center;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0px 20px #eee;
+    border-radius: 0 0 15px 15px;
+    background-image: linear-gradient(to right, #314755 0%, #26a0da 51%, #314755 100%);
+
+}
+.traffic_crash_diagram_arrow{
+    padding: 7px;
+    border: #EDEDED solid;
+    border-width: 0 4px 4px 0;
+    border-radius: 4px;
+    transform: rotate(45deg);
+    transition: transform 200ms ease-in;
+    margin-bottom: 10px;
+    box-shadow: 2px 2px 3px black;
+}
+
+.traffic_crash_diagram_add_unit_text{
+    color: #eee;
+    font-size: 16px;
+    text-shadow: 2px 2px 3px black;
+}
+
+.traffic_crash_diagram_unit_selection {
+    width: 90%;
+    margin-top: 30px;
+    height: 500px;
+    display: flex;
+    justify-content: space-evenly;
+    overflow-y: auto;
+}
+
+.traffic_crash_diagram_unit_selection .traffic_crash_diagram_category_wrapper{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex-grow: 1;
+    margin: 0;
+}
+.traffic_crash_diagram_unit_selection .traffic_crash_diagram_category_wrapper label{
+    color: #EDEDED;
+    font-size: 14px;
+    padding-left: 5px;
+    border-bottom: #EDEDEDED 1px solid;
+    margin-bottom: 5px;
+}
+.traffic_crash_diagram_unit_selection .traffic_crash_diagram_category_wrapper .traffic_crash_diagram_category_container{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+}
+.traffic_crash_diagram_unit_selection button.unit_type {
+    margin-top: 7px;
+    border-radius: 4px;
+    background-color: #fff;
+    color: black;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+    border: none;
+    padding: 3px 20px;
+    font-weight: bold;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+}
+
+.traffic_crash_diagram_unit_selection button.unit_type:hover {
+    background-color: #f4f4f4ce;
+}
+
+.traffic_crash_diagram_unit_selection button.unit_type>img {
+    height: 30px;
+}
+
+#traffic_crash_diagram_map {
+    height: 600px;
+}
+
+#traffic_crash_diagram_map label {
+    float: none;
+}
+
+#context_menu {
+    padding: 0;
+    border-radius: 4px;
+    background-color: #fff;
+    color: black;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+    border: none;
+    z-index: -500;
+    list-style: none;
+    margin: 0;
+    position: absolute;
+    top: 150px;
+    left: 150px;
+    opacity: 0;
+    transition: 300ms opacity;
+    min-width: 100px;
+}
+#context_menu.active {
+    z-index: 5000;
+    opacity: 100%;
+}
+
+#context_menu li {
+    padding: 5px 10px 5px 5px;
+    border-bottom: 1px solid #aaa;
+}
+
+#context_menu li:hover {
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #f4f4f4;
+}
+
+.leaflet-popup-tip-container {
+    display: none;
+}
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+    pointer-events: none;
+}
+.leaflet-popup-content{
+    pointer-events: none;
+    margin: 5px;
+    margin-right: 20px;
+    margin-left: 8px;
+}
+.leaflet-popup-content-textarea{
+    transition: none !important;
+    border: none !important;
+    outline: 1px solid #3333 !important;
+    padding: 2px 4px;
+    height: 50px;
+    resize: horizontal;
+    pointer-events: all;
+    margin-right: 8px;
+    margin-bottom: 0;
+}
+.leaflet-container a.leaflet-popup-close-button {
+    top: 3px;
+}
+
+.mouse-rotating, .mouse-rotating img {
+    cursor: e-resize !important;
+}

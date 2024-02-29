@@ -1,0 +1,15 @@
+.line {
+    width: 95%;
+    border-bottom: 3px solid black;
+    border-color: red;
+    position: absolute;
+}
+
+.form-group .form-control-feedback {
+
+    margin-right: 40px;
+    margin-top: -3px;
+    top: 3px;
+    pointer-events: auto;
+    /* or - auto // or -  unset  */
+}

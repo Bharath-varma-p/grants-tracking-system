@@ -1,0 +1,62 @@
+
+.page {
+    width: 1100px;
+    min-height: 11in;
+    padding: 0;
+    margin: 0 auto;
+}
+
+
+.custom_border td {
+    border: 1px solid lightgrey;
+}
+
+th,td {
+    padding: 2px;
+}
+
+
+body {
+    -webkit-print-color-adjust: exact !important;
+    counter-reset: section;
+
+    text-align: justify;
+}
+
+@page {
+    size: auto;
+    margin: 1rem;
+}
+
+.print-options-header {
+    text-align: center;
+    background-color: #404040;
+    color: whitesmoke;
+    border-radius: 15px;
+    padding: 0.5rem;
+    margin: 0;
+    margin-bottom: 1rem;
+}
+
+#print_options {
+    background-color: silver;
+    padding: 0 1rem 1rem 1rem;
+    border-radius: 15px;
+    width: 600px;
+    margin: 1rem auto;
+}
+
+.investigative_narrative td {
+    border: 1px solid black !important;
+}
+
+.footer {
+    text-align: center;
+}
+
+@media print {
+
+    .no-print {
+        display: none !important;
+    }
+}

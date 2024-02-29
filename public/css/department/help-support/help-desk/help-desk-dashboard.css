@@ -1,0 +1,242 @@
+.td3 {
+    background-color: whitesmoke;
+}
+
+.td5 {
+    background-color: silver;
+}
+
+.reset {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.dc-chart {
+    margin: 0;
+    padding: 0;
+}
+
+div.dc-chart {
+    float: none;
+}
+
+#chart3 {
+    overflow-y: auto;
+    height: 250px;
+}
+
+#chart3 svg {
+    height: auto !important;
+}
+
+.reset>.panel-title {
+    flex-grow: 1;
+}
+
+.popover-content {
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.center-screen {
+    position: fixed;
+    left: 50%;
+    top: 20%;
+    height: 140px;
+    width: 100px;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #333;
+    border-radius: 10px;
+    color: white;
+    border: 1px solid #111;
+    opacity: .9;
+}
+
+.jsTableDiv {
+    border-right: 5px solid #95d5b2;
+    border-left: 5px solid #52b788;
+    box-shadow: 1px 1px 10px black;
+    margin-bottom: 2em;
+    width: 100%;
+    background-color: #efefef;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.init-div {
+    background-color: #d8f3dc;
+    color: black;
+    height: 50%;
+    width: 45%;
+    overflow-wrap: break-word;
+    align-self: flex-end;
+    border-radius: 10px;
+    margin: 2em 1em 1em 0em;
+    padding: 1em;
+    border-right: 7px solid #95d5b2;
+    border-bottom: 7px solid #95d5b2;
+    animation-name: fadein;
+    animation-duration: 1s;
+}
+
+.init-div h4 {
+    font-weight: 600;
+    font-size: 25px;
+    margin-bottom: 0;
+    text-align: right;
+    font-family: 'Raleway', sans-serif;
+    color: #081c15;
+}
+
+.reply-div h4 {
+    font-weight: 600;
+    font-size: 25px;
+    margin-bottom: 0;
+    font-family: 'Raleway', sans-serif;
+    color: #081c15;
+}
+
+.init-header-div {
+    border-bottom: 1px solid #95d5b2;
+    align-items: right;
+    display: flex;
+    flex-direction: column;
+}
+
+.reply-header-div {
+    border-bottom: 1px solid #52b788;
+}
+
+#init_department {
+    font-size: 15px;
+    margin-top: 0px;
+    font-weight: 700;
+    color: #081c15;
+    text-align: right;
+}
+
+#reply_department {
+    font-size: 15px;
+    margin-top: 0;
+    font-weight: 700;
+    color: #081c15;
+    text-align: left;
+}
+
+.reply-div p:last-child {
+    margin-top: 1em;
+    font-size: 1.1em;
+    text-align: left;
+    font-weight: 500;
+    letter-spacing: 0.1px;
+}
+
+
+.init-div p:last-child {
+    margin-top: 1em;
+    font-size: 1.1em;
+    text-align: left;
+    font-weight: 500;
+    letter-spacing: 0.1px;
+}
+
+
+@keyframes fadein {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.reply-div {
+    background-color: #dee2e6c9;
+    color: black;
+    height: 50%;
+    width: 50%;
+    border-radius: 10px;
+    margin: 1em 0 1em 1em;
+    padding: 1em;
+    overflow-wrap: break-word;
+    border-left: 7px solid #52b788;
+    border-bottom: 7px solid #52b788;
+    animation-name: fadein;
+    animation-duration: 1s;
+}
+
+.resolved-div {
+    width: 100%;
+    height: 50%;
+    margin-top: 2em;
+    text-align: center;
+    font-size: 25px;
+    position: relative;
+}
+
+.resolved-div:before {
+    position: absolute;
+    background: linear-gradient(to right, #52b788 51%, #95d5b2 50%);
+    height: 2px;
+    content: '';
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.subject-div {
+    text-align: center;
+}
+
+.subject-div h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #081c15;
+}
+
+#reply_button {
+    align-self: center;
+    width: 20%;
+    height: 20%;
+    margin-bottom: 2em;
+    margin-right: 1em;
+    margin-top: 2em;
+    box-sizing: border-box;
+}
+
+#reply_button button {
+    color: black;
+    width: 100%;
+    font-weight: 600;
+    background-color: #efefef;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+    font-size: 1.5em;
+    padding: 0.8em;
+    border: none;
+}
+
+#reply_button button:hover {
+    color: #143f2d;
+    transform: translateY(2px);
+    box-shadow: 0px 10px 15px -15px #00df64;
+
+}
+
+.reply-div:last-child {
+    align-self: center;
+}
+
+.email_button {
+    padding: 10px 5px 5px 5px;
+    display: block;
+}
+
+.email_button a:hover {
+    text-decoration: none;
+}

@@ -1,0 +1,10 @@
+#main_header .popover-title
+{
+    color: #444;
+    text-shadow: none;
+}
+
+#main_header .popover-content
+{
+    text-transform: none;
+}

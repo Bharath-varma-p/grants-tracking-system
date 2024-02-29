@@ -1,0 +1,102 @@
+
+#add_more_fields_modal .dropdown-header
+{
+    background-color:#9c3676;
+    color:white;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.flex-container
+{
+    display: flex;
+    align-items:center;
+    clear:both;
+
+}
+
+#filter_search_fields
+{
+    width:200px;
+    background-color:white;
+    font-size: 14px;
+    font-weight: normal;
+    padding: 5px;
+}
+
+.zero-zindex
+{
+    z-index: 0;
+}
+
+.center-screen {
+    position: fixed;
+    left: 50%;
+    top: 40%;
+    height: 140px;
+    width: 100px;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #333;
+    border-radius: 10px;
+    color: white;
+    border:1px solid #111;
+    opacity: .9;
+    z-index: 99999;
+}
+
+.all-officers-container{
+    width: 200px;
+    float: right;
+    margin: -3px 10px 0 0;
+    height: 30px;
+}
+
+#print_training_table td {
+    border: 1px solid #ccc;
+    padding:5px;
+    margin:0;
+}
+
+#print_training_table tr {
+    page-break-inside: avoid;
+}
+
+
+#print_training_table {
+    width:100%;
+}
+
+#printTrainingModalBody {
+    max-height: 800px;
+    overflow-y: auto;
+}
+
+    body {
+-webkit-print-color-adjust: exact !important;
+     }
+    @media print {
+
+        @page {
+            margin: 1;
+        }
+
+        .no-print,
+        .no-print * {
+            display: none !important;
+        }
+
+        .to-print {
+            display: block !important;
+        }
+
+        #printDiv {
+            display: block;
+        }
+        
+
+        #print_training_table td{
+            background-color:white !important;
+            border: 1px solid #ccc !important;
+        }
+    }

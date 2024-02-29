@@ -1,0 +1,108 @@
+
+td.wrapok {
+    white-space: normal
+}
+
+td {
+    white-space: nowrap;
+}
+
+.assign-indicator {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.assigned-circle {
+    background: #1f4037;
+    background: -webkit-linear-gradient(to right, #428573, #1ad617);
+    background: linear-gradient(to right, #428573, #1ad617);
+    box-shadow: 2px 2px 5px #555;
+
+}
+
+.not-assigned-circle {
+    background: #6a6d6c;
+    background: -webkit-linear-gradient(to right, #cfd3d2, #b0b3b3);
+    background: linear-gradient(to right, #cfd3d2, #b0b3b3);
+    box-shadow: 2px 2px 5px black;
+
+}
+
+.reset {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.reset>.panel-title {
+    flex-grow: 1;
+}
+
+#case_management_table-wrapper {
+    margin: 10px -10px 15px -10px;
+}
+
+#accordion13 {
+    margin: 15px 0;
+}
+
+#reset_table {
+    float: right;
+    margin-top: 10px;
+}
+
+#filter_toolbar .btn-group {
+    margin-right: 50px;
+}
+
+#filter_toolbar {
+    padding-bottom: 20px;
+    line-height: 50px;
+}
+
+.dc-chart .empty-chart .pie-slice path {
+    fill: #d6e8e4;
+}
+
+.jconfirm-box {
+    background-color: #262626 !important;
+}
+
+.jconfirm-content,
+.jconfirm-title-c {
+    color: white !important;
+}
+
+.center-screen {
+    position: fixed;
+    left: 50%;
+    top: 40%;
+    height: 140px;
+    width: 100px;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #333;
+    border-radius: 10px;
+    color: white;
+    border: 1px solid #111;
+    opacity: .9;
+    z-index: 99999;
+}
+
+label.required::after {
+    content: ' *';
+    color: red;
+}
+
+.progress-bar span {
+    background-color: rgba(100, 100, 100, .5);
+    border-radius: 5px;
+}
+
+.progress-bar-success span,
+.progress-bar-danger span {
+    background-color: transparent;
+}

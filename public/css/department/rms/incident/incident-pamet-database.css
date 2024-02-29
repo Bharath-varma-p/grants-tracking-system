@@ -1,0 +1,13 @@
+td.wrapok {
+    white-space: normal
+}
+
+td {
+    white-space: nowrap;
+}
+hr {
+margin-top: 1px;
+margin-bottom: 1px;
+border: 0;
+border-top: 3px solid rgba(0, 0, 0, 0.1);
+}

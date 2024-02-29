@@ -1,0 +1,426 @@
+
+div.container.body .right_col {
+    background: #353434 !important;
+}
+
+#version_header {
+    color: whitesmoke;
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: 0px 0px 2px black;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+}
+
+#version_number {
+    color: #4DB8FF;
+    font-size: 35px;
+    font-weight: bold;
+    text-shadow: 0px 0px 2px black;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#peel9_header {
+    color: whitesmoke;
+    font-weight: bold;
+    font-size: 20px;
+    text-shadow: 0px 0px 3px black;
+}
+
+#version_content {
+    margin-top: 25px;
+}
+
+#number9 {
+    color: #4DB8FF;
+    font-weight: bold;
+    text-shadow: 0px 0px 2px black;
+    font-family: 'Raleway', sans-serif;
+}
+
+
+
+.topic_header {
+    color: #4DB8FF;
+    font-size: 25px;
+    font-weight: bolder;
+    text-shadow: 0px 0px 1px black;
+    justify-content: left;
+    align-items: left;
+    margin-left: 6%;
+    text-align: left;
+    padding-top: 10px;
+    margin-bottom: 0px;
+    margin-top: 20px;
+    font-family:'Calibri'
+}
+
+
+
+.content ul, .content p{
+    color: rgba(245, 245, 245, 0.692);
+    font-size: 20px;
+    justify-content: left;
+    align-items: left;
+    margin-left: 8%;
+    margin-right: 15%;
+    text-align: left;
+    padding-top: 10px;
+    margin-bottom: 0px;
+    margin-top: 10px;
+    line-height: 1.6;
+    font-family:'Calibri'
+
+}
+
+
+#youtube_video {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+
+}
+
+#youtube_video iframe {
+    border: 3px solid rgb(62, 133, 180);
+}
+
+#screenshot frame {
+    border: 1px solid rgb(243, 246, 248);
+}
+
+#youtube_video_buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#youtube_video_buttons button {
+    min-width: 79.36px;
+}
+
+.tableBorder {
+    height: auto;
+    margin: 0 15px 30px 15px;
+    border: none;
+    background-color: #ededed23;
+    color: #EDEDED;
+    border-radius: 10px;
+    padding: 1.2em;
+    display: none;
+}
+
+.documentationNavbar {
+    height: 100%;
+    width: 215px;
+    margin-top: 57px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    text-align: left !important;
+    left: 87%;
+    background-color: #262626;
+    opacity: 0.9;
+    overflow-x: hidden;
+    padding-top: 0px;
+
+}
+
+.documentationNavbar2 {
+    height: 100%;
+    width: 215px;
+    margin-top: 55px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 87%;
+    background-color: #262626;
+    opacity: 0.9;
+    text-align: left !important;
+    overflow-x: hidden;
+    margin-top: 0px;
+
+}
+
+/* Style the sidenav links and the dropdown button */
+.documentationNavbar .smallA {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 15px;
+    color: silver;
+    display: block;
+    border: none;
+    background: black;
+    width: 100%;
+    cursor: pointer;
+    outline: none;
+    text-align: center;
+}
+
+.dropbtn {
+    padding: 0px 4px 4px 8px;
+    text-decoration: none;
+    font-size: 17px;
+    color: orange;
+    display: block;
+    border: none;
+    background: none;
+    width: 100%;
+    cursor: pointer;
+    outline: none;
+    text-align: center;
+}
+
+/* On mouse-over */
+/* On mouse-over */
+.documentationNavbar a:hover,
+.dropbtn:hover {
+    color: rgb(255, 212, 132);
+    text-decoration: none;
+}
+
+.documentationNavbar2 a:hover,
+.dropbtn:hover {
+    color: rgb(255, 212, 132);
+    text-decoration: none;
+}
+
+.documentationNavbar a:focus,
+a:active,
+.dropbtn:hover {
+    color: orange;
+    text-decoration: none;
+}
+
+.documentationNavbar2 a:focus,
+a:active,
+.dropbtn:hover {
+    color: orange;
+    text-decoration: none;
+}
+
+.explanation a:focus,
+a:active {
+    color: orange;
+    text-decoration: none;
+}
+
+.explanation a:focus,
+a:active {
+    color: orange;
+    text-decoration: none;
+}
+
+
+
+.alone {
+    padding: 0px 8px 2px 16px;
+    text-decoration: none;
+    font-size: 15px;
+    color: #EDEDED;
+    display: block;
+    border: none;
+    background: none;
+    width: 100%;
+    cursor: pointer;
+    outline: none;
+    text-align: left;
+}
+
+.alone2 {
+    padding: 0px 8px 2px 16px;
+    text-decoration: none;
+    font-size: 12px;
+    color: #EDEDED;
+    display: block;
+    border: none;
+    background: none;
+    width: 100%;
+    cursor: pointer;
+    outline: none;
+    text-align: left;
+    margin-left: 22px;
+}
+
+
+
+/* Main content */
+.main {
+    margin-left: 200px;
+    /* Same as the width of the sidenav */
+    font-size: 20px;
+    /* Increased text to enable scrolling */
+    padding: 10px 10px;
+}
+
+/* Add an active class to the active dropdown button */
+.active {
+    background-color: gray;
+    color: orange;
+}
+
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+.dropdown-container {
+    display: none;
+    background-color: #e5e5e5;
+    text-align: center;
+}
+
+/* Optional: Style the caret down icon */
+.fa-caret-down {
+    padding-right: 6px;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.content {
+    text-align: center;
+    justify-content: center;
+    max-width: 90%;
+    margin-left: 0px;
+
+}
+
+.content ul li {
+    list-style-type: disc;
+    max-width: fit-content;
+}
+.content h2 {
+    color: #FFA500;
+    font-size: 22px;
+    text-align: left;
+    margin-left: 8%;
+    
+}
+
+ul {
+    text-align: left;
+    list-style-position: inside;
+}
+
+.frame {
+    height: 400px;
+    justify-content: center;
+    width: 800px;
+    overflow: hidden;
+}
+
+.images img {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    max-width: 100%;
+    height: 200px;
+    width: 400px;
+
+    margin: 5px 5px 5px 5px;
+    -webkit-transition: all 2s ease;
+    -moz-transition: all 2s ease;
+    -ms-transition: all 2s ease;
+    transition: all 2s ease;
+}
+
+.images img:hover {
+    justify-content: center;
+    width: 800px;
+    position: absolute;
+    height: 400px;
+}
+
+
+
+/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+@media screen and (max-width: 500px) {
+    .content {
+        text-align: left;
+        max-width: 400px;
+        margin: 0;
+    }
+
+    .explanation {
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .documentationNavbar {
+        left: 0px;
+        ;
+    }
+
+    #shownav {
+        position: fixed;
+        background-color: #4DB8FF;
+        height: 20px;
+        box-shadow: 1px 1px 0px 1px rgb(77, 77, 77);
+        margin-top: 50px;
+        display: none;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .documentationNavbar {
+        left: 0px;
+    }
+}
+
+#hidenav {
+    position: fixed;
+    background-color: #4DB8FF;
+    height: 20px;
+    box-shadow: 1px 1px 0px 1px rgb(77, 77, 77);
+    margin-top: 50px;
+    display: none;
+}
+
+#shownav {
+    position: fixed;
+    background-color: #4DB8FF;
+    height: 20px;
+    box-shadow: 1px 1px 0px 1px rgb(77, 77, 77);
+    margin-top: 50px;
+    display: none;
+}
+
+@media only screen and (device-width: 768px) {
+    .documentationNavbar {
+        left: 0px;
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.column {
+    float: left;
+    width: 35%;
+    padding: 5px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}

@@ -1,0 +1,198 @@
+.square-box {
+    line-height: 15px;
+    font-size: 30px;
+  }
+
+  .square-box__white{
+    color:white;
+  }
+html, body { height: auto; }
+  .highlight-field {
+    background-color: rgb(238, 238, 75);
+  }
+
+  #content {
+    position: relative;
+  }
+
+  span.color {
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  #NARRATIVE {
+    display: block;
+    white-space: pre-wrap;
+    width: 800px;
+    min-width: 800px;
+    text-transform: none;
+    text-align: left;
+  }
+
+  
+
+  #CourtAddress {
+    display: block;
+    width: 425px;
+    text-align: center;
+    padding: 20px 10px;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    white-space: normal;
+  }
+
+  #CourtAddressBox {
+    display: inline-block;
+    width: 440px;
+    height: 16px;
+    white-space: normal;
+    text-align: left;
+  }
+
+  .DefendantAddress1,
+  .DefendantAddress2 {
+    display: inline-block;
+    width: 270px;
+    height: 16px;
+    white-space: normal;
+    text-align: left;
+  }
+
+  #OtherChargeDescription {
+    width: 290px;
+    height: 36px;
+    display: inline-block;
+    white-space: normal;
+    text-align: left;
+    text-indent: 95px;
+    overflow: hidden;
+    line-height: 18px;
+    text-overflow: ellipsis;
+  }
+
+  #Remarks {
+    display: inline-block;
+    width: 450px;
+    white-space: normal;
+    text-indent: 60px;
+    text-align: left;
+    height: 36px;
+    overflow: hidden;
+    line-height: 18px;
+  }
+  
+  .CourtCode {
+    font-size: 12px;
+  }
+
+  span.MAKE {
+    max-width: 150px;
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .witness-address {
+    display: inline-block;
+    white-space: pre-wrap !important;
+    max-width: initial;
+    min-width: initial;
+    width: 140px;
+    height: 36px;
+  }
+  .witness-name {
+    display: inline-block;
+    white-space: pre-wrap !important;
+    width: 125px;
+    height: 20px;
+  }
+
+  .highlight-operating {
+    background-color: rgb(192, 204, 204);
+    text-transform: none !important;
+    padding: 1px;
+  }
+
+  .DepartmentName {
+    text-transform: uppercase;
+    font-weight: 900;
+  }
+
+  .TicketNoLabel {
+    font-size: 12px;
+  }
+
+  .TicketNoBig {
+    font-size: 24px;
+  }
+
+  .TicketNoBig, .TicketNoLabel {
+    color: rgb(233, 12, 30);
+    font-weight: bold;
+  }
+
+  .Operated, .Passenger, .Walked, .Parked {
+    font-size: 10px;
+  }
+
+  .DOT {
+    font-size: 12px;
+  }
+
+  .print-btn,
+  #print-settings-btn {
+    background-color: rgb(73, 73, 252);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    opacity: .85;
+    z-index: 20;
+    -webkit-box-shadow: 1px 1px 22px 6px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 1px 1px 22px 6px rgba(0, 0, 0, 0.75);
+    box-shadow: 1px 1px 22px 6px rgba(0, 0, 0, 0.75);
+    font-weight: bold;
+  }
+
+  .print-btn:hover,
+  #print-settings-btn:hover {
+    cursor: pointer;
+    background-color: rgb(243, 106, 14);
+    color: white;
+    opacity: 1;
+  }
+
+  body {
+    -webkit-print-color-adjust: exact !important;
+    counter-reset: section;
+    text-align: justify;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin-top: 100px;
+  }
+
+
+  @page {
+    size: auto;
+    /* auto is the initial value */
+    /* this affects the margin in the printer settings */      
+    margin: 16px;
+
+
+  }
+
+  @media print {
+    body{
+      margin-top: 0;
+    }
+    .no-print,
+    .no-print * {
+      display: none !important;
+    }
+  }

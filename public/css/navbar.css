@@ -1,0 +1,731 @@
+.main_container .left_col {
+    min-height: 100vh;
+    background: #235179;
+    line-height: 1.471;
+    width: 230px;
+    padding: 0;
+    border-right: #333 1px solid;
+    position: absolute;
+    color: white;
+}
+
+.main_container .top_nav {
+    display: block;
+    margin-left: 230px;
+}
+
+.container.body .right_col {
+    padding: 10px 20px 0;
+    margin-left: 230px;
+    min-height: 100vh !important;
+    background: #FFFFF0
+}
+.body.container {
+    width: 100%;
+    padding: 0;
+}
+
+.dropdown-submenu {
+    position:absolute;
+   
+}
+
+.dropdown-submenu>.dropdown-menu {
+    top: 58px;
+    margin-top: -60px;
+    right: 190px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+}
+
+.dropdown-submenu:hover>.dropdown-menu {
+   display:inline;
+}
+
+.dropdown-submenu>a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+
+.dropdown-submenu:hover>a:after {
+    border-left-color: #fff;
+}
+
+.dropdown-submenu.float-left {
+    float: none;
+}
+
+.dropdown-submenu.float-left>.dropdown-menu {
+    left: 100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+}
+
+/* ----------- SIDEBAR CSS START ----------- */
+
+.nav.child_menu {
+	display: none;
+}
+
+.site_title {
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid white;
+    padding: 15px 10px;
+}
+.site_title a{
+    text-decoration: none;
+}
+.site_title a:hover #peel{
+    color: white;
+}
+.site_title a:hover #peel9{
+    color: rgb(112, 198, 255);
+}
+
+.site_title h1 {
+    margin: 0;
+    padding: 0;
+}
+
+.nav>li>a {
+    position: relative;
+    display: block;
+    padding: 11px 15px 12px;
+}
+.nav li li.current-page a {
+    color: #fff;
+}
+
+#peel {
+    font-size: 1.1em;
+    color: #ededed;
+    font-weight: bold;
+    font-family: 'Raleway', sans-serif;
+}
+
+#peel9 {
+    font-size: 1.1em;
+    color: #4DB8FF;
+    font-weight: bold;
+    font-family: 'Raleway', sans-serif;
+}
+
+#profile_info h2 {
+    font-size: 17px;
+    margin: 14px 30px;
+}
+
+#profile_info img {
+    width: 75px;
+    height: 75px;
+}
+
+#nav_config {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#nav_config button {
+    padding: 10px;
+    margin: 5px;
+    width: 80%;
+    font-weight: bold;
+    background-color: #428BCA;
+    display: none;
+    color: #ededed;
+    border-radius: 5px;
+}
+
+#nav_config button:hover {
+    background-color: #58bcff;
+    color: #fff;
+}
+
+.nav.side-menu {
+    text-shadow: 0 0 3px black;
+}
+
+.nav.side-menu>li>a, .nav.child_menu>li>a {
+    color: #fff;
+    font-weight: 500;
+}
+
+.nav>li>a:hover, .nav>li>a:focus {
+    background-color: transparent;
+}
+
+.nav.child_menu>li>a {
+    padding: 3px;
+    font-size: 0.9em !important;
+    padding-left: 55px !important;
+}
+
+/* Dots in the navbar dropdown */
+.nav-md ul.nav.child_menu li:before {
+    background: #425668;
+    bottom: auto;
+    content: "";
+    height: 8px;
+    left: 23px;
+    margin-top: 8px;
+    position: absolute;
+    right: auto;
+    width: 8px;
+    z-index: 1;
+    border-radius: 50%;
+}
+.nav-md ul.nav.child_menu li:after {
+    border-left: 1px solid #425668;
+    bottom: 0;
+    content: "";
+    left: 27px;
+    position: absolute;
+    top: 0;
+}
+
+.nav.side-menu>li>a {
+    margin-bottom: 6px;
+}
+
+.nav.side-menu li.current-page {
+    background-color: #3399FF;
+    border-right: 2px solid #fff;
+}
+
+.nav.side-menu>li.active {
+    border-right: 1px solid #fff;
+}
+
+.nav.side-menu>li.active>a {
+    background-color: #464646;
+}
+
+.nav.side-menu>li>a:hover, .nav.side-menu ul li:hover, .nav.side-menu>li>a:focus, .nav.side-menu ul li:focus {
+    background-color: #244669;
+}
+
+#sidebar_menu .fa {
+    width: 26px;
+    opacity: .99;
+    display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#sidebar_menu span.fa {
+    float: right;
+    text-align: center;
+    margin-top: 5px;
+    font-size: 10px;
+    min-width: inherit;
+    color: #C4CFDA
+}
+
+.fa-exclamation {
+    color: rgb(245, 245, 245);
+    font-size: 20px;
+}
+
+    /* SIDEBAR SMALL */
+
+.nav-sm .container.body .left_col {
+    width: 70px;
+    padding: 0;
+    /*z-index: 9999;*/
+    position: absolute;
+}
+
+.nav-sm .container.body .right_col {
+    padding: 10px 20px;
+    margin-left: 70px;
+    z-index: 2
+}
+
+.nav-sm .main_container .top_nav {
+    display: block;
+    margin-left: 70px;
+    z-index: 2
+}
+
+.nav-sm #profile_info h2 {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-sm #profile_info img {
+    width: 60px;
+    height: 60px;
+    margin: 10px 0;
+}
+
+.nav-sm #eel, .nav-sm #profile_info_text {
+    display: none;
+}
+
+.nav-sm .nav.child_menu li.active, .nav-sm .nav.side-menu li.active-sm {
+    background-color: #00263f;
+    border-right: 2px solid #ededed;
+}
+
+.nav-sm #sidebar_menu .fa {
+    font-size: 25px;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 5px;
+}
+.nav-sm .nav.side-menu li a {
+    text-align: center !important;
+    font-weight: 400;
+    font-size: 10px;
+    padding: 10px 5px;
+}
+
+.nav-sm ul.nav.child_menu {
+    border: #555 1px solid;
+    left: 100%;
+    position: absolute;
+    top: 0;
+    width: 210px;
+    z-index: 4000;
+    background: black;
+    display: none;
+}
+
+.nav-sm .hidden-small {
+    visibility: hidden
+}
+
+.nav-sm #sidebar_menu span.fa, .nav-sm #sidebar_menu .menu_section h3 {
+    display: none
+}
+
+.nav-sm footer {
+    margin-left: 70px
+}
+
+@media (max-width: 991px) {
+    .nav-md .container.body .right_col, .nav-md .container.body .top_nav {
+        width: 100%;
+        margin: 0
+    }
+    .nav-md .container.body .left_col {
+        display: none
+    }
+    .nav-md .container.body .right_col {
+        width: 100%;
+        padding-right: 0
+    }
+    .right_col {
+        padding: 10px !important
+    }
+}
+/* The switch - the box around the slider */
+
+.switch {
+    position: relative; 
+    display: inline-block; 
+    width: 30px; 
+    height: 15px; 
+}
+
+/* Hide default HTML checkbox */
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+
+.navbar-right .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 13px;
+    right: 5px;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    width: 30px;
+    height: 15px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 10px;
+    width: 10px;
+    left: 2px;
+    bottom: 3px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: #2196F3;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(15px);
+    -ms-transform: translateX(15px);
+    transform: translateX(15px);
+}
+
+/* Rounded sliders */
+
+.navbar-right .slider.round {
+    border-radius: 10px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.dropdown-toggle:after {
+    content: none !important
+}
+/* ----------- SIDEBAR CSS END ----------- */
+
+/* ----------- TOP NAV CSS START ----------- */
+
+.nav_menu {
+    background: #ededed;
+    border-bottom: 1px solid #D9DEE4; 
+    width: 100%;
+}
+.toggle {
+    float: left;
+    margin: 0;
+    padding-top: 16px;
+    width: 70px;
+}
+.toggle a {
+    padding: 15px 15px 0;
+    margin: 0;
+    cursor: pointer;
+}
+.toggle a i {
+    font-size: 26px;
+    color: #444;
+}
+
+.navbar-right {
+    margin-right: 0;
+    width: 100%;
+}
+
+.navbar-left {
+    margin-left: -20px;
+}
+
+.top_nav .dropdown-menu {
+    z-index: 9999;
+}
+
+.top_nav .navbar-right li,.top_nav .navbar-left li  {
+    position: relative;
+    float: right;
+    color: #444;
+}
+
+.top_nav .navbar-left li.nav-item  {
+    margin-right: 10px;
+}
+
+.top_nav .dropdown-menu li {
+    width: 100%;
+}
+.top_nav .dropdown-menu>li>a {
+    padding: 10px 10px;
+    color: #333;
+    font-size: 14px;
+    width: 190px;
+}
+.top_nav .navbar-right>li>a , .top_nav .navbar-left>li>a {
+    color: #262626;
+    display: flex;
+    align-items: center;
+    height: 55px;
+}
+.top_nav .navbar-right>li>a:hover, .top_nav .navbar-right>li>a:focus , .top_nav .navbar-left>li>a:hover, .top_nav .navbar-left>li>a:focus   {
+    background-color: #c1c1c1;
+}
+.top_nav .navbar-right>li.open>a {
+    background-color: #4DB8FF;
+    color: #ededed;
+    text-shadow: 0 0 3px black;
+}
+.top_nav .navbar-right>li>a>span {
+    margin-left: 10px;
+    height: 20px;
+}
+.top_nav .divider{
+    margin: 0px;
+}
+
+.top_nav .navbar-left
+{
+    display: flex;
+    align-items: center;
+}
+
+#quick_report:focus,#on_duty:focus
+{
+  outline: none;
+}
+
+#quick_report, #on_duty
+{
+   width: 120px;
+}
+
+#on_duty_li .active-user, #on_duty_li .passive-user
+{
+    padding: 4px;
+    display:flex;
+    justify-content: space-between;
+}
+
+
+#on_duty_li .popover
+{
+    max-width: 350px;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.whats-new {background-image: linear-gradient(to right, #314755 0%, #26a0da  51%, #314755  100%)}
+.whats-new {
+    margin-left: 3px !important;
+   padding: 0px 10px;
+   text-align: center;
+   transition: 0.5s;
+   background-size: 200% auto;
+   color: white;            
+   box-shadow: 0 0 20px #eee;
+   border-radius: 15px;
+   display: inline-block;
+   
+ }
+
+  #whatsnew-button:hover > .whats-new, .whats-new:hover {
+   background-position: right center; /* change the direction of the change here */
+   color: #fff;
+   text-decoration: none;
+   animation: none;
+ }
+
+ .happy-birthday {background-image: linear-gradient(to right, #314755 0%, #04795e  51%, #314755  100%)}
+.happy-birthday {
+    margin-left: 3px !important;
+   padding: 0px 10px;
+   text-align: center;
+   transition: 0.5s;
+   background-size: 200% auto;
+   color: white;            
+   box-shadow: 0 0 20px #eee;
+   border-radius: 15px;
+   display: inline-block;
+   
+ }
+
+  #happy_birthday_button:hover > .happy-birthday, .happy-birthday:hover {
+   background-position: right center; /* change the direction of the change here */
+   color: #fff;
+   text-decoration: none;
+   animation: none;
+ }
+/*
+ .birthday-hat 
+ {
+    
+    position: absolute;
+    right: 0;
+    top: -4px;
+    transform: rotate3d(1, 1, 1, 45deg);
+ }
+ */
+ .birthday-cake
+ {
+     margin-bottom: 7px;
+ }
+
+
+@media (max-width:1127px)
+{
+    .to-be-hided
+    {
+        display: none !important;
+    }
+
+    .navbar-nav
+    {
+        margin: 0;
+    }
+
+    .navbar-left
+    {
+       margin-left: -20px;
+    }
+}
+/* ----------- TOP NAV CSS END ----------- */
+
+
+/* ----------- RIGHT COL CSS(main page content) IS CONTAINED WITHIN ITS OWN CSS FILE CALLED main.css ----------- */
+
+
+
+
+
+
+
+/* OTHER CSS */
+
+.blink
+{
+    animation: blink 1.5s infinite linear;
+}
+
+.bounce {
+    display: inline-block;
+    position: relative;
+    -moz-animation: bounce 0.5s infinite linear;
+    -o-animation: bounce 0.5s infinite linear;
+    -webkit-animation: bounce 0.5s infinite linear;
+    animation: bounce 0.5s infinite linear;
+    color: 000;
+}
+
+@-webkit-keyframes bounce {
+    0% {
+        top: 0;
+    }
+    50% {
+        top: -0.2em;
+    }
+    70% {
+        top: -0.3em;
+    }
+    100% {
+        top: 0;
+    }
+}
+
+@-moz-keyframes bounce {
+    0% {
+        top: 0;
+    }
+    50% {
+        top: -0.2em;
+    }
+    70% {
+        top: -0.3em;
+    }
+    100% {
+        top: 0;
+    }
+}
+
+@-o-keyframes bounce {
+    0% {
+        top: 0;
+    }
+    50% {
+        top: -0.2em;
+    }
+    70% {
+        top: -0.3em;
+    }
+    100% {
+        top: 0;
+    }
+}
+
+@-ms-keyframes bounce {
+    0% {
+        top: 0;
+    }
+    50% {
+        top: -0.2em;
+    }
+    70% {
+        top: -0.3em;
+    }
+    100% {
+        top: 0;
+    }
+}
+
+@keyframes bounce {
+    0% {
+        top: 0;
+    }
+    50% {
+        top: -0.2em;
+    }
+    70% {
+        top: -0.3em;
+    }
+    100% {
+        top: 0;
+    }
+}
+
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: .5;
+    }
+    70% {
+        top: .7;
+    }
+    100% {
+        top: 1;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

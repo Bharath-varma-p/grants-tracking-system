@@ -1,0 +1,29 @@
+
+.footer {
+    text-align: center;
+  }
+
+  th,
+  td {
+    padding: 2px;
+  }
+
+  body {
+    -webkit-print-color-adjust: exact !important;
+    counter-reset: section;
+
+    text-align: justify;
+  }
+
+  @page {
+
+    /* this affects the margin in the printer settings */
+    margin: 0.5rem;
+    size: A4 landscape;
+  }
+
+  @media print {
+    .no-print {
+      display: none !important;
+    }
+  }

@@ -1,0 +1,54 @@
+
+.duplicate-table{
+    margin: 0 auto;
+}
+
+.duplicate-table  tr > td{
+    padding: 5px;
+    border: 1px solid #ccc;
+    max-width: 400px;
+    color:white;
+}
+
+.duplicate-table  tr > td:first-child{
+    background-color: #383433;
+    color:white;
+    font-weight: bold;
+}
+
+.different > td:not(:nth-child(1))
+{
+    background-color: #651b1b !important;
+}
+
+#duplicates_container h2{
+    text-align: center;
+    font-weight: bold;
+}
+
+.primary-master-label{
+    padding: 6px 12px;
+    border-radius: 5px;
+}
+
+.action-div {
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+}
+
+.action-div * {
+    margin: 5px;
+} 
+
+#backdrop_duplicate{
+    position: fixed;
+    top:-100%;
+    height: 200%;;
+    width: 100%;
+    background-color: black;
+    opacity: .5;
+    z-index: 5;
+    display: none;
+}

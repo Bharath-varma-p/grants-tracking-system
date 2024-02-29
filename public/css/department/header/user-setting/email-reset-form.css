@@ -1,0 +1,66 @@
+
+label {
+    color: whitesmoke
+  }
+
+  #register label {
+    margin-right: 5px;
+  }
+
+  #register .short {
+    font-weight: bold;
+    color: #FF0000;
+    font-size: larger;
+  }
+
+  #register .weak {
+    font-weight: bold;
+    color: orange;
+    font-size: larger;
+  }
+
+  #register .good {
+    font-weight: bold;
+    color: #2D98F3;
+    font-size: larger;
+  }
+
+  #register .strong {
+    font-weight: bold;
+    color: limegreen;
+    font-size: larger;
+  }
+
+  .btn {
+    margin: 10px 0;
+  }
+
+  input {
+    margin: 10px 0;
+  }
+
+  #resend_token_btn {
+    color: #4e99db;
+  }
+  #resend_token_btn:hover {
+    color: #46a8ff;
+  }
+  #resend_token_btn:focus {
+    outline: none;
+  }
+  #resend_token_btn.disabled {
+    cursor: not-allowed;
+    pointer-events: visible;
+    color: #427eb3;
+    padding-left: 2px;
+  }
+
+  #countdown {
+    float: right;
+    color: #427eb3;
+    border-radius: 50px;
+    padding: 5px;
+    margin-top: 19px;
+    opacity: .65;
+    font-weight: bold;
+  }

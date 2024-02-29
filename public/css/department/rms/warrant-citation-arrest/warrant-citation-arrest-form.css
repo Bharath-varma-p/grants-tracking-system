@@ -1,0 +1,37 @@
+
+.jconfirm-box {
+    background-color: #262626 !important;
+ }
+
+ .jconfirm-content {
+    color: white !important
+ }
+
+ .bootstrap-select.btn-group .dropdown-menu li a:hover {
+    color: whitesmoke !important;
+    background: #bf5279 !important;
+ }
+
+ .dropdown-menu {
+    border-radius: 15px !important;
+
+ }
+
+ label span {
+    margin-top: 10px !important;
+    display: inline-block;
+ }
+
+ .bootstrap-select.btn-group {
+    background-color: transparent !important;
+ }
+
+ .shorten {
+    height: 400px;
+ }
+
+ .optgroup2 {
+    font-size: 16px;
+    font-weight: bold;
+    color: black
+ }

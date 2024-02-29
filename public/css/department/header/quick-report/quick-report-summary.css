@@ -1,0 +1,182 @@
+
+body {
+    font-family: 'Oxygen', Arial, Helvetica, sans-serif;
+    color: #666;
+    background: #333333 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAB9JREFUeNpi/P//PwM6YGLAAuCCmpqacC2MRGsHCDAA+fIHfeQbO8kAAAAASUVORK5CYII=);
+    padding-top: 50px;
+  }
+
+  .page {
+    width: 30cm;
+    height: auto;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    margin: 10px auto;
+  }
+
+  .page-header {
+    height: 200px;
+    padding: 20px;
+    margin: 0;
+    border: none;
+  }
+
+  .page-footer,
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .department-logo {
+    max-width: 150px;
+    max-height: 150px;
+  }
+
+  .department-info {
+    text-align: center;
+  }
+
+  .department-chief-address {
+    text-align: right;
+    font-size: smaller;
+  }
+
+  .page-content {
+    height: 100%;
+    padding: 0 20px 20px;
+  }
+
+  .page-footer {
+    height: 50px;
+    align-items: center;
+    padding: 0 10px;
+  }
+
+  .department-name {
+    font-size: 15px;
+  }
+
+  .department-info {
+    font-size: smaller;
+  }
+
+  .print-btn {
+    background-color: rgb(73, 73, 252);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    opacity: .85;
+    z-index: 20;
+    -webkit-box-shadow: 1px 1px 22px 6px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 1px 1px 22px 6px rgba(0, 0, 0, 0.75);
+    box-shadow: 1px 1px 22px 6px rgba(0, 0, 0, 0.75);
+    font-weight: bold;
+    display: none;
+  }
+
+  .print-btn:hover {
+    cursor: pointer;
+    background-color: rgb(243, 106, 14);
+    color: white;
+    opacity: 1;
+  }
+
+  .no-data {
+    margin-top: 100px;
+    text-align: center;
+    color: orange;
+    font-weight: bold;
+  }
+
+  .table-stats {
+    width: 100%;
+    border: 1px solid #ccc;
+  }
+
+  .table-stats tr:nth-child(odd) td {
+    background-color: #ccc;
+  }
+
+  .table-stats th,
+  .table-stats td {
+    border: 1px solid #aaa;
+    padding: 5px 10px;
+    text-align: center;
+  }
+
+  .table-stats td {
+    color: black;
+  }
+
+  .filled {
+    font-weight: bold;
+    color: black !important;
+  }
+
+  .not-filled {
+    color: #444 !important;
+  }
+
+  .table-stats th,
+  .table-stats .totals td {
+    font-weight: bold;
+    color: black;
+    background-color: #ccc;
+
+  }
+
+
+  .table-stats th:first-child,
+  .table-stats td:first-child {
+    text-align: left;
+  }
+
+
+  @media print {
+
+    .no-print,
+    .no-print * {
+      display: none !important;
+    }
+
+    body {
+      padding-top: 0;
+    }
+
+    .page {
+      page-break-after: always;
+    }
+
+    .table-stats tr:nth-child(odd) td:not(.diff) {
+      background-color: #ccc !important;
+    }
+
+    .table-stats th,
+    .table-stats .totals td:not(.diff) {
+      color: black !important;
+      background-color: #ccc !important;
+    }
+
+  }
+
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  .increased {
+    background-color: rgb(223, 172, 172) !important;
+  }
+
+  .decreased {
+    background-color: rgb(163, 224, 163) !important;
+  }

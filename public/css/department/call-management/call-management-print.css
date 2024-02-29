@@ -1,0 +1,34 @@
+.footer {
+    text-align: center;
+}
+
+th,
+td {
+    padding: 2px;
+}
+
+body {
+    -webkit-print-color-adjust: exact !important;
+    counter-reset: section;
+
+    text-align: justify;
+}
+
+@page {
+    size: auto;
+    /* auto is the initial value */
+    margin: 1rem;
+}
+
+@media print {
+
+    .no-print {
+        display: none !important;
+    }
+}
+
+#content {
+    margin-top: 0px;
+    width: 950px;
+    margin: auto;
+}

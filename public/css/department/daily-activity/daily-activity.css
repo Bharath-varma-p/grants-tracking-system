@@ -1,0 +1,192 @@
+.officer-select select {
+    display: none;
+}
+
+.daily-activity-heading {
+    display: flex;
+    justify-content: space-between;
+}
+
+#daily-bulletin-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+#bana_ekle table {
+    width: 100%;
+}
+
+
+#bana_ekle table,
+#bana_ekle th,
+#bana_ekle td {
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+#bana_ekle .custom_border td {
+    border: 1px solid lightgrey;
+}
+
+
+th,
+td {
+    padding: 2px 4px;
+}
+
+
+
+#bana_ekle h1,
+#bana_ekle table {
+    margin-top: 0;
+    margin-bottom: 2rem;
+}
+
+.high {
+    background-color: #ff6666
+}
+
+.medium {
+    background-color: #ffddcc
+}
+
+.low {
+    background-color: #ccffee
+}
+
+body {
+    -webkit-print-color-adjust: exact !important;
+    counter-reset: section;
+
+    text-align: justify;
+}
+
+@page {
+    size: auto;
+    /* auto is the initial value */
+    margin: 1rem;
+
+}
+
+@media print {
+    #spacer {
+        height: 2em;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    a[href]:after {
+        content: none !important;
+    }
+
+    /* height of footer + a little extra */
+    #footer {
+        position: fixed;
+        bottom: 0;
+    }
+
+    .no-print,
+    .no-print * {
+        display: none !important;
+    }
+
+    .no-print2,
+    .no-print2 * {
+        display: none !important;
+    }
+
+    .no-print3,
+    .no-print3 * {
+        display: none !important;
+    }
+}
+
+
+
+tr.border_bottom td2 {
+    border-bottom: 1pt solid black;
+}
+
+@media print {
+
+    .no-print {
+        display: none !important;
+    }
+
+    .modal {
+        position: absolute;
+        left: 0;
+        top: 0;
+        margin: 0;
+        padding: 0;
+        overflow: visible !important;
+    }
+
+}
+
+.td3 {
+    background-color: #ffffcc;
+}
+
+.td5 {
+    background-color: #e6e6ff;
+}
+
+.td3_1 {
+    background-color: white;
+}
+
+.td5_1 {
+    background-color: whitesmoke;
+}
+
+.stripped {
+    background-image: -webkit-repeating-linear-gradient(135deg, rgba(0, 0, 0, .3), rgba(0, 0, 0, .3) 1px, transparent 2px, transparent 2px, rgba(0, 0, 0, .3) 3px);
+    background-image: -moz-repeating-linear-gradient(135deg, rgba(0, 0, 0, .3), rgba(0, 0, 0, .3) 1px, transparent 2px, transparent 2px, rgba(0, 0, 0, .3) 3px);
+    background-image: -o-repeating-linear-gradient(135deg, rgba(0, 0, 0, .3), rgba(0, 0, 0, .3) 1px, transparent 2px, transparent 2px, rgba(0, 0, 0, .3) 3px);
+    background-image: repeating-linear-gradient(135deg, rgba(0, 0, 0, .3), rgba(0, 0, 0, .3) 1px, transparent 2px, transparent 2px, rgba(0, 0, 0, .3) 3px);
+    -webkit-background-size: 4px 4px;
+    -moz-background-size: 4px 4px;
+    background-size: 4px 4px;
+}
+
+th.actions .popover {
+    min-width: 200px;
+}
+
+@media print {
+    thead,
+	thead tr {
+		display: flex;
+		width: 100%;
+	}
+
+	th {
+		width: 100%;
+	}
+
+	.btn {
+		display: none;
+	}
+
+	footer {
+		display: none;
+	}
+
+	 #modelim > table > tbody th {
+		page-break-after: avoid;
+	}
+}
+
+.log-sheet-header {
+    font-weight: bold;
+    background-color: silver
+}
+
+.log-sheet-td {
+    font-weight: bold;
+    background-color: #333333;
+    color: whitesmoke;
+}

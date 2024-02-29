@@ -1,0 +1,193 @@
+
+.modal-body {
+    overflow-y: scroll;
+    padding-bottom: 20px;
+    max-height: 80vh
+}
+
+.modalTable {
+    border-collapse: separate;
+    border-spacing: 0;
+    color: #4a4a4d;
+    font: 14px/1.4 "Helvetica Neue", Helvetica, Arial, sans-serif;
+    width: 100%;
+}
+
+.modalTh,
+.modalTd {
+    padding: 10px 15px;
+    vertical-align: middle;
+    text-align: left;
+    white-space: pre-wrap;
+}
+
+.modalThead {
+    background: #404040;
+    color: #fff;
+}
+
+.modalTh {
+    font-weight: bold;
+}
+
+.modalTh:first-child {
+    text-align: left;
+}
+
+.modalTbody .modalTr:nth-child(even) {
+    background: #f0f0f2;
+}
+
+.modalTd {
+    border-bottom: 1px solid #cecfd5;
+    border-right: 1px solid #cecfd5;
+}
+
+.modalTd:first-child {
+    border-left: 1px solid #cecfd5;
+}
+
+.updated-name {
+    color: #395870;
+    display: block;
+}
+
+.updated-new-value {
+    text-align: left;
+}
+
+.updated-last-value {
+    text-align: left;
+}
+
+.modalTfoot {
+    text-align: right;
+}
+
+.modalTfoot .modalTr:last-child {
+    background: #f0f0f2;
+}
+
+.ID {
+    text-align: right;
+}
+
+.modal-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.reset {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.reset>.panel-title {
+    flex-grow: 1;
+}
+
+@media (min-width: 768px){
+.seven-cols .col-md-1 {
+    width: 100%;
+    *width: 100%;
+}
+}
+
+@media (min-width: 992px) {
+.seven-cols .col-md-1 {
+    width: 14.285714285714285714285714285714%;
+    *width: 14.285714285714285714285714285714%;
+}
+}
+
+/**
+*  The following is not really needed in this case
+*  Only to demonstrate the usage of @media for large screens
+*/    
+@media (min-width: 1200px) {
+    .seven-cols .col-md-1{
+        width: 14.285714285714285714285714285714%;
+        *width: 14.285714285714285714285714285714%;
+    }
+}
+
+.center-screen {
+    position: fixed;
+    left: 50%;
+    top: 20%;
+    height: 140px;
+    width: 100px;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #333;
+    border-radius: 10px;
+    color: white;
+    border: 1px solid #111;
+    opacity: .9;
+}
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 10rem;
+    padding: 0.5rem 0;
+    margin: 0.125rem 0 0;
+    font-size: 1rem;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 0.25rem;
+}
+.dropdown-item {
+    text-decoration: none;
+    display: block;
+    padding: 0.25rem 1.5rem;
+    clear: both;
+    font-weight: 400;
+    color: #212529;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    font-size: 1rem;
+}
+.dropdown-item:focus, .dropdown-item:hover {
+    color: #16181b;
+    text-decoration: none;
+    background-color: #f8f9fa;
+}
+.emails-container {      
+    float: left;
+    border: 1px solid #ccc;
+    padding: 4px;
+    font-family: Arial;
+    margin-bottom: 200px;
+}
+
+.emails-container > span {
+    cursor: pointer;
+    display: block;
+    float: left;
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+    padding: 5px 10px;
+    margin: 4px;
+    border-radius: 5px;
+}
+
+.emails-container > span:hover{
+    opacity:0.7;
+}
+.details {
+    white-space: pre-wrap;
+}

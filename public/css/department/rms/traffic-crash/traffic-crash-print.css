@@ -1,0 +1,187 @@
+
+.pageContent {
+    padding: 0;
+    margin: 0;
+    background: white;
+    position: relative;
+}
+
+body {
+    -webkit-print-color-adjust: exact !important;
+    counter-reset: section;
+    text-align: justify;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+@page {
+    size: Letter;
+    margin: 1rem;
+}
+
+@media print {
+    .pageContent {
+        page-break-inside: avoid;
+        width: 21cm;
+        height: 29.7cm;
+        zoom: 65%;
+        transform-origin: 0 -1rem;
+    }
+
+    @-moz-document url-prefix() {
+        .pageContent {
+            transform: none;
+        }
+    }
+
+    .EXTRA-NARRATIVE {
+        width: 29.8cm;
+        padding-left: 30px;
+    }
+
+    .EXTRA-NARRATIVE.with-report>.extra-narrative-container:first-child {
+        page-break-before: always;
+    }
+}
+
+@media print {
+
+    .no-print,
+    .no-print * {
+        display: none !important;
+    }
+}
+
+.input-div {
+    /* border: 1px solid red; */
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 26px;
+    z-index: 10;
+}
+
+.input-div>span {
+    width: 100%;
+    text-align: center;
+}
+
+.damaged-area {
+    opacity: 0.5;
+    background-color: red;
+    border: 3px solid blue;
+}
+
+.outer-damaged-area {
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+}
+
+.NARRATIVE {
+    align-items: flex-start;
+    justify-content: flex-start;
+    font-size: 16pt;
+    line-height: 50px;
+    padding-top: 16px;
+    overflow: auto;
+    text-overflow: ellipsis;
+}
+
+.NARRATIVE>span {
+    text-align: left;
+}
+
+.CRASH-DIAGRAM {
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+}
+
+.CRASH-DIAGRAM img {
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.print-btn,
+#print-settings-btn {
+    background-color: rgb(73, 73, 252);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    opacity: .85;
+    z-index: 20;
+    -webkit-box-shadow: 1px 1px 22px 6px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 1px 1px 22px 6px rgba(0, 0, 0, 0.75);
+    box-shadow: 1px 1px 22px 6px rgba(0, 0, 0, 0.75);
+    font-weight: bold;
+}
+
+.print-btn:hover,
+#print-settings-btn:hover {
+    cursor: pointer;
+    background-color: rgb(243, 106, 14);
+    color: white;
+    opacity: 1;
+}
+
+#print-settings {
+    background-color: rgb(80, 76, 76);
+    border: 1px solid rgb(54, 54, 54);
+    position: fixed;
+    top: 120px;
+    width: 350px;
+    right: 10px;
+    box-shadow: 1px 1px 5px 1px black;
+    padding: 10px;
+    z-index: 20;
+    color: #ccc;
+}
+
+#print-settings-btn {
+    top: 60px;
+    right: 10px;
+    left: auto;
+    width: auto;
+    background-color: rgb(101, 101, 104);
+    font-size: 25px;
+    height: auto;
+}
+
+.extra-narrative-container {
+    border: 3px solid black;
+    padding: 5px;
+    margin: 2rem 0;
+    background-color: white;
+}
+
+.narrative-title {
+    background-color: #ccc !important;
+    width: 100%;
+    text-align: left;
+    font-weight: bold;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.narrative-content {
+    padding: 10px 0;
+}
+
+.collapse {
+    display: none;
+    visibility: hidden;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}

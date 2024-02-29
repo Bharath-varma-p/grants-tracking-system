@@ -1,0 +1,63 @@
+
+.td3 {
+    background-color: whitesmoke;
+}
+
+.td5 {
+    background-color: silver;
+}
+
+.reset {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.reset>.panel-title {
+    flex-grow: 1;
+}
+
+.popover-content {
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.center-screen {
+    position: fixed;
+    left: 50%;
+    top: 20%;
+    height: 140px;
+    width: 100px;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #333;
+    border-radius: 10px;
+    color: white;
+    border: 1px solid #111;
+    opacity: .9;
+}
+@media (min-width: 768px){
+.seven-cols .col-md-1 {
+    width: 100%;
+    *width: 100%;
+}
+}
+
+@media (min-width: 992px) {
+.seven-cols .col-md-1 {
+    width: 14.285714285714285714285714285714%;
+    *width: 14.285714285714285714285714285714%;
+}
+}
+
+/**
+*  The following is not really needed in this case
+*  Only to demonstrate the usage of @media for large screens
+*/    
+@media (min-width: 1200px) {
+.seven-cols .col-md-1{
+    width: 14.285714285714285714285714285714%;
+    *width: 14.285714285714285714285714285714%;
+}
+}
