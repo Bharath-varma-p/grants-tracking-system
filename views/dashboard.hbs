@@ -94,11 +94,14 @@
   </div>
 
   <div id="paginationOptions">
-    <label for="rowsPerPage">Rows per page:</label>
+
+    <label for="rowsPerPage" >Rows per page:</label>
     <select id="rowsPerPage">
-      <option value="10">10</option>
-      <option value="20">20</option>
-      <option value="30">30</option>
+        {{#if pagesarr.length}}
+          {{#each pagesarr}}
+          <option value="{{this}}">{{this}}</option>
+          {{/each}}
+        {{/if}}
     </select>
   </div> 
   <br>
