@@ -12,12 +12,13 @@ router.post("/login",userController.handleLogin)
 router.get("/register",userController.renderRegister)
 router.post("/register",userController.handleRegister)
 router.get("/logout",userController.logout)
-router.get("/dashboard",grantsController.viewDashboard)
+router.get("/dashboard_view",grantsController.viewDashboard)
 router.get("/dashboard-view-details",grantsController.viewDashboardetails)
-router.post("/dashboard",grantsController.handleDashboard)
+router.post("/dashboard_view",grantsController.handleDashboard)
 router.get("/enable-tfa",grantsController.enableTfa)
 router.post("/verify-tfa",grantsController.verifyTfa)
 router.post("/count-total-pages",grantsController.countTotalPages)
-router.get("/userRole",userController.fetchUserRole)
+router.get('/data_dashboard', grantsController.getDataDashboard);
+
 
 module.exports=router;
