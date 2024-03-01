@@ -23,6 +23,20 @@ exports.countTotalPages = (req, res) => {
   });
 };
 
+const grantsService = require('../services/grantsService.service.js');
+
+exports.getDataDashboard = async (req, res) => {
+  try {
+    const data = await grantsService.getFilteredGrantsData(req);
+    res.json(data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+
+
 
 exports.viewDashboard = (req,res) => {
     if (!req.session.email) {
@@ -150,7 +164,7 @@ exports.verifyTfa = (req,res) => {
   
     if (verified) {
       req.session.userEmail = email;
-      res.redirect('/dashboard');
+      res.redirect('/dashboard_view');
     } else {
       res.status(401).send({message: 'Invalid token'});
     }
