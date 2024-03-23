@@ -73,6 +73,10 @@
     .keyword-label {
       font-size: 20px;
     }
+
+    .future-date {
+      color: green;
+    }
   </style>
 </head>
 
@@ -115,7 +119,7 @@
 
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
+  <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
   <!-- DataTables JavaScript -->
   <script src="https://cdn.datatables.net/v/dt/dt-2.0.1/datatables.min.js"></script>
   <!-- Bootstrap DateTimePicker JavaScript -->
@@ -141,7 +145,21 @@
         "columns": [
           { "data": "title" },
           { "data": "number" },
-          { "data": "CloseDate" },
+          { "data": "CloseDate",
+        "render": function(data, type, row) {
+          // Format date to remove time and timezone
+          var formattedDate = data.split('T')[0];
+          // Make date bold
+          var boldDate = '<span style="font-weight:bold;">' + formattedDate + '</span>';
+          // Check if date is in the future
+          var date = new Date(data);
+          var now = new Date();
+          if (date > now) {
+            return '<span class="future-date">' + boldDate + '</span>';
+          } else {
+            return boldDate;
+          }
+        } },
           { "data": "AwardCeiling" },
           {
             "data": "id",
