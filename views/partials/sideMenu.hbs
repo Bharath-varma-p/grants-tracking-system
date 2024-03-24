@@ -57,12 +57,9 @@
   nav h2 {
 
     margin: 0;
-    /* Reset margin to remove default margin */
     color: #fff;
     text-align: center;
-    /* Center align the text */
     flex-grow: 1;
-    /* Allow the text to grow and occupy available space */
     margin-right: 50px;
   }
 
@@ -79,12 +76,8 @@
     overflow: hidden;
     transition: max-height 0.3s ease-out;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    /* Add a subtle box shadow */
     background-color: #fff;
-    /* Set a background color */
     border-radius: 8px;
-    /* Add rounded corners */
-
   }
 
   .sub-menu-wrap.open-menu {
@@ -162,11 +155,11 @@
   .sub-menu-link:hover p {
     font-weight: 600;
   }
-
+  #subMenu {
+  z-index: 9999; /* Set a high z-index value to bring it to the front */
+}
 
   @media only screen and (max-width: 600px) {
-
-    /* Styles for screens up to 600px wide */
     nav ul {
       margin-left: 0;
     }
@@ -184,13 +177,10 @@
   label .slide {
     height: 100%;
     width: 210px;
-    /*180*/
     position: absolute;
-    /*need to use absolute as per the resource*/
     background-color: #fff;
     transition: 0.5s ease;
     transform: translateX(-210px);
-    /*-180*/
     z-index: 1;
     left: 0;
   }
@@ -199,7 +189,6 @@
   label .slide h1 {
     color: black;
     font-weight: 700;
-    /*800*/
     text-align: right;
     padding: 10px 0;
     padding-right: 30px;
@@ -217,11 +206,8 @@
     color: black;
     font-weight: 500;
     padding: 10px;
-    /*5px 0*/
     border-radius: 5px;
-    /*new*/
     margin-bottom: 10px;
-    /*new*/
     display: block;
     text-transform: capitalize;
     text-decoration: none;
@@ -251,11 +237,9 @@
 
   .toggle {
     position: absolute;
-    /* absolute*/
     height: 30px;
     width: 30px;
     top: 50px;
-    /*50px*/
     left: 25px;
     z-index: 2;
     cursor: pointer;
@@ -267,7 +251,6 @@
 
   .toggle .common {
     position: absolute;
-    /*absolute*/
     height: 2px;
     width: 20px;
     background-color: #0d0c0cca;
@@ -318,7 +301,6 @@
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   }
 </style>
-
 
 <label>
   <input class="speacial-input" type="checkbox">
@@ -394,12 +376,9 @@
   //JavaScript to ToggleMenu
   function toggleMenu() {
     var subMenu = document.getElementById("subMenu");
-    subMenu.classList.toggle("open-menu")
+    subMenu.classList.toggle("open-menu");
   }
-
 </script>
-
-
 
 <script src="/js/jquery.js"></script>
 <script src="/js/popper.js"></script>
