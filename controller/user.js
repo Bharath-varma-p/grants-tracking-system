@@ -2,6 +2,7 @@ const mysql = require('mysql2');
 require('dotenv').config();
 
 const connection = require('../database');
+const userService = require('../services/getUserName.service');
 
 exports.renderLogin = (req,res) => {
     res.render('login');
@@ -38,18 +39,25 @@ exports.handleLogin = async (req,res) => {
             res.send("Login failed")
         }else{
             console.log("results",results);
-            if(results.length>=1){
-                // const user = results[0];
-                // const tfa_enabled = user.is_tfa_enabled;
-                // // console.log("tfa_enabled",tfa_enabled)
-                req.session.email = req.body.email;
-                res.redirect('/enable-tfa');
-            }else{
-                // res.send("Email and Password combination is incorrect");
-                res.status(400).send('Email and Password combination is incorrect');
-            }
-        }
-    });
+            if (results.length >= 1) {
+              req.session.email = req.body.email;
+
+              // Pass the logged-in user's email to the service function
+              userService.getUserName(req.body.email, (err, userData) => {
+                  if (err) {
+                      console.error('Error fetching user data:', err);
+                      // Handle error
+                  } else {
+                      // Use userData as needed
+                      console.log('User data:', userData);
+                      res.redirect('/enable-tfa');
+                  }
+              });
+          } else {
+              res.status(400).send('Email and Password combination is incorrect');
+          }
+      }
+  });
 }
 
 exports.fetchUserRole = (req,res)=>{

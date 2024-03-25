@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router();
 const userController = require('./controller/user');
 const grantsController = require('./controller/grants');
+const getUserNameController = require('./controller/getUserName.controller');
 
 // exports.renderLogin = (req,res) => {
 //     res.render('main',{title:'Grants'});
@@ -20,5 +21,9 @@ router.post("/verify-tfa",grantsController.verifyTfa)
 router.post("/count-total-pages",grantsController.countTotalPages)
 router.get('/data_dashboard', grantsController.getDataDashboard);
 
+
+router.get("/getUserInfo", getUserNameController.fetchUserData);
+// router.get("/analytics", analyticsController.showAnalyticsPage);
+// router.get("/analytics-data", analyticsController.getData);
 
 module.exports=router;
