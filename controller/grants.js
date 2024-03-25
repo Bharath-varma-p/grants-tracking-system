@@ -1,4 +1,3 @@
-const mysql = require('mysql2');
 require('dotenv').config();
 const speakeasy = require('speakeasy');
 const QRCode = require('qrcode');
@@ -46,34 +45,19 @@ exports.viewDashboard = (req,res) => {
       // Access the email from the session
         const userEmail = req.session.email;
 
-        const page = parseInt(req.query.page) || 1; 
-        const limit = parseInt(req.query.limit) || 10;
-        const offset =  (page - 1)*limit;
+        // const page = parseInt(req.query.page) || 1; 
+        // const limit = parseInt(req.query.limit) || 10;
+        // const offset =  (page - 1)*limit;
       
-        const sql = 'SELECT * from grants_trackings LIMIT ? OFFSET ?';
-        console.log("SQL",sql);
-        connection.query(sql, [limit, offset], (err,results) => {
+        const sql = 'SELECT * from grants_trackings';
+        // console.log("SQL",sql);
+        connection.query(sql, (err,results) => {
          // console.log("results",results);
           console.log("results in render",results.length);
-          var tableLength = 'SELECT COUNT(*) AS total FROM grants_trackings';
-          connection.query(tableLength, (err, result) => {
-            if (err) {
-              console.error('Error counting total pages:', err);
-              return res.status(500).send('Error counting total pages');
-            }
-            const totalRecords = result[0].total; // Extract total count from results
-            const totalPages = Math.ceil(totalRecords / limit); // Calculate total pages
-            console.log("totalPages",totalRecords);
-            var pagesarr=[]
-            for(i=100;i<=totalRecords;i=i+100){
-                pagesarr.push(i)
-            }
-            res.render('dashboard', { data:results,userEmail,pagesarr});
-          })
-          
-          
+            res.render('dashboard', { data:results});
         })
 };
+
 exports.handleDashboard = (req,res) => {
     const keySearch = req.body.keyword;
 

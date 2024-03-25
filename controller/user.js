@@ -1,4 +1,3 @@
-const mysql = require('mysql2');
 require('dotenv').config();
 
 const connection = require('../database');
@@ -38,7 +37,6 @@ exports.handleLogin = async (req,res) => {
             console.log("Database error",err)
             res.send("Login failed")
         }else{
-            console.log("results",results);
             if (results.length >= 1) {
               req.session.email = req.body.email;
 
@@ -81,7 +79,7 @@ exports.fetchUserRole = (req,res)=>{
 }
 
 exports.handleRegister = (req,res) => {
-    const {firstname,lastname,email,password} = req.body;
+    const {firstname,lastname,email,password,interests} = req.body;
 console.log("password", req.body['confirm-password']);
 
     if (!isValidEmail(email)) {
@@ -99,10 +97,10 @@ console.log("password", req.body['confirm-password']);
       return res.status(400).send('Passwords do not match');
     }
   
-    const sql = 'INSERT into users_2 (firstname, lastname, email, password, role) values (?,?,?,?,?)';
+    const sql = 'INSERT into users_2 (firstname, lastname, email, password, role, interests) values (?,?,?,?,?,?)';
 
   
-    connection.query(sql, [firstname,lastname,email, password, role], (err,results) => {
+    connection.query(sql, [firstname,lastname,email, password, role, interests], (err,results) => {
       if(err){
         console.log("Database error",err);
         res.send("Account already Exists");
