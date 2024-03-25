@@ -11,7 +11,15 @@ connection.connect();
 
 exports.getFilteredGrantsData = () => {
     return new Promise((resolve, reject) => {
-        const query = 'SELECT id, title, number, CloseDate, AwardCeiling FROM grants_trackings';
+        const currentDate = new Date(); // Get current date
+        currentDate.setDate(currentDate.getDate() + 4); // Add 4 days to the current date
+
+        // Format current date as YYYY-MM-DD
+        const formattedCurrentDate = currentDate.toISOString().split('T')[0];
+
+        // Construct the SQL query to filter data where CloseDate is 4 days or more in the future
+        const query = `SELECT id, title, number, CloseDate, AwardCeiling FROM grants_trackings WHERE CloseDate >= '${formattedCurrentDate}'`;
+
         connection.query(query, (error, results) => {
             if (error) {
                 reject(error);
@@ -21,6 +29,7 @@ exports.getFilteredGrantsData = () => {
         });
     });
 };
+
 
 exports.fetchDashboardDetails = (id) => {
     return new Promise((resolve, reject) => {

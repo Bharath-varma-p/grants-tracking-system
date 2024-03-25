@@ -7,10 +7,10 @@ require('dotenv').config();
 
 const sequelize = new Sequelize({
   dialect: 'mysql',
-  host: process.env.HOST,
-  user: process.env.USER,
-  password: process.env.PASSWORD,
-  database: process.env.DATABASE,
+  host: process.env.host,
+  user: process.env.user,
+  password: process.env.password,
+  database: process.env.database,
   dialectOptions: {
     charset: 'utf8mb4',
     requestTimeout: 60000, // 60 seconds

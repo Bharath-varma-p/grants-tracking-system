@@ -1,41 +1,67 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Signup</title>
   <style>
     body {
       display: flex;
-      justify-content: center;
+      {{!-- justify-content: center; --}}
       align-items: center;
       height: 100vh;
       margin: 0;
       background-color: #f0f0f0;
       flex-direction: column;
     }
+   
+
+    nav {
+      background: #cd2c2e;
+      width: 100%;
+      padding: 10px 0; /* Adjust padding */
+      text-align: center; /* Center align the content */
+      
+    }
 
     #signup-form {
       background-color: #efe9e9;
-      padding: 40px;
+      display: flex;
+      width: 60%;
+      flex-direction: column;
+      height: 40%;
+      margin: 0 auto;
+      padding: 20px;
       border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(138, 14, 14, 0.2);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-top: 80px;
     }
 
-    h1 {
-      text-align: center;
+    .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+      align-items: center;
+    }
+
+    .form-group {
+      flex: 1;
+      margin-right: 20px;
+      margin-left: 20px;
+      align-items: center;
     }
 
     label {
-      display: block;
-      margin: 10px 0;
+      margin-bottom: 5px;
     }
 
     input[type="text"],
     input[type="password"] {
       width: 100%;
-      padding: 10px;
-      margin: 5px 0;
+      padding: 8px;
+      margin-bottom: 10px;
       border: 1px solid #ccc;
-      border-radius: 3px;
+      border-radius: 4px;
     }
 
     button[type="submit"] {
@@ -47,37 +73,65 @@
       border: none;
       border-radius: 3px;
       cursor: pointer;
-    } 
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    #signup {
+      margin-top: 20px;
+    }
+
+    #Rows{
+      margin-top: 45px;
+    }
   </style>
 </head>
 <body>
-  <h1>Create Account</h1>
-  <form id="signup-form" method="post" action="/register">
-    <div class="form-group">
-      <label for="firstname">First Name:</label>
-      <input type="text" id="firstname" name="firstname" required><br>
+  <nav>
+    <img src="grants.png" alt="Logo" id="UC_Grants" width="300px" height="100px">
+  </nav>
+  <br>
+  <form id="signup-form" method="post" action="/register" onsubmit="return validateForm()">
+    <div class="form-row" id="Rows">
+      <div class="form-group">
+        <label for="firstname">First Name:</label>
+        <input type="text" id="firstname" name="firstname" required>
+      </div>
+      <div class="form-group">
+        <label for="lastname">Last Name:</label>
+        <input type="text" id="lastname" name="lastname" required>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="lastname">Last Name:</label>
-      <input type="text" id="lastname" name="lastname" required><br>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <input type="checkbox" onclick="togglePasswordVisibility()"> Show Password
+      </div>
     </div>
-    <div class="form-group">
-      <label for="email">Email:</label>
-      <input type="text" id="email" name="email" required><br>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="confirm-password">Confirm Password:</label>
+        <input type="password" id="confirm-password" name="confirm-password" required>
+      </div>
+      <div class="form-group" id="signup">
+        <button type="submit">Signup</button>
+      </div>
     </div>
-    <div class="form-group"></div>
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required><br>
-      <input type="checkbox" onclick="togglePasswordVisibility()">Show Password<br>
-    </div> 
-    <div class="form-group">
-      <label for="confirm-password">Confirm Password:</label>
-      <input type="password" id="confirm-password" name="confirm-password" required><br>
-    </div>
-    <button type="submit">Signup</button>
   </form>
-   <p>Already have an account? <a href="/login">Login</a></p>
-<script>
+  <p>Already have an account? <a href="/login">Login</a></p>
+
+  <script>
     function togglePasswordVisibility() {
       var passwordInput = document.getElementById("password");
       if (passwordInput.type === "password") {
@@ -86,22 +140,18 @@
         passwordInput.type = "password";
       }
     }
-    </script>
 
-    <script>  
-    const passwordField = document.getElementById('password');
-    const confirmPasswordField = document.getElementById('confirm-password');
-
-    function validateConfirmPassword() {
-        if (passwordField.value === confirmPasswordField.value) {
-            confirmPasswordField.setCustomValidity('');
-        } else {
-            confirmPasswordField.setCustomValidity('Passwords do not match');
-        }
+    function validateForm() {
+      var passwordField = document.getElementById('password');
+      var confirmPasswordField = document.getElementById('confirm-password');
+      if (passwordField.value !== confirmPasswordField.value) {
+        confirmPasswordField.setCustomValidity('Passwords do not match');
+        return false;
+      } else {
+        confirmPasswordField.setCustomValidity('');
+        return true;
+      }
     }
-
-    confirmPasswordField.addEventListener('input', validateConfirmPassword);
-</script>
+  </script>
 </body>
 </html>
-
