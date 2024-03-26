@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>My Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- DataTables CSS -->
+  <link href="https://cdn.datatables.net/v/dt/dt-2.0.1/datatables.min.css" rel="stylesheet">
+
+
+  <!-- Font Awesome CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Custom Styles -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500;600&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 8px;
+      margin-top: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    th,
+    td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f8f8f8;
+    }
+
+    tr:hover {
+      background-color: #f0f0f0;
+    }
+
+    #dashboard {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .viewButton {
+      padding: 8px 12px;
+      border-radius: 6px;
+      background: #090808dc;
+      color: #fff;
+      text-align: center;
+      font-weight: 500;
+      border: none;
+      cursor: pointer transition: background 0.3s ease;
+    }
+
+    .viewButto:hover {
+      background: #000000;
+    }
+
+    #paginationOptions {
+      margin-top: 20px;
+      text-align: right;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    #paginationOptions select {
+      color: #333;
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer;
+    }
+
+    #paginationOptions select:focus {
+      outline: none;
+      border-color: #6366f1;
+      box-shadow: 0 0 5px rgba(99, 102, 241, 0.5);
+    }
+
+    #rowsPerPage {
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      font-size: 14px;
+      margin-left: 10px;
+
+    }
+
+    .table-container {
+      padding: 20px;
+      /* Adjust the value as needed */
+    }
+
+    .table-header {
+      background-color: #E5E1DA; /* Light grey color */
+    }
+    th.title-column{
+      padding-right: 75px !important;
+      background-color: #E5E1DA;
+    }
+
+
+
+
+
+    .keyword-label {
+      font-weight: bold;
+      display: inline-block;
+      width: 100px;
+      text-align: center;
+      margin-left: 350px;
+    }
+
+    #keyword {
+      padding: 5px;
+      border: 2px solid #ccc;
+      border-radius: 15px;
+      width: 550px;
+      font-size: 16px;
+      transition: border-color 0.3s;
+    }
+
+    #keyword:focus {
+      outline: none;
+      border-color: #007bff;
+      /* Change border color on focus */
+    }
+    #dashboardTable{
+      border: 1px solid #dee2e6;
+    }
+
+    .submit-button {
+      padding: 5px 10px;
+      background-color: #090808dc;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .submit-button:hover {
+      background-color: #000000;
+      /* Darker shade on hover */
+    }
+
+    .future-date {
+      color: green;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    {{> sideMenu}}
+  </div>
+  {{!-- <div id="keyboardSearch">
+    <form id="dashboard" action="/dashboard_view" method="post">
+      <label class="keyword-label" for="keyword">Keyword:</label>
+      <input type="text" id="keyword" name="keyword" required>
+      <button class="submit-button" type="submit">Search</button>
+    </form>
+
+  </div> --}}
+
+  {{!-- <div id="paginationOptions">
+    <label for="rowsPerPage">Rows per page:</label>
+    <select id="rowsPerPage">
+      {{#if pagesarr.length}}
+      {{#each pagesarr}}
+      <option value="{{this}}">{{this}}</option>
+      {{/each}}
+      {{/if}}
+    </select>
+  </div> --}}
+  <br>
+  <div class="table-container">
+    <table id="dashboardTable" class="display">
+      <thead>
+        <tr>
+          <th class="title-column">Title</th>
+          <th class="table-header">Number</th>
+          <th class="table-header">Close Date</th>
+          <th class="table-header">Award Ceiling</th>
+          <th class="table-header">Actions</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+  <!-- DataTables JavaScript -->
+  <script src="https://cdn.datatables.net/v/dt/dt-2.0.1/datatables.min.js"></script>
+  <!-- Bootstrap DateTimePicker JavaScript -->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      initializeFirstTable();
+
+      $('#rowsPerPage').on('change', function () {
+        var rowsPerPage = $(this).val();
+        $('#dashboardTable').DataTable().page.len(rowsPerPage).draw();
+      });
+    });
+
+    function initializeFirstTable() {
+      $('#dashboardTable').DataTable({
+        "ajax": {
+          "url": "/my_data_dashboard",
+          "dataSrc": ""
+        },
+        "columns": [
+          { "data": "title" },
+          { "data": "number" },
+          {
+            "data": "CloseDate",
+            "render": function (data, type, row) {
+                   // Convert date to JavaScript Date object
+                    var date = new Date(data);
+                    // Extract day, month, and year
+                    var day = ("0" + date.getDate()).slice(-2); // Add leading zero if necessary
+                    var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                    var month = monthNames[date.getMonth()];
+                    var year = date.getFullYear().toString().slice(-2); // Get last two digits of the year
+                    // Construct the formatted date string
+                    var formattedDate = month + "-" + day + "-" + year;
+                    // Check if date is in the future
+                    var now = new Date();
+                    if (date > now) {
+                        formattedDate = '<span class="future-date">' + formattedDate + '</span>';
+                    }
+                    // Return the formatted date
+                    return formattedDate;
+                }
+          },
+          { "data": "AwardCeiling" },
+          {
+            "data": "id",
+            "render": function (data, type, row) {
+              return '<button class="viewButton" data-row-id="' + data + '">View</button>';
+            }
+          }
+        ],
+        "oLanguage": {
+          "sLengthMenu": "Show _MENU_ entries",
+          "sInfo": "Showing _START_ to _END_ of _TOTAL_ entries",
+          "sInfoFiltered": "(filtered from _MAX_ total entries)",
+          "sInfoEmpty": "Showing 0 to 0 of 0 entries",
+          "sZeroRecords": "No matching records found",
+          "sSearch": "Search:",
+          "oPaginate": {
+            "sFirst": "First",
+            "sLast": "Last",
+            "sNext": "Next",
+            "sPrevious": "Previous"
+          },
+          "bsort": true
+        }
+      });
+    }
+
+    $('#dashboardTable').on('click', '.viewButton', function () {
+      var rowId = $(this).data('row-id');
+      redirectToViewResults(rowId);
+    });
+
+    function redirectToViewResults(rowId) {
+      var url = '/my_dashboard-view-details?id=' + rowId;
+      window.location.href = url;
+    }
+
+
+
+  </script>
+
+</body>
+
+</html>
