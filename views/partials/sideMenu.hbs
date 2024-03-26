@@ -60,7 +60,7 @@
     color: #fff;
     text-align: center;
     flex-grow: 1;
-    margin-right: 50px;
+    margin-right: -85px;
   }
 
 
@@ -302,6 +302,7 @@
   }
 </style>
 
+
 <label>
   <input class="speacial-input" type="checkbox">
   <div class="toggle">
@@ -325,14 +326,14 @@
 
 
 <nav>
-  <ul>
+  {{!-- <ul>
     <li>
       <a href="#">Home</a>
     </li>
     <li>
       <a href="#">About</a>
     </li>
-  </ul>
+  </ul> --}}
   <h2>Grants Tracking System</h2>
 
   <img src="profile.png" class="logo" onclick="toggleMenu()">
@@ -382,14 +383,20 @@
   });
 
   function fetchUserInfo() {
-    fetch('/getUserInfo')
-      .then(response => response.json())
-      .then(data => {
-        const userInfoDiv = document.getElementById('user-info1');
-        userInfoDiv.innerHTML = `<img src="profile.png"><h3>Hello ${data.firstName} ${data.lastName}</h3>`;
-      })
-      .catch(error => console.error('Error fetching user information:', error));
+      fetch('/getUserInfo')
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('Network response was not ok');
+              }
+              return response.json();
+          })
+          .then(data => {
+              const userInfoDiv = document.getElementById('user-info1');
+              userInfoDiv.innerHTML = `<img src="profile.png"><h3>Hello ${data.firstname} ${data.lastname}</h3>`;
+          })
+          .catch(error => console.error('Error fetching user information:', error));
   }
+
 </script>
 
 

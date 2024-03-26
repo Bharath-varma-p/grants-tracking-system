@@ -5,13 +5,15 @@
   <meta charset="utf-8">
   <title>Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
   <!-- DataTables CSS -->
   <link href="https://cdn.datatables.net/v/dt/dt-2.0.1/datatables.min.css" rel="stylesheet">
-  
+
 
   <!-- Font Awesome CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <!-- Custom Styles -->
   <style>
@@ -29,7 +31,7 @@
       border: 8px;
       margin-top: 10px;
       overflow: hidden;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     }
 
     th,
@@ -37,18 +39,18 @@
       padding: 15px;
       text-align: left;
       border-bottom: 1px solid #ddd;
-      
+
     }
 
     th {
       background-color: #f2f2f2;
     }
 
-    tr:nth-child(even){
+    tr:nth-child(even) {
       background-color: #f8f8f8;
     }
 
-    tr:hover{
+    tr:hover {
       background-color: #f0f0f0;
     }
 
@@ -67,45 +69,58 @@
       text-align: center;
       font-weight: 500;
       border: none;
-      cursor: pointer
-      transition: background 0.3s ease;
+      cursor: pointer transition: background 0.3s ease;
     }
-    .viewButto:hover{
+
+    .viewButto:hover {
       background: #000000;
     }
 
-    #paginationOptions{
+    #paginationOptions {
       margin-top: 20px;
       text-align: right;
       font-weight: bold;
       margin-right: 10px;
     }
 
-    #paginationOptions select{
+    #paginationOptions select {
       color: #333;
       font-family: 'Poppins', sans-serif;
       cursor: pointer;
     }
 
-    #paginationOptions select:focus{
+    #paginationOptions select:focus {
       outline: none;
       border-color: #6366f1;
       box-shadow: 0 0 5px rgba(99, 102, 241, 0.5);
     }
 
-    #rowsPerPage{
+    #rowsPerPage {
       padding: 8px;
       border-radius: 4px;
       border: 1px solid #ccc;
       background-color: #fff;
       font-size: 14px;
       margin-left: 10px;
-      
+
     }
 
-    
+    .table-container {
+      padding: 20px;
+      /* Adjust the value as needed */
+    }
 
-    
+    .table-header {
+      background-color: #E5E1DA; /* Light grey color */
+    }
+    th.title-column{
+      padding-right: 75px !important;
+      background-color: #E5E1DA;
+    }
+
+
+
+
 
     .keyword-label {
       font-weight: bold;
@@ -126,7 +141,11 @@
 
     #keyword:focus {
       outline: none;
-      border-color: #007bff; /* Change border color on focus */
+      border-color: #007bff;
+      /* Change border color on focus */
+    }
+    #dashboardTable{
+      border: 1px solid #dee2e6;
     }
 
     .submit-button {
@@ -141,7 +160,8 @@
     }
 
     .submit-button:hover {
-      background-color: #000000; /* Darker shade on hover */
+      background-color: #000000;
+      /* Darker shade on hover */
     }
 
     .future-date {
@@ -154,38 +174,39 @@
   <div>
     {{> sideMenu}}
   </div>
-  <div id="keyboardSearch">
+  {{!-- <div id="keyboardSearch">
     <form id="dashboard" action="/dashboard_view" method="post">
       <label class="keyword-label" for="keyword">Keyword:</label>
       <input type="text" id="keyword" name="keyword" required>
       <button class="submit-button" type="submit">Search</button>
     </form>
-    
-  </div>
+
+  </div> --}}
 
   {{!-- <div id="paginationOptions">
     <label for="rowsPerPage">Rows per page:</label>
     <select id="rowsPerPage">
-        {{#if pagesarr.length}}
-          {{#each pagesarr}}
-          <option value="{{this}}">{{this}}</option>
-          {{/each}}
-        {{/if}}
+      {{#if pagesarr.length}}
+      {{#each pagesarr}}
+      <option value="{{this}}">{{this}}</option>
+      {{/each}}
+      {{/if}}
     </select>
-  </div>  --}}
+  </div> --}}
   <br>
-
-  <table id="dashboardTable" class="display">
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Number</th>
-        <th>Close Date</th>
-        <th>Award Ceiling</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-  </table>
+  <div class="table-container">
+    <table id="dashboardTable" class="display">
+      <thead>
+        <tr>
+          <th class="title-column">Title</th>
+          <th class="table-header">Number</th>
+          <th class="table-header">Close Date</th>
+          <th class="table-header">Award Ceiling</th>
+          <th class="table-header">Actions</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
 
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -193,14 +214,15 @@
   <!-- DataTables JavaScript -->
   <script src="https://cdn.datatables.net/v/dt/dt-2.0.1/datatables.min.js"></script>
   <!-- Bootstrap DateTimePicker JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 
 
   <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function () {
       initializeFirstTable();
 
-      $('#rowsPerPage').on('change', function(){
+      $('#rowsPerPage').on('change', function () {
         var rowsPerPage = $(this).val();
         $('#dashboardTable').DataTable().page.len(rowsPerPage).draw();
       });
@@ -215,25 +237,31 @@
         "columns": [
           { "data": "title" },
           { "data": "number" },
-          { "data": "CloseDate",
-        "render": function(data, type, row) {
-          // Format date to remove time and timezone
-          var formattedDate = data.split('T')[0];
-          // Make date bold
-          var boldDate = '<span style="font-weight:bold;">' + formattedDate + '</span>';
-          // Check if date is in the future
-          var date = new Date(data);
-          var now = new Date();
-          if (date > now) {
-            return '<span class="future-date">' + boldDate + '</span>';
-          } else {
-            return boldDate;
-          }
-        } },
+          {
+            "data": "CloseDate",
+            "render": function (data, type, row) {
+                   // Convert date to JavaScript Date object
+                    var date = new Date(data);
+                    // Extract day, month, and year
+                    var day = ("0" + date.getDate()).slice(-2); // Add leading zero if necessary
+                    var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                    var month = monthNames[date.getMonth()];
+                    var year = date.getFullYear().toString().slice(-2); // Get last two digits of the year
+                    // Construct the formatted date string
+                    var formattedDate = month + "-" + day + "-" + year;
+                    // Check if date is in the future
+                    var now = new Date();
+                    if (date > now) {
+                        formattedDate = '<span class="future-date">' + formattedDate + '</span>';
+                    }
+                    // Return the formatted date
+                    return formattedDate;
+                }
+          },
           { "data": "AwardCeiling" },
           {
             "data": "id",
-            "render": function(data, type, row) {
+            "render": function (data, type, row) {
               return '<button class="viewButton" data-row-id="' + data + '">View</button>';
             }
           }
@@ -256,7 +284,7 @@
       });
     }
 
-    $('#dashboardTable').on('click', '.viewButton', function() {
+    $('#dashboardTable').on('click', '.viewButton', function () {
       var rowId = $(this).data('row-id');
       redirectToViewResults(rowId);
     });
@@ -267,7 +295,7 @@
     }
 
 
-    
+
   </script>
 
 </body>

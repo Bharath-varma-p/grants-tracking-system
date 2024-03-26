@@ -4,7 +4,7 @@ const { writeFile } = require('fs').promises;
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 
 // Load XML file 
-const xml = fs.readFileSync('/Users/admin/Desktop/GrantsDBExtract20231008v2.xml', 'utf8');
+const xml = fs.readFileSync('/Users/bharath/Documents/grants_portal_2024/GrantsDBExtract20240325v2.xml', 'utf8');
 
 // Parse XML using cheerioo
 const $ = cheerio.load(xml, {xmlMode: true}); 

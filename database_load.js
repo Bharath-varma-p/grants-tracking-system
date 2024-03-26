@@ -2,15 +2,18 @@ const { Sequelize, DataTypes } = require('sequelize');
 const fs = require('fs');
 const csv = require('csv-parser');
 const { parse, isValid, format } = require('date-fns');
-
 require('dotenv').config();
 
-const sequelize = new Sequelize({
+console.log("Environment variables:", process.env);
+console.log("The user in the host is:", process.env.user);
+console.log("The password in the host is:", process.env.password);
+console.log("The database in the host is:", process.env.database);
+console.log("The host in the host is:", process.env.host);
+
+
+const sequelize = new Sequelize(process.env.database, process.env.user, process.env.password, {
   dialect: 'mysql',
   host: process.env.host,
-  user: process.env.user,
-  password: process.env.password,
-  database: process.env.database,
   dialectOptions: {
     charset: 'utf8mb4',
     requestTimeout: 60000, // 60 seconds
