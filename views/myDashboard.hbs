@@ -64,7 +64,7 @@
     .viewButton {
       padding: 8px 12px;
       border-radius: 6px;
-      background: #090808dc;
+      background: #1e7fe7;
       color: #fff;
       text-align: center;
       font-weight: 500;
@@ -170,7 +170,7 @@
     
 
   .mygrants {
-    background: #b8c7d7;
+    background: #94c0ef;
     width: 100%;
     padding: 20px 0%;
     display: flex;
@@ -183,6 +183,8 @@
     text-align: center;
     padding-top: 10px;
     padding-bottom: 10px;
+    {{!-- margin-bottom: -30px; --}}
+    margin-top: 30px
   }
 
 .text-success-glow {
@@ -228,7 +230,7 @@
     {{> sideMenu}}
   </div>
   <div class="outer-interests-container">
-    <div class="mygrants">My Grants</div>
+    <div class="mygrants"><b>My Grants</b></div>
     <div class="interests-container">
       <div class="interests">
         <i class="fa fa-circle text-success-glow blink"></i>
@@ -288,7 +290,7 @@
             interestsSpan.textContent = `Area of Interest: ${interests} `;
 
             const countSpan = document.getElementById('interestsCount');
-            countSpan.textContent = `Count: ${count} `;
+            countSpan.textContent = `Number of Avaialable Grants: ${count} `;
             // const interestsAndCountElement = document.getElementById('interestsAndCount');
              // interestsAndCountElement.innerHTML = `<p>User Interests: ${interests}</p><p>Count: ${count}</p>`; --}}
           })

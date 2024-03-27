@@ -64,7 +64,7 @@
     .viewButton {
       padding: 8px 12px;
       border-radius: 6px;
-      background: #090808dc;
+      background: #1e7fe7;
       color: #fff;
       text-align: center;
       font-weight: 500;
@@ -167,6 +167,25 @@
     .future-date {
       color: green;
     }
+
+.mygrants {
+    background: #94c0ef;
+    width: 100%;
+    padding: 20px 0%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: -30px;
+    margin-top: 30px
+  }
+
   </style>
 </head>
 
@@ -174,6 +193,7 @@
   <div>
     {{> sideMenu}}
   </div>
+  <div class="mygrants"><b>Master Grants</b></div>  
   {{!-- <div id="keyboardSearch">
     <form id="dashboard" action="/dashboard_view" method="post">
       <label class="keyword-label" for="keyword">Keyword:</label>
