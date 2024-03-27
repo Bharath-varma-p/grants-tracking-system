@@ -167,6 +167,22 @@
     .future-date {
       color: green;
     }
+    
+
+  .mygrants {
+    background: #b8c7d7;
+    width: 100%;
+    padding: 20px 0%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
   </style>
 </head>
 
@@ -174,26 +190,7 @@
   <div>
     {{> sideMenu}}
   </div>
-  {{!-- <div id="keyboardSearch">
-    <form id="dashboard" action="/dashboard_view" method="post">
-      <label class="keyword-label" for="keyword">Keyword:</label>
-      <input type="text" id="keyword" name="keyword" required>
-      <button class="submit-button" type="submit">Search</button>
-    </form>
-
-  </div> --}}
-
-  {{!-- <div id="paginationOptions">
-    <label for="rowsPerPage">Rows per page:</label>
-    <select id="rowsPerPage">
-      {{#if pagesarr.length}}
-      {{#each pagesarr}}
-      <option value="{{this}}">{{this}}</option>
-      {{/each}}
-      {{/if}}
-    </select>
-  </div> --}}
-  <br>
+  <div class="mygrants">My Grants</div>
   <div class="table-container">
     <table id="dashboardTable" class="display">
       <thead>
@@ -290,7 +287,7 @@
     });
 
     function redirectToViewResults(rowId) {
-      var url = '/my_dashboard-view-details?id=' + rowId;
+      var url = '/dashboard-view-details?id=' + rowId;
       window.location.href = url;
     }
 
