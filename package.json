@@ -1,0 +1,35 @@
+{
+  "name": "grantsproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.5.1",
+    "cheerio": "^1.0.0-rc.12",
+    "csv-parser": "^3.0.0",
+    "csv-writer": "^1.6.0",
+    "date-fns": "^2.30.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-handlebars": "^7.1.2",
+    "express-session": "^1.17.3",
+    "express-static": "^1.2.6",
+    "fs": "^0.0.1-security",
+    "handlebars": "^4.7.8",
+    "hbs": "^4.2.0",
+    "moment": "^2.29.4",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.6.1",
+    "path": "^0.12.7",
+    "puppeteer": "^21.4.1",
+    "qrcode": "^1.5.3",
+    "sequelize": "^6.33.0",
+    "speakeasy": "^2.0.0"
+  }
+}

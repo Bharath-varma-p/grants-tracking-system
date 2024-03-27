@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Grants Portal</title>
+  <script src="handlebars.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500;600&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #fae5d3; 
+      flex-direction: column;
+    }
+    .login-box{
+      background-color: white;
+      border-radius: 15px;
+      width: 450px;
+      height: 500px;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      
+    }
+    #login-form {
+  
+      padding: 40px;
+      
+    }
+    #uclogo{
+      margin-left: 37px;
+    }
+
+    #email{
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    #password{
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    #loginbutton{
+      padding: 10px 20px; 
+      background-color: #cd2c2e; 
+      color: #fff; 
+      border: none; 
+      border-radius: 25px; 
+      cursor: pointer; 
+      transition: background-color 0.3s, color 0.3s;
+      width: 60%;
+      display: block;
+      margin: 0 auto;
+      margin-top: 20px;
+    }
+
+    #loginbutton:hover {
+      background-color: #a8202d; /* Darken background color on hover */
+    }
+
+    h1 {
+      text-align: center;
+      color: #fff;
+    }
+
+    label {
+      color: #fff;
+      display: block;
+      margin: 10px 0;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    #show_button {
+      cursor: pointer;
+      padding: 10px 20px; /* Add padding to make the button more clickable */
+      background-color: #090808dc; /* Set background color */
+      color: #fff; /* Set text color */
+      border: none; /* Remove border */
+      border-radius: 5px; /* Add border-radius for rounded corners */
+      cursor: pointer; /* Change cursor to pointer on hover */
+      transition: background-color 0.3s; /* Add transition effect for smoother hover */
+      margin-left: 5px; /* Adjust margin */
+    }
+
+    #show_button:hover {
+      background-color: #000000; /* Darken background color on hover */
+    }
+
+    .heading-color1{
+      color: #E67E22;
+      display: inline-block;
+    }
+
+    input[type="submit"] {
+      width: 50%;
+      padding: 10px;
+      margin: 10px 0;
+      background: transparent;
+      color: white;
+      border: none;
+      
+      background-color: #E67E22;
+      border-radius: 50px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-box">
+    <form id="login-form" method="post" action="/login">
+      <img src="uc_logo.png" alt="Logo" id="uclogo" width="300px" height="100px">
+      <br>
+      <input type="text" id="email" name="email" placeholder="Email"><br>
+      <div class="password-conatiner">
+        <input type="password" id="password" name="password" placeholder="Password" required>
+        <span class="glyphicon glyphicon-eye-open password-toggle"></span>
+      </div>
+
+      <input type="button" style="margin: left 5px" name="show_password" value="Show" id="show_button" onclick="if (password.type == 'text') password.type = 'password';
+        else password.type = 'text';">
+      <br>
+
+      <input type="submit" value="Login" id="loginbutton">
+      <p>Don't have an account? <a href="/register">Register</a></p>
+    </form>
+  </div>
+  <script src="public/script.js">
+
+  </script>
+</body>
+</html>

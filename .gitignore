@@ -1,0 +1,6 @@
+*.env
+*.csv
+*.xml
+node_modules/
+Downloaded_data/
+opportunities.csv

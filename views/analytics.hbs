@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics</title>
+    <!-- Load D3.js -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <!-- Load DC.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dc/4.1.1/dc.min.js"></script>
+    <!-- Load DC.css for styling -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/dc/4.1.1/dc.min.css"/>
+</head>
+<body>
+    <!-- Include sideMenu partial -->
+    {{> sideMenu}}
+
+    <!-- Create a div for each chart -->
+    <div id="chart-container">
+        <div id="bar-chart"></div>
+        <div id="pie-chart"></div>
+    </div>
+
+    <script>
+        // Sample data
+        const data = [
+            { category: 'A', value: 10 },
+            { category: 'B', value: 20 },
+            { category: 'C', value: 15 },
+            { category: 'D', value: 25 },
+            { category: 'E', value: 30 }
+        ];
+
+        // Create a Crossfilter instance
+        const ndx = crossfilter(data);
+
+        // Define dimensions and groups
+        const categoryDimension = ndx.dimension(d => d.category);
+        const valueGroup = categoryDimension.group().reduceSum(d => d.value);
+
+        // Create bar chart
+        const barChart = dc.barChart("#bar-chart");
+        barChart
+            .width(400)
+            .height(300)
+            .dimension(categoryDimension)
+            .group(valueGroup)
+            .x(d3.scaleBand())
+            .xUnits(dc.units.ordinal)
+            .yAxisLabel('Value')
+            .barPadding(0.1)
+            .outerPadding(0.05)
+            .render();
+
+        // Create pie chart
+        const pieChart = dc.pieChart("#pie-chart");
+        pieChart
+            .width(200)
+            .height(200)
+            .dimension(categoryDimension)
+            .group(valueGroup)
+            .render();
+        
+        // Render all charts
+        dc.renderAll();
+    </script>
+</body>
+</html>

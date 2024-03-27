@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup</title>
+  <style>
+    body {
+      display: flex;
+      {{!-- justify-content: center; --}}
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+      flex-direction: column;
+    }
+   
+
+    nav {
+      background: #cd2c2e;
+      width: 100%;
+      padding: 10px 0; /* Adjust padding */
+      text-align: center; /* Center align the content */
+      
+    }
+
+    #signup-form {
+      background-color: #efe9e9;
+      display: flex;
+      width: 60%;
+      flex-direction: column;
+      height: 60%;
+      margin: 0 auto;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-top: 30px;
+    }
+
+    .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+      align-items: center;
+    }
+
+    .form-group {
+      flex: 1;
+      margin-right: 20px;
+      margin-left: 20px;
+      align-items: center;
+    }
+
+    label {
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 44px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    #signup {
+      margin-top: 20px;
+    }
+
+    #Rows{
+      margin-top: 45px;
+    }
+
+    .password-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .password-container input[type="password"] {
+      flex-grow: 1;
+    }
+
+  
+
+    .password-container .eye-icon {
+      cursor: pointer;
+      margin-left: 5px;
+    }
+
+  </style>
+</head>
+<body>
+  <nav>
+    <img src="grants.png" alt="Logo" id="UC_Grants" width="300px" height="100px">
+  </nav>
+  <form id="signup-form" method="post" action="/register" onsubmit="return validateForm()">
+    <div class="form-row" id="Rows">
+      <div class="form-group">
+        <label for="firstname">First Name:</label>
+        <input type="text" id="firstname" name="firstname" required>
+      </div>
+      <div class="form-group">
+        <label for="lastname">Last Name:</label>
+        <input type="text" id="lastname" name="lastname" required>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <div class="password-container">
+          <input type="password" id="password" name="password" required>
+          <i class="eye-icon" onclick="togglePasswordVisibility()">&#128065;</i>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="confirm-password">Confirm Password:</label>
+        <input type="password" id="confirm-password" name="confirm-password" required>
+      </div>
+      <div class="form-group">
+        <label for="interests">Interests:</label>
+        <input type="text" id="interests" name="interests">
+      </div>
+    </div>
+    <div>
+      <div class="form-group" id="signup">
+        <button type="submit">Signup</button>
+      </div>
+    </div>
+  </form>
+  <p>Already have an account? <a href="/login">Login</a></p>
+
+  <script>
+      function togglePasswordVisibility() {
+        var passwordInput = document.getElementById("password");
+        var eyeIcon = document.querySelector(".eye-icon");
+        if (passwordInput.type === "password") {
+          passwordInput.type = "text";
+          eyeIcon.innerHTML = "&#128066;"; // Eye-closed icon
+        } else {
+          passwordInput.type = "password";
+          eyeIcon.innerHTML = "&#128065;"; // Eye icon
+        }
+      }
+
+    function validateForm() {
+      var passwordField = document.getElementById('password');
+      var confirmPasswordField = document.getElementById('confirm-password');
+      if (passwordField.value !== confirmPasswordField.value) {
+        confirmPasswordField.setCustomValidity('Passwords do not match');
+        return false;
+      } else {
+        confirmPasswordField.setCustomValidity('');
+        return true;
+      }
+    }
+  </script>
+</body>
+</html>

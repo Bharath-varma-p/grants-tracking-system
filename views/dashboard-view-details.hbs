@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grants Dashboard View Results</title>
+  <!-- Add the link to Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #FAF6F0;
+    }
+
+    {{!-- td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    } --}}
+
+    tr:hover {
+      background-color: #b9aaf0;
+    }
+
+    body {
+      padding: 20px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    #closeButton {
+      position: absolute;
+      top: 48px;
+      right: 413px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+   <h1 class="mt-4 mb-4">Grants Dashboard View Results</h1>
+   <div class="table-responsive">
+
+     <table class="table table-bordered table-hover">
+      <tbody>
+        {{#each data}}
+          <tr>
+            <td><b>ID:</b></td>
+            <td>{{id}}</td>
+          </tr>
+          <tr>
+            <td><b>Opprtunity Title:</b></td>
+            <td>{{title}}</td>
+          </tr>
+          <tr>
+            <td><b>Oppurtunity Number:</b></td>
+            <td>{{number}}</td>
+          </tr>
+          <tr>
+            <td><b>Category:</b></td>
+            <td>{{category}}</td>
+          </tr>
+          <tr>
+            <td><b>Funding Instrument Type:</b></td>
+            <td>{{FundingInstrumentType}}</td>
+          </tr>
+          <tr>
+            <td><b>Category Of Funding Activity:</b></td>
+            <td>{{CategoryOfFundingActivity}}</td>
+          </tr>
+          <tr>
+            <td><b>Category Explanation:</b></td>
+            <td>{{CategoryExplanation}}</td>
+          </tr>
+          <tr>
+            <td><b>CFDA Numbers:</b></td>
+            <td>{{CFDAStringSlice CFDANumbers}}</td>
+          </tr>
+          <tr>
+            <td><b>Eligible Applicants:</b></td>
+            <td>{{EligibleApplicants}}</td>
+          </tr>
+          <tr>
+            <td><b>Additional Information On Eligibility:</b></td>
+            <td>{{AdditionalInformationOnEligibility}}</td>
+          </tr>
+          <tr>
+            <td><b>Agency Code:</b></td>
+            <td>{{AgencyCode}}</td>
+          </tr>
+          <tr>
+            <td><b>Agency Name:</b></td>
+            <td>{{AgencyName}}</td>
+          </tr>
+          <tr>
+            <td><b>Post Date:</b></td>
+            <td>{{formatDate PostDate}}</td>
+          </tr>
+          <tr>
+            <td><b>Close Date:</b></td>
+            <td>{{formatDate CloseDate}}</td>
+          </tr>
+          <tr>
+            <td><b>Last Updated Date:</b></td>
+            <td>{{formatDate LastUpdatedDate}}</td>
+          </tr>
+          <tr>
+            <td><b>Award Ceiling:</b></td>
+            <td>{{AwardCeiling}}</td>
+          </tr>
+          <tr>
+            <td><b>Award Floor:</b></td>
+            <td>{{AwardFloor}}</td>
+          </tr>
+          <tr>
+            <td><b>Estimated Total Program Funding:</b></td>
+            <td>{{EstimatedTotalProgramFunding}}</td>
+          </tr>
+          <tr>
+            <td><b>Expected Number Of Awards:</b></td>
+            <td>{{ExpectedNumberOfAwards}}</td>
+          </tr>
+          <tr>
+            <td><b>Description:</b></td>
+            <td>{{Description}}</td>
+          </tr>
+          <tr>
+            <td><b>Version:</b></td>
+            <td>{{Version}}</td>
+          </tr>
+          <tr>
+            <td><b>CostSharing Or MatchingRequirement:</b></td>
+            <td>{{CostSharingOrMatchingRequirement}}</td>
+          </tr>
+          <tr>
+            <td><b>ArchiveDate:</b></td>
+            <td>{{formatDate ArchiveDate}}</td>
+          </tr>
+          <tr>
+            <td><b>Grantor Contact Email:</b></td>
+            <td>{{GrantorContactEmail}}</td>
+          </tr>
+          <tr>
+            <td><b>Grantor Contact Email Description:</b></td>
+            <td>{{GrantorContactEmailDescription}}</td>
+          </tr>
+          <tr>
+            <td><b>Grantor Contact Text:</b></td>
+            <td>{{GrantorContactText}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+   </div>
+  </div>
+
+  
+   <div class="container mt-4">
+    <button id ="closeButton" button type="button" class="btn btn-primary" onclick="goToDashboard()">Close</button>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+   <script>
+    function goToDashboard() {
+      // Redirect to the dashboard
+      window.location.href = '/dashboard_view';
+    }
+  </script>
+</body>
+</html>
