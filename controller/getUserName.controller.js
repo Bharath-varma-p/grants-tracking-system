@@ -1,4 +1,5 @@
 const userService = require('../services/getUserName.service');
+const connection = require('../database');
 
 exports.fetchUserData = (req, res) => {
   // Get the email from the request object (e.g., req.user.email or req.query.email)
@@ -12,3 +13,25 @@ exports.fetchUserData = (req, res) => {
     res.json(userData);
   });
 };
+
+
+
+exports.fetchChartData = (req, res) => {
+    // Execute the SQL query to fetch chart data
+    const query = `
+      SELECT category, COUNT(grant_id) AS grant_count
+      FROM classified_grants
+      GROUP BY category;
+    `;
+  
+    connection.query(query, (err, results) => {
+      if (err) {
+        console.error('Error executing query:', err);
+        res.status(500).json({ error: 'Error fetching chart data' });
+        return;
+      }
+      
+      // Send the fetched data as JSON response
+      res.json(results);
+    });
+  };

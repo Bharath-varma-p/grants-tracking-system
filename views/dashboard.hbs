@@ -185,6 +185,17 @@
     margin-bottom: -30px;
     margin-top: 30px
   }
+  .chart-container {
+  display: flex;
+  justify-content: space-between;
+  width: 1200px; /* Total width of both charts */
+  margin: 0 auto;
+}
+
+.chart {
+  width: 600px; /* Width of each individual chart */
+  height: 400px;
+}
 
   </style>
 </head>
@@ -193,6 +204,17 @@
   <div>
     {{> sideMenu}}
   </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <!-- DC.js and D3.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.0.0/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter2/1.5.4/crossfilter.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dc/4.2.0/dc.min.js"></script>
+
+  <div class="chart-container">
+    <div id="chart-container" class="chart"></div>
+    <div id="pie-chart-container" class="chart"></div>
+  </div>
+
   <div class="mygrants"><b>Master Grants</b></div>  
   {{!-- <div id="keyboardSearch">
     <form id="dashboard" action="/dashboard_view" method="post">
@@ -239,14 +261,61 @@
 
 
   <script type="text/javascript">
+  
     $(document).ready(function () {
       initializeFirstTable();
+      fetchChartDataAndRenderChart();
 
       $('#rowsPerPage').on('change', function () {
         var rowsPerPage = $(this).val();
         $('#dashboardTable').DataTable().page.len(rowsPerPage).draw();
       });
     });
+    function fetchChartDataAndRenderChart() {
+      $.ajax({
+        url: "/fetch_chart_data", // Replace with your actual route to fetch chart data
+        type: "GET",
+        success: function (data) {
+          renderChart(data);
+        },
+        error: function (xhr, status, error) {
+          console.error(error);
+        }
+      });
+    }
+
+    function renderChart(data) {
+      var ndx = crossfilter(data);
+      var categoryDim = ndx.dimension(function (d) { return d.category; });
+      var grantsByCategory = categoryDim.group().reduceSum(
+        function (d) { return d.grant_count; }
+      );
+    
+
+      var chart = dc.barChart("#chart-container");
+      chart
+        .width(600)
+        .height(400)
+        .dimension(categoryDim)
+        .group(grantsByCategory)
+        .x(d3.scaleBand())
+        .xUnits(dc.units.ordinal)
+        .xAxisLabel("Category")
+        .yAxisLabel("Number of Grants")
+        .elasticY(true)
+        .brushOn(true)
+        .barPadding(0.1)
+        .outerPadding(0.05);
+      var pieChart = dc.pieChart("#pie-chart-container");
+      pieChart
+        .width(600)
+        .height(400)
+        .dimension(categoryDim)
+        .group(grantsByCategory)
+        .innerRadius(50);
+
+      dc.renderAll();
+    }
 
     function initializeFirstTable() {
       $('#dashboardTable').DataTable({

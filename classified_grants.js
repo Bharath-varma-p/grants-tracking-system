@@ -13,7 +13,7 @@ async function classifyGrants() {
     database:  process.env.database
   });
   
-  const [rows] = await connection.execute('SELECT id, title FROM grants_trackings');
+  const [rows] = await connection.execute('SELECT id, title, EstimatedTotalProgramFunding FROM grants_trackings');
 
   // Define the categories and their corresponding keywords
   const categories = {
@@ -34,15 +34,16 @@ async function classifyGrants() {
     CREATE TABLE IF NOT EXISTS classified_grants (
       id INT AUTO_INCREMENT PRIMARY KEY,
       category VARCHAR(255),
-      grant_id INT
+      grant_id INT,
+      estimated_total_program_funding DECIMAL(10,2)
     )
   `);
 
   // Classify grants and insert them into the classified_grants table
-  for (const { id, title } of rows) {
+  for (const { id, title, EstimatedTotalProgramFunding } of rows) {
     for (const [category, keywords] of Object.entries(categories)) {
       if (keywords.some(keyword => title.toLowerCase().includes(keyword))) {
-        await connection.execute('INSERT INTO classified_grants (category, grant_id) VALUES (?, ?)', [category, id]);
+        await connection.execute('INSERT INTO classified_grants (category, grant_id, estimated_total_program_funding) VALUES (?, ?, ?)', [category, id, EstimatedTotalProgramFunding]);
       }
     }
   }

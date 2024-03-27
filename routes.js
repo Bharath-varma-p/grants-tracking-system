@@ -32,6 +32,8 @@ router.get('/my_data_dashboard', myGrantsController.getMyDataDashboard);
 router.get('/my_dashboard_view', myGrantsController.myDashboardData);
 // router.post('/my_dashboard_view', myGrantsController.myDashboard_Data);
 
+router.get("/fetch_chart_data",getUserNameController.fetchChartData)
+
 
 
 module.exports=router;
