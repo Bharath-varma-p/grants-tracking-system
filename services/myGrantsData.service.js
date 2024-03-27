@@ -16,7 +16,6 @@ exports.getMyFilteredGrantsData = (req) => {
     return new Promise((resolve, reject) => {
         // Get user's interests based on email
         const userInterestsQuery = `SELECT interests FROM users_2 WHERE email = ?`;
-        console.log("interest query:",userInterestsQuery);
         connection.query(userInterestsQuery, [userEmail], (error, userInterests) => {
             if (error) {
                 reject(error);

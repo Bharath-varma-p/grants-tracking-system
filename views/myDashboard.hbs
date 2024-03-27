@@ -181,7 +181,44 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     margin-bottom: 20px;
     text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
+
+.text-success-glow {
+  color: #5cb85c; /* Green color code */
+  text-shadow: 0 0 20px #5cb85c, 0 0 30px #5cb85c, 0 0 40px #5cb85c, 0 0 50px #5cb85c, 0 0 60px #5cb85c, 0 0 70px #5cb85c, 0 0 80px #5cb85c;
+}
+
+.blink {
+  animation: blinker 1s cubic-bezier(.5, 0, 1, 1) infinite alternate;  
+}
+@keyframes blinker {  
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.interests-container {
+  display: flex;
+  align-items: center;
+  margin-top: -10px;
+}
+
+.interests {
+  margin-right: auto; /* Adjust spacing between interests and count */
+  margin-left: 250px;
+  margin-bottom: -5px;
+}
+
+.count {
+  margin-left: auto; /* Push count to the right side */
+  margin-right: 300px;
+  margin-bottom: -5px;
+}
+
+.outer-interests-container{
+  margin-bottom: -45px; 
+}
 
   </style>
 </head>
@@ -190,7 +227,18 @@
   <div>
     {{> sideMenu}}
   </div>
-  <div class="mygrants">My Grants</div>
+  <div class="outer-interests-container">
+    <div class="mygrants">My Grants</div>
+    <div class="interests-container">
+      <div class="interests">
+        <i class="fa fa-circle text-success-glow blink"></i>
+        <span id="userInterests"></span>
+      </div>
+      <div class="count">
+        <span id="interestsCount"></span>
+      </div>
+    </div>
+  </div>
   <div class="table-container">
     <table id="dashboardTable" class="display">
       <thead>
@@ -218,12 +266,34 @@
   <script type="text/javascript">
     $(document).ready(function () {
       initializeFirstTable();
+      fetchInterestsAndCountInfo();
 
       $('#rowsPerPage').on('change', function () {
         var rowsPerPage = $(this).val();
         $('#dashboardTable').DataTable().page.len(rowsPerPage).draw();
       });
     });
+
+    function fetchInterestsAndCountInfo() {
+      fetch('/getInterests')
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('Network response was not ok');
+              }
+              return response.json();
+          })
+          .then(data => {
+            const { interests, count } = data;
+            const interestsSpan = document.getElementById('userInterests');
+            interestsSpan.textContent = `Area of Interest: ${interests} `;
+
+            const countSpan = document.getElementById('interestsCount');
+            countSpan.textContent = `Count: ${count} `;
+            // const interestsAndCountElement = document.getElementById('interestsAndCount');
+             // interestsAndCountElement.innerHTML = `<p>User Interests: ${interests}</p><p>Count: ${count}</p>`; --}}
+          })
+          .catch(error => console.error('Error fetching user information:', error));
+      }
 
     function initializeFirstTable() {
       $('#dashboardTable').DataTable({
