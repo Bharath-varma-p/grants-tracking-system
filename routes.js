@@ -4,6 +4,7 @@ const userController = require('./controller/user');
 const grantsController = require('./controller/grants');
 const getUserNameController = require('./controller/getUserName.controller');
 const myGrantsController = require('./controller/myDataDashboard.controller');
+const getInterestsController = require('./controller/getInterests.controller')
 
 // exports.renderLogin = (req,res) => {
 //     res.render('main',{title:'Grants'});
@@ -24,6 +25,7 @@ router.get('/data_dashboard', grantsController.getDataDashboard);
 
 
 router.get("/getUserInfo", getUserNameController.fetchUserData);
+router.get("/getInterests",getInterestsController.fetchInterests);
 // router.get("/analytics", analyticsController.showAnalyticsPage);
 // router.get("/analytics-data", analyticsController.getData);
 router.get('/my_data_dashboard', myGrantsController.getMyDataDashboard);

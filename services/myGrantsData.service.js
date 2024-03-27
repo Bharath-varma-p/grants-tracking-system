@@ -9,23 +9,43 @@ const connection = mysql.createConnection({
 
 connection.connect();
 
-exports.getMyFilteredGrantsData = () => {
+exports.getMyFilteredGrantsData = (req) => {
+    console.log("Entered here");
+    userEmail = req.session.email;
+
     return new Promise((resolve, reject) => {
-        const currentDate = new Date(); // Get current date
-        currentDate.setDate(currentDate.getDate() + 4); // Add 4 days to the current date
-
-        // Format current date as YYYY-MM-DD
-        const formattedCurrentDate = currentDate.toISOString().split('T')[0];
-
-        // Construct the SQL query to filter data where CloseDate is 4 days or more in the future
-        const query = `SELECT id, title, number, CloseDate, AwardCeiling FROM grants_trackings WHERE CloseDate >= '${formattedCurrentDate}'`;
-
-        connection.query(query, (error, results) => {
+        // Get user's interests based on email
+        const userInterestsQuery = `SELECT interests FROM users_2 WHERE email = ?`;
+        connection.query(userInterestsQuery, [userEmail], (error, userInterests) => {
             if (error) {
                 reject(error);
-            } else {
-                resolve(results);
+                return;
             }
+
+            // Extract user's interests from the query result
+            const interests = userInterests[0].interests;
+            console.log("interests",interests)
+            // Format current date as YYYY-MM-DD
+            const currentDate = new Date();
+            currentDate.setDate(currentDate.getDate() + 4); // Add 4 days to the current date
+            const formattedCurrentDate = currentDate.toISOString().split('T')[0];
+            console.log("formattedCurrentDate",formattedCurrentDate)
+            // Construct the SQL query to filter grants based on user's interests
+            const query = `
+                SELECT id, title, number, CloseDate, AwardCeiling 
+                FROM grants_trackings 
+                WHERE title LIKE '%${interests}%'
+                AND CloseDate >= '${formattedCurrentDate}'
+            `;
+
+            // Execute the query to fetch filtered grants data
+            connection.query(query, (error, results) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve(results);
+                }
+            });
         });
     });
 };

@@ -148,7 +148,7 @@ exports.verifyTfa = (req,res) => {
   
     if (verified) {
       req.session.userEmail = email;
-      res.redirect('/dashboard_view');
+      res.redirect('/my_dashboard_view');
     } else {
       res.status(401).send({message: 'Invalid token'});
     }
