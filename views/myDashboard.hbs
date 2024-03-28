@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Dashboard</title>
+  <title>My Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- DataTables CSS -->
@@ -167,8 +167,9 @@
     .future-date {
       color: green;
     }
+    
 
-.mygrants {
+  .mygrants {
     background: #94c0ef;
     width: 100%;
     padding: 20px 0%;
@@ -182,19 +183,43 @@
     text-align: center;
     padding-top: 10px;
     padding-bottom: 10px;
-    margin-bottom: -30px;
+    {{!-- margin-bottom: -30px; --}}
     margin-top: 30px
   }
-  .chart-container {
-  display: flex;
-  justify-content: space-between;
-  width: 1200px; /* Total width of both charts */
-  margin: 0 auto;
+
+.text-success-glow {
+  color: #5cb85c; /* Green color code */
+  text-shadow: 0 0 20px #5cb85c, 0 0 30px #5cb85c, 0 0 40px #5cb85c, 0 0 50px #5cb85c, 0 0 60px #5cb85c, 0 0 70px #5cb85c, 0 0 80px #5cb85c;
 }
 
-.chart {
-  width: 600px; /* Width of each individual chart */
-  height: 400px;
+.blink {
+  animation: blinker 1s cubic-bezier(.5, 0, 1, 1) infinite alternate;  
+}
+@keyframes blinker {  
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.interests-container {
+  display: flex;
+  align-items: center;
+  margin-top: -10px;
+}
+
+.interests {
+  margin-right: auto; /* Adjust spacing between interests and count */
+  margin-left: 250px;
+  margin-bottom: -5px;
+}
+
+.count {
+  margin-left: auto; /* Push count to the right side */
+  margin-right: 300px;
+  margin-bottom: -5px;
+}
+
+.outer-interests-container{
+  margin-bottom: -45px; 
 }
 
   </style>
@@ -204,38 +229,18 @@
   <div>
     {{> sideMenu}}
   </div>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-  <!-- DC.js and D3.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.0.0/d3.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter2/1.5.4/crossfilter.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/dc/4.2.0/dc.min.js"></script>
-
-  <div class="chart-container">
-    <div id="chart-container" class="chart"></div>
-    <div id="pie-chart-container" class="chart"></div>
+  <div class="outer-interests-container">
+    <div class="mygrants"><b>My Grants</b></div>
+    <div class="interests-container">
+      <div class="interests">
+        <i class="fa fa-circle text-success-glow blink"></i>
+        <span id="userInterests"></span>
+      </div>
+      <div class="count">
+        <span id="interestsCount"></span>
+      </div>
+    </div>
   </div>
-
-  <div class="mygrants"><b>Master Grants</b></div>  
-  {{!-- <div id="keyboardSearch">
-    <form id="dashboard" action="/dashboard_view" method="post">
-      <label class="keyword-label" for="keyword">Keyword:</label>
-      <input type="text" id="keyword" name="keyword" required>
-      <button class="submit-button" type="submit">Search</button>
-    </form>
-
-  </div> --}}
-
-  {{!-- <div id="paginationOptions">
-    <label for="rowsPerPage">Rows per page:</label>
-    <select id="rowsPerPage">
-      {{#if pagesarr.length}}
-      {{#each pagesarr}}
-      <option value="{{this}}">{{this}}</option>
-      {{/each}}
-      {{/if}}
-    </select>
-  </div> --}}
-  <br>
   <div class="table-container">
     <table id="dashboardTable" class="display">
       <thead>
@@ -261,66 +266,41 @@
 
 
   <script type="text/javascript">
-  
     $(document).ready(function () {
       initializeFirstTable();
-      fetchChartDataAndRenderChart();
+      fetchInterestsAndCountInfo();
 
       $('#rowsPerPage').on('change', function () {
         var rowsPerPage = $(this).val();
         $('#dashboardTable').DataTable().page.len(rowsPerPage).draw();
       });
     });
-    function fetchChartDataAndRenderChart() {
-      $.ajax({
-        url: "/fetch_chart_data", // Replace with your actual route to fetch chart data
-        type: "GET",
-        success: function (data) {
-          renderChart(data);
-        },
-        error: function (xhr, status, error) {
-          console.error(error);
-        }
-      });
-    }
 
-    function renderChart(data) {
-      var ndx = crossfilter(data);
-      var categoryDim = ndx.dimension(function (d) { return d.category; });
-      var grantsByCategory = categoryDim.group().reduceSum(
-        function (d) { return d.grant_count; }
-      );
-    
+    function fetchInterestsAndCountInfo() {
+      fetch('/getInterests')
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('Network response was not ok');
+              }
+              return response.json();
+          })
+          .then(data => {
+            const { interests, count } = data;
+            const interestsSpan = document.getElementById('userInterests');
+            interestsSpan.textContent = `Area of Interest: ${interests} `;
 
-      var chart = dc.barChart("#chart-container");
-      chart
-        .width(600)
-        .height(400)
-        .dimension(categoryDim)
-        .group(grantsByCategory)
-        .x(d3.scaleBand())
-        .xUnits(dc.units.ordinal)
-        .xAxisLabel("Category")
-        .yAxisLabel("Number of Grants")
-        .elasticY(true)
-        .brushOn(true)
-        .barPadding(0.1)
-        .outerPadding(0.05);
-      var pieChart = dc.pieChart("#pie-chart-container");
-      pieChart
-        .width(600)
-        .height(400)
-        .dimension(categoryDim)
-        .group(grantsByCategory)
-        .innerRadius(50);
-
-      dc.renderAll();
-    }
+            const countSpan = document.getElementById('interestsCount');
+            countSpan.textContent = `Number of Avaialable Grants: ${count} `;
+            // const interestsAndCountElement = document.getElementById('interestsAndCount');
+             // interestsAndCountElement.innerHTML = `<p>User Interests: ${interests}</p><p>Count: ${count}</p>`; --}}
+          })
+          .catch(error => console.error('Error fetching user information:', error));
+      }
 
     function initializeFirstTable() {
       $('#dashboardTable').DataTable({
         "ajax": {
-          "url": "/data_dashboard",
+          "url": "/my_data_dashboard",
           "dataSrc": ""
         },
         "columns": [

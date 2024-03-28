@@ -57,13 +57,10 @@
   nav h2 {
 
     margin: 0;
-    /* Reset margin to remove default margin */
     color: #fff;
     text-align: center;
-    /* Center align the text */
     flex-grow: 1;
-    /* Allow the text to grow and occupy available space */
-    margin-right: 50px;
+    margin-right: -85px;
   }
 
 
@@ -79,12 +76,8 @@
     overflow: hidden;
     transition: max-height 0.3s ease-out;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    /* Add a subtle box shadow */
     background-color: #fff;
-    /* Set a background color */
     border-radius: 8px;
-    /* Add rounded corners */
-
   }
 
   .sub-menu-wrap.open-menu {
@@ -162,11 +155,11 @@
   .sub-menu-link:hover p {
     font-weight: 600;
   }
-
+  #subMenu {
+  z-index: 9999; /* Set a high z-index value to bring it to the front */
+}
 
   @media only screen and (max-width: 600px) {
-
-    /* Styles for screens up to 600px wide */
     nav ul {
       margin-left: 0;
     }
@@ -184,13 +177,10 @@
   label .slide {
     height: 100%;
     width: 210px;
-    /*180*/
     position: absolute;
-    /*need to use absolute as per the resource*/
     background-color: #fff;
     transition: 0.5s ease;
     transform: translateX(-210px);
-    /*-180*/
     z-index: 1;
     left: 0;
   }
@@ -199,7 +189,6 @@
   label .slide h1 {
     color: black;
     font-weight: 700;
-    /*800*/
     text-align: right;
     padding: 10px 0;
     padding-right: 30px;
@@ -217,11 +206,8 @@
     color: black;
     font-weight: 500;
     padding: 10px;
-    /*5px 0*/
     border-radius: 5px;
-    /*new*/
     margin-bottom: 10px;
-    /*new*/
     display: block;
     text-transform: capitalize;
     text-decoration: none;
@@ -251,11 +237,9 @@
 
   .toggle {
     position: absolute;
-    /* absolute*/
     height: 30px;
     width: 30px;
     top: 50px;
-    /*50px*/
     left: 25px;
     z-index: 2;
     cursor: pointer;
@@ -267,7 +251,6 @@
 
   .toggle .common {
     position: absolute;
-    /*absolute*/
     height: 2px;
     width: 20px;
     background-color: #0d0c0cca;
@@ -331,10 +314,10 @@
   <div class="slide">
     <h1>Menu</h1>
     <ul>
-      <li><a href="/dashboard_view"><i class="fas fa-tv"></i>Dashboard</a></li>
-      <li><a href="#"><i class="fab fa-gripfire"></i>Trending</a></li>
-      <li><a href="#"><i class="far fa-address-book"></i>portfolio</a></li>
-      <li><a href="#"><i class="far fa-heart"></i>Saved</a></li>
+      <li><a href="http://localhost:3000/dashboard_view"><i class="fas fa-tv"></i>Dashboard</a></li>
+      <li><a href="http://localhost:3000/my_dashboard_view"><i class="far fa-address-book"></i>My Dashboard</a></li>
+      {{!-- <li><a href="#"><i class="far fa-address-book"></i>portfolio</a></li>
+      <li><a href="#"><i class="far fa-heart"></i>Saved</a></li> --}}
     </ul>
   </div>
 </label>
@@ -343,23 +326,21 @@
 
 
 <nav>
-  <ul>
+  {{!-- <ul>
     <li>
       <a href="#">Home</a>
     </li>
     <li>
       <a href="#">About</a>
     </li>
-  </ul>
+  </ul> --}}
   <h2>Grants Tracking System</h2>
 
-  <img src="profile.png" class="logo" onclick="toggleMenu()">
+  <img src="profile2.png" class="logo" onclick="toggleMenu()">
 
   <div class="sub-menu-wrap" id="subMenu">
     <div class="sub-menu">
-      <div class="user-info">
-        <img src="profile.png">
-        <h3>Hello and Welcome </h3>
+      <div class="user-info" id="user-info1">
       </div>
       <hr>
 
@@ -371,7 +352,7 @@
 
       <a href="#" class="sub-menu-link">
         <img src="help.png">
-        <p>Help & Support</p>
+        <p>FeedBack</p>
         <span>></span>
       </a>
 
@@ -394,11 +375,29 @@
   //JavaScript to ToggleMenu
   function toggleMenu() {
     var subMenu = document.getElementById("subMenu");
-    subMenu.classList.toggle("open-menu")
+    subMenu.classList.toggle("open-menu");
+  }
+  // AJAX to fetch user information
+  window.addEventListener('DOMContentLoaded', (event) => {
+    fetchUserInfo();
+  });
+
+  function fetchUserInfo() {
+      fetch('/getUserInfo')
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('Network response was not ok');
+              }
+              return response.json();
+          })
+          .then(data => {
+              const userInfoDiv = document.getElementById('user-info1');
+              userInfoDiv.innerHTML = `<img src="profile.png"><h3><b>Hello ${data.firstname} ${data.lastname} (${data.role})<b></h3>`;
+          })
+          .catch(error => console.error('Error fetching user information:', error));
   }
 
 </script>
-
 
 
 <script src="/js/jquery.js"></script>
@@ -409,7 +408,5 @@
 <script src="/js/artyom.js"></script>
 <script src="/js/artyom.window.js"></script>
 <script src="/js/artyom.window.min.js"></script>
-<script src="/js/menus.js"></script>
 <script src="/js/leftMenuCreate.js"></script>
 <script src="/js/jquery.colorbox.js"></script>
-<script src="/js/bootstrap-datetimepicker.min.js"></script>

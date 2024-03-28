@@ -30,7 +30,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static('public'))
 
 
-//by bhatayh
+
 app.engine('.hbs', exphbs.engine({ 
   extname: '.hbs',
   partialsDir: path.join(__dirname,'/views/partials')

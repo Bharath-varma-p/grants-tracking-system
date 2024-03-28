@@ -29,12 +29,12 @@
       display: flex;
       width: 60%;
       flex-direction: column;
-      height: 40%;
+      height: 60%;
       margin: 0 auto;
       padding: 20px;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      margin-top: 80px;
+      margin-top: 30px;
     }
 
     .form-row {
@@ -71,7 +71,7 @@
       background-color: #007bff;
       color: #fff;
       border: none;
-      border-radius: 3px;
+      border-radius: 44px;
       cursor: pointer;
     }
 
@@ -90,13 +90,30 @@
     #Rows{
       margin-top: 45px;
     }
+
+    .password-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .password-container input[type="password"] {
+      flex-grow: 1;
+    }
+
+  
+
+    .password-container .eye-icon {
+      cursor: pointer;
+      margin-left: 5px;
+    }
+
   </style>
 </head>
 <body>
   <nav>
     <img src="grants.png" alt="Logo" id="UC_Grants" width="300px" height="100px">
   </nav>
-  <br>
   <form id="signup-form" method="post" action="/register" onsubmit="return validateForm()">
     <div class="form-row" id="Rows">
       <div class="form-group">
@@ -115,8 +132,10 @@
       </div>
       <div class="form-group">
         <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <input type="checkbox" onclick="togglePasswordVisibility()"> Show Password
+        <div class="password-container">
+          <input type="password" id="password" name="password" required>
+          <i class="eye-icon" onclick="togglePasswordVisibility()">&#128065;</i>
+        </div>
       </div>
     </div>
     <div class="form-row">
@@ -124,6 +143,12 @@
         <label for="confirm-password">Confirm Password:</label>
         <input type="password" id="confirm-password" name="confirm-password" required>
       </div>
+      <div class="form-group">
+        <label for="interests">Interests:</label>
+        <input type="text" id="interests" name="interests">
+      </div>
+    </div>
+    <div>
       <div class="form-group" id="signup">
         <button type="submit">Signup</button>
       </div>
@@ -132,14 +157,17 @@
   <p>Already have an account? <a href="/login">Login</a></p>
 
   <script>
-    function togglePasswordVisibility() {
-      var passwordInput = document.getElementById("password");
-      if (passwordInput.type === "password") {
-        passwordInput.type = "text";
-      } else {
-        passwordInput.type = "password";
+      function togglePasswordVisibility() {
+        var passwordInput = document.getElementById("password");
+        var eyeIcon = document.querySelector(".eye-icon");
+        if (passwordInput.type === "password") {
+          passwordInput.type = "text";
+          eyeIcon.innerHTML = "&#128066;"; // Eye-closed icon
+        } else {
+          passwordInput.type = "password";
+          eyeIcon.innerHTML = "&#128065;"; // Eye icon
+        }
       }
-    }
 
     function validateForm() {
       var passwordField = document.getElementById('password');

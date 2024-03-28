@@ -1,7 +1,7 @@
-const mysql = require('mysql2');
 require('dotenv').config();
 
 const connection = require('../database');
+const userService = require('../services/getUserName.service');
 
 exports.renderLogin = (req,res) => {
     res.render('login');
@@ -37,19 +37,25 @@ exports.handleLogin = async (req,res) => {
             console.log("Database error",err)
             res.send("Login failed")
         }else{
-            console.log("results",results);
-            if(results.length>=1){
-                // const user = results[0];
-                // const tfa_enabled = user.is_tfa_enabled;
-                // // console.log("tfa_enabled",tfa_enabled)
-                req.session.email = req.body.email;
-                res.redirect('/enable-tfa');
-            }else{
-                // res.send("Email and Password combination is incorrect");
-                res.status(400).send('Email and Password combination is incorrect');
-            }
-        }
-    });
+            if (results.length >= 1) {
+              req.session.email = req.body.email;
+
+              // Pass the logged-in user's email to the service function
+              userService.getUserName(req.body.email, (err, userData) => {
+                  if (err) {
+                      console.error('Error fetching user data:', err);
+                      // Handle error
+                  } else {
+                      // Use userData as needed
+                      console.log('User data:', userData);
+                      res.redirect('/enable-tfa');
+                  }
+              });
+          } else {
+              res.status(400).send('Email and Password combination is incorrect');
+          }
+      }
+  });
 }
 
 exports.fetchUserRole = (req,res)=>{
@@ -73,7 +79,7 @@ exports.fetchUserRole = (req,res)=>{
 }
 
 exports.handleRegister = (req,res) => {
-    const {firstname,lastname,email,password} = req.body;
+    const {firstname,lastname,email,password,interests} = req.body;
 console.log("password", req.body['confirm-password']);
 
     if (!isValidEmail(email)) {
@@ -91,10 +97,10 @@ console.log("password", req.body['confirm-password']);
       return res.status(400).send('Passwords do not match');
     }
   
-    const sql = 'INSERT into users_2 (firstname, lastname, email, password, role) values (?,?,?,?,?)';
+    const sql = 'INSERT into users_2 (firstname, lastname, email, password, role, interests) values (?,?,?,?,?,?)';
 
   
-    connection.query(sql, [firstname,lastname,email, password, role], (err,results) => {
+    connection.query(sql, [firstname,lastname,email, password, role, interests], (err,results) => {
       if(err){
         console.log("Database error",err);
         res.send("Account already Exists");
