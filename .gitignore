@@ -4,3 +4,4 @@
 node_modules/
 Downloaded_data/
 opportunities.csv
+*.DS_Store
